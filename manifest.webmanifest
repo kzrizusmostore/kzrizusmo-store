@@ -1,7 +1,7 @@
 {
-  "name": "KZRIZUSMO STORE",
-  "short_name": "KZRIZUSMO",
-  "description": "Digital Marketplace - Aplikasi Premium & Produk Digital",
+  "name": "𝗞𝗭𝗥𝗜𝗭𝗨𝗦𝗠𝗢 𝗦𝗧𝗢𝗥𝗘",
+  "short_name": "𝗞𝗭𝗥𝗜𝗭𝗨𝗦𝗠𝗢",
+  "description": "Aplikasi Premium & Produk Digital",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
