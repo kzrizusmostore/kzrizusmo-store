@@ -26302,8 +26302,8 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
 #page-home .kz-home-all-overlay.active{display:flex}
 #page-home .kz-home-all-head{display:flex;align-items:center;gap:10px;padding:16px;border-bottom:1px solid var(--border);background:var(--bg-card);position:sticky;top:0;z-index:2}
 #page-home .kz-home-all-back{width:42px;height:42px;border-radius:12px;border:1px solid var(--border);background:var(--bg-body);color:var(--text-main);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
-#page-home .kz-home-all-title{font-size:16px;font-weight:900;color:var(--text-main)}
-#page-home .kz-home-all-sub{font-size:12px;color:var(--text-sec);margin-top:2px}
+#page-home .kz-home-all-title{font-size:16px;font-weight:900;color:var(--text-main);line-height:1.2}
+#page-home .kz-home-all-sub{display:none!important}
 #page-home .kz-home-all-search{padding:14px 16px 10px;background:var(--bg-body)}
 #page-home .kz-home-all-search input{width:100%;height:46px;border-radius:14px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-main);padding:0 14px;font-size:14px;font-weight:700;outline:none}
 #page-home .kz-home-all-body{padding:0 16px 24px;overflow:auto}
@@ -26330,6 +26330,14 @@ body.light-mode #page-home .kz-home-all-head{background:#fff}
   function sosmeds(){ return safeArr(window.__kzSosmedState && window.__kzSosmedState.length ? window.__kzSosmedState : window.sosmedData); }
   function esc(s){ return String(s==null?'':s).replace(/[&<>\"]/g,function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]; }); }
   function parsed(name){ try{ if(typeof kzParseServerTier==='function') return kzParseServerTier(name); }catch(e){} return {clean:String(name||''),tier:''}; }
+  function getState(){ return window.__kzHomeAllProductsState || (window.__kzHomeAllProductsState = { mode:'all', title:'Semua Produk' }); }
+  function modeInfo(mode){
+    mode = String(mode==null?'all':mode).toLowerCase();
+    if(mode === 'apk' || mode === 'app' || mode === 'store') return { mode:'app', title:'Apk Premium' };
+    if(mode === 'digital') return { mode:'digital', title:'Produk Digital' };
+    if(mode === 'sosmed') return { mode:'sosmed', title:'Suntik Sosmed' };
+    return { mode:'all', title:'Semua Produk' };
+  }
 
   function flat(){
     var out=[];
@@ -26365,7 +26373,7 @@ body.light-mode #page-home .kz-home-all-head{background:#fff}
     el.innerHTML=''
       + '<div class="kz-home-all-head">'
       + '  <button class="kz-home-all-back" type="button" aria-label="Kembali"><i class="fas fa-arrow-left"></i></button>'
-      + '  <div><div class="kz-home-all-title">Semua Produk</div><div class="kz-home-all-sub">Khusus dari menu home · grid 3 kolom</div></div>'
+      + '  <div><div class="kz-home-all-title">Semua Produk</div><div class="kz-home-all-sub"></div></div>'
       + '</div>'
       + '<div class="kz-home-all-search"><input id="kzHomeAllSearch" type="text" placeholder="Cari produk..." /></div>'
       + '<div class="kz-home-all-body"><div id="kzHomeAllGrid" class="kz-home-all-grid"></div></div>';
@@ -26373,6 +26381,29 @@ body.light-mode #page-home .kz-home-all-head{background:#fff}
     el.querySelector('.kz-home-all-back').onclick=closeHomeAllProducts;
     el.querySelector('#kzHomeAllSearch').oninput=function(){ renderHomeAllProducts(this.value||''); };
     return el;
+  }
+
+  function applyState(opts){
+    var st = getState();
+    var rawMode = st.mode || 'all';
+    var title = st.title || 'Semua Produk';
+    if(typeof opts === 'string') rawMode = opts;
+    else if(opts && typeof opts === 'object'){
+      if(opts.mode != null) rawMode = opts.mode;
+      if(opts.title != null) title = String(opts.title);
+    }
+    var info = modeInfo(rawMode);
+    st.mode = info.mode;
+    st.title = title || info.title;
+    if(typeof opts !== 'object' || !opts || opts.title == null) st.title = info.title;
+    var overlay = document.getElementById('kzHomeAllProductsOverlay');
+    if(overlay){
+      var titleEl = overlay.querySelector('.kz-home-all-title');
+      if(titleEl) titleEl.textContent = st.title || 'Semua Produk';
+      var subEl = overlay.querySelector('.kz-home-all-sub');
+      if(subEl) subEl.textContent = '';
+    }
+    return st;
   }
 
   function buildCard(item){
@@ -26389,11 +26420,13 @@ body.light-mode #page-home .kz-home-all-head{background:#fff}
       + '</div>';
   }
 
-  window.renderHomeAllProducts = function(query){
+  window.renderHomeAllProducts = function(query, opts){
     var overlay=getOverlay(); if(!overlay) return;
     var host=overlay.querySelector('#kzHomeAllGrid'); if(!host) return;
+    var st = applyState(opts);
     var q=String(query||'').toLowerCase().trim();
     var items=flat().filter(function(item){
+      if(st.mode !== 'all' && item.source !== st.mode) return false;
       var hay=(item.groupName+' '+item.name).toLowerCase();
       return !q || hay.indexOf(q)>-1;
     });
@@ -26412,14 +26445,18 @@ body.light-mode #page-home .kz-home-all-head{background:#fff}
     });
   };
 
-  window.openHomeAllProducts = function(){
+  window.openHomeAllProducts = function(opts){
     var overlay=getOverlay(); if(!overlay) return false;
     overlay.classList.add('active');
     document.body.style.overflow='hidden';
     var input=overlay.querySelector('#kzHomeAllSearch');
     if(input) input.value='';
-    renderHomeAllProducts('');
+    renderHomeAllProducts('', opts || { mode:'all', title:'Semua Produk' });
     return false;
+  };
+
+  window.openHomeCategoryProducts = function(mode, title){
+    return window.openHomeAllProducts({ mode: mode, title: title });
   };
 
   window.closeHomeAllProducts = function(){
@@ -26441,7 +26478,7 @@ body.light-mode #page-home .kz-home-all-head{background:#fff}
     ev.preventDefault();
     ev.stopPropagation();
     if(ev.stopImmediatePropagation) ev.stopImmediatePropagation();
-    openHomeAllProducts();
+    openHomeAllProducts({ mode:'all', title:'Semua Produk' });
     return false;
   }, true);
 
@@ -26750,7 +26787,9 @@ body.light-mode #page-home .kz-tab:not(.active){color:#666;opacity:1}
         '</div>'+
         '<div class="kz-marquee"><i class="fas fa-bullhorn"></i><div class="kz-marquee-viewport"><div class="kz-marquee-track">Preview home sekarang bisa digeser per kategori • tap tab untuk pindah kategori • klik Selengkapnya untuk buka semua produk kategori ini</div></div></div>'+
         sliderMarkup(tab)+
-        testimonialsMarkup()+
+        '<div class="kz-protection-wrap" aria-hidden="true">'+
+        '  <img class="kz-protection-image" src="https://files.catbox.moe/o3hpkk.png" alt="Kzrizusmo Protection">'+
+        '</div>'+
       '</div>';
     bindSlider();
   }
@@ -26763,4 +26802,382 @@ body.light-mode #page-home .kz-tab:not(.active){color:#666;opacity:1}
   window.addEventListener('load', function(){ setTimeout(boot,160); });
 })();
 </script>
+
+<style id="kz-home-slide-sync-style">
+#page-home .kz-hs-catalog{background:var(--bg-card);border:1px solid var(--border);border-radius:22px;padding:16px;box-shadow:0 12px 30px var(--shadow)}
+#page-home .kz-hs-tabs{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:0 0 14px;padding:0;border-bottom:1px solid var(--border)}
+#page-home .kz-hs-tab{appearance:none;-webkit-appearance:none;background:none;border:0;padding:0 6px 13px;font-size:12.5px;font-weight:900;color:var(--text-sec);cursor:pointer;transition:color .22s ease,opacity .22s ease;white-space:nowrap;user-select:none;-webkit-user-select:none}
+#page-home .kz-hs-tab.is-active{color:var(--text-main);opacity:1}
+#page-home .kz-hs-tab:not(.is-active){opacity:.58}
+#page-home .kz-hs-indicator{position:absolute;left:0;bottom:-1px;width:33.333333%;height:3px;border-radius:999px;background:#ff0000;transform:translateX(0%);transition:transform .38s cubic-bezier(.22,1,.36,1);will-change:transform;pointer-events:none}
+#page-home .kz-hs-viewport{overflow:hidden;position:relative;touch-action:pan-y;cursor:grab}
+#page-home .kz-hs-viewport.is-dragging{cursor:grabbing}
+#page-home .kz-hs-track{display:flex;width:100%;will-change:transform;transition:transform .38s cubic-bezier(.22,1,.36,1)}
+#page-home .kz-hs-panel{min-width:100%;flex:0 0 100%;box-sizing:border-box;padding:12px;border-radius:18px;background:var(--bg-sec);border:1px solid var(--border)}
+#page-home .kz-hs-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding-top:0}
+#page-home .kz-hs-item{appearance:none;-webkit-appearance:none;aspect-ratio:1/1;min-height:0;padding:0;border-radius:16px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;cursor:pointer;user-select:none;-webkit-user-select:none}
+#page-home .kz-hs-item:active{transform:scale(.98)}
+#page-home .kz-hs-thumb{width:100%;height:100%;max-width:84px;max-height:84px;aspect-ratio:1/1;border-radius:18px;display:flex;align-items:center;justify-content:center;background:transparent;box-shadow:none}
+#page-home .kz-hs-item img{width:100%;height:100%;max-width:62px;max-height:62px;aspect-ratio:1/1;object-fit:contain;border-radius:14px;display:block;filter:drop-shadow(0 10px 20px rgba(0,0,0,.16))}
+#page-home .kz-hs-item.more{background:transparent;border:0}
+#page-home .kz-hs-item.more .kz-hs-thumb{background:transparent;box-shadow:none}
+#page-home .kz-hs-item.more .kz-hs-thumb i{font-size:28px;color:var(--text-sec);opacity:.82}
+#page-home .kz-hs-empty{padding:18px 14px;text-align:center;color:var(--text-sec);font-size:.84rem;line-height:1.5}
+#page-home .kz-hs-footer,#page-home .kz-hs-more-btn{display:none!important}
+#page-home .kz-hs-sentinel{display:none!important}
+body.light-mode #page-home .kz-hs-tab.is-active{color:#111}
+body.light-mode #page-home .kz-hs-tab:not(.is-active){color:#666;opacity:1}
+body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb i{color:rgba(17,17,17,.52);opacity:1}
+@media (max-width:640px){
+  #page-home .kz-hs-catalog{padding:14px;border-radius:18px}
+  #page-home .kz-hs-panel{padding:10px 8px;border-radius:16px}
+  #page-home .kz-hs-grid{gap:10px}
+  #page-home .kz-hs-thumb{max-width:78px;max-height:78px;border-radius:16px}
+  #page-home .kz-hs-item img{max-width:58px;max-height:58px}
+}
+</style>
+<script id="kz-home-slide-sync-script">
+(function(){
+  if(window.__kzHomeSlideSyncApplied) return;
+  window.__kzHomeSlideSyncApplied = true;
+
+  var TABS = [
+    { key:'apk', label:'Apk Premium', more:'Semua Apk Premium' },
+    { key:'digital', label:'Produk Digital', more:'Semua Produk Digital' },
+    { key:'sosmed', label:'Suntik Sosmed', more:'Semua Suntik Sosmed' }
+  ];
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];});}
+  function fmt(n){try{return new Intl.NumberFormat('id-ID').format(Number(n||0)||0)}catch(e){return String(n||0)}}
+  function getMe(){try{return typeof authGetMe==='function'?authGetMe():null}catch(e){return null}}
+  function getPoints(){var m=getMe();return Number((m&&(m.points||m.point||m.poin))||0)||0}
+  function clone(a){return (Array.isArray(a)?a:[]).map(function(x){return Object.assign({},x||{})})}
+  function sourceStore(){try{ if(Array.isArray(window.__kzStoreState)&&window.__kzStoreState.length) return clone(window.__kzStoreState);}catch(e){} try{ if(Array.isArray(window.appsData)&&window.appsData.length) return clone(window.appsData);}catch(e){} try{ if(Array.isArray(window.__appsDataDefault)&&window.__appsDataDefault.length) return clone(window.__appsDataDefault);}catch(e){} return [];}
+  function sourceDigital(){try{ if(Array.isArray(window.__kzDigitalState)&&window.__kzDigitalState.length) return clone(window.__kzDigitalState);}catch(e){} try{ if(Array.isArray(window.digitalAppsData)&&window.digitalAppsData.length) return clone(window.digitalAppsData);}catch(e){} return [];}
+  function sourceSosmed(){try{ if(Array.isArray(window.__kzSosmedState)&&window.__kzSosmedState.length) return clone(window.__kzSosmedState);}catch(e){} try{ if(Array.isArray(window.sosmedData)&&window.sosmedData.length) return clone(window.sosmedData);}catch(e){} return [];}
+  function sourceByTab(tab){ return tab==='digital' ? sourceDigital() : (tab==='sosmed' ? sourceSosmed() : sourceStore()); }
+  function cleanList(src){ return src.filter(function(it){ return it && (it.id||it.name); }); }
+  function svgIcon(label,bg,fg){ var l=String(label||'P').trim(); var parts=l.split(/\s+/).filter(Boolean); var initials=((parts[0]||'P').slice(0,1)+(parts[1]||'').slice(0,1)).toUpperCase().slice(0,2); var svg='<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><rect x="6" y="6" width="84" height="84" rx="24" fill="'+bg+'"/><text x="48" y="57" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="700" text-anchor="middle" fill="'+fg+'">'+initials+'</text></svg>'; return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg); }
+  function tabIndex(tab){ var idx = TABS.map(function(t){return t.key;}).indexOf(String(tab||'')); return idx < 0 ? 0 : idx; }
+  function tabMeta(tab){ return TABS[tabIndex(tab)]; }
+  function previewItems(tab){
+    var list = cleanList(sourceByTab(tab));
+    if(list.length > 6){
+      var items = list.slice(0,5);
+      items.push({__more:true, id:'', name:'Selengkapnya'});
+      return items;
+    }
+    return list.slice(0,6);
+  }
+  function productAction(id, tab){
+    id = String(id||'');
+    if(!id) return false;
+    if(tab==='digital'){
+      try{ if(typeof window.kzOpenDigitalDetail==='function') return window.kzOpenDigitalDetail(id); }catch(e){}
+      try{ if(typeof window.openDetail==='function') return window.openDetail(id); }catch(e){}
+      return false;
+    }
+    if(tab==='sosmed'){
+      try{ if(typeof window.kzOpenSosmedPreview==='function') return window.kzOpenSosmedPreview(id); }catch(e){}
+      try{ if(typeof window.openDetail==='function') return window.openDetail(id); }catch(e){}
+      return false;
+    }
+    try{ if(typeof window.openDetail==='function') return window.openDetail(id); }catch(e){}
+    return false;
+  }
+  function openMore(tab){
+    tab = String(tab||window.__kzHomeTab||'apk');
+    try{
+      if(typeof window.openHomeAllProducts === 'function'){
+        return window.openHomeAllProducts({ mode: tab, title: tabMeta(tab).label });
+      }
+    }catch(e){}
+    if(tab==='apk'){
+      try{ if(typeof kzSetCatalogMode==='function') kzSetCatalogMode('store'); }catch(e){}
+      try{ if(typeof navTo==='function') navTo('app-page'); }catch(e){}
+      setTimeout(function(){ try{ if(typeof renderFullAppGrid==='function') renderFullAppGrid(); }catch(e){} },70);
+      return false;
+    }
+    if(tab==='digital'){
+      try{ if(typeof kzSetCatalogMode==='function') kzSetCatalogMode('digital'); }catch(e){}
+      try{ if(typeof navTo==='function') navTo('app-page'); }catch(e){}
+      setTimeout(function(){ try{ if(typeof renderFullAppGrid==='function') renderFullAppGrid(); }catch(e){} },70);
+      return false;
+    }
+    try{ if(typeof navTo==='function') navTo('sosmed-page'); }catch(e){}
+    setTimeout(function(){ try{ if(typeof initSosmedPage==='function') initSosmedPage(); }catch(e){} },70);
+    return false;
+  }
+  function buildItem(it, tab){
+    if(it && it.__more){
+      return '<button class="kz-hs-item more" type="button" data-kz-hs-action="more" data-kz-hs-tab="'+esc(tab)+'" aria-label="Lihat semua '+esc(tabMeta(tab).label)+'"><div class="kz-hs-thumb"><i class="fas fa-ellipsis-h"></i></div></button>';
+    }
+    var img = (it && it.image) ? it.image : svgIcon((it&&it.name)||'Produk','#151515','#ff0000');
+    return '<button class="kz-hs-item" type="button" data-kz-hs-action="product" data-kz-hs-id="'+esc(it&&it.id||'')+'" data-kz-hs-tab="'+esc(tab)+'"><div class="kz-hs-thumb"><img src="'+esc(img)+'" alt="'+esc(it&&it.name||'Produk')+'"></div></button>';
+  }
+  function buildPanel(tab){
+    var items = previewItems(tab);
+    var content = items.length ? '<div class="kz-hs-grid">'+items.map(function(it){ return buildItem(it, tab); }).join('')+'</div>' : '<div class="kz-hs-empty">Belum ada produk di kategori ini.</div>';
+    return '<div class="kz-hs-panel" data-kz-hs-panel="'+esc(tab)+'">'+content+'</div>';
+  }
+  function categoryCardMarkup(activeTab){
+    var buttons = TABS.map(function(t){
+      return '<button class="kz-hs-tab'+(t.key===activeTab?' is-active':'')+'" type="button" data-kz-hs-tab-btn="'+esc(t.key)+'">'+esc(t.label)+'</button>';
+    }).join('');
+    var panels = TABS.map(function(t){ return buildPanel(t.key); }).join('');
+    return ''
+      + '<div class="kz-home-card kz-hs-catalog" id="kzHomeSlideRoot">'
+      + '  <div class="kz-hs-tabs">'+buttons+'<span class="kz-hs-indicator" id="kzHomeSlideIndicator"></span></div>'
+      + '  <div class="kz-hs-viewport" id="kzHomeSlideViewport">'
+      + '    <div class="kz-hs-track" id="kzHomeSlideTrack">'+panels+'</div>'
+      + '  </div>'
+      + '  <div class="kz-hs-sentinel" aria-hidden="true"><div class="kz-preview"><div class="kz-preview-item"></div></div></div>'
+      + '</div>';
+  }
+  function renderHome(tab){
+    tab = tabMeta(tab).key;
+    window.__kzHomeTab = tab;
+    var home = document.getElementById('page-home');
+    if(!home) return false;
+    var m=getMe()||{}; var user=esc(m.username||'user'); var tier=esc(m.membershipTier||m.membership||m.level||'Basic'); var status=(m.username?'Aktif':'Guest');
+    home.innerHTML=''
+      + '<div class="kz-home-shell">'
+      + '  <div class="kz-home-card kz-top-card">'
+      + '    <div class="kz-home-top">'
+      + '      <div class="kz-balance"><div><div class="lbl">Poin User</div><div class="val">'+fmt(getPoints())+'</div></div><div class="kz-balance-chip"><i class="fas fa-star"></i> @'+user+'</div></div>'
+      + '      <div class="kz-side-mini"><div class="kz-mini"><div class="t">Membership</div><div class="v">'+tier+'</div></div><div class="kz-mini"><div class="t">Status Akun</div><div class="v">'+status+'</div></div></div>'
+      + '    </div>'
+      + '    <div class="kz-shortcuts">'
+      + '      <div class="kz-shortcut" onclick="navTo(\'all-products\')"><i class="fas fa-box-open"></i><span>Semua Produk</span></div>'
+      + '      <div class="kz-shortcut" onclick="window.kzOpenCartFromSidebar&&window.kzOpenCartFromSidebar()"><i class="fas fa-cart-shopping"></i><span>Keranjang</span></div>'
+      + '      <div class="kz-shortcut" onclick="window.openMyOrdersFromMenu&&window.openMyOrdersFromMenu()"><i class="fas fa-receipt"></i><span>Pesanan Saya</span></div>'
+      + '      <div class="kz-shortcut" onclick="navTo(\'membership-upgrade\')"><i class="fas fa-crown"></i><span>Upgrade Membership</span></div>'
+      + '    </div>'
+      + '  </div>'
+      + '  <div class="kz-marquee"><i class="fas fa-bullhorn"></i><div class="kz-marquee-viewport"><div class="kz-marquee-track">Sekarang tab kategori di home sudah bisa slide halus, garis merah ikut menggeser, dan preview 6 produk juga bisa digeser langsung untuk pindah kategori</div></div></div>'
+      + categoryCardMarkup(tab)
+      + '<div class="kz-protection-wrap" aria-hidden="true">'
+      + '  <img class="kz-protection-image" src="https://files.catbox.moe/o3hpkk.png" alt="Kzrizusmo Protection">'
+      + '</div>'
+      + '</div>';
+    bindHome();
+    setTimeout(function(){ syncToTab(tab, false, true); }, 0);
+    return false;
+  }
+
+  function getState(){ return window.__kzHomeSlideSyncState || (window.__kzHomeSlideSyncState = {}); }
+  function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
+  function widthOf(viewport){ return Math.max(1, Math.round((viewport && viewport.clientWidth) || 1)); }
+  function syncIndicator(progress, animate){
+    var indicator = document.getElementById('kzHomeSlideIndicator');
+    if(!indicator) return;
+    indicator.style.transition = animate ? 'transform .38s cubic-bezier(.22,1,.36,1)' : 'none';
+    indicator.style.transform = 'translateX(' + (Number(progress||0) * 100) + '%)';
+  }
+  function syncTrack(progress, animate){
+    var viewport = document.getElementById('kzHomeSlideViewport');
+    var track = document.getElementById('kzHomeSlideTrack');
+    if(!viewport || !track) return;
+    var width = widthOf(viewport);
+    track.style.transition = animate ? 'transform .38s cubic-bezier(.22,1,.36,1)' : 'none';
+    track.style.transform = 'translate3d(' + ((-Number(progress||0) * width)) + 'px,0,0)';
+  }
+  function syncButtons(activeIndex){
+    Array.prototype.slice.call(document.querySelectorAll('#page-home [data-kz-hs-tab-btn]')).forEach(function(btn, idx){
+      btn.classList.toggle('is-active', idx === activeIndex);
+    });
+  }
+  function syncToTab(tab, animate, immediate){
+    var meta = tabMeta(tab);
+    var idx = tabIndex(meta.key);
+    window.__kzHomeTab = meta.key;
+    var st = getState();
+    st.activeIndex = idx;
+    syncButtons(idx);
+    syncIndicator(idx, !immediate && animate !== false);
+    syncTrack(idx, !immediate && animate !== false);
+    return idx;
+  }
+  function bindHome(){
+    var root = document.getElementById('kzHomeSlideRoot');
+    var viewport = document.getElementById('kzHomeSlideViewport');
+    var track = document.getElementById('kzHomeSlideTrack');
+    if(!root || !viewport || !track) return;
+    var st = getState();
+    if(st.boundRoot === root) return;
+    st.boundRoot = root;
+    st.viewport = viewport;
+    st.track = track;
+    st.activeIndex = tabIndex(window.__kzHomeTab || 'apk');
+    st.drag = { active:false, swiping:false, startX:0, startY:0, deltaX:0, startIndex:st.activeIndex, pointerId:null };
+    st.suppressClickUntil = 0;
+
+    root.addEventListener('click', function(ev){
+      var btn = ev.target && ev.target.closest ? ev.target.closest('[data-kz-hs-tab-btn]') : null;
+      if(btn){
+        ev.preventDefault();
+        syncToTab(btn.getAttribute('data-kz-hs-tab-btn') || 'apk', true, false);
+        return false;
+      }
+      var actionEl = ev.target && ev.target.closest ? ev.target.closest('[data-kz-hs-action]') : null;
+      if(!actionEl) return;
+      if(Date.now() < (st.suppressClickUntil || 0)){
+        ev.preventDefault();
+        ev.stopPropagation();
+        if(ev.stopImmediatePropagation) ev.stopImmediatePropagation();
+        return false;
+      }
+      ev.preventDefault();
+      var action = actionEl.getAttribute('data-kz-hs-action') || 'product';
+      var tab = actionEl.getAttribute('data-kz-hs-tab') || window.__kzHomeTab || 'apk';
+      if(action === 'more') return openMore(tab);
+      return productAction(actionEl.getAttribute('data-kz-hs-id') || '', tab);
+    }, true);
+
+    function start(ev){
+      if(ev.pointerType === 'mouse' && ev.button !== 0) return;
+      var p = ev.touches && ev.touches[0] ? ev.touches[0] : ev;
+      st.drag.active = true;
+      st.drag.swiping = false;
+      st.drag.startX = Number(p.clientX || 0);
+      st.drag.startY = Number(p.clientY || 0);
+      st.drag.deltaX = 0;
+      st.drag.startIndex = st.activeIndex;
+      st.drag.pointerId = typeof ev.pointerId === 'number' ? ev.pointerId : null;
+      try{ if(typeof viewport.setPointerCapture === 'function' && st.drag.pointerId != null) viewport.setPointerCapture(st.drag.pointerId); }catch(e){}
+    }
+    function move(ev){
+      if(!st.drag.active) return;
+      var p = ev.touches && ev.touches[0] ? ev.touches[0] : ev;
+      var dx = Number(p.clientX || 0) - st.drag.startX;
+      var dy = Number(p.clientY || 0) - st.drag.startY;
+      st.drag.deltaX = dx;
+      if(!st.drag.swiping){
+        if(Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+        if(Math.abs(dx) <= Math.abs(dy) * 1.08){
+          st.drag.active = false;
+          return;
+        }
+        st.drag.swiping = true;
+        viewport.classList.add('is-dragging');
+      }
+      if(ev.cancelable) ev.preventDefault();
+      var width = widthOf(viewport);
+      var minX = -(TABS.length - 1) * width;
+      var rawX = (-st.drag.startIndex * width) + dx;
+      if(rawX > 0) rawX = rawX * 0.28;
+      if(rawX < minX) rawX = minX + (rawX - minX) * 0.28;
+      var progress = clamp((-rawX / width), 0, TABS.length - 1);
+      syncIndicator(progress, false);
+      track.style.transition = 'none';
+      track.style.transform = 'translate3d(' + rawX + 'px,0,0)';
+    }
+    function end(ev){
+      if(!st.drag.active && !st.drag.swiping) return;
+      var wasSwiping = !!st.drag.swiping;
+      var dx = Number(st.drag.deltaX || 0);
+      var width = widthOf(viewport);
+      var threshold = Math.max(48, Math.min(110, width * 0.18));
+      var next = st.drag.startIndex;
+      if(wasSwiping){
+        if(dx <= -threshold) next = Math.min(st.drag.startIndex + 1, TABS.length - 1);
+        else if(dx >= threshold) next = Math.max(st.drag.startIndex - 1, 0);
+        else next = st.drag.startIndex;
+        st.suppressClickUntil = Date.now() + 360;
+      }
+      st.drag.active = false;
+      st.drag.swiping = false;
+      st.drag.deltaX = 0;
+      viewport.classList.remove('is-dragging');
+      syncToTab(TABS[next].key, true, false);
+      try{ if(typeof viewport.releasePointerCapture === 'function' && st.drag.pointerId != null) viewport.releasePointerCapture(st.drag.pointerId); }catch(e){}
+      st.drag.pointerId = null;
+    }
+    viewport.addEventListener('pointerdown', start, {passive:true});
+    viewport.addEventListener('pointermove', move, {passive:false});
+    viewport.addEventListener('pointerup', end, {passive:true});
+    viewport.addEventListener('pointercancel', end, {passive:true});
+    viewport.addEventListener('touchstart', start, {passive:true});
+    viewport.addEventListener('touchmove', move, {passive:false});
+    viewport.addEventListener('touchend', end, {passive:true});
+    viewport.addEventListener('touchcancel', end, {passive:true});
+
+    var resizeTimer = null;
+    function onResize(){
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function(){ syncToTab(window.__kzHomeTab || 'apk', false, true); }, 30);
+    }
+    window.addEventListener('resize', onResize);
+  }
+
+  window.kzHomeRenderStable = renderHome;
+  window.kzHomeSetTab = function(tab){
+    var root = document.getElementById('kzHomeSlideRoot');
+    if(root) return syncToTab(tab, true, false);
+    return renderHome(tab);
+  };
+  window.kzHomeOpenMore = openMore;
+  window.kzHomeDirectAction = function(action, id, tab){
+    if(String(action||'') === 'more') return openMore(tab || window.__kzHomeTab || 'apk');
+    return productAction(id || '', tab || window.__kzHomeTab || 'apk');
+  };
+
+  var oldNav = window.navTo;
+  if(typeof oldNav === 'function' && !window.__kzHomeSlideSyncNavWrapped){
+    window.navTo = function(page){
+      var r = oldNav.apply(this, arguments);
+      if(page === 'home'){
+        setTimeout(function(){ renderHome(window.__kzHomeTab || 'apk'); }, 80);
+        setTimeout(function(){ renderHome(window.__kzHomeTab || 'apk'); }, 260);
+      }
+      return r;
+    };
+    window.__kzHomeSlideSyncNavWrapped = true;
+  }
+
+  function boot(){ renderHome(window.__kzHomeTab || 'apk'); }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+  window.addEventListener('load', function(){ setTimeout(boot, 180); });
+})();
+</script>
+
+
+<style id="kz-home-restore-preview-original-look">
+#page-home .kz-hs-panel{padding:0 !important;border:0 !important;background:transparent !important;border-radius:0 !important;box-shadow:none !important}
+#page-home .kz-hs-grid{display:grid !important;grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:11px !important;padding-top:4px !important}
+#page-home .kz-hs-item{appearance:none !important;-webkit-appearance:none !important;aspect-ratio:1/1 !important;min-height:0 !important;padding:8px !important;border-radius:16px !important;display:flex !important;align-items:center !important;justify-content:center !important;background:var(--bg-sec) !important;border:1px solid var(--border) !important;cursor:pointer !important;user-select:none !important;-webkit-user-select:none !important}
+#page-home .kz-hs-item:active{transform:scale(.98)}
+#page-home .kz-hs-thumb{width:100% !important;height:100% !important;max-width:92px !important;max-height:92px !important;aspect-ratio:1/1 !important;border-radius:18px !important;display:flex !important;align-items:center !important;justify-content:center !important;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015)) !important;box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 8px 24px rgba(0,0,0,.18) !important}
+#page-home .kz-hs-item img{width:100% !important;height:100% !important;max-width:72px !important;max-height:72px !important;aspect-ratio:1/1 !important;object-fit:contain !important;border-radius:14px !important;display:block !important;filter:none !important}
+#page-home .kz-hs-item.more{background:var(--bg-card) !important;border:1px solid rgba(255,0,0,.18) !important}
+#page-home .kz-hs-item.more .kz-hs-thumb{background:rgba(255,0,0,.08) !important;box-shadow:none !important}
+#page-home .kz-hs-item.more .kz-hs-thumb i{font-size:21px !important;color:#ff0000 !important;opacity:1 !important}
+@media (max-width:860px){#page-home .kz-hs-grid{grid-template-columns:repeat(4,minmax(0,1fr)) !important}}
+@media (max-width:640px){#page-home .kz-hs-grid{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:9px !important}#page-home .kz-hs-thumb{max-width:78px !important;max-height:78px !important;border-radius:16px !important}#page-home .kz-hs-item img{max-width:60px !important;max-height:60px !important}}
+</style>
+
+<style id="kz-home-navbar-sidebar-0f0f0f">
+#page-home .kz-home-all-head{background:#0F0F0F !important;border-bottom-color:#1f1f1f !important}
+#page-home .kz-home-all-back{background:#0F0F0F !important;border-color:#262626 !important;color:#ffffff !important}
+#page-home .kz-home-all-title{color:#ffffff !important}
+body.light-mode #page-home .kz-home-all-head{background:#0F0F0F !important}
+body.light-mode #page-home .kz-home-all-back{background:#0F0F0F !important;border-color:#262626 !important;color:#ffffff !important}
+body.light-mode #page-home .kz-home-all-title{color:#ffffff !important}
+.sidebar{background:#0F0F0F !important;border-right-color:#202020 !important}
+.sidebar-header,.sidebar-menu{background:#0F0F0F !important}
+.sidebar-header{border-bottom-color:#202020 !important}
+.sidebar-title,.sidebar-item,.sidebar-close,.sidebar-userline .u1{color:#ffffff !important}
+.sidebar-greeting,.sidebar-cat,.sidebar-userline .u2{color:rgba(255,255,255,.68) !important}
+.sidebar-mode-btn{background:#151515 !important;border-color:#262626 !important;color:#ffffff !important}
+.sidebar-userline{background:#151515 !important;border-color:#262626 !important}
+.sidebar-profile-img{border-color:#262626 !important}
+body.light-mode .sidebar,body.light-mode .sidebar-header,body.light-mode .sidebar-menu{background:#0F0F0F !important}
+body.light-mode .sidebar-title,body.light-mode .sidebar-item,body.light-mode .sidebar-close,body.light-mode .sidebar-userline .u1{color:#ffffff !important}
+body.light-mode .sidebar-greeting,body.light-mode .sidebar-cat,body.light-mode .sidebar-userline .u2{color:rgba(255,255,255,.68) !important}
+body.light-mode .sidebar-mode-btn{background:#151515 !important;border-color:#262626 !important;color:#ffffff !important}
+body.light-mode .sidebar-userline{background:#151515 !important;border-color:#262626 !important}
+body.light-mode .sidebar-profile-img{border-color:#262626 !important}
+</style>
+
 </body></html>
