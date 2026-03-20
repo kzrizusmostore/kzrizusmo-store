@@ -23807,11 +23807,17 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
       return;
     }
     wrap.innerHTML = items.map(function(item){
-      return '<div class="item-card shiny-effect" onclick="openDetail(\'' + String(item.id).replace(/'/g, "\\'") + '\')">'+
-        '<img src="'+ String(item.image||'') +'" alt="'+ String(item.name||'').replace(/"/g,'&quot;') +'" loading="lazy" decoding="async">'+
-        '<div class="item-title">'+ String(item.name||'') +'</div>'+
-      '</div>';
+      return ''
+        + '<div class="item-card shiny-effect" data-kz-sosmed-id="' + esc(item && item.id || '') + '">'
+        + '  <img src="' + esc(item && item.image || '') + '" alt="' + esc(item && item.name || '') + '" loading="lazy" decoding="async">'
+        + '  <div class="item-title">' + esc(item && item.name || '') + '</div>'
+        + '</div>';
     }).join('');
+    qa('.item-card[data-kz-sosmed-id]', wrap).forEach(function(card){
+      card.onclick = function(){
+        try{ if(typeof window.openDetail === 'function') window.openDetail(card.getAttribute('data-kz-sosmed-id') || ''); }catch(e){}
+      };
+    });
   };
 
   window.initSosmedPage = function(){
@@ -25134,7 +25140,7 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
     var image = item && item.image ? String(item.image) : '';
     var badge = '';
     if(id==='netflix') badge = '<div class="badge-ribbon badge-populer">BEST SELLER</div>';
-    else if(SB.filter==='populer') badge = '<div class="badge-ribbon">POPULER</div>';
+    else if(['capcut','alightmotion','canva'].indexOf(id) >= 0) badge = '<div class="badge-ribbon">POPULER</div>';
     return '<div class="item-card shiny-effect" onclick="kzSBOpenDetail(\''+id.replace(/'/g, "\\'")+'\')">'+badge+'<img src="'+image+'" alt="'+name+'" loading="lazy" decoding="async"><div class="item-title">'+name+'</div></div>';
   }
   function filterItems(list){
@@ -26862,12 +26868,12 @@ body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb i{color:rgba(17,17,17,.
   function tabMeta(tab){ return TABS[tabIndex(tab)]; }
   function previewItems(tab){
     var list = cleanList(sourceByTab(tab));
-    if(list.length > 6){
-      var items = list.slice(0,5);
+    if(list.length > 7){
+      var items = list.slice(0,7);
       items.push({__more:true, id:'', name:'Selengkapnya'});
       return items;
     }
-    return list.slice(0,6);
+    return list.slice(0,7);
   }
   function productAction(id, tab){
     id = String(id||'');
@@ -26942,6 +26948,15 @@ body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb i{color:rgba(17,17,17,.
     var m=getMe()||{}; var user=esc(m.username||'user'); var tier=esc(m.membershipTier||m.membership||m.level||'Basic'); var status=(m.username?'Aktif':'Guest');
     home.innerHTML=''
       + '<div class="kz-home-shell">'
+      + '  <div class="kz-home-hero" aria-label="Banner promo">'
+      + '    <div class="kz-home-hero-track">'
+      + '      <div class="kz-home-hero-item"><img src="https://img1.pixhost.to/images/11283/677288053_ochobot.jpg" alt="Banner 1"></div>'
+      + '      <div class="kz-home-hero-item"><img src="https://files.catbox.moe/7j7q60.jpg" alt="Banner 2"></div>'
+      + '      <div class="kz-home-hero-item"><img src="https://img1.pixhost.to/images/11620/685027953_miwamikadono.jpg" alt="Banner 3"></div>'
+      + '      <div class="kz-home-hero-item"><a href="https://wa.me/6285135925745?text=Hallo%20min%20saya%20mau%20join%20reseller%20app%20premium%20nya%20bisa?" target="_blank" rel="noopener"><img src="https://img1.pixhost.to/images/11620/685027951_miwamikadono.jpg" alt="Banner 4"></a></div>'
+      + '    </div>'
+      + '    <div class="kz-home-hero-dots" aria-hidden="true"><span class="active"></span><span></span><span></span><span></span></div>'
+      + '  </div>'
       + '  <div class="kz-home-card kz-top-card">'
       + '    <div class="kz-home-top">'
       + '      <div class="kz-balance"><div><div class="lbl">Poin User</div><div class="val">'+fmt(getPoints())+'</div></div><div class="kz-balance-chip"><i class="fas fa-star"></i> @'+user+'</div></div>'
@@ -26954,7 +26969,7 @@ body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb i{color:rgba(17,17,17,.
       + '      <div class="kz-shortcut" onclick="navTo(\'membership-upgrade\')"><i class="fas fa-crown"></i><span>Upgrade Membership</span></div>'
       + '    </div>'
       + '  </div>'
-      + '  <div class="kz-marquee"><i class="fas fa-bullhorn"></i><div class="kz-marquee-viewport"><div class="kz-marquee-track">Sekarang tab kategori di home sudah bisa slide halus, garis merah ikut menggeser, dan preview 6 produk juga bisa digeser langsung untuk pindah kategori</div></div></div>'
+      + '  <div class="kz-marquee"><i class="fas fa-bullhorn"></i><div class="kz-marquee-viewport"><div class="kz-marquee-track">Sekarang tab kategori di home sudah bisa slide halus, garis merah ikut menggeser, dan preview 7 produk juga bisa digeser langsung untuk pindah kategori</div></div></div>'
       + categoryCardMarkup(tab)
       + '<div class="kz-protection-wrap" aria-hidden="true">'
       + '  <img class="kz-protection-image" src="https://files.catbox.moe/o3hpkk.png" alt="Kzrizusmo Protection">'
@@ -26962,7 +26977,63 @@ body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb i{color:rgba(17,17,17,.
       + '</div>';
     bindHome();
     setTimeout(function(){ syncToTab(tab, false, true); }, 0);
+    setTimeout(initHomeHeroFinal, 0);
     return false;
+  }
+
+  function initHomeHeroFinal(){
+    var root = document.querySelector('#page-home .kz-home-hero');
+    if(!root) return;
+    var track = root.querySelector('.kz-home-hero-track');
+    var dotsWrap = root.querySelector('.kz-home-hero-dots');
+    if(!track) return;
+    var slides = Array.prototype.slice.call(track.children || []);
+    var dots = dotsWrap ? Array.prototype.slice.call(dotsWrap.children || []) : [];
+    var total = slides.length || 0;
+    if(!total) return;
+    if(window.__kzHomeHeroFinalTimer) clearInterval(window.__kzHomeHeroFinalTimer);
+    var index = Math.max(0, Math.min(Number(window.__kzHomeHeroFinalIndex || 0) || 0, total - 1));
+    function paint(){
+      track.style.transition = 'transform .45s cubic-bezier(.2,.8,.2,1)';
+      track.style.transform = 'translateX(-' + (index * 100) + '%)';
+      dots.forEach(function(dot, i){
+        if(dot && dot.classList) dot.classList.toggle('active', i === index);
+      });
+      window.__kzHomeHeroFinalIndex = index;
+    }
+    function go(next){
+      index = (next + total) % total;
+      paint();
+    }
+    dots.forEach(function(dot, i){
+      if(!dot) return;
+      dot.onclick = function(){ go(i); restart(); };
+    });
+    var sx = 0, dx = 0, dragging = false;
+    root.onpointerdown = function(ev){
+      dragging = true;
+      sx = ev.clientX || 0;
+      dx = 0;
+    };
+    root.onpointermove = function(ev){
+      if(!dragging) return;
+      dx = (ev.clientX || 0) - sx;
+    };
+    root.onpointerup = root.onpointercancel = root.onpointerleave = function(){
+      if(!dragging) return;
+      dragging = false;
+      if(Math.abs(dx) > 40){
+        go(index + (dx < 0 ? 1 : -1));
+        restart();
+      }
+      dx = 0;
+    };
+    function restart(){
+      if(window.__kzHomeHeroFinalTimer) clearInterval(window.__kzHomeHeroFinalTimer);
+      window.__kzHomeHeroFinalTimer = setInterval(function(){ go(index + 1); }, 3200);
+    }
+    paint();
+    restart();
   }
 
   function getState(){ return window.__kzHomeSlideSyncState || (window.__kzHomeSlideSyncState = {}); }
@@ -27179,5 +27250,1043 @@ body.light-mode .sidebar-mode-btn{background:#151515 !important;border-color:#26
 body.light-mode .sidebar-userline{background:#151515 !important;border-color:#262626 !important}
 body.light-mode .sidebar-profile-img{border-color:#262626 !important}
 </style>
+
+
+<style id="kz-home-preview-seven-no-single-box">
+#page-home .kz-hs-panel{padding:8px 6px !important}
+#page-home .kz-hs-grid{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:8px !important;padding-top:2px !important}
+#page-home .kz-hs-item{appearance:none !important;-webkit-appearance:none !important;aspect-ratio:1/1 !important;min-height:0 !important;padding:0 !important;border-radius:0 !important;display:flex !important;align-items:center !important;justify-content:center !important;background:transparent !important;border:0 !important;box-shadow:none !important;cursor:pointer !important;user-select:none !important;-webkit-user-select:none !important}
+#page-home .kz-hs-thumb{width:100% !important;height:100% !important;max-width:92px !important;max-height:92px !important;aspect-ratio:1/1 !important;border-radius:0 !important;display:flex !important;align-items:center !important;justify-content:center !important;background:transparent !important;box-shadow:none !important}
+#page-home .kz-hs-item img{width:100% !important;height:100% !important;max-width:68px !important;max-height:68px !important;aspect-ratio:1/1 !important;object-fit:contain !important;border-radius:14px !important;display:block !important;filter:none !important}
+#page-home .kz-hs-item.more{background:transparent !important;border:0 !important}
+#page-home .kz-hs-item.more .kz-hs-thumb{background:transparent !important;box-shadow:none !important}
+#page-home .kz-hs-item.more .kz-hs-thumb i{font-size:30px !important;color:var(--text-sec) !important;opacity:.82 !important}
+body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb i{color:rgba(17,17,17,.52) !important;opacity:1 !important}
+@media (max-width:640px){
+  #page-home .kz-hs-panel{padding:6px 4px !important}
+  #page-home .kz-hs-grid{gap:8px !important}
+  #page-home .kz-hs-thumb{max-width:86px !important;max-height:86px !important}
+  #page-home .kz-hs-item img{max-width:64px !important;max-height:64px !important}
+}
+</style>
+
+
+
+<style id="kz-request-20260320-preview-bigger">
+#page-home .kz-hs-panel{padding:8px 4px !important}
+#page-home .kz-hs-grid{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:10px !important;padding-top:2px !important}
+#page-home .kz-hs-thumb{max-width:104px !important;max-height:104px !important}
+#page-home .kz-hs-item img{max-width:78px !important;max-height:78px !important}
+#page-home .kz-hs-item.more .kz-hs-thumb i{font-size:34px !important}
+@media (max-width:640px){
+  #page-home .kz-hs-panel{padding:6px 2px !important}
+  #page-home .kz-hs-grid{gap:9px !important}
+  #page-home .kz-hs-thumb{max-width:96px !important;max-height:96px !important}
+  #page-home .kz-hs-item img{max-width:72px !important;max-height:72px !important}
+}
+</style>
+<script id="kz-request-20260320-home-sidebar-fix">
+(function(){
+  if(window.__kzRequest20260320Applied) return;
+  window.__kzRequest20260320Applied = true;
+
+  var POP_IDS = ['netflix','capcut','alightmotion','canva'];
+  var STORE_IDS = ['netflix','capcut','canva','alightmotion','loklok','chatgpt','wink'];
+  var DIGITAL_IDS = ['zusmo-beta','sc-jagpro','upgrade-dana','apk-hyrizz-jb','tutor-prem-wink','bengkel-akun','akun-pulihkan-instagram'];
+  var SOSMED_IDS = ['sosmed-ig-followers-random','sosmed-tt-followers-random','sosmed_whatsapp_channel_members','sosmed-yt-subscriber-indo','sosmed-threads-konten','sosmed-linkedin-followers','sosmed-discord-members'];
+
+  var STORE_NAMES = {
+    'netflix':'Netflix',
+    'capcut':'Capcut',
+    'canva':'Canva',
+    'alightmotion':'Alight motion',
+    'gemini':'Gemini',
+    'chatgpt':'Chat gpt',
+    'wink':'Wink'
+  };
+  var DIGITAL_NAMES = {
+    'zusmo-beta':'Zusmo beta',
+    'sc-jagpro':'Sc jagoan project',
+    'upgrade-dana':'Upgrade dana',
+    'apk-hyrizz-jb':'Apk hyrizz jb',
+    'tutor-prem-wink':'Tutor prem wink',
+    'bengkel-akun':'Bengkel akun',
+    'akun-pulihkan-instagram':'Pulihkan akun instagram'
+  };
+  var SOSMED_NAMES = {
+    'sosmed-ig-followers-random':'Instagram followers random',
+    'sosmed-tt-followers-random':'Tiktok followers random',
+    'sosmed_whatsapp_channel_members':'Whatsapp channel member',
+    'sosmed-yt-subscriber-indo':'Youtube subscribe indo',
+    'sosmed-threads-konten':'Threads followers',
+    'sosmed-linkedin-followers':'LinkedIn followers',
+    'sosmed-discord-members':'Discord members'
+  };
+
+  function pushRef(refs, arr){
+    if(Array.isArray(arr) && refs.indexOf(arr) < 0) refs.push(arr);
+  }
+  function mutateArray(target, ordered){
+    if(!Array.isArray(target) || !Array.isArray(ordered)) return;
+    target.splice(0, target.length);
+    ordered.forEach(function(it){ target.push(it); });
+  }
+  function reorder(base, ids){
+    var src = Array.isArray(base) ? base.slice() : [];
+    var wanted = Array.isArray(ids) ? ids.slice() : [];
+    var byId = {};
+    src.forEach(function(it){
+      if(it && it.id != null && byId[String(it.id)] == null) byId[String(it.id)] = it;
+    });
+    var out = [];
+    var used = {};
+    wanted.forEach(function(id){
+      id = String(id || '');
+      if(id && byId[id] && !used[id]){
+        out.push(byId[id]);
+        used[id] = true;
+      }
+    });
+    src.forEach(function(it){
+      var id = String((it && it.id) || '');
+      if(!used[id]) out.push(it);
+    });
+    return out;
+  }
+  function renameMap(list, names){
+    (Array.isArray(list) ? list : []).forEach(function(it){
+      if(!it) return;
+      var id = String(it.id || '');
+      if(id && names && names[id]) it.name = names[id];
+    });
+    return list;
+  }
+  function normalizeStorePopular(list){
+    (Array.isArray(list) ? list : []).forEach(function(it){
+      if(!it) return;
+      var cats = Array.isArray(it.cat) ? it.cat.slice() : [];
+      cats = cats.filter(function(cat){ return String(cat || '').toLowerCase() !== 'populer'; });
+      if(POP_IDS.indexOf(String(it.id || '')) >= 0) cats.push('populer');
+      it.cat = cats;
+    });
+    return list;
+  }
+  function applyStore(){
+    var refs = [];
+    try{ pushRef(refs, window.appsData); }catch(e){}
+    try{ pushRef(refs, window.__kzStoreState); }catch(e){}
+    try{ pushRef(refs, window.__appsDataDefault); }catch(e){}
+    if(!refs.length) return;
+    var base = refs[0].slice();
+    renameMap(base, STORE_NAMES);
+    normalizeStorePopular(base);
+    var ordered = reorder(base, STORE_IDS);
+    refs.forEach(function(arr){ mutateArray(arr, ordered); });
+  }
+  function applyDigital(){
+    var refs = [];
+    try{ pushRef(refs, window.digitalAppsData); }catch(e){}
+    try{ pushRef(refs, window.__kzDigitalState); }catch(e){}
+    if(!refs.length) return;
+    var base = refs[0].slice();
+    renameMap(base, DIGITAL_NAMES);
+    var ordered = reorder(base, DIGITAL_IDS);
+    refs.forEach(function(arr){ mutateArray(arr, ordered); });
+  }
+  function applySosmed(){
+    var refs = [];
+    try{ pushRef(refs, window.sosmedData); }catch(e){}
+    try{ pushRef(refs, window.__kzSosmedState); }catch(e){}
+    if(!refs.length) return;
+    var base = refs[0].slice();
+    renameMap(base, SOSMED_NAMES);
+    var ordered = reorder(base, SOSMED_IDS);
+    refs.forEach(function(arr){ mutateArray(arr, ordered); });
+  }
+  function rerenderHome(){
+    try{
+      if(typeof window.kzHomeSetTab === 'function'){
+        window.kzHomeSetTab(window.__kzHomeTab || 'apk');
+        return;
+      }
+    }catch(e){}
+    try{
+      if(typeof window.kzHomeRenderStable === 'function') window.kzHomeRenderStable(window.__kzHomeTab || 'apk');
+    }catch(e){}
+  }
+  function rerenderPageApp(){
+    try{
+      var page = document.getElementById('page-app');
+      if(page && page.style.display === 'block' && typeof window.renderFullAppGrid === 'function'){
+        window.renderFullAppGrid(window.__kzPageAppSearch || '');
+      }
+    }catch(e){}
+  }
+  function applyAll(){
+    applyStore();
+    applyDigital();
+    applySosmed();
+    window.__kzRequestedPopularIds = POP_IDS.slice();
+    rerenderHome();
+    rerenderPageApp();
+  }
+  function sidebarDigitalMode(){
+    try{
+      var page = document.getElementById('page-sb-pesanan-baru');
+      if(!page || page.style.display === 'none') return false;
+      var digitalScroll = page.querySelector('#sbFilterScrollDigital');
+      if(digitalScroll && window.getComputedStyle(digitalScroll).display !== 'none') return true;
+      var title = page.querySelector('#sbAppSection .section-title');
+      return !!(title && /produk digital/i.test(String(title.textContent || '')));
+    }catch(e){
+      return false;
+    }
+  }
+  window.kzSBOpenDetail = function(id){
+    id = String(id || '');
+    if(!id) return false;
+    if(sidebarDigitalMode()){
+      try{ if(typeof window.kzOpenDigitalDetail === 'function') return window.kzOpenDigitalDetail(id); }catch(e){}
+    }
+    try{ if(typeof window.openDetail === 'function') return window.openDetail(id); }catch(e){}
+    return false;
+  };
+
+  function schedule(){
+    [0, 90, 240, 520].forEach(function(ms){
+      setTimeout(function(){ try{ applyAll(); }catch(e){} }, ms);
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', schedule);
+  else schedule();
+  window.addEventListener('load', schedule);
+})();
+</script>
+
+
+<style id="kz-mar20-user-fix-style">
+#page-home .kz-home-all-card[data-kz-open-id]{cursor:pointer}
+#page-home .kz-home-all-card[data-kz-open-id]:active{transform:scale(.98)}
+#page-home .kz-home-all-meta,
+#page-home .kz-home-all-btn[data-kz-open-id]{display:none!important}
+#page-home .kz-home-all-card.kz-home-all-simple{justify-content:flex-start;min-height:136px;padding:12px 8px}
+#page-home .kz-home-all-card.kz-home-all-simple .kz-home-all-thumb{width:68px;height:68px}
+#page-home .kz-home-all-card.kz-home-all-simple .kz-home-all-thumb img{width:58px;height:58px}
+#page-home .kz-home-all-card.kz-home-all-simple .kz-home-all-name{min-height:auto;-webkit-line-clamp:2}
+#page-sosmed .kz-sosmed-banner-wrap{padding:0 0 15px}
+#page-sosmed .kz-sosmed-banner-wrap .banner-container{margin-top:0!important;margin-bottom:0!important;border-radius:12px!important;overflow:hidden!important;box-shadow:0 4px 10px var(--shadow)!important;background:transparent!important;border:0!important}
+#page-sosmed .kz-sosmed-banner-wrap .banner-track,
+#page-sosmed .kz-sosmed-banner-wrap .banner-item,
+#page-sosmed .kz-sosmed-banner-wrap .banner-item a,
+#page-sosmed .kz-sosmed-banner-wrap .banner-img{border-radius:inherit!important}
+#page-sosmed .kz-sosmed-banner-wrap .banner-img{display:block;width:100%;height:100%;object-fit:contain}
+body.kz-membership-page header{border-bottom-color:rgba(255,215,0,.55)}
+body.kz-membership-page .burger-btn{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.04);border:1px solid var(--border)}
+body.kz-membership-page .header-title h1 span{color:var(--accent-gold)}
+body.kz-membership-page .header-subtitle{display:none!important;letter-spacing:.12em;text-transform:uppercase}
+body.kz-membership-page .header-right{display:none!important}
+body.kz-membership-page .header-left{min-width:0;flex:1 1 auto}
+body.kz-membership-page .header-title h1{font-size:1.08rem;letter-spacing:.04em}
+body.light-mode.kz-membership-page .burger-btn{background:rgba(0,0,0,.05)}
+@media (max-width:640px){
+  #page-sosmed .kz-sosmed-banner-wrap{padding:0 0 12px}
+}
+</style>
+<script id="kz-mar20-user-fix-script">
+(function(){
+  if(window.__kzMar20UserFixApplied) return;
+  window.__kzMar20UserFixApplied = true;
+
+  function q(sel, root){ try{ return (root || document).querySelector(sel); }catch(e){ return null; } }
+  function qa(sel, root){ try{ return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }catch(e){ return []; } }
+  function safeArr(v){ return Array.isArray(v) ? v : []; }
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
+  function cloneList(list){ return safeArr(list).slice(); }
+  function stableStoreData(){
+    if(Array.isArray(window.__kzStoreState) && window.__kzStoreState.length) return cloneList(window.__kzStoreState);
+    if(Array.isArray(window.__appsDataDefault) && window.__appsDataDefault.length) return cloneList(window.__appsDataDefault);
+    if(Array.isArray(window.appsData) && window.appsData.length) return cloneList(window.appsData);
+    if(Array.isArray(window.kzProducts) && window.kzProducts.length) return cloneList(window.kzProducts);
+    return [];
+  }
+  function stableDigitalData(){
+    if(Array.isArray(window.__kzDigitalState) && window.__kzDigitalState.length) return cloneList(window.__kzDigitalState);
+    if(Array.isArray(window.digitalAppsData) && window.digitalAppsData.length) return cloneList(window.digitalAppsData);
+    if(Array.isArray(window.kzDigitalProducts) && window.kzDigitalProducts.length) return cloneList(window.kzDigitalProducts);
+    return [];
+  }
+  function stableSosmedData(){
+    if(Array.isArray(window.__kzSosmedState) && window.__kzSosmedState.length) return cloneList(window.__kzSosmedState);
+    if(Array.isArray(window.sosmedData) && window.sosmedData.length) return cloneList(window.sosmedData);
+    return [];
+  }
+
+  /* 1) Selengkapnya per kategori di Home = per produk, bukan per package/server */
+  var oldOpenHomeAllProducts = (typeof window.openHomeAllProducts === 'function') ? window.openHomeAllProducts : null;
+  var oldRenderHomeAllProducts = (typeof window.renderHomeAllProducts === 'function') ? window.renderHomeAllProducts : null;
+
+  function normalizeHomeMore(opts){
+    var rawMode = 'all';
+    var rawTitle = 'Semua Produk';
+    if(typeof opts === 'string') rawMode = opts;
+    else if(opts && typeof opts === 'object'){
+      if(opts.mode != null) rawMode = opts.mode;
+      if(opts.title != null) rawTitle = String(opts.title || '');
+    }
+    rawMode = String(rawMode || 'all').toLowerCase();
+    if(rawMode === 'apk' || rawMode === 'app' || rawMode === 'store') return { mode:'app', title: rawTitle || 'Apk Premium' };
+    if(rawMode === 'digital') return { mode:'digital', title: rawTitle || 'Produk Digital' };
+    if(rawMode === 'sosmed') return { mode:'sosmed', title: rawTitle || 'Suntik Sosmed' };
+    return { mode:'all', title: rawTitle || 'Semua Produk' };
+  }
+  function sourceByHomeMode(mode){
+    if(mode === 'digital') return stableDigitalData();
+    if(mode === 'sosmed') return stableSosmedData();
+    return stableStoreData();
+  }
+  function categoryProducts(mode){
+    return sourceByHomeMode(mode).filter(function(app){
+      return app && (app.id || app.name);
+    }).map(function(app){
+      return {
+        source: mode,
+        id: String(app.id || ''),
+        name: String(app.name || ''),
+        image: String(app.image || ''),
+        packageCount: safeArr(app.packages).length
+      };
+    });
+  }
+  function openCategoryProduct(id, source){
+    id = String(id || '');
+    source = String(source || 'app');
+    if(!id) return false;
+    if(source === 'digital'){
+      try{ if(typeof window.kzOpenDigitalDetail === 'function') return window.kzOpenDigitalDetail(id); }catch(e){}
+    }
+    if(source === 'sosmed'){
+      try{ if(typeof window.kzOpenSosmedPreview === 'function') return window.kzOpenSosmedPreview(id); }catch(e){}
+      try{ if(typeof window.openSosmedDetail === 'function') return window.openSosmedDetail(id); }catch(e){}
+    }
+    try{ if(typeof window.openDetail === 'function') return window.openDetail(id); }catch(e){}
+    return false;
+  }
+  function patchHomeOverlayInput(info){
+    var overlay = q('#kzHomeAllProductsOverlay');
+    if(!overlay) return;
+    var input = q('#kzHomeAllSearch', overlay);
+    if(!input) return;
+    input.placeholder = info.mode === 'all' ? 'Cari produk...' : 'Cari produk dalam kategori ini...';
+    input.oninput = function(){
+      var state = window.__kzHomeCategoryMoreState || info;
+      if(state.mode === 'all'){
+        if(typeof oldRenderHomeAllProducts === 'function') return oldRenderHomeAllProducts(this.value || '', { mode:'all', title: state.title || 'Semua Produk' });
+        return false;
+      }
+      return renderCategoryProducts(this.value || '', state);
+    };
+  }
+  function renderCategoryProducts(query, info){
+    info = normalizeHomeMore(info || window.__kzHomeCategoryMoreState || 'app');
+    window.__kzHomeCategoryMoreState = info;
+    var overlay = q('#kzHomeAllProductsOverlay');
+    if(!overlay) return false;
+    var titleEl = q('.kz-home-all-title', overlay);
+    if(titleEl) titleEl.textContent = info.title || 'Produk';
+    var subEl = q('.kz-home-all-sub', overlay);
+    if(subEl) subEl.textContent = '';
+    patchHomeOverlayInput(info);
+    var host = q('#kzHomeAllGrid', overlay);
+    if(!host) return false;
+    var qv = String(query || '').trim().toLowerCase();
+    var items = categoryProducts(info.mode).filter(function(item){
+      return !qv || String(item.name || '').toLowerCase().indexOf(qv) > -1;
+    });
+    items.sort(function(a, b){ return String(a.name || '').localeCompare(String(b.name || '')); });
+    if(!items.length){
+      host.innerHTML = '<div class="kz-home-all-empty" style="grid-column:1/-1;">Produk tidak ditemukan.</div>';
+      return true;
+    }
+    host.innerHTML = items.map(function(item){
+      return ''
+        + '<div class="kz-home-all-card kz-home-all-simple" role="button" tabindex="0" data-kz-open-id="' + esc(item.id) + '" data-kz-open-source="' + esc(item.source) + '">'
+        + '  <div class="kz-home-all-thumb"><img src="' + esc(item.image) + '" alt="' + esc(item.name) + '"></div>'
+        + '  <div class="kz-home-all-name">' + esc(item.name) + '</div>'
+        + '</div>';
+    }).join('');
+    qa('[data-kz-open-id]', host).forEach(function(card){
+      function openThis(){
+        return openCategoryProduct(card.getAttribute('data-kz-open-id') || '', card.getAttribute('data-kz-open-source') || info.mode);
+      }
+      card.onclick = openThis;
+      card.onkeydown = function(ev){
+        var key = ev && (ev.key || ev.code || '');
+        if(key === 'Enter' || key === ' ' || key === 'Spacebar'){
+          if(ev && typeof ev.preventDefault === 'function') ev.preventDefault();
+          return openThis();
+        }
+      };
+    });
+    return true;
+  }
+
+  if(oldRenderHomeAllProducts){
+    window.renderHomeAllProducts = function(query, opts){
+      var info = normalizeHomeMore(opts || window.__kzHomeCategoryMoreState || 'all');
+      if(info.mode === 'all'){
+        window.__kzHomeCategoryMoreState = { mode:'all', title: info.title || 'Semua Produk' };
+        patchHomeOverlayInput(window.__kzHomeCategoryMoreState);
+        return oldRenderHomeAllProducts(query, { mode:'all', title: info.title || 'Semua Produk' });
+      }
+      return renderCategoryProducts(query, info);
+    };
+  }
+  if(oldOpenHomeAllProducts){
+    window.openHomeAllProducts = function(opts){
+      var info = normalizeHomeMore(opts || 'all');
+      var forward = { mode: info.mode === 'app' ? 'apk' : info.mode, title: info.title };
+      oldOpenHomeAllProducts(forward);
+      var overlay = q('#kzHomeAllProductsOverlay');
+      if(overlay) overlay.classList.add('active');
+      try{ document.body.style.overflow = 'hidden'; }catch(e){}
+      var input = q('#kzHomeAllSearch', overlay);
+      if(input) input.value = '';
+      patchHomeOverlayInput(info);
+      if(info.mode === 'all'){
+        window.__kzHomeCategoryMoreState = { mode:'all', title: info.title || 'Semua Produk' };
+        if(typeof oldRenderHomeAllProducts === 'function') oldRenderHomeAllProducts('', { mode:'all', title: info.title || 'Semua Produk' });
+      } else {
+        renderCategoryProducts('', info);
+      }
+      return false;
+    };
+    window.openHomeCategoryProducts = function(mode, title){
+      return window.openHomeAllProducts({ mode: mode, title: title });
+    };
+  }
+
+  /* 2) Sidebar APK Premium jangan ikut data digital */
+  var oldSidebarOpen = (typeof window.kzSidebarPesananBaruOpen === 'function') ? window.kzSidebarPesananBaruOpen : null;
+  if(oldSidebarOpen){
+    window.kzSidebarPesananBaruOpen = function(mode){
+      var target = String(mode || 'store').toLowerCase() === 'digital' ? 'digital' : 'store';
+      try{ if(typeof window.kzSetCatalogMode === 'function') window.kzSetCatalogMode(target); }catch(e){}
+      var result = oldSidebarOpen.call(this, target);
+      setTimeout(function(){
+        var page = q('#page-sb-pesanan-baru');
+        if(!page || page.style.display === 'none') return;
+        var title = q('#sbAppSection .section-title', page);
+        if(title) title.textContent = target === 'digital' ? 'Produk Digital' : 'APK Premium';
+        var input = q('#sbSearchInput', page);
+        if(input) input.placeholder = target === 'digital' ? 'Cari produk digital...' : 'Cari nama aplikasi...';
+      }, 50);
+      return result;
+    };
+    window.openPremiumApp = function(){ return window.kzSidebarPesananBaruOpen('store'); };
+    window.openProdukDigital = function(){ return window.kzSidebarPesananBaruOpen('digital'); };
+  }
+
+  /* 3) Sidebar Suntik Sosmed: kembalikan banner slider */
+  function initBannerSlider(container){
+    var track = q('.banner-track', container);
+    if(!container || !track || track.__kzBannerReady) return;
+    var originals = Array.prototype.slice.call(track.children || []);
+    if(originals.length < 2){ track.__kzBannerReady = true; return; }
+    var first = originals[0].cloneNode(true);
+    var last = originals[originals.length - 1].cloneNode(true);
+    track.insertBefore(last, originals[0]);
+    track.appendChild(first);
+    var idx = 1;
+    var timer = null;
+    var anim = false;
+    function setPos(i, transitionOn){
+      track.style.transition = transitionOn ? 'transform .45s cubic-bezier(.2,.8,.2,1)' : 'none';
+      track.style.transform = 'translateX(-' + (i * 100) + '%)';
+    }
+    function go(i){
+      if(anim) return;
+      anim = true;
+      idx = i;
+      setPos(idx, true);
+    }
+    track.addEventListener('transitionend', function(){
+      anim = false;
+      var total = track.children.length;
+      if(idx === total - 1){ idx = 1; setPos(idx, false); }
+      if(idx === 0){ idx = total - 2; setPos(idx, false); }
+    });
+    function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+    function start(){ stop(); timer = setInterval(function(){ go(idx + 1); }, 3500); }
+    var sx = 0, cx = 0, drag = false;
+    track.addEventListener('pointerdown', function(e){ drag = true; sx = e.clientX; cx = sx; stop(); track.style.transition = 'none'; });
+    track.addEventListener('pointermove', function(e){ if(!drag) return; cx = e.clientX; var diff = cx - sx; track.style.transform = 'translateX(calc(-' + (idx * 100) + '% + ' + diff + 'px))'; });
+    function end(){
+      if(!drag) return;
+      drag = false;
+      var diff = cx - sx;
+      if(diff > 45) go(idx - 1);
+      else if(diff < -45) go(idx + 1);
+      else setPos(idx, true);
+      setTimeout(start, 650);
+    }
+    track.addEventListener('pointerup', end);
+    track.addEventListener('pointercancel', end);
+    track.addEventListener('pointerleave', end);
+    setPos(idx, false);
+    start();
+    track.__kzBannerReady = true;
+  }
+  function ensureSosmedSidebarBanner(){
+    var page = q('#page-sosmed');
+    if(!page) return null;
+    var wrap = q('.kz-sosmed-banner-wrap', page);
+    if(!wrap){
+      wrap = document.createElement('div');
+      wrap.className = 'kz-sosmed-banner-wrap';
+      wrap.innerHTML = ''
+        + '<div class="banner-container">'
+        + '  <div class="banner-track">'
+        + '    <div class="banner-item"><img class="banner-img" src="https://img1.pixhost.to/images/11283/677288053_ochobot.jpg" alt="Banner Suntik Sosmed"></div>'
+        + '    <div class="banner-item"><img class="banner-img" src="https://files.catbox.moe/7j7q60.jpg" alt="Banner Suntik Sosmed"></div>'
+        + '    <div class="banner-item"><img class="banner-img" src="https://img1.pixhost.to/images/11620/685027953_miwamikadono.jpg" alt="Banner Suntik Sosmed"></div>'
+        + '    <div class="banner-item"><a href="https://wa.me/6285135925745?text=Hallo%20min%20saya%20mau%20order%20suntik%20sosmed" target="_blank" rel="noopener"><img class="banner-img" src="https://img1.pixhost.to/images/11620/685027951_miwamikadono.jpg" alt="Banner Suntik Sosmed"></a></div>'
+        + '  </div>'
+        + '</div>';
+      var anchor = q('.search-container', page) || page.firstChild;
+      if(anchor) page.insertBefore(wrap, anchor);
+      else page.appendChild(wrap);
+    }
+    initBannerSlider(q('.banner-container', wrap));
+    return wrap;
+  }
+  function openSidebarSosmed(){
+    try{ if(typeof window.playClick === 'function') window.playClick(); }catch(e){}
+    try{ if(typeof window.navTo === 'function') window.navTo('sosmed-page'); }catch(e){
+      var page = q('#page-sosmed');
+      if(page) page.style.display = 'block';
+    }
+    setTimeout(function(){
+      ensureSosmedSidebarBanner();
+      try{ if(typeof window.initSosmedPage === 'function') window.initSosmedPage(); }catch(e){}
+      try{ if(typeof window.renderSosmedProducts === 'function') window.renderSosmedProducts(''); }catch(e){}
+    }, 70);
+    try{ if(typeof window.sidebarClose === 'function') window.sidebarClose({ play:false }); }catch(e){}
+    return false;
+  }
+  function bindSidebarSosmed(){
+    var group = q('#sidebarGroupNewOrders');
+    if(!group) return;
+    var items = qa('.sidebar-item', group);
+    if(items[2]) items[2].onclick = function(){ return openSidebarSosmed(); };
+    window.kzOpenSidebarSosmed = openSidebarSosmed;
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindSidebarSosmed);
+  else bindSidebarSosmed();
+  window.addEventListener('load', function(){ setTimeout(bindSidebarSosmed, 120); setTimeout(ensureSosmedSidebarBanner, 120); });
+
+  /* 4) Upgrade Membership: navbar jadi punya tombol kembali */
+  function applyMembershipHeader(page){
+    var btn = q('header .burger-btn');
+    var icon = q('header .burger-btn i');
+    var h1 = q('header .header-title h1');
+    var sub = q('header .header-subtitle');
+    var right = q('header .header-right');
+    if(!btn || !icon || !h1 || !sub) return;
+    var targetPage = String(page || window.__kzCurrentPage || 'home');
+    var active = targetPage === 'membership-upgrade';
+    if(active){
+      document.body.classList.add('kz-membership-page');
+      btn.setAttribute('data-kz-membership-back', '1');
+      icon.className = 'fas fa-arrow-left';
+      btn.onclick = function(ev){
+        if(ev){ ev.preventDefault(); ev.stopPropagation(); if(ev.stopImmediatePropagation) ev.stopImmediatePropagation(); }
+        var prev = String(window.__kzPrevPage || 'home');
+        if(!prev || prev === 'membership-upgrade') prev = 'home';
+        try{ if(typeof window.navTo === 'function') window.navTo(prev); }catch(e){}
+        return false;
+      };
+      h1.textContent = 'Upgrade Membership';
+      sub.textContent = '';
+      sub.style.display = 'none';
+      if(right) right.style.display = 'none';
+    } else {
+      document.body.classList.remove('kz-membership-page');
+      sub.style.display = '';
+      if(right) right.style.display = '';
+      if(btn.getAttribute('data-kz-membership-back') === '1'){
+        btn.removeAttribute('data-kz-membership-back');
+        icon.className = 'fas fa-bars';
+        btn.onclick = function(){ try{ if(typeof window.toggleSidebar === 'function') window.toggleSidebar(); }catch(e){} };
+        h1.innerHTML = 'KZRIZUSMO <span>STORE</span>';
+        sub.textContent = 'DIGITAL MARKETPLACE';
+      }
+    }
+  }
+  var oldNav = (typeof window.navTo === 'function') ? window.navTo : null;
+  if(oldNav && !window.__kzMembershipHeaderNavWrapped){
+    window.navTo = function(page){
+      var result = oldNav.apply(this, arguments);
+      setTimeout(function(){ applyMembershipHeader(page); }, 0);
+      setTimeout(function(){ applyMembershipHeader(window.__kzCurrentPage || page); }, 80);
+      return result;
+    };
+    window.__kzMembershipHeaderNavWrapped = true;
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ applyMembershipHeader(window.__kzCurrentPage || 'home'); });
+  else applyMembershipHeader(window.__kzCurrentPage || 'home');
+  window.addEventListener('load', function(){ setTimeout(function(){ applyMembershipHeader(window.__kzCurrentPage || 'home'); }, 120); });
+})();
+</script>
+
+
+<style id="kz-followup-20260320-style">
+/* Compact topbar to match product/pricelist header */
+body.kz-simple-topbar header{
+  padding:12px 20px !important;
+}
+body.kz-simple-topbar .header-left{
+  gap:12px !important;
+}
+body.kz-simple-topbar .header-title h1{
+  font-size:1.08rem !important;
+  letter-spacing:.04em !important;
+  line-height:1.1 !important;
+}
+body.kz-simple-topbar .header-subtitle{
+  display:none !important;
+}
+body.kz-simple-topbar .header-right{
+  display:none !important;
+}
+body.kz-simple-topbar .burger-btn{
+  width:auto !important;
+  height:auto !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+body.kz-simple-topbar .burger-btn::after{
+  display:none !important;
+}
+body.kz-simple-topbar .burger-btn i{
+  font-size:1.25rem !important;
+}
+body.kz-simple-topbar .header-title h1 span{
+  color:var(--accent-gold) !important;
+}
+
+/* Selengkapnya overlay navbar: smaller and no boxed back button */
+#page-home .kz-home-all-head{
+  padding:14px 20px !important;
+  gap:14px !important;
+  align-items:center !important;
+}
+#page-home .kz-home-all-back{
+  width:auto !important;
+  height:auto !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  font-size:20px !important;
+  line-height:1 !important;
+  color:var(--text-main) !important;
+}
+#page-home .kz-home-all-back::after{
+  display:none !important;
+}
+#page-home .kz-home-all-title{
+  font-size:1.08rem !important;
+  line-height:1.15 !important;
+}
+#page-home .kz-home-all-search{
+  padding:12px 20px 10px !important;
+}
+
+/* Restore Sosmed category tabs */
+#page-sosmed .section-header{
+  display:flex !important;
+}
+#page-sosmed #sosmedTabs{
+  display:flex !important;
+}
+</style>
+<script id="kz-followup-20260320-script">
+(function(){
+  if(window.__kzFollowup20260320Applied) return;
+  window.__kzFollowup20260320Applied = true;
+
+  function q(sel, root){
+    try{ return (root || document).querySelector(sel); }catch(e){ return null; }
+  }
+  function qa(sel, root){
+    try{ return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }catch(e){ return []; }
+  }
+  function esc(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function getStoreRefs(){
+    var refs = [];
+    function push(arr){ if(Array.isArray(arr) && refs.indexOf(arr) < 0) refs.push(arr); }
+    try{ push(window.appsData); }catch(e){}
+    try{ push(window.__kzStoreState); }catch(e){}
+    try{ push(window.__appsDataDefault); }catch(e){}
+    return refs;
+  }
+  function moveLoklokToPreview(){
+    try{
+      getStoreRefs().forEach(function(arr){
+        var wanted = ['netflix','capcut','canva','alightmotion','loklok','chatgpt','wink'];
+        var byId = {};
+        arr.forEach(function(it){
+          var id = String((it && it.id) || '');
+          if(id && !byId[id]) byId[id] = it;
+        });
+        var used = {};
+        var ordered = [];
+        wanted.forEach(function(id){
+          if(byId[id] && !used[id]){
+            ordered.push(byId[id]);
+            used[id] = true;
+          }
+        });
+        arr.forEach(function(it){
+          var id = String((it && it.id) || '');
+          if(!used[id]) ordered.push(it);
+        });
+        arr.splice(0, arr.length);
+        ordered.forEach(function(it){ arr.push(it); });
+      });
+    }catch(e){}
+    try{
+      if(typeof window.kzHomeSetTab === 'function') window.kzHomeSetTab(window.__kzHomeTab || 'apk');
+      else if(typeof window.kzHomeRenderStable === 'function') window.kzHomeRenderStable(window.__kzHomeTab || 'apk');
+    }catch(e){}
+  }
+
+  function applySimpleHeader(page){
+    var target = String(page || window.__kzCurrentPage || 'home');
+    var btn = q('header .burger-btn');
+    var icon = q('header .burger-btn i');
+    var h1 = q('header .header-title h1');
+    var sub = q('header .header-subtitle');
+    var right = q('header .header-right');
+    if(!btn || !icon || !h1 || !sub) return;
+
+    var active = (target === 'membership-upgrade' || target === 'all-products');
+    if(active){
+      document.body.classList.add('kz-simple-topbar');
+      btn.setAttribute('data-kz-simple-back', '1');
+      icon.className = 'fas fa-arrow-left';
+      btn.onclick = function(ev){
+        if(ev){
+          ev.preventDefault();
+          ev.stopPropagation();
+          if(ev.stopImmediatePropagation) ev.stopImmediatePropagation();
+        }
+        var prev = String(window.__kzPrevPage || 'home');
+        if(!prev || prev === target) prev = 'home';
+        try{ if(typeof window.navTo === 'function') window.navTo(prev); }catch(e){}
+        return false;
+      };
+      h1.textContent = target === 'membership-upgrade' ? 'Upgrade Membership' : 'Semua Produk';
+      sub.textContent = '';
+      sub.style.display = 'none';
+      if(right) right.style.display = 'none';
+      return;
+    }
+
+    document.body.classList.remove('kz-simple-topbar');
+    if(btn.getAttribute('data-kz-simple-back') === '1'){
+      btn.removeAttribute('data-kz-simple-back');
+      icon.className = 'fas fa-bars';
+      btn.onclick = function(){
+        try{ if(typeof window.toggleSidebar === 'function') window.toggleSidebar(); }
+        catch(e){ try{ if(typeof toggleSidebar === 'function') toggleSidebar(); }catch(_e){} }
+      };
+      h1.innerHTML = 'KZRIZUSMO <span>STORE</span>';
+      sub.textContent = 'DIGITAL MARKETPLACE';
+      sub.style.display = '';
+      if(right) right.style.display = '';
+    }
+  }
+
+  function getSosmedSource(){
+    try{ if(Array.isArray(window.__kzSosmedState) && window.__kzSosmedState.length) return window.__kzSosmedState; }catch(e){}
+    try{ if(Array.isArray(window.sosmedData) && window.sosmedData.length) return window.sosmedData; }catch(e){}
+    try{ if(typeof sosmedData !== 'undefined' && Array.isArray(sosmedData) && sosmedData.length) return sosmedData; }catch(e){}
+    return [];
+  }
+  function getActiveSosmedPlatform(){
+    var saved = String(window.__kzSosmedPlatform || '').trim();
+    if(saved) return saved;
+    var activeBtn = q('#sosmedTabs .sosmed-cat-btn.active');
+    if(activeBtn) return String(activeBtn.getAttribute('data-filter') || 'instagram');
+    var firstBtn = q('#sosmedTabs .sosmed-cat-btn');
+    return String((firstBtn && firstBtn.getAttribute('data-filter')) || 'instagram');
+  }
+  function restoreSosmedChrome(){
+    var sh = q('#page-sosmed .section-header');
+    var tabs = q('#sosmedTabs');
+    if(sh) sh.style.display = 'flex';
+    if(tabs) tabs.style.display = 'flex';
+  }
+  function renderSosmedProductsFixed(query){
+    restoreSosmedChrome();
+    var wrap = q('#sosmedProductList');
+    if(!wrap) return;
+    var platform = getActiveSosmedPlatform();
+    var qv = String(query || '').trim().toLowerCase();
+    var items = getSosmedSource().filter(function(a){
+      return a && Array.isArray(a.cat) && a.cat.indexOf('sosmed') >= 0 && a.cat.indexOf(platform) >= 0;
+    });
+    if(qv){
+      items = items.filter(function(a){
+        return String(a.name || '').toLowerCase().indexOf(qv) > -1;
+      });
+    }
+    items.sort(function(a, b){
+      return String(a && a.name || '').localeCompare(String(b && b.name || ''));
+    });
+    if(!items.length){
+      wrap.innerHTML = ''
+        + '<div style="grid-column:1/-1; margin:14px 0 6px; padding:18px; border-radius:12px; border:1px solid var(--border); background:var(--bg-card); text-align:center;">'
+        + '  <div style="font-size:2rem; margin-bottom:10px;">📦</div>'
+        + '  <div style="font-weight:800;">Produk tidak ditemukan</div>'
+        + '  <div style="color:var(--text-sec); font-size:.85rem; margin-top:6px;">Coba ganti kategori atau kosongkan pencarian.</div>'
+        + '</div>';
+      return;
+    }
+    wrap.innerHTML = items.map(function(item){
+      return ''
+        + '<div class="item-card shiny-effect" data-kz-sosmed-id="' + esc(item && item.id || '') + '">'
+        + '  <img src="' + esc(item && item.image || '') + '" alt="' + esc(item && item.name || '') + '" loading="lazy" decoding="async">'
+        + '  <div class="item-title">' + esc(item && item.name || '') + '</div>'
+        + '</div>';
+    }).join('');
+    qa('.item-card[data-kz-sosmed-id]', wrap).forEach(function(card){
+      card.onclick = function(){
+        try{ if(typeof window.openDetail === 'function') window.openDetail(card.getAttribute('data-kz-sosmed-id') || ''); }catch(e){}
+      };
+    });
+  }
+  function initSosmedPageFixed(){
+    var tabs = qa('#sosmedTabs .sosmed-cat-btn');
+    if(tabs.length){
+      tabs.forEach(function(btn){ btn.classList.remove('active'); });
+      tabs[0].classList.add('active');
+      window.__kzSosmedPlatform = String(tabs[0].getAttribute('data-filter') || 'instagram');
+    }else{
+      window.__kzSosmedPlatform = 'instagram';
+    }
+    var input = q('#sosmedSearchInput');
+    if(input) input.value = '';
+    renderSosmedProductsFixed('');
+  }
+  function setSosmedPlatformFixed(platform, btn){
+    try{ if(typeof window.playClick === 'function') window.playClick(); }catch(e){}
+    window.__kzSosmedPlatform = String(platform || 'instagram');
+    qa('#sosmedTabs .sosmed-cat-btn').forEach(function(node){ node.classList.remove('active'); });
+    if(btn) btn.classList.add('active');
+    var input = q('#sosmedSearchInput');
+    if(input) input.value = '';
+    renderSosmedProductsFixed('');
+  }
+
+  window.renderSosmedProducts = renderSosmedProductsFixed;
+  window.initSosmedPage = initSosmedPageFixed;
+  window.setSosmedPlatform = setSosmedPlatformFixed;
+
+  var oldMore = (typeof window.kzHomeOpenMore === 'function') ? window.kzHomeOpenMore : null;
+  if(oldMore && !window.__kzFollowupSosmedMoreWrapped){
+    window.kzHomeOpenMore = function(tab){
+      var result = oldMore.apply(this, arguments);
+      if(String(tab || window.__kzHomeTab || 'apk') === 'sosmed'){
+        setTimeout(restoreSosmedChrome, 60);
+        setTimeout(restoreSosmedChrome, 180);
+      }
+      return result;
+    };
+    window.__kzFollowupSosmedMoreWrapped = true;
+  }
+
+  var oldNav = (typeof window.navTo === 'function') ? window.navTo : null;
+  if(oldNav && !window.__kzFollowupSimpleHeaderNavWrapped){
+    window.navTo = function(page){
+      var result = oldNav.apply(this, arguments);
+      setTimeout(function(){
+        applySimpleHeader(page);
+        restoreSosmedChrome();
+      }, 0);
+      setTimeout(function(){
+        applySimpleHeader(window.__kzCurrentPage || page);
+        restoreSosmedChrome();
+      }, 90);
+      return result;
+    };
+    window.__kzFollowupSimpleHeaderNavWrapped = true;
+  }
+
+  function boot(){
+    moveLoklokToPreview();
+    applySimpleHeader(window.__kzCurrentPage || 'home');
+    restoreSosmedChrome();
+    try{
+      if(q('#page-sosmed') && q('#page-sosmed').style.display === 'block'){
+        renderSosmedProductsFixed((q('#sosmedSearchInput') || {}).value || '');
+      }
+    }catch(e){}
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+  window.addEventListener('load', function(){
+    setTimeout(boot, 120);
+    setTimeout(moveLoklokToPreview, 260);
+  });
+})();
+</script>
+
+
+<style id="kz-revisi-20260320-v4-style">
+#detailModal{
+  z-index:10050 !important;
+}
+#page-sosmed .section-header{
+  display:none !important;
+}
+#page-sosmed #sosmedTabs{
+  display:flex !important;
+}
+#page-sosmed .kz-sosmed-banner-wrap{
+  padding:0 0 12px !important;
+}
+#page-sosmed .kz-sosmed-banner-wrap .banner-container{
+  margin-top:0 !important;
+  margin-bottom:0 !important;
+}
+</style>
+<script id="kz-revisi-20260320-v4-script">
+(function(){
+  if(window.__kzRevisi20260320V4Applied) return;
+  window.__kzRevisi20260320V4Applied = true;
+
+  function q(sel, root){
+    try{ return (root || document).querySelector(sel); }catch(e){ return null; }
+  }
+
+  function closeHomeMoreOverlay(){
+    try{
+      if(typeof window.closeHomeAllProducts === 'function'){
+        window.closeHomeAllProducts();
+      }else{
+        var overlay = q('#kzHomeAllProductsOverlay');
+        if(overlay) overlay.classList.remove('active');
+        try{ document.body.style.overflow = ''; }catch(e){}
+      }
+    }catch(e){}
+  }
+
+  function ensureDetailModalFront(){
+    var modal = q('#detailModal');
+    if(!modal) return;
+    modal.style.zIndex = '10050';
+    modal.classList.add('kz-open');
+    if(modal.style.display !== 'block') modal.style.display = 'block';
+  }
+
+  function wrapOpenDetail(){
+    var fn = window.openDetail;
+    if(typeof fn !== 'function' || fn.__kzV4Wrapped) return;
+    var wrapped = function(){
+      closeHomeMoreOverlay();
+      var res = fn.apply(this, arguments);
+      setTimeout(ensureDetailModalFront, 0);
+      setTimeout(ensureDetailModalFront, 80);
+      return res;
+    };
+    wrapped.__kzV4Wrapped = true;
+    window.openDetail = wrapped;
+  }
+
+  function wrapFn(name){
+    var fn = window[name];
+    if(typeof fn !== 'function' || fn.__kzV4Wrapped) return;
+    var wrapped = function(){
+      closeHomeMoreOverlay();
+      return fn.apply(this, arguments);
+    };
+    wrapped.__kzV4Wrapped = true;
+    window[name] = wrapped;
+  }
+
+  function syncSosmedLayout(){
+    var page = q('#page-sosmed');
+    if(!page) return;
+    var header = q('.section-header', page);
+    var tabs = q('#sosmedTabs', page);
+    var banner = q('.kz-sosmed-banner-wrap', page);
+
+    if(header) header.style.display = 'none';
+    if(tabs) tabs.style.display = 'flex';
+
+    if(banner && tabs && banner !== tabs.previousElementSibling){
+      page.insertBefore(banner, tabs);
+    }
+  }
+
+  function hookNav(){
+    var fn = window.navTo;
+    if(typeof fn !== 'function' || fn.__kzV4Wrapped) return;
+    var wrapped = function(page){
+      var res = fn.apply(this, arguments);
+      if(String(page || '') === 'sosmed-page'){
+        setTimeout(syncSosmedLayout, 0);
+        setTimeout(syncSosmedLayout, 90);
+        setTimeout(syncSosmedLayout, 220);
+      }
+      return res;
+    };
+    wrapped.__kzV4Wrapped = true;
+    window.navTo = wrapped;
+  }
+
+  function observeSosmed(){
+    if(window.__kzV4SosmedObserver) return;
+    var page = q('#page-sosmed');
+    if(!page || typeof MutationObserver !== 'function') return;
+    var mo = new MutationObserver(function(){ syncSosmedLayout(); });
+    mo.observe(page, { childList:true, subtree:false });
+    window.__kzV4SosmedObserver = mo;
+  }
+
+  function boot(){
+    wrapOpenDetail();
+    wrapFn('kzOpenDigitalDetail');
+    wrapFn('kzOpenSosmedPreview');
+    hookNav();
+    syncSosmedLayout();
+    observeSosmed();
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+  window.addEventListener('load', function(){
+    setTimeout(boot, 120);
+    setTimeout(syncSosmedLayout, 260);
+  });
+})();
+</script>
 
 </body></html>
