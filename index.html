@@ -28487,4 +28487,398 @@ body{padding-bottom:24px;}
 })();
 </script>
 
+
+<style id="kz-testi-overlay-patch">
+body.kz-testi-open{overflow:hidden !important;touch-action:none;}
+body.kz-testi-open .testi-track{animation-play-state:paused !important;}
+#kzTestiOverlay{position:fixed;inset:0;z-index:18000;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#kzTestiOverlay.show{display:flex}
+#kzTestiOverlay .kz-testi-panel{width:min(1080px,100%);max-height:calc(100vh - 28px);background:var(--bg-card);border:1px solid var(--border);border-radius:24px;overflow:hidden;box-shadow:0 28px 90px rgba(0,0,0,.55);display:flex;flex-direction:column}
+#kzTestiOverlay .kz-testi-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;border-bottom:1px solid var(--border);background:var(--bg-card)}
+#kzTestiOverlay .kz-testi-title{font-size:1rem;font-weight:900;color:var(--text-main)}
+#kzTestiOverlay .kz-testi-close,#kzTestiOverlay .kz-testi-spacer{min-width:112px}
+#kzTestiOverlay .kz-testi-close{border:1px solid var(--border);background:var(--bg-sec);color:var(--text-main);padding:11px 14px;border-radius:14px;font-weight:800;cursor:pointer}
+#kzTestiOverlay .kz-testi-close:active{transform:scale(.98)}
+#kzTestiOverlay .kz-testi-body{padding:16px;overflow:auto;-webkit-overflow-scrolling:touch}
+#kzTestiOverlay .kz-testi-layout{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:14px}
+#kzTestiOverlay .kz-testi-form-card,#kzTestiOverlay .kz-testi-list-card{background:var(--bg-sec);border:1px solid var(--border);border-radius:20px;padding:14px}
+#kzTestiOverlay .kz-testi-form-title{font-size:.96rem;font-weight:900;color:var(--text-main);margin-bottom:6px}
+#kzTestiOverlay .kz-testi-form-note{font-size:.82rem;line-height:1.55;color:var(--text-sec);margin-bottom:12px}
+#kzTestiOverlay .kz-testi-field{margin-bottom:12px}
+#kzTestiOverlay .kz-testi-label{display:block;font-size:.8rem;font-weight:800;color:var(--text-sec);margin-bottom:7px}
+#kzTestiOverlay .kz-testi-input,#kzTestiOverlay .kz-testi-textarea{width:100%;border:1px solid var(--border);background:var(--bg-card);color:var(--text-main);border-radius:14px;padding:12px 13px;outline:none}
+#kzTestiOverlay .kz-testi-input[readonly]{opacity:.9;cursor:not-allowed}
+#kzTestiOverlay .kz-testi-input:focus,#kzTestiOverlay .kz-testi-textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(255,0,0,.12)}
+#kzTestiOverlay .kz-testi-textarea{min-height:120px;resize:vertical;line-height:1.55}
+#kzTestiOverlay .kz-testi-counter{margin-top:6px;font-size:.75rem;color:var(--text-sec);text-align:right}
+#kzTestiOverlay .kz-testi-stars{display:flex;gap:8px;flex-wrap:wrap}
+#kzTestiOverlay .kz-star-btn{width:42px;height:42px;border-radius:14px;border:1px solid var(--border);background:var(--bg-card);color:#666;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem}
+#kzTestiOverlay .kz-star-btn.active{border-color:rgba(255,184,0,.45);background:rgba(255,184,0,.10);color:#ffb800}
+#kzTestiOverlay .kz-testi-submit{width:100%;border:0;border-radius:14px;padding:13px 14px;background:linear-gradient(135deg,#ff0000,#b30000);color:#fff;font-weight:900;cursor:pointer;box-shadow:0 14px 28px rgba(255,0,0,.18)}
+#kzTestiOverlay .kz-testi-submit[disabled]{opacity:.55;cursor:not-allowed;box-shadow:none}
+#kzTestiOverlay .kz-testi-lock{margin-top:10px;padding:12px 13px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:.82rem;line-height:1.55;color:var(--text-sec)}
+#kzTestiOverlay .kz-testi-topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+#kzTestiOverlay .kz-testi-count{font-size:.82rem;color:var(--text-sec)}
+#kzTestiOverlay .kz-testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+#kzTestiOverlay .kz-proof-card{background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:14px}
+#kzTestiOverlay .kz-proof-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+#kzTestiOverlay .kz-proof-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#8F0105,#FF0000);border:1px solid rgba(255,0,0,.35);color:#fff;display:flex;align-items:center;justify-content:center;flex:0 0 38px;box-shadow:0 10px 22px rgba(0,0,0,.26)}
+#kzTestiOverlay .kz-proof-avatar i{font-size:15px}
+#kzTestiOverlay .kz-proof-user{min-width:0;flex:1}
+#kzTestiOverlay .kz-proof-name{font-size:.92rem;font-weight:900;color:var(--text-main);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#kzTestiOverlay .kz-proof-date{margin-top:3px;font-size:.76rem;color:var(--text-sec)}
+#kzTestiOverlay .kz-proof-stars{color:#ffb800;font-size:.82rem;letter-spacing:1px;margin-bottom:8px}
+#kzTestiOverlay .kz-proof-text{font-size:.9rem;line-height:1.6;color:var(--text-main);border-top:1px dashed var(--border);padding-top:10px;word-break:break-word}
+#kzTestiOverlay .kz-proof-empty{padding:14px;border:1px dashed var(--border);border-radius:16px;color:var(--text-sec);background:rgba(255,255,255,.03)}
+@media (max-width:760px){#kzTestiOverlay{padding:0}#kzTestiOverlay .kz-testi-panel{height:100vh;max-height:100vh;width:100%;border-radius:0;border-left:0;border-right:0}#kzTestiOverlay .kz-testi-layout{grid-template-columns:1fr}#kzTestiOverlay .kz-testi-body{padding:12px}#kzTestiOverlay .kz-testi-head{padding:12px}#kzTestiOverlay .kz-testi-close,#kzTestiOverlay .kz-testi-spacer{min-width:0}#kzTestiOverlay .kz-testi-spacer{display:none}#kzTestiOverlay .kz-testi-grid{grid-template-columns:1fr}}
+</style>
+
+<div id="kzTestiOverlay" aria-hidden="true">
+  <div class="kz-testi-panel" role="dialog" aria-modal="true" aria-labelledby="kzTestiOverlayTitle">
+    <div class="kz-testi-head">
+      <button class="kz-testi-close" id="kzTestiCloseBtn" type="button">← Kembali</button>
+      <div class="kz-testi-title" id="kzTestiOverlayTitle">Semua Bukti</div>
+      <div class="kz-testi-spacer"></div>
+    </div>
+    <div class="kz-testi-body">
+      <div class="kz-testi-layout">
+        <div class="kz-testi-form-card">
+          <div class="kz-testi-form-title">Tambah Testimoni</div>
+                    <form id="kzUserTestiForm">
+            <div class="kz-testi-field">
+              <label class="kz-testi-label" for="kzUserTestiName">Username Akun</label>
+              <input class="kz-testi-input" id="kzUserTestiName" maxlength="32" type="text" readonly />
+            </div>
+            <div class="kz-testi-field">
+              <label class="kz-testi-label" for="kzUserTestiRating">Rating</label>
+              <select class="kz-testi-input" id="kzUserTestiRating">
+                <option value="5">5 - Sangat puas</option>
+                <option value="4">4 - Puas</option>
+                <option value="3">3 - Cukup</option>
+                <option value="2">2 - Kurang</option>
+                <option value="1">1 - Tidak puas</option>
+              </select>
+            </div>
+            <div class="kz-testi-field">
+              <label class="kz-testi-label" for="kzUserTestiText">Testimoni</label>
+              <textarea class="kz-testi-textarea" id="kzUserTestiText" maxlength="280" placeholder="Tulis pengalaman kamu di sini..."></textarea>
+              <div class="kz-testi-counter"><span id="kzUserTestiCounter">0</span>/280</div>
+            </div>
+            <button class="kz-testi-submit" id="kzUserTestiSubmit" type="submit">Kirim Testimoni</button>
+          </form>
+          <div class="kz-testi-lock" id="kzUserTestiLock" style="display:none;"></div>
+        </div>
+        <div class="kz-testi-list-card">
+          <div class="kz-testi-topbar">
+            <div class="kz-testi-form-title" style="margin:0;">Daftar Bukti</div>
+            <div class="kz-testi-count" id="kzTestiCount">0 testimoni</div>
+          </div>
+          <div class="kz-testi-grid" id="kzTestiGrid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script id="kz-testi-overlay-script">
+(function(){
+  var STORAGE_KEY = 'kz_user_testimonials_by_account_v1';
+  var LEGACY_KEY = 'kz_user_testimonial_v2';
+  var MIN_CHARS = 15;
+  var state = { rating: 5 };
+
+  function esc(v){
+    return String(v == null ? '' : v).replace(/[&<>"']/g, function(m){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];
+    });
+  }
+  function stars(n){
+    var total = Math.max(1, Math.min(5, Number(n) || 5));
+    var html = '';
+    for(var i=1;i<=5;i++) html += i <= total ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>';
+    return html;
+  }
+  function toast(msg){
+    try{ if(typeof authToast === 'function') return authToast(msg); }catch(e){}
+    try{ alert(msg); }catch(e){}
+  }
+  function formatDate(date){
+    try{
+      return new Intl.DateTimeFormat('id-ID',{day:'numeric',month:'short',year:'numeric'}).format(date);
+    }catch(e){
+      return date.toLocaleDateString('id-ID');
+    }
+  }
+  function getBaseTestimonials(){
+    try{ if(typeof rawTestimonials !== 'undefined' && Array.isArray(rawTestimonials) && rawTestimonials.length) return rawTestimonials.slice(); }catch(e){}
+    try{ if(Array.isArray(window.rawTestimonials) && window.rawTestimonials.length) return window.rawTestimonials.slice(); }catch(e){}
+    return [];
+  }
+  function getMe(){
+    try{ if(typeof authGetMe === 'function') return authGetMe() || null; }catch(e){}
+    try{ if(typeof getCurrentUser === 'function') return getCurrentUser() || null; }catch(e){}
+    return null;
+  }
+  function getAccountUsername(me){
+    var raw = me && me.username ? String(me.username).trim() : '';
+    if(!raw) return '';
+    return raw.charAt(0) === '@' ? raw : '@' + raw;
+  }
+  function getAccountKey(me){
+    if(!me) return '';
+    if(me.id) return 'id:' + String(me.id);
+    var uname = me && me.username ? String(me.username).trim().toLowerCase() : '';
+    return uname ? 'u:' + uname : '';
+  }
+  function loadStore(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      var parsed = raw ? JSON.parse(raw) : {};
+      return (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) ? parsed : {};
+    }catch(e){ return {}; }
+  }
+  function saveStore(store){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(store || {}));
+  }
+  function migrateLegacyIfNeeded(){
+    try{
+      var me = getMe();
+      var key = getAccountKey(me);
+      if(!key) return;
+      var store = loadStore();
+      if(store[key]) return;
+      var legacyRaw = localStorage.getItem(LEGACY_KEY);
+      if(!legacyRaw) return;
+      var legacy = JSON.parse(legacyRaw);
+      if(!legacy || !legacy.c) return;
+      legacy.u = getAccountUsername(me) || legacy.u || 'Pelanggan';
+      legacy.accountKey = key;
+      store[key] = legacy;
+      saveStore(store);
+      localStorage.removeItem(LEGACY_KEY);
+    }catch(e){}
+  }
+  function getStoredTestimonialsMap(){
+    migrateLegacyIfNeeded();
+    return loadStore();
+  }
+  function getStoredTestimonial(){
+    var me = getMe();
+    var key = getAccountKey(me);
+    if(!key) return null;
+    var store = getStoredTestimonialsMap();
+    var item = store[key];
+    return item && item.c && item.u ? item : null;
+  }
+  function getAllTestimonials(){
+    var list = getBaseTestimonials();
+    var store = getStoredTestimonialsMap();
+    var custom = [];
+    Object.keys(store).forEach(function(key){
+      var item = store[key];
+      if(item && item.c && item.u) custom.push(item);
+    });
+    custom.sort(function(a,b){ return Number(b.createdAt || 0) - Number(a.createdAt || 0); });
+    return custom.concat(list);
+  }
+  function getPreviewTestimonials(){
+    return getAllTestimonials().slice(0,3);
+  }
+  function renderMainTrack(){
+    var track = document.getElementById('testiTrack');
+    if(!track) return;
+    var merged = getAllTestimonials();
+    var combined = merged.concat(merged);
+    var html = '';
+    for(var i=0;i<combined.length;i++){
+      var t = combined[i] || {};
+      html += '<div class="testi-card"><div class="testi-user-row"><div class="user-avatar"><i class="fas fa-user"></i></div><div class="user-info"><h4>'+esc(t.u||'Pelanggan')+'</h4><span>'+esc(t.d||'')+'</span></div></div><div class="stars">'+stars(t.r||5)+'</div><div class="testi-text">'+esc(t.c||'')+'</div></div>';
+    }
+    track.innerHTML = html;
+  }
+  function renderSidebarTrack(){
+    var track = document.getElementById('sbTestiTrack');
+    if(!track) return;
+    var merged = getAllTestimonials();
+    var combined = merged.concat(merged);
+    var html = '';
+    for(var i=0;i<combined.length;i++){
+      var t = combined[i] || {};
+      html += '<div class="testi-card"><div class="testi-user-row"><div class="user-avatar"><i class="fas fa-user"></i></div><div class="user-info"><h4>'+esc(t.u||'Pelanggan')+'</h4><span>'+esc(t.d||'')+'</span></div></div><div class="stars">'+stars(t.r||5)+'</div><div class="testi-text">'+esc(t.c||'')+'</div></div>';
+    }
+    track.innerHTML = html;
+  }
+  function renderHomeCards(){
+    var grids = document.querySelectorAll('.kz-home-testi-grid');
+    if(!grids.length) return;
+    var items = getPreviewTestimonials();
+    var html = '';
+    for(var i=0;i<items.length;i++){
+      var t = items[i] || {};
+      html += '<div class="kz-home-testi-card"><div class="kz-home-testi-top"><div class="kz-home-testi-avatar"><i class="fas fa-user"></i></div><div><div class="kz-home-testi-name">'+esc(t.u||'Pelanggan')+'</div><div class="kz-home-testi-date">'+esc(t.d||'')+'</div></div></div><div class="kz-home-testi-stars">'+stars(t.r||5)+'</div><div class="kz-home-testi-text">'+esc(t.c||'')+'</div></div>';
+    }
+    grids.forEach(function(grid){ grid.innerHTML = html; });
+  }
+  function renderProofGrid(){
+    var grid = document.getElementById('kzTestiGrid');
+    var count = document.getElementById('kzTestiCount');
+    if(!grid) return;
+    var list = getAllTestimonials();
+    if(count) count.textContent = list.length + ' testimoni';
+    if(!list.length){
+      grid.innerHTML = '<div class="kz-proof-empty">Belum ada bukti yang bisa ditampilkan.</div>';
+      return;
+    }
+    var html = '';
+    for(var i=0;i<list.length;i++){
+      var t = list[i] || {};
+      html += '<div class="kz-proof-card"><div class="kz-proof-row"><div class="kz-proof-avatar"><i class="fas fa-user"></i></div><div class="kz-proof-user"><div class="kz-proof-name">'+esc(t.u||'Pelanggan')+'</div><div class="kz-proof-date">'+esc(t.d||'')+'</div></div></div><div class="kz-proof-stars">'+stars(t.r||5)+'</div><div class="kz-proof-text">'+esc(t.c||'')+'</div></div>';
+    }
+    grid.innerHTML = html;
+  }
+  function refreshAllTestimonialsUi(){
+    renderMainTrack();
+    renderSidebarTrack();
+    renderHomeCards();
+    renderProofGrid();
+    syncFormState();
+  }
+  function setRating(next){
+    state.rating = Math.max(1, Math.min(5, Number(next) || 5));
+    var select = document.getElementById('kzUserTestiRating');
+    if(select) select.value = String(state.rating);
+  }
+  function syncCounter(){
+    var input = document.getElementById('kzUserTestiText');
+    var counter = document.getElementById('kzUserTestiCounter');
+    if(input && counter) counter.textContent = String((input.value || '').length);
+  }
+  function syncFormState(){
+    var form = document.getElementById('kzUserTestiForm');
+    var lock = document.getElementById('kzUserTestiLock');
+    var title = document.querySelector('#kzTestiOverlay .kz-testi-form-card .kz-testi-form-title');
+    var nameInput = document.getElementById('kzUserTestiName');
+    if(!form || !lock) return;
+    var me = getMe();
+    var username = getAccountUsername(me);
+    var mine = getStoredTestimonial();
+    if(nameInput) nameInput.value = username || '';
+    if(mine){
+      form.style.display = 'none';
+      lock.style.display = 'block';
+      lock.textContent = 'Testimoni berhasil dikirim.';
+      if(title) title.style.display = 'none';
+      return;
+    }
+    if(!username){
+      form.style.display = 'none';
+      lock.style.display = 'block';
+      lock.textContent = 'Login atau daftar akun dulu untuk menambahkan testimoni.';
+      if(title) title.style.display = '';
+      return;
+    }
+    form.style.display = '';
+    lock.style.display = 'none';
+    if(title) title.style.display = '';
+  }
+  function openOverlay(){
+    var overlay = document.getElementById('kzTestiOverlay');
+    if(!overlay) return false;
+    refreshAllTestimonialsUi();
+    overlay.classList.add('show');
+    overlay.setAttribute('aria-hidden','false');
+    document.body.classList.add('kz-testi-open');
+    return false;
+  }
+  function closeOverlay(){
+    var overlay = document.getElementById('kzTestiOverlay');
+    if(!overlay) return false;
+    overlay.classList.remove('show');
+    overlay.setAttribute('aria-hidden','true');
+    document.body.classList.remove('kz-testi-open');
+    return false;
+  }
+  function initForm(){
+    var form = document.getElementById('kzUserTestiForm');
+    var nameInput = document.getElementById('kzUserTestiName');
+    var ratingInput = document.getElementById('kzUserTestiRating');
+    var textInput = document.getElementById('kzUserTestiText');
+    if(!form || !nameInput || !ratingInput || !textInput) return;
+    nameInput.value = getAccountUsername(getMe()) || '';
+    textInput.addEventListener('input', syncCounter);
+    ratingInput.addEventListener('change', function(){ setRating(this.value); });
+    syncCounter();
+    setRating(state.rating);
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var me = getMe();
+      var accountKey = getAccountKey(me);
+      var username = getAccountUsername(me);
+      if(!accountKey || !username){
+        syncFormState();
+        return toast('⚠️ Login atau daftar akun dulu.');
+      }
+      if(getStoredTestimonial()){
+        syncFormState();
+        return toast('⚠️ Akun ini sudah mengirim testimoni.');
+      }
+      nameInput.value = username;
+      var comment = String(textInput.value || '').trim();
+      if(comment.length < MIN_CHARS) return toast('⚠️ Testimoni minimal ' + MIN_CHARS + ' karakter.');
+      var payload = {
+        accountKey: accountKey,
+        u: username,
+        c: comment,
+        d: formatDate(new Date()),
+        r: Number(ratingInput.value) || state.rating || 5,
+        createdAt: Date.now()
+      };
+      try{
+        var store = getStoredTestimonialsMap();
+        store[accountKey] = payload;
+        saveStore(store);
+      }catch(err){ return toast('⚠️ Gagal menyimpan testimoni.'); }
+      textInput.value = '';
+      syncCounter();
+      setRating(5);
+      refreshAllTestimonialsUi();
+      toast('✅ Testimoni berhasil dikirim.');
+    });
+    syncFormState();
+  }
+  function bindOverlay(){
+    var overlay = document.getElementById('kzTestiOverlay');
+    var closeBtn = document.getElementById('kzTestiCloseBtn');
+    if(closeBtn && !closeBtn.__kzBound){ closeBtn.__kzBound = true; closeBtn.onclick = closeOverlay; }
+    if(overlay && !overlay.__kzBound){
+      overlay.__kzBound = true;
+      overlay.addEventListener('click', function(e){ if(e.target === overlay) closeOverlay(); });
+    }
+    if(!document.__kzTestiEscBound){
+      document.__kzTestiEscBound = true;
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeOverlay(); });
+    }
+  }
+  function boot(){
+    initForm();
+    bindOverlay();
+    refreshAllTestimonialsUi();
+    window.openAllTestimonialProofs = openOverlay;
+    window.closeTestiProofPage = closeOverlay;
+    window.kzRefreshTestimonialsUi = refreshAllTestimonialsUi;
+    try{ window.renderTestimonials = renderMainTrack; }catch(e){}
+    try{ window.rawTestimonials = getBaseTestimonials(); }catch(e){}
+    try{
+      var obs = new MutationObserver(function(){
+        clearTimeout(window.__kzTestiRefreshTimer);
+        window.__kzTestiRefreshTimer = setTimeout(refreshAllTestimonialsUi, 60);
+      });
+      obs.observe(document.body, { childList:true, subtree:true });
+    }catch(e){}
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>
+
 </body></html>
