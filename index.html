@@ -29270,4 +29270,161 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,.container::-webkit-scrollbar,.s
   window.addEventListener('load', kzBindPayUploadCompat);
 })();
 </script>
+
+<script>
+(function(){
+  function kzSetPayStatusSafe(msg){
+    try{
+      if (typeof setPayStatus === 'function') { setPayStatus(msg); return; }
+    }catch(e){}
+    try{
+      var toast = document.getElementById('payToast');
+      if (toast) {
+        toast.textContent = msg;
+        toast.style.display = 'block';
+        clearTimeout(window.__kzPayToastTimer);
+        window.__kzPayToastTimer = setTimeout(function(){ try{ toast.style.display = 'none'; }catch(e){} }, 2600);
+      }
+    }catch(e){}
+  }
+
+  function kzDownloadBlob(blob, filename){
+    var url = URL.createObjectURL(blob);
+    try{
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = filename || 'qris-kzrizusmo.jpg';
+      a.rel = 'noopener';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      return true;
+    }catch(e){
+      return false;
+    }finally{
+      setTimeout(function(){ try{ URL.revokeObjectURL(url); }catch(e){} }, 1200);
+    }
+  }
+
+  async function kzFetchQrisBlob(url){
+    if (!url || typeof fetch !== 'function') return null;
+    try{
+      var res = await fetch(url, { mode:'cors', cache:'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var blob = await res.blob();
+      if (!blob || !blob.size) throw new Error('Blob kosong');
+      return blob;
+    }catch(e){
+      return null;
+    }
+  }
+
+  function kzOpenQrisFallback(url){
+    if (!url) return false;
+    try{
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'qris-kzrizusmo.jpg';
+      a.target = '_blank';
+      a.rel = 'noopener';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      return true;
+    }catch(e){}
+    try{
+      window.open(url, '_blank', 'noopener');
+      return true;
+    }catch(e){}
+    try{
+      window.location.href = url;
+      return true;
+    }catch(e){}
+    return false;
+  }
+
+  window.downloadQris = async function(ev){
+    try{ if (ev && typeof ev.preventDefault === 'function') ev.preventDefault(); }catch(e){}
+    try{ if (typeof playClick === 'function') playClick(); }catch(e){}
+
+    var btn = document.getElementById('payBtnDownloadQRIS');
+    var img = document.getElementById('payQrisImg');
+    var src = '';
+    try{
+      src = String((img && (img.currentSrc || img.src || img.getAttribute('src'))) || '');
+    }catch(e){}
+    if (!src) {
+      try{
+        src = String(((window.PAYMENT_FLOW || {}).qris || {}).value || '');
+      }catch(e){}
+    }
+
+    if (!src) {
+      kzSetPayStatusSafe('QRIS belum tersedia untuk diunduh.');
+      return false;
+    }
+
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'MENYIAPKAN...';
+    }
+
+    kzSetPayStatusSafe('Menyiapkan download QRIS...');
+
+    try{
+      var blob = await kzFetchQrisBlob(src);
+      if (blob) {
+        var type = String(blob.type || '').toLowerCase();
+        var ext = type.indexOf('png') !== -1 ? 'png' : (type.indexOf('webp') !== -1 ? 'webp' : 'jpg');
+        if (kzDownloadBlob(blob, 'qris-kzrizusmo.' + ext)) {
+          kzSetPayStatusSafe('QRIS berhasil diunduh.');
+          return false;
+        }
+      }
+
+      if (kzOpenQrisFallback(src)) {
+        kzSetPayStatusSafe('QRIS dibuka. Jika tidak terunduh otomatis, tekan lama gambar lalu simpan.');
+        return false;
+      }
+
+      kzSetPayStatusSafe('Download QRIS belum didukung di perangkat ini.');
+    }catch(err){
+      kzSetPayStatusSafe('Gagal menyiapkan download QRIS.');
+    }finally{
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = 'DOWNLOAD QRIS';
+      }
+    }
+    return false;
+  };
+
+  function kzBindQrisDownloadCompat(){
+    var btn = document.getElementById('payBtnDownloadQRIS');
+    var img = document.getElementById('payQrisImg');
+    if (img) {
+      try{ img.setAttribute('crossorigin', 'anonymous'); }catch(e){}
+      try{ img.setAttribute('referrerpolicy', 'no-referrer'); }catch(e){}
+    }
+    if (!btn || btn.dataset.kzQrisBound === '1') return;
+    btn.dataset.kzQrisBound = '1';
+    btn.removeAttribute('onclick');
+    btn.addEventListener('click', window.downloadQris, true);
+    btn.addEventListener('touchend', window.downloadQris, { passive:false });
+    btn.addEventListener('pointerup', window.downloadQris, true);
+    btn.addEventListener('keydown', function(ev){
+      var k = ev && ev.key;
+      if (k === 'Enter' || k === ' ') window.downloadQris(ev);
+    }, true);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', kzBindQrisDownloadCompat);
+  } else {
+    kzBindQrisDownloadCompat();
+  }
+  window.addEventListener('load', kzBindQrisDownloadCompat);
+})();
+</script>
+
 </body></html>
