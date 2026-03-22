@@ -17158,6 +17158,7 @@ const __pointsGrantedAt = (__existingOrder && __existingOrder.pointsGrantedAt)
         }
       })(),
       orderedAt: payState.orderedAt || authNow(),
+      autoFlowStartedAt: authNow(),
       paidAt: (payState.method === "saldo") ? (payState.paidAt || authNow()) : null,
       deadlineTs: payState.endTs || 0,
       status: status || "proof_submitted",
@@ -17188,7 +17189,7 @@ function escapeHtml(s){
 }
 function adminStatusPill(status){
   const map = {
-    proof_submitted: {t:"Bukti terkirim", c:"pending", i:"fa-receipt"},
+    proof_submitted: {t:"Menunggu verifikasi", c:"pending", i:"fa-receipt"},
     processing: {t:"Diproses", c:"processing", i:"fa-gear"},
     verified: {t:"Terverifikasi", c:"verified", i:"fa-circle-check"},
     delivered: {t:"Selesai", c:"delivered", i:"fa-truck-fast"},
@@ -17435,7 +17436,7 @@ function renderAdminOrders() {
           <div class="admin-field">
             <label style="font-size:12px;color:var(--text-sec)">Ubah status</label>
             <select id="st_${mid}">
-              <option value="proof_submitted" ${o.status==="proof_submitted"?"selected":""}>Bukti terkirim</option>
+              <option value="proof_submitted" ${o.status==="proof_submitted"?"selected":""}>Menunggu verifikasi</option>
               <option value="processing" ${o.status==="processing"?"selected":""}>Diproses</option>
               <option value="verified" ${o.status==="verified"?"selected":""}>Terverifikasi</option>
               <option value="delivered" ${o.status==="delivered"?"selected":""}>Selesai</option>
@@ -23211,7 +23212,7 @@ body.light-mode #accGenderSelect{background:#0B0B0B !important;color:#fff !impor
 
 <style id="kz-fast-premium-patch">
 :root{--primary:#d60000;--text-sec:#b8b8b8;--status-success:#22c55e}body.light-mode{--text-sec:#5d5d5d}*{font-family:Inter,Segoe UI,Tahoma,Geneva,Verdana,sans-serif}body,.pay-info,.auth-sub,.section-subtitle,.faq-intro-desc,.admin-carditem,.admin-kv,.pay-sub{line-height:1.6}header{padding:12px 18px;border-bottom:1px solid rgba(214,0,0,.35);background:color-mix(in srgb,var(--bg-card) 84%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.18)}.header-left{gap:12px}.header-right{gap:8px}.header-logo{width:38px;height:38px;border-color:rgba(214,0,0,.45)}.section-title,.modal-header h2,.admin-title,.auth-title{font-size:1.08rem!important;font-weight:900}.header-subtitle,.item-subtitle,.pay-sub,.section-subtitle,.faq-intro-desc,[style*="color:var(--text-sec)"],[style*="color: var(--text-sec)"]{color:var(--text-sec)!important}.shiny-effect,.btn-solid,.btn-ghost,.filter-btn,.pay-btn,.qty-btn,.sidebar-item,.item-card,.package-card,.pay-method,.auth-tab,.admin-tab,.kz-order-chip,.kz-order-btn{transition:transform .18s ease,box-shadow .25s ease,background-color .25s ease,border-color .25s ease,color .25s ease}.shiny-effect:hover,.btn-solid:hover,.btn-ghost:hover,.filter-btn:hover,.pay-btn:hover,.pay-method:hover,.item-card:hover,.package-card:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,0,0,.18)}.shiny-effect:active,.btn-solid:active,.btn-ghost:active,.filter-btn:active,.pay-btn:active,.pay-method:active,.item-card:active,.package-card:active{transform:scale(.985)}.btn-solid,.pay-btn:not(.secondary){background:linear-gradient(135deg,#b80000,var(--primary));border-color:transparent;box-shadow:0 14px 28px rgba(214,0,0,.22)}.item-card,.package-card{border-radius: 14px;min-height:100%}.item-card{padding:14px 14px 16px}.item-card img{width:68px;height:68px;border-radius:16px;margin-bottom:12px}.item-title{font-size:.9rem;font-weight:800;line-height:1.4;min-height:2.8em}.pkg-price,.item-card .item-price,.package-card .price,.list-item .price{font-size:1rem;font-weight:900;color:var(--text-main)}.kz-pkg-actions{gap:12px!important}.kz-pkg-cart-btn,.kz-pkg-chevron{margin:0 2px!important}.faq-item{border-radius: 14px;box-shadow:0 16px 28px rgba(0,0,0,.08)}.faq-q{background:linear-gradient(135deg,#ab0000,#e11d1d);padding:14px 14px}.faq-a{transition:max-height .42s cubic-bezier(.22,1,.36,1),padding .32s ease,opacity .28s ease;opacity:.68}.faq-item.open .faq-a{opacity:1}.modal-page,.auth-card,.admin-card,.rc-card{border-radius: 14px;transform:translateY(18px) scale(.985);opacity:0;transition:transform .32s cubic-bezier(.22,1,.36,1),opacity .26s ease}.modal-page.kz-open,.auth-overlay.show .auth-card,.admin-overlay.show .admin-card,#receiptModal.show .rc-card{transform:translateY(0) scale(1);opacity:1}.pay-method.active{box-shadow:0 12px 26px rgba(214,0,0,.22)}#sysToast{min-width:min(92vw,360px);border-radius:16px;border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 50px rgba(0,0,0,.34);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}#sysToast.kz-toast-success{background:rgba(34,197,94,.14)!important;border-color:rgba(34,197,94,.35)!important;color:#dcfce7!important}#sysToast.kz-toast-error{background:rgba(214,0,0,.16)!important;border-color:rgba(214,0,0,.35)!important;color:#ffe0e0!important}#sysToast.kz-toast-warning{background:rgba(250,204,21,.14)!important;border-color:rgba(250,204,21,.35)!important;color:#fff6cf!important}.kz-checkout-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:12px 0 16px}.kz-step{position:relative;padding:10px 8px 10px 12px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--border);min-height:66px}.kz-step small{display:block;font-size:11px;color:var(--text-sec);margin-bottom:4px;font-weight:700}.kz-step b{display:block;font-size:12px;line-height:1.35}.kz-step::after{content:'';position:absolute;top:50%;right:-8px;width:16px;height:2px;background:rgba(255,255,255,.12);transform:translateY(-50%)}.kz-step:last-child::after{display:none}.kz-step.active{background:rgba(214,0,0,.12);border-color:rgba(214,0,0,.35);box-shadow:0 12px 24px rgba(214,0,0,.12)}.kz-step.done{background:rgba(34,197,94,.11);border-color:rgba(34,197,94,.34)}.kz-step.done b:before{content:'✓ ';color:var(--status-success)}.kz-orders-toolbar{display:grid;gap:10px;margin-bottom:12px}.kz-orders-search{width:100%;padding:11px 13px;border-radius:14px;border:1px solid var(--border);background:var(--bg-sec);color:var(--text-main)}.kz-orders-filters{display:flex;gap:8px;overflow:auto;padding-bottom:2px}.kz-order-chip{white-space:nowrap;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:var(--bg-sec);color:var(--text-sec);font-size:12px;font-weight:800;cursor:pointer}.kz-order-chip.active{background:rgba(214,0,0,.12);border-color:rgba(214,0,0,.35);color:#fff}.kz-order-meta{display:grid;grid-template-columns:110px 1fr;gap:8px 12px;font-size:12px;line-height:1.55;margin-top:12px}.kz-order-meta .key{color:var(--text-sec)}.kz-order-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.kz-order-btn{flex:1;min-width:140px;padding:10px 12px;border-radius:14px;border:1px solid var(--border);background:var(--bg-sec);color:var(--text-main);font-weight:800;cursor:pointer}.kz-orders-skeleton{display:grid;gap:10px}.kz-skeleton{height:92px;border-radius: 14px;background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,255,255,.09),rgba(255,255,255,.05));background-size:220% 100%;animation:kzSkeleton 1.15s linear infinite}@keyframes kzSkeleton{0%{background-position:200% 0}100%{background-position:-20% 0}}.kz-success-extra{margin-top:14px;padding:14px;border-radius: 14px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04)}.kz-success-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}.kz-success-box{padding:12px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}.kz-success-box small{display:block;color:var(--text-sec);margin-bottom:4px}.kz-success-cta{margin-top:12px;width:100%}@media(max-width:720px){.kz-checkout-steps{grid-template-columns:1fr}.kz-step::after{display:none}}@media(max-width:640px){.kz-success-grid{grid-template-columns:1fr}}</style>
-<script id="kz-fast-premium-script">(function(){const fmt=n=>{try{return typeof authFormatRp==='function'?authFormatRp(Number(n||0)):'Rp '+Number(n||0).toLocaleString('id-ID')}catch(e){return 'Rp '+(Number(n||0)||0)}};const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));function toastClass(msg){msg=String(msg||'').toLowerCase();if(/berhasil|sukses|aktif|ditambahkan|terkirim/.test(msg))return'kz-toast-success';if(/gagal|error|expired|tidak ditemukan|kosong|bukan/.test(msg))return'kz-toast-error';return'kz-toast-warning'}function initToast(){const el=document.getElementById('sysToast');if(!el)return;new MutationObserver(()=>{el.classList.remove('kz-toast-success','kz-toast-error','kz-toast-warning');if((el.textContent||'').trim())el.classList.add(toastClass(el.textContent))}).observe(el,{childList:true,subtree:true,characterData:true})}function initModal(){if(typeof window.openDetail==='function'&&!window.__kzFastOpen){const old=window.openDetail;window.openDetail=function(){const r=old.apply(this,arguments);setTimeout(()=>document.getElementById('detailModal')?.classList.add('kz-open'),10);return r};window.__kzFastOpen=true}if(typeof window.closeModal==='function'&&!window.__kzFastClose){const old=window.closeModal;window.closeModal=function(){const m=document.getElementById('detailModal');if(m){m.classList.remove('kz-open');setTimeout(()=>old.apply(this,arguments),170);return}return old.apply(this,arguments)};window.__kzFastClose=true}}function initSteps(){const methods=document.getElementById('payMethodGrid');if(!methods||document.getElementById('kzCheckoutSteps'))return;const d=document.createElement('div');d.id='kzCheckoutSteps';d.className='kz-checkout-steps';d.innerHTML=['Pilih produk','Isi data','Bayar','Upload bukti','Selesai'].map((t,i)=>`<div class="kz-step"><small>Step ${i+1}</small><b>${t}</b></div>`).join('');methods.parentNode.insertBefore(d,methods)}function updateSteps(){initSteps();const steps=[...document.querySelectorAll('#kzCheckoutSteps .kz-step')];if(!steps.length)return;const wa=document.getElementById('payWhatsappInput')?.value?.trim();const method=document.querySelector('#payMethodGrid .pay-method.active');const preview=(document.getElementById('payPreviewName')?.textContent||'').trim();const success=(document.getElementById('paySuccessView')?.style.display||'')!=='none';let a=1;if(wa||document.getElementById('paySumProduct')?.textContent?.trim()!=='-')a=2;if(method)a=3;if(preview&&preview!=='-')a=4;if(success)a=5;steps.forEach((el,i)=>{const n=i+1;el.classList.toggle('done',n<a);el.classList.toggle('active',n===a)})}function bindStepTrack(){document.addEventListener('input',e=>{if(e.target&&['payWhatsappInput','payQtyInput','payPromoInput'].includes(e.target.id))setTimeout(updateSteps,20)},true);document.addEventListener('click',e=>{if(e.target.closest('#payMethodGrid,.qty-btn,#payBtnUpload,#payBtnSend,.pay-btn,.btn-solid,.btn-ghost'))setTimeout(updateSteps,20)},true);setInterval(updateSteps,1200)}function patchExit(){if(typeof window.closePaymentFlow!=='function'||window.__kzFastExit)return;const old=window.closePaymentFlow;window.closePaymentFlow=function(){try{const shown=getComputedStyle(document.getElementById('payOverlay')).display!=='none';const success=(document.getElementById('paySuccessView')?.style.display||'')!=='none';const dirty=!!(document.getElementById('payWhatsappInput')?.value?.trim()||document.querySelector('#payMethodGrid .pay-method.active')||((document.getElementById('payPreviewName')?.textContent||'').trim()&&((document.getElementById('payPreviewName')?.textContent||'').trim()!=='-')));if(shown&&!success&&dirty&&!window.__kzBypassExitConfirm){if(!confirm('Keluar dari flow pembayaran? Data yang belum dikirim bisa hilang dan timer akan di-reset.'))return}}catch(e){}return old.apply(this,arguments)};window.__kzFastExit=true}function initSuccess(){const actions=document.getElementById('paySuccessActions');if(!actions||document.getElementById('kzSuccessExtra'))return;const box=document.createElement('div');box.id='kzSuccessExtra';box.className='kz-success-extra';box.innerHTML='<div style="font-weight:900;font-size:15px;">Ringkasan Setelah Bayar</div><div class="kz-success-grid"><div class="kz-success-box"><small>Status order</small><b id="kzSuccessStatus">Menunggu verifikasi admin</b></div><div class="kz-success-box"><small>Estimasi proses</small><b id="kzSuccessEstimate">± 5–15 menit saat jam operasional</b></div></div><button class="pay-btn kz-success-cta" id="kzGoMyOrders" type="button">KE PESANAN SAYA</button>';actions.parentNode.insertBefore(box,actions);document.getElementById('kzGoMyOrders').onclick=function(){window.__kzBypassExitConfirm=true;try{closePaymentFlow()}catch(e){}setTimeout(()=>{try{openMyOrdersFromMenu()}catch(e){}window.__kzBypassExitConfirm=false},80)}}function updateSuccess(){initSuccess();const title=document.getElementById('paySuccessTitle');const sub=document.getElementById('paySuccessSub');const status=document.getElementById('kzSuccessStatus');if(title&&/terkirim/i.test(title.textContent||''))title.textContent='Pembayaran Berhasil Dikirim';if(sub)sub.textContent='Order kamu sudah masuk. Simpan kode order lalu cek statusnya di Pesanan Saya.';if(status)status.textContent='Bukti diterima • order '+(document.getElementById('paySuccessOrderId')?.textContent?.trim()||'-')}function myOrders(){const me=typeof authGetMe==='function'?authGetMe():null;const db=typeof authLoadDB==='function'?authLoadDB():{};const wa=me?(me.wa||''):'';const waSet=new Set();try{const n=authNormalizeWA(wa);if(n)waSet.add(n);(Array.isArray(me?.waHistory)?me.waHistory:[]).forEach(v=>{const nn=authNormalizeWA(v);if(nn)waSet.add(nn)})}catch(e){}const myId=me?String(me.id||''):'';return(Array.isArray(db.orders)?db.orders:[]).filter(o=>{if(!o)return false;const buyerId=(o.buyer&&o.buyer.userId!=null)?String(o.buyer.userId):(o.buyerId!=null?String(o.buyerId):(o.userId!=null?String(o.userId):''));if(myId&&buyerId&&buyerId===myId)return true;const bwa=(o&&o.buyer&&o.buyer.wa)?o.buyer.wa:(o.buyerWA||'');const n=typeof authNormalizeWA==='function'?authNormalizeWA(bwa):bwa;return waSet.size&&n&&waSet.has(n)}).sort((a,b)=>(b.updatedAt||b.orderedAt||0)-(a.orderedAt||a.updatedAt||0)).slice(0,50)}function statusLabel(s){return({proof_submitted:'Menunggu Verifikasi',pending:'Pending',processing:'Diproses',completed:'Selesai',done:'Selesai',success:'Selesai',cancelled:'Dibatalkan',expired:'Expired'})[String(s||'proof_submitted')]||String(s||'proof_submitted')}function ensureOrdersUi(){const wrap=document.getElementById('authMyOrdersList');if(!wrap||document.getElementById('kzOrdersToolbar'))return;const t=document.createElement('div');t.id='kzOrdersToolbar';t.className='kz-orders-toolbar';t.innerHTML='<input id="kzOrdersSearch" class="kz-orders-search" placeholder="Cari berdasarkan kode order..."><div class="kz-orders-filters"><button class="kz-order-chip active" data-f="all" type="button">Semua</button><button class="kz-order-chip" data-f="proof_submitted" type="button">Menunggu Verifikasi</button><button class="kz-order-chip" data-f="processing" type="button">Diproses</button><button class="kz-order-chip" data-f="completed" type="button">Selesai</button></div>';wrap.parentNode.insertBefore(t,wrap);t.onclick=e=>{const b=e.target.closest('.kz-order-chip');if(!b)return;t.querySelectorAll('.kz-order-chip').forEach(x=>x.classList.toggle('active',x===b));renderOrdersPremium()};document.getElementById('kzOrdersSearch').oninput=renderOrdersPremium}window.renderOrdersPremium=function(){const wrap=document.getElementById('authMyOrdersList');if(!wrap)return;ensureOrdersUi();const q=(document.getElementById('kzOrdersSearch')?.value||'').trim().toLowerCase();const f=document.querySelector('#kzOrdersToolbar .kz-order-chip.active')?.dataset?.f||'all';let arr=myOrders().filter(o=>{const code=String(o.orderId||o.id||'').toLowerCase();const st=String(o.status||'proof_submitted');return (!q||code.includes(q))&&(f==='all'||st===f||(f==='completed'&&/completed|done|success/.test(st)))});if(!arr.length){wrap.innerHTML='<div style="font-size:12px;color:var(--text-sec);line-height:1.6;padding:8px 2px;">Tidak ada pesanan yang cocok. Coba ubah filter atau cari dengan kode order.</div>';return}wrap.innerHTML=arr.map(o=>{const code=String(o.orderId||o.id||'');const total=(o.kind==='redeem'||o.source==='redeem')?'Gratis (Poin)':fmt(o.totalVal||0);const tm=o.orderedAt?new Date(o.orderedAt).toLocaleString('id-ID'):'-';return `<div class="admin-carditem kz-order-card"><div class="kz-order-headline"><div class="kz-order-code">${esc(code)}</div>${typeof adminStatusPill==='function'?adminStatusPill(o.status||'proof_submitted'):'<span>'+esc(statusLabel(o.status))+'</span>'}</div><div class="kz-order-meta"><div class="key">Produk</div><b>${esc(o.product||'-')}</b><div class="key">Total</div><b>${esc(total)}</b><div class="key">Status</div><b>${esc(statusLabel(o.status))}</b><div class="key">Waktu</div><b>${esc(tm)}</b></div><div class="kz-order-actions"><button class="kz-order-btn" type="button" onclick="kzOpenOrderReceipt('${code.replace(/'/g,"\'")}')">Lihat Detail</button><button class="kz-order-btn" type="button" onclick="navigator.clipboard&&navigator.clipboard.writeText('${code.replace(/'/g,"\'")}');try{authToast('Kode order berhasil disalin ✅')}catch(e){}">Salin Kode Pesanan</button></div></div>`}).join('')} ;if(typeof window.renderMyOrders==='function'&&!window.__kzRenderOrdersWrapped){const old=window.renderMyOrders;window.renderMyOrders=function(){const wrap=document.getElementById('authMyOrdersList');if(wrap)wrap.innerHTML='<div class="kz-orders-skeleton"><div class="kz-skeleton"></div><div class="kz-skeleton"></div><div class="kz-skeleton"></div></div>';setTimeout(()=>{try{renderOrdersPremium()}catch(e){old.apply(this,arguments)}},180)};window.__kzRenderOrdersWrapped=true}function boot(){initToast();initModal();initSteps();bindStepTrack();patchExit();updateSuccess();setInterval(updateSuccess,1000)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot()})();</script>
+<script id="kz-fast-premium-script">(function(){const fmt=n=>{try{return typeof authFormatRp==='function'?authFormatRp(Number(n||0)):'Rp '+Number(n||0).toLocaleString('id-ID')}catch(e){return 'Rp '+(Number(n||0)||0)}};const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));function toastClass(msg){msg=String(msg||'').toLowerCase();if(/berhasil|sukses|aktif|ditambahkan|terkirim/.test(msg))return'kz-toast-success';if(/gagal|error|expired|tidak ditemukan|kosong|bukan/.test(msg))return'kz-toast-error';return'kz-toast-warning'}function initToast(){const el=document.getElementById('sysToast');if(!el)return;new MutationObserver(()=>{el.classList.remove('kz-toast-success','kz-toast-error','kz-toast-warning');if((el.textContent||'').trim())el.classList.add(toastClass(el.textContent))}).observe(el,{childList:true,subtree:true,characterData:true})}function initModal(){if(typeof window.openDetail==='function'&&!window.__kzFastOpen){const old=window.openDetail;window.openDetail=function(){const r=old.apply(this,arguments);setTimeout(()=>document.getElementById('detailModal')?.classList.add('kz-open'),10);return r};window.__kzFastOpen=true}if(typeof window.closeModal==='function'&&!window.__kzFastClose){const old=window.closeModal;window.closeModal=function(){const m=document.getElementById('detailModal');if(m){m.classList.remove('kz-open');setTimeout(()=>old.apply(this,arguments),170);return}return old.apply(this,arguments)};window.__kzFastClose=true}}function initSteps(){const methods=document.getElementById('payMethodGrid');if(!methods||document.getElementById('kzCheckoutSteps'))return;const d=document.createElement('div');d.id='kzCheckoutSteps';d.className='kz-checkout-steps';d.innerHTML=['Pilih produk','Isi data','Bayar','Upload bukti','Selesai'].map((t,i)=>`<div class="kz-step"><small>Step ${i+1}</small><b>${t}</b></div>`).join('');methods.parentNode.insertBefore(d,methods)}function updateSteps(){initSteps();const steps=[...document.querySelectorAll('#kzCheckoutSteps .kz-step')];if(!steps.length)return;const wa=document.getElementById('payWhatsappInput')?.value?.trim();const method=document.querySelector('#payMethodGrid .pay-method.active');const preview=(document.getElementById('payPreviewName')?.textContent||'').trim();const success=(document.getElementById('paySuccessView')?.style.display||'')!=='none';let a=1;if(wa||document.getElementById('paySumProduct')?.textContent?.trim()!=='-')a=2;if(method)a=3;if(preview&&preview!=='-')a=4;if(success)a=5;steps.forEach((el,i)=>{const n=i+1;el.classList.toggle('done',n<a);el.classList.toggle('active',n===a)})}function bindStepTrack(){document.addEventListener('input',e=>{if(e.target&&['payWhatsappInput','payQtyInput','payPromoInput'].includes(e.target.id))setTimeout(updateSteps,20)},true);document.addEventListener('click',e=>{if(e.target.closest('#payMethodGrid,.qty-btn,#payBtnUpload,#payBtnSend,.pay-btn,.btn-solid,.btn-ghost'))setTimeout(updateSteps,20)},true);setInterval(updateSteps,1200)}function patchExit(){if(typeof window.closePaymentFlow!=='function'||window.__kzFastExit)return;const old=window.closePaymentFlow;window.closePaymentFlow=function(){try{const shown=getComputedStyle(document.getElementById('payOverlay')).display!=='none';const success=(document.getElementById('paySuccessView')?.style.display||'')!=='none';const dirty=!!(document.getElementById('payWhatsappInput')?.value?.trim()||document.querySelector('#payMethodGrid .pay-method.active')||((document.getElementById('payPreviewName')?.textContent||'').trim()&&((document.getElementById('payPreviewName')?.textContent||'').trim()!=='-')));if(shown&&!success&&dirty&&!window.__kzBypassExitConfirm){if(!confirm('Keluar dari flow pembayaran? Data yang belum dikirim bisa hilang dan timer akan di-reset.'))return}}catch(e){}return old.apply(this,arguments)};window.__kzFastExit=true}function initSuccess(){const actions=document.getElementById('paySuccessActions');if(!actions||document.getElementById('kzSuccessExtra'))return;const box=document.createElement('div');box.id='kzSuccessExtra';box.className='kz-success-extra';box.innerHTML='<div style="font-weight:900;font-size:15px;">Ringkasan Setelah Bayar</div><div class="kz-success-grid"><div class="kz-success-box"><small>Status order</small><b id="kzSuccessStatus">Menunggu verifikasi admin</b></div><div class="kz-success-box"><small>Estimasi proses</small><b id="kzSuccessEstimate">otomatis 2 jam per tahap • total 4 jam</b></div></div><button class="pay-btn kz-success-cta" id="kzGoMyOrders" type="button">KE PESANAN SAYA</button>';actions.parentNode.insertBefore(box,actions);document.getElementById('kzGoMyOrders').onclick=function(){window.__kzBypassExitConfirm=true;try{closePaymentFlow()}catch(e){}setTimeout(()=>{try{openMyOrdersFromMenu()}catch(e){}window.__kzBypassExitConfirm=false},80)}}function updateSuccess(){initSuccess();const title=document.getElementById('paySuccessTitle');const sub=document.getElementById('paySuccessSub');const status=document.getElementById('kzSuccessStatus');if(title&&/terkirim/i.test(title.textContent||''))title.textContent='Pembayaran Berhasil Dikirim';if(sub)sub.textContent='Order kamu sudah masuk. Simpan kode order lalu cek statusnya di Pesanan Saya.';if(status)status.textContent='Bukti diterima • order '+(document.getElementById('paySuccessOrderId')?.textContent?.trim()||'-')}function myOrders(){const me=typeof authGetMe==='function'?authGetMe():null;const db=typeof authLoadDB==='function'?authLoadDB():{};const wa=me?(me.wa||''):'';const waSet=new Set();try{const n=authNormalizeWA(wa);if(n)waSet.add(n);(Array.isArray(me?.waHistory)?me.waHistory:[]).forEach(v=>{const nn=authNormalizeWA(v);if(nn)waSet.add(nn)})}catch(e){}const myId=me?String(me.id||''):'';return(Array.isArray(db.orders)?db.orders:[]).filter(o=>{if(!o)return false;const buyerId=(o.buyer&&o.buyer.userId!=null)?String(o.buyer.userId):(o.buyerId!=null?String(o.buyerId):(o.userId!=null?String(o.userId):''));if(myId&&buyerId&&buyerId===myId)return true;const bwa=(o&&o.buyer&&o.buyer.wa)?o.buyer.wa:(o.buyerWA||'');const n=typeof authNormalizeWA==='function'?authNormalizeWA(bwa):bwa;return waSet.size&&n&&waSet.has(n)}).sort((a,b)=>(b.updatedAt||b.orderedAt||0)-(a.orderedAt||a.updatedAt||0)).slice(0,50)}function statusLabel(s){return({proof_submitted:'Menunggu Verifikasi',pending:'Pending',processing:'Diproses',delivered:'Selesai',completed:'Selesai',done:'Selesai',success:'Selesai',cancelled:'Dibatalkan',expired:'Expired'})[String(s||'proof_submitted')]||String(s||'proof_submitted')}function ensureOrdersUi(){const wrap=document.getElementById('authMyOrdersList');if(!wrap||document.getElementById('kzOrdersToolbar'))return;const t=document.createElement('div');t.id='kzOrdersToolbar';t.className='kz-orders-toolbar';t.innerHTML='<input id="kzOrdersSearch" class="kz-orders-search" placeholder="Cari berdasarkan kode order..."><div class="kz-orders-filters"><button class="kz-order-chip active" data-f="all" type="button">Semua</button><button class="kz-order-chip" data-f="proof_submitted" type="button">Menunggu Verifikasi</button><button class="kz-order-chip" data-f="processing" type="button">Diproses</button><button class="kz-order-chip" data-f="delivered" type="button">Selesai</button></div>';wrap.parentNode.insertBefore(t,wrap);t.onclick=e=>{const b=e.target.closest('.kz-order-chip');if(!b)return;t.querySelectorAll('.kz-order-chip').forEach(x=>x.classList.toggle('active',x===b));renderOrdersPremium()};document.getElementById('kzOrdersSearch').oninput=renderOrdersPremium}window.renderOrdersPremium=function(){const wrap=document.getElementById('authMyOrdersList');if(!wrap)return;ensureOrdersUi();const q=(document.getElementById('kzOrdersSearch')?.value||'').trim().toLowerCase();const f=document.querySelector('#kzOrdersToolbar .kz-order-chip.active')?.dataset?.f||'all';let arr=myOrders().filter(o=>{const code=String(o.orderId||o.id||'').toLowerCase();const st=String(o.status||'proof_submitted');return (!q||code.includes(q))&&(f==='all'||st===f||(f==='delivered'&&/delivered|completed|done|success/.test(st)))});if(!arr.length){wrap.innerHTML='<div style="font-size:12px;color:var(--text-sec);line-height:1.6;padding:8px 2px;">Tidak ada pesanan yang cocok. Coba ubah filter atau cari dengan kode order.</div>';return}wrap.innerHTML=arr.map(o=>{const code=String(o.orderId||o.id||'');const total=(o.kind==='redeem'||o.source==='redeem')?'Gratis (Poin)':fmt(o.totalVal||0);const tm=o.orderedAt?new Date(o.orderedAt).toLocaleString('id-ID'):'-';return `<div class="admin-carditem kz-order-card"><div class="kz-order-headline"><div class="kz-order-code">${esc(code)}</div>${typeof adminStatusPill==='function'?adminStatusPill(o.status||'proof_submitted'):'<span>'+esc(statusLabel(o.status))+'</span>'}</div><div class="kz-order-meta"><div class="key">Produk</div><b>${esc(o.product||'-')}</b><div class="key">Total</div><b>${esc(total)}</b><div class="key">Status</div><b>${esc(statusLabel(o.status))}</b><div class="key">Waktu</div><b>${esc(tm)}</b></div><div class="kz-order-actions"><button class="kz-order-btn" type="button" onclick="kzOpenOrderReceipt('${code.replace(/'/g,"\'")}')">Lihat Detail</button><button class="kz-order-btn" type="button" onclick="navigator.clipboard&&navigator.clipboard.writeText('${code.replace(/'/g,"\'")}');try{authToast('Kode order berhasil disalin ✅')}catch(e){}">Salin Kode Pesanan</button></div></div>`}).join('')} ;if(typeof window.renderMyOrders==='function'&&!window.__kzRenderOrdersWrapped){const old=window.renderMyOrders;window.renderMyOrders=function(){const wrap=document.getElementById('authMyOrdersList');if(wrap)wrap.innerHTML='<div class="kz-orders-skeleton"><div class="kz-skeleton"></div><div class="kz-skeleton"></div><div class="kz-skeleton"></div></div>';setTimeout(()=>{try{renderOrdersPremium()}catch(e){old.apply(this,arguments)}},180)};window.__kzRenderOrdersWrapped=true}function boot(){initToast();initModal();initSteps();bindStepTrack();patchExit();updateSuccess();setInterval(updateSuccess,1000)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot()})();</script>
 
 
 <style id="kz-user-request-revision-20260313">
@@ -28813,6 +28814,39 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
       localStorage.removeItem(LEGACY_KEY);
     }catch(e){}
   }
+  function getOwnedProductOrders(me){
+    if(!me) return [];
+    var db = null;
+    try{ db = authLoadDB(); }catch(e){ db = null; }
+    var orders = db && Array.isArray(db.orders) ? db.orders : [];
+    var waSet = new Set();
+    try{
+      var wa = me ? (me.wa || '') : '';
+      var n = authNormalizeWA(wa);
+      if(n) waSet.add(n);
+      var hist = me && Array.isArray(me.waHistory) ? me.waHistory : [];
+      hist.forEach(function(v){ var nn = authNormalizeWA(v); if(nn) waSet.add(nn); });
+    }catch(e){}
+    var myId = me ? String(me.id || '') : '';
+    return orders.filter(function(o){
+      if(!o) return false;
+      var kind = String(o.kind || '').toLowerCase();
+      var src = String(o.source || '').toLowerCase();
+      var st = String(o.status || '').toLowerCase();
+      if(kind === 'deposit' || src === 'deposit' || kind === 'redeem' || src === 'redeem') return false;
+      if(st === 'rejected') return false;
+      var buyerId = (o.buyer && o.buyer.userId != null) ? String(o.buyer.userId) : ((o.buyerId != null) ? String(o.buyerId) : ((o.userId != null) ? String(o.userId) : ''));
+      if(myId && buyerId && buyerId === myId) return true;
+      var buyerWAraw = (o && o.buyer && o.buyer.wa) ? o.buyer.wa : (o.buyerWA || '');
+      var buyerWA = '';
+      try{ buyerWA = authNormalizeWA(buyerWAraw); }catch(e){ buyerWA = ''; }
+      return !!(waSet.size && buyerWA && waSet.has(buyerWA));
+    });
+  }
+  function hasEligibleProductPurchase(me){
+    return getOwnedProductOrders(me).length > 0;
+  }
+
   function getStoredTestimonialsMap(){
     migrateLegacyIfNeeded();
     return loadStore();
@@ -28942,7 +28976,7 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
     if(!username){
       form.style.display = 'none';
       lock.style.display = 'block';
-      lock.textContent = 'Login atau daftar akun dulu untuk menambahkan testimoni.';
+      lock.textContent = 'Login atau daftar akun dulu untuk kasih testimoni.';
       if(title) title.style.display = '';
       if(userEl) userEl.style.display = 'none';
       return;
@@ -28994,6 +29028,10 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
       if(!accountKey || !username){
         syncFormState();
         return toast('⚠️ Login atau daftar akun dulu.');
+      }
+      if(!hasEligibleProductPurchase(me)){
+        syncFormState();
+        return toast('⚠️ Gagal mengirim testimoni, harap order minimal 1 produk untuk memberi testimoni.');
       }
       if(getStoredTestimonial()){
         syncFormState();
@@ -29060,11 +29098,98 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
 
 
 <style id="kz-scrollbar-force-fix">
-html,body,body *{scrollbar-width:none !important;-ms-overflow-style:none !important;}
-html::-webkit-scrollbar,body::-webkit-scrollbar,body *::-webkit-scrollbar{display:none !important;width:0 !important;height:0 !important;background:transparent !important;}
-#kzTestiOverlay .kz-testi-body{scrollbar-width:auto !important;-ms-overflow-style:auto !important;}
+html,body,.container,.sidebar,.sidebar-menu,.filter-scroll,.banner-container,.banner-track,.app-grid,.modal-page,.auth-modal-page,.auth-content,.auth-body,#authMyOrdersList,.kz-orders-filters,.kz-orders-list,.kz-orders-scroll,.kz-orders-wrap,.testi-track-container,.testi-track,.kz-home-testi,.kz-home-testi-grid,.admin-overlay,.admin-box,.admin-content,.admin-tab,.admin-tab-content,.admin-list,.admin-cardlist,.admin-body,body *{scrollbar-width:none !important;-ms-overflow-style:none !important;scrollbar-color:transparent transparent !important;}
+html,body{overflow-x:hidden !important;}
+html::-webkit-scrollbar,body::-webkit-scrollbar,.container::-webkit-scrollbar,.sidebar::-webkit-scrollbar,.sidebar-menu::-webkit-scrollbar,.filter-scroll::-webkit-scrollbar,.banner-container::-webkit-scrollbar,.banner-track::-webkit-scrollbar,.app-grid::-webkit-scrollbar,.modal-page::-webkit-scrollbar,.auth-modal-page::-webkit-scrollbar,.auth-content::-webkit-scrollbar,.auth-body::-webkit-scrollbar,#authMyOrdersList::-webkit-scrollbar,.kz-orders-filters::-webkit-scrollbar,.kz-orders-list::-webkit-scrollbar,.kz-orders-scroll::-webkit-scrollbar,.kz-orders-wrap::-webkit-scrollbar,.testi-track-container::-webkit-scrollbar,.testi-track::-webkit-scrollbar,.kz-home-testi::-webkit-scrollbar,.kz-home-testi-grid::-webkit-scrollbar,.admin-overlay::-webkit-scrollbar,.admin-box::-webkit-scrollbar,.admin-content::-webkit-scrollbar,.admin-tab::-webkit-scrollbar,.admin-tab-content::-webkit-scrollbar,.admin-list::-webkit-scrollbar,.admin-cardlist::-webkit-scrollbar,.admin-body::-webkit-scrollbar,body *::-webkit-scrollbar{display:none !important;width:0 !important;height:0 !important;background:transparent !important;}
+#kzTestiOverlay .kz-testi-body{overflow:auto !important;scrollbar-width:auto !important;-ms-overflow-style:auto !important;scrollbar-color:rgba(255,255,255,.22) rgba(255,255,255,.05) !important;}
 #kzTestiOverlay .kz-testi-body::-webkit-scrollbar{display:block !important;width:10px !important;height:10px !important;}
 #kzTestiOverlay .kz-testi-body::-webkit-scrollbar-track{background:rgba(255,255,255,.05) !important;border-radius:999px !important;}
 #kzTestiOverlay .kz-testi-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.22) !important;border-radius:999px !important;border:2px solid transparent !important;background-clip:padding-box !important;}
 </style>
+
+<script id="kz-orders-auto-progress-patch">
+(function(){
+  var STEP_MS = 2 * 60 * 60 * 1000;
+  function now(){ try{ return authNow(); }catch(e){ return Date.now(); } }
+  function isProductOrder(order){
+    if(!order) return false;
+    var kind = String(order.kind || '').toLowerCase();
+    var src = String(order.source || '').toLowerCase();
+    if(kind === 'deposit' || src === 'deposit' || kind === 'redeem' || src === 'redeem') return false;
+    return true;
+  }
+  function getFlowStart(order){
+    var base = Number(order.autoFlowStartedAt || 0);
+    if(base > 0) return base;
+    return now();
+  }
+  function desiredStatus(order){
+    if(!isProductOrder(order)) return '';
+    var st = String(order.status || 'proof_submitted');
+    if(st === 'rejected') return '';
+    if(st === 'verified') return 'verified';
+    var elapsed = now() - getFlowStart(order);
+    if(elapsed >= STEP_MS * 2) return 'delivered';
+    if(elapsed >= STEP_MS) return 'processing';
+    return 'proof_submitted';
+  }
+  function relabelProofSubmitted(){
+    try{
+      if(typeof adminStatusPill !== 'function' || adminStatusPill.__kzRelabeled) return;
+      var old = adminStatusPill;
+      var wrapped = function(status){
+        if(String(status || '') === 'proof_submitted'){
+          return '<span class="status-pill pending"><i class="fas fa-receipt"></i> Menunggu verifikasi</span>';
+        }
+        return old(status);
+      };
+      wrapped.__kzRelabeled = true;
+      window.adminStatusPill = wrapped;
+    }catch(e){}
+  }
+  function applyAutoProgress(){
+    var db = null;
+    try{ db = authLoadDB(); }catch(e){ db = null; }
+    if(!db || !Array.isArray(db.orders)) return;
+    var changed = false;
+    db.orders.forEach(function(order){
+      if(!isProductOrder(order)) return;
+      if(!order.autoFlowStartedAt){
+        order.autoFlowStartedAt = now();
+        if(!order.status || order.status === 'submitted') order.status = 'proof_submitted';
+        changed = true;
+      }
+      var next = desiredStatus(order);
+      if(next && String(order.status || '') !== next){
+        order.status = next;
+        order.updatedAt = now();
+        changed = true;
+      }
+      if((order.status === 'processing' || order.status === 'delivered') && typeof authGrantOrderPointsIfEligible === 'function'){
+        try{ if(authGrantOrderPointsIfEligible(db, order)) changed = true; }catch(e){}
+      }
+    });
+    if(changed){
+      try{ authSaveDB(db); }catch(e){}
+      try{ renderMyOrders(); }catch(e){}
+      try{ renderAdminAll(); }catch(e){}
+    }
+  }
+  function hideExtraScrollbars(){
+    try{
+      document.documentElement.style.overflowX = 'hidden';
+      document.body.style.overflowX = 'hidden';
+    }catch(e){}
+  }
+  function boot(){
+    relabelProofSubmitted();
+    hideExtraScrollbars();
+    applyAutoProgress();
+    clearInterval(window.__kzOrderAutoProgressTimer);
+    window.__kzOrderAutoProgressTimer = setInterval(applyAutoProgress, 60000);
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>
 </body></html>
