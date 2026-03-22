@@ -13813,6 +13813,15 @@ html, body.light-mode{background:#F4F5F7 !important;background-color:#F4F5F7 !im
 body.light-mode{--bg-body:#F4F5F7 !important;}
 </style>
 
+
+<style id="kz-scrollbar-visibility-patch">
+html,body,*{scrollbar-width:none;-ms-overflow-style:none;}
+html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{width:0!important;height:0!important;display:none!important;}
+#kzTestiOverlay .kz-testi-body{scrollbar-width:thin!important;-ms-overflow-style:auto!important;}
+#kzTestiOverlay .kz-testi-body::-webkit-scrollbar{display:block!important;width:10px!important;height:10px!important;}
+#kzTestiOverlay .kz-testi-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.28)!important;border-radius:999px!important;}
+#kzTestiOverlay .kz-testi-body::-webkit-scrollbar-track{background:transparent!important;}
+</style>
 </body>
 </html>`;
   downloadBlob('struk-' + oid + '.html', htmlDoc, 'text/html;charset=utf-8');
@@ -14556,28 +14565,132 @@ async function copyPaymentNumber() {
         /* ============================= */
 
         // --- TESTIMONIALS ---
-        const rawTestimonials = [
-            { u: "@kokoroaja", c: "Beneran works 100%! Bukan kaleng-kaleng, adminnya juga ramah ga sok jual mahal.", d: "26 Mei 2025" }, { u: "@arry_sat", c: "Udah jarang overthinking sejak pake app ini, soalnya waktu gue habis scroll fitur-fitur randomnya.", d: "19 Mei 2025" }, 
-            { u: "@ethaniy", c: "Awalnya ragu karena murah banget, tapi ternyata legit cuy. Sekali beli langsung nagih.", d: "6 Okt 2025" }, { u: "@m_wildann1809", c: "Fitur-fiturnya niat banget, gue sampe bingung mau makasih atau merasa tersaingi.", d: "4 Des 2025" },
-            { u: "@zzakyd_", c: "Beli di sini tuh kayak cheat code hidup, premium tapi berasa bayar warung kopi.", d: "23 Jun 2025" }, { u: "@v1nnn_ib", c: "Kalo tau bakal se-wah ini, dari kemarin gue udah pindah. Yang lama bye.", d: "3 Nov 2025" },
-            { u: "@ricditzz_design", c: "Sumpah ini udah paling worth, yang lain banyak gaya doang. Di sini tinggal bayar langsung jalan.", d: "8 Sep 2025" }, { u: "@mhmmdfamii", c: "Transaksinya terlalu gampang, kayak ngajak mantan balikan… langsung nurut.", d: "10 Nov 2025" },
-            { u: "@mr.barr_", c: "Adminnya fast respon parah, gue ngetik baru setengah udah dibales duluan.", d: "30 Jun 2025" }, { u: "@vqmakk", c: "Premium murah ginian tuh dosa sih, bikin gue jadi ketagihan belanja ga mikir.", d: "15 Sep 2025" },
-            { u: "@adhipele", c: "Adminnya fast respon parah, gue ngetik baru setengah udah dibales duluan.", d: "7 Jul 2025" }, { u: "@azelonyth", c: "Adminnya terlalu baik sampe gue curiga dia bukan manusia. NPC tapi berguna.", d: "17 Nov 2025" },
-            { u: "@szenorthlenz", c: "Fast responnya overkill sih, gue ngetik 'bang' aja belum selesai udah dibales.", d: "23 Jun 2025" }, { u: "@kinggmielz", c: "Nyesel… nyesel kenapa ga beli dari kemarin-kemarin. Ini mah wajib coba.", d: "26 Mei 2025" },
-            { u: "@availa6le_", c: "Beli premium tapi harga student. Bang, kok baik banget sih? Saya jadi takut nyaman.", d: "6 Okt 2025" }, { u: "@gyuutaro_", c: "Yang mahal-mahal tolong minggir, ini yang rakyat butuh.", d: "16 Jun 2025" },
-            { u: "@jusz.ordinary", c: "Pesan jam ngantuk, eh tetep dibales. Customer service-nya ga punya jam tidur kayaknya.", d: "6 Okt 2025" }, { u: "@raka_budi_s", c: "Sumpah ini toko paling sabar ngadepin pertanyaan gue yang random banget.", d: "12 Mei 2025" },
-            { u: "@mraiseffendy59", c: "Nggak lebay, ga bohong, ini beneran tempat paling worth buat premium murah.", d: "27 Okt 2025" }, { u: "@fahri26429", c: "Gue sengaja tanya banyak biar ribet, tapi adminnya tetep jawab. Capek-capek bikin gue kagum.", d: "10 Nov 2025" },
-            { u: "@ptra.valenn", c: "Udah beberapa kali order, semuanya mulus. Bener-bener anti-zonk.", d: "29 Sep 2025" }, { u: "@vigsjsns", c: "Gue udah siap kecewa sebenernya, tapi ternyata malah terlalu bagus. Nyebelin.", d: "29 Sep 2025" },
-            { u: "@cylla12025", c: "Harga merakyat, kualitas sultan. Capek ga sih jadi terbaik?", d: "17 Nov 2025" }, { u: "@madz.std", c: "Harga bikin senyum, pelayanan bikin nyaman. Kombo mematikan.", d: "11 Ags 2025" },
-            { u: "@ardiizxx", c: "Service-nya niat banget, ga asal jual. Bikin betah balik lagi.", d: "6 Okt 2025" }, { u: "@zenn_non", c: "Tempat lain mahal sok high class, di sini murah tapi kualitas nusuk jantung.", d: "26 Mei 2025" },
-            { u: "@by4ann_", c: "Gak ngerti lagi, murah tapi vibes-nya premium. Suka banget sama pelayanannya.", d: "22 Sep 2025" }, { u: "@venerable_fanzx", c: "aman si kzrizusmo", d: "3 Nov 2025" },
-            { u: "@febgt_1yt", c: "Aman wir", d: "6 Des 2025" }, { u: "@aboyypeacefully", c: "Adminnya santai banget, tapi kerjanya rapi. Toxic calm vibes.", d: "13 Okt 2025" },
-            { u: "@rivaldyaj", c: "Udah coba di device lain juga aman, ga ada drama. Fix terpercaya.", d: "28 Jul 2025" }, { u: "@aldocukurukuk", c: "Beli premium kok kayak nipu sistem ya? Murahnya nyakitin hati pesaing.", d: "9 Jun 2025" },
-            { u: "@mpawsukayepink", c: "Kalo ada tempat favorit buat beli premium, ya di sini. Udah ga mau pindah lagi.", d: "25 Ags 2025" }, { u: "@azrilervandr", c: "Seller lain banyak gaya, di sini mah kerja beneran. Respect tapi kesel karena terlalu bagus.", d: "28 Jul 2025" },
-            { u: "@vall9.18", c: "Adminnya ga jutek, malah humble banget. Jadi enak transaksi.", d: "29 Sep 2025" }, { u: "@vicky.mra", c: "Harga segini tuh kurang ajar sih, masa premium tapi murah kayak jajan cilok.", d: "9 Jun 2025" },
-            { u: "@mad.armanda", c: "Dikasih garansi pula. Murah tapi ga murahan, mantap parah.", d: "7 Jul 2025" }, { u: "@alviskhairullah", c: "Murah banget sampe gue curiga, tapi setelah coba… eh malah ketagihan. Jahat sih ini.", d: "5 Des 2025" },
-            { u: "@conutx4_", c: "Ga ada penyesalan sama sekali, malah nyesel kenapa baru tau tempat ini.", d: "12 Mei 2025" }, { u: "@mirfanpann", c: "Ga ada drama, ga ada delay, semua berjalan lancar kayak air.", d: "12 Mei 2025" },
-            { u: "@tarow_design", c: "Di tempat lain ribet banget, di sini tinggal bayar langsung beres.", d: "12 Mei 2025" }, { u: "@peqwougt", c: "Udah tes di beberapa hp juga tetap aman, mantap banget.", d: "12 Mei 2025" }
+        const rawTestimonials = window.rawTestimonials = [
+            { u: "@kokoroaja", c: "Beneran works 100%! Bukan kaleng-kaleng, adminnya juga ramah ga sok jual mahal.", d: "26 Mei 2025", r: 5 },
+            { u: "@arry_sat", c: "Udah jarang overthinking sejak pake app ini, soalnya waktu gue habis scroll fitur-fitur randomnya.", d: "19 Mei 2025", r: 5 },
+            { u: "@ethaniy", c: "Awalnya ragu karena murah banget, tapi ternyata legit cuy. Sekali beli langsung nagih.", d: "6 Okt 2025", r: 5 },
+            { u: "@m_wildann1809", c: "Fitur-fiturnya niat banget, gue sampe bingung mau makasih atau merasa tersaingi.", d: "4 Des 2025", r: 5 },
+            { u: "@zzakyd_", c: "Beli di sini tuh kayak cheat code hidup, premium tapi berasa bayar warung kopi.", d: "23 Jun 2025", r: 5 },
+            { u: "@v1nnn_ib", c: "Kalo tau bakal se-wah ini, dari kemarin gue udah pindah. Yang lama bye.", d: "3 Nov 2025", r: 5 },
+            { u: "@ricditzz_design", c: "Sumpah ini udah paling worth, yang lain banyak gaya doang. Di sini tinggal bayar langsung jalan.", d: "8 Sep 2025", r: 5 },
+            { u: "@mhmmdfamii", c: "Transaksinya terlalu gampang, kayak ngajak mantan balikan… langsung nurut.", d: "10 Nov 2025", r: 5 },
+            { u: "@mr.barr_", c: "Adminnya fast respon parah, gue ngetik baru setengah udah dibales duluan.", d: "30 Jun 2025", r: 5 },
+            { u: "@vqmakk", c: "Premium murah ginian tuh dosa sih, bikin gue jadi ketagihan belanja ga mikir.", d: "15 Sep 2025", r: 5 },
+            { u: "@adhipele", c: "Adminnya fast respon parah, gue ngetik baru setengah udah dibales duluan.", d: "7 Jul 2025", r: 5 },
+            { u: "@azelonyth", c: "Adminnya terlalu baik sampe gue curiga dia bukan manusia. NPC tapi berguna.", d: "17 Nov 2025", r: 5 },
+            { u: "@szenorthlenz", c: "Fast responnya overkill sih, gue ngetik 'bang' aja belum selesai udah dibales.", d: "23 Jun 2025", r: 5 },
+            { u: "@kinggmielz", c: "Nyesel… nyesel kenapa ga beli dari kemarin-kemarin. Ini mah wajib coba.", d: "26 Mei 2025", r: 5 },
+            { u: "@availa6le_", c: "Beli premium tapi harga student. Bang, kok baik banget sih? Saya jadi takut nyaman.", d: "6 Okt 2025", r: 5 },
+            { u: "@gyuutaro_", c: "Yang mahal-mahal tolong minggir, ini yang rakyat butuh.", d: "16 Jun 2025", r: 5 },
+            { u: "@jusz.ordinary", c: "Pesan jam ngantuk, eh tetep dibales. Customer service-nya ga punya jam tidur kayaknya.", d: "6 Okt 2025", r: 5 },
+            { u: "@raka_budi_s", c: "Sumpah ini toko paling sabar ngadepin pertanyaan gue yang random banget.", d: "12 Mei 2025", r: 5 },
+            { u: "@mraiseffendy59", c: "Nggak lebay, ga bohong, ini beneran tempat paling worth buat premium murah.", d: "27 Okt 2025", r: 5 },
+            { u: "@fahri26429", c: "Gue sengaja tanya banyak biar ribet, tapi adminnya tetep jawab. Capek-capek bikin gue kagum.", d: "10 Nov 2025", r: 5 },
+            { u: "@ptra.valenn", c: "Udah beberapa kali order, semuanya mulus. Bener-bener anti-zonk.", d: "29 Sep 2025", r: 5 },
+            { u: "@vigsjsns", c: "Gue udah siap kecewa sebenernya, tapi ternyata malah terlalu bagus. Nyebelin.", d: "29 Sep 2025", r: 5 },
+            { u: "@cylla12025", c: "Harga merakyat, kualitas sultan. Capek ga sih jadi terbaik?", d: "17 Nov 2025", r: 5 },
+            { u: "@madz.std", c: "Harga bikin senyum, pelayanan bikin nyaman. Kombo mematikan.", d: "11 Ags 2025", r: 5 },
+            { u: "@ardiizxx", c: "Service-nya niat banget, ga asal jual. Bikin betah balik lagi.", d: "6 Okt 2025", r: 5 },
+            { u: "@zenn_non", c: "Tempat lain mahal sok high class, di sini murah tapi kualitas nusuk jantung.", d: "26 Mei 2025", r: 5 },
+            { u: "@by4ann_", c: "Gak ngerti lagi, murah tapi vibes-nya premium. Suka banget sama pelayanannya.", d: "22 Sep 2025", r: 5 },
+            { u: "@venerable_fanzx", c: "aman si kzrizusmo", d: "3 Nov 2025", r: 5 },
+            { u: "@febgt_1yt", c: "Aman wir", d: "6 Des 2025", r: 5 },
+            { u: "@aboyypeacefully", c: "Adminnya santai banget, tapi kerjanya rapi. Toxic calm vibes.", d: "13 Okt 2025", r: 5 },
+            { u: "@rivaldyaj", c: "Udah coba di device lain juga aman, ga ada drama. Fix terpercaya.", d: "28 Jul 2025", r: 5 },
+            { u: "@aldocukurukuk", c: "Beli premium kok kayak nipu sistem ya? Murahnya nyakitin hati pesaing.", d: "9 Jun 2025", r: 5 },
+            { u: "@mpawsukayepink", c: "Kalo ada tempat favorit buat beli premium, ya di sini. Udah ga mau pindah lagi.", d: "25 Ags 2025", r: 5 },
+            { u: "@azrilervandr", c: "Seller lain banyak gaya, di sini mah kerja beneran. Respect tapi kesel karena terlalu bagus.", d: "28 Jul 2025", r: 5 },
+            { u: "@vall9.18", c: "Adminnya ga jutek, malah humble banget. Jadi enak transaksi.", d: "29 Sep 2025", r: 5 },
+            { u: "@vicky.mra", c: "Harga segini tuh kurang ajar sih, masa premium tapi murah kayak jajan cilok.", d: "9 Jun 2025", r: 5 },
+            { u: "@mad.armanda", c: "Dikasih garansi pula. Murah tapi ga murahan, mantap parah.", d: "7 Jul 2025", r: 5 },
+            { u: "@alviskhairullah", c: "Murah banget sampe gue curiga, tapi setelah coba… eh malah ketagihan. Jahat sih ini.", d: "5 Des 2025", r: 5 },
+            { u: "@conutx4_", c: "Ga ada penyesalan sama sekali, malah nyesel kenapa baru tau tempat ini.", d: "12 Mei 2025", r: 5 },
+            { u: "@mirfanpann", c: "Ga ada drama, ga ada delay, semua berjalan lancar kayak air.", d: "12 Mei 2025", r: 5 },
+            { u: "@tarow_design", c: "Di tempat lain ribet banget, di sini tinggal bayar langsung beres.", d: "12 Mei 2025", r: 5 },
+            { u: "@peqwougt", c: "Udah tes di beberapa hp juga tetap aman, mantap banget.", d: "12 Mei 2025", r: 5 },
+            { u: "@nayrasky", c: "Asli ini enak banget dipakenya, checkout cuma bentar terus langsung beres. Bikin aku ngerasa belanja tuh harusnya sesimpel ini.", d: "26 Mei 2025", r: 5 },
+            { u: "@rplnanda", c: "Gue kira promo doang, ternyata beneran jalan. Kompetitor ribet amat, yang ini malah sat set dan ga banyak drama.", d: "29 Mei 2025", r: 5 },
+            { u: "@cicifloral", c: "Adminnya ramah, jawab pertanyaan aku satu-satu tanpa jutek. Jarang nemu toko digital yang sabarnya segini.", d: "2 Jun 2025", r: 5 },
+            { u: "@bagasnotbad", c: "Niat beli coba-coba, ujungnya lanjut order lagi. Harga aman, proses cepet, jadi susah pindah ke tempat lain.", d: "5 Jun 2025", r: 5 },
+            { u: "@salssyaa", c: "Jujur vibes tokonya meyakinkan. Bukan yang teriak murah tapi pas dibayar malah ilang, ini mah jelas dan rapi.", d: "9 Jun 2025", r: 5 },
+            { u: "@dikaonfire", c: "Yang lain banyak bacot soal kualitas, di sini ga banyak omong tapi hasilnya ngena. Respect sih.", d: "12 Jun 2025", r: 5 },
+            { u: "@reregemoy", c: "Aku bawel banget nanya ini itu, adminnya tetep jawab manis. Jadi malu sendiri tapi tetap dibantu sampai kelar.", d: "16 Jun 2025", r: 5 },
+            { u: "@fajargblk", c: "Pelayanannya cepet banget, gue baru kirim format udah diproses. Sat set tapi tetap aman, mantap parah.", d: "21 Jun 2025", r: 5 },
+            { u: "@mputcantik", c: "Awalnya takut zonk, soalnya sekarang banyak yang modal caption doang. Ternyata ini beneran proper dan worth it.", d: "24 Jun 2025", r: 5 },
+            { u: "@wildansigma", c: "Beli di sini tuh bikin kesel, soalnya jadi sadar tempat lain ribetnya kebangetan. Ini malah santai dan beres.", d: "28 Jun 2025", r: 5 },
+            { u: "@nabilalala", c: "Makasih yaa, aku suka banget karena prosesnya ga bikin panik. Semua dikasih tau dengan jelas, jadi nyaman.", d: "3 Jul 2025", r: 5 },
+            { u: "@akmalmodeon", c: "Gue suka model jualannya, ga norak tapi meyakinkan. Begitu order langsung paham kenapa banyak yang repeat.", d: "7 Jul 2025", r: 5 },
+            { u: "@aulianotes", c: "Bahasanya enak, adminnya sopan, terus pengerjaannya ga ngaret. Untuk ukuran harga segini itu udah cakep banget.", d: "11 Jul 2025", r: 5 },
+            { u: "@rizkydrip", c: "Asli ini toko digital yang ga sok misterius. Semua jelas, cepet, dan ga muter-muter kayak mantan pas ditanya serius.", d: "15 Jul 2025", r: 5 },
+            { u: "@chachamellow", c: "Aku suka karena setelah transfer ga dibuat nunggu sambil nebak-nebak. Langsung ada progres, berasa diperhatiin.", d: "19 Jul 2025", r: 5 },
+            { u: "@mrfauzzy", c: "Tadinya skeptis, sekarang malah jadi langganan. Yang begini nih bikin dompet rela, bukan karena dipaksa tapi emang puas.", d: "23 Jul 2025", r: 5 },
+            { u: "@tiaracutee", c: "Pelayanannya halus tapi tegas, jadi aku ga bingung harus ngapain. Keren sih, ga lebay tapi ngena.", d: "28 Jul 2025", r: 5 },
+            { u: "@galihngerank", c: "Kompetitor tolong belajar ya, masa yang ini bisa cepet tapi kalian hobi ngilang. Gue jadi makin yakin belanja di sini.", d: "2 Agu 2025", r: 5 },
+            { u: "@zivamie", c: "Aku suka banget sama cara admin jelasin detailnya. Kayak dibantu temen sendiri, bukan cuma disuruh bayar terus selesai.", d: "6 Agu 2025", r: 5 },
+            { u: "@ardisantuy", c: "Ga banyak gimmick, ga banyak gaya, tapi performanya cakep. Ini tipe toko yang diem-diem bikin orang repeat order.", d: "10 Agu 2025", r: 5 },
+            { u: "@bulankecil", c: "Kak admin sabar banget ngadepin aku yang nanyanya random. Untung dijawab semua, jadi ordernya tenang dan lancar.", d: "14 Agu 2025", r: 5 },
+            { u: "@dennyfix", c: "Gue suka karena sistemnya rapi. Begitu masuk langsung jelas alurnya, ga kayak tempat lain yang bikin otak ikut buffering.", d: "18 Agu 2025", r: 5 },
+            { u: "@milashine", c: "Jujur tampilannya aja udah bikin percaya, pas dicoba ternyata servisnya juga rapih. Cantik luar dalam deh pokoknya.", d: "23 Agu 2025", r: 5 },
+            { u: "@haekalwkwk", c: "Lucu sih, gue kira bakal biasa aja. Ternyata malah bikin standar gue naik, jadi susah mau beli di toko lain.", d: "27 Agu 2025", r: 5 },
+            { u: "@deaviolet", c: "Aku order malam dan tetap ditanggepin baik. Bukan cuma fast respon, tapi responnya juga niat dan ga asal.", d: "31 Agu 2025", r: 5 },
+            { u: "@prassreal", c: "Yang ini tuh toxicnya sopan: bikin toko lain keliatan lambat tanpa harus ngomong kasar. Soalnya emang secepet itu.", d: "4 Sep 2025", r: 5 },
+            { u: "@lyafebri", c: "Aku seneng karena semuanya clean, ga bikin bingung, ga bikin takut. Rasanya kayak belanja di tempat yang udah kebukti aman.", d: "9 Sep 2025", r: 5 },
+            { u: "@danzzraw", c: "Beres banget. Gue tinggal masuk, pilih, bayar, kelar. Simpel parah sampai pengen tepuk tangan buat yang ngatur flow-nya.", d: "13 Sep 2025", r: 5 },
+            { u: "@peachysyifa", c: "Pelayanannya manis, hasilnya juga sesuai. Jarang aku kasih testimoni panjang, tapi ini emang sepantasnya dipuji.", d: "17 Sep 2025", r: 5 },
+            { u: "@iqbalsantai", c: "Gue suka karena admin ga sok tau tapi paham. Ditanya detail bisa jawab, disuruh cepat juga ga kalang kabut.", d: "21 Sep 2025", r: 5 },
+            { u: "@najwacute", c: "Asli aku nyaman banget order di sini. Bahasanya ga bikin ilfeel, prosesnya juga ga bikin deg-degan nungguin.", d: "26 Sep 2025", r: 5 },
+            { u: "@raditgercep", c: "Gercepnya kelewatan sih, baru buka chat udah ada solusi. Kalau semua seller begini, hidup gue pasti lebih damai.", d: "30 Sep 2025", r: 5 },
+            { u: "@vennalov", c: "Aku suka karena adminnya ga nge-judge pertanyaan receh. Tetep dilayanin baik, padahal aku nanya banyak banget.", d: "5 Okt 2025", r: 5 },
+            { u: "@farelmode", c: "Harga masuk, kualitas dapet, pelayanan juga waras. Paket lengkap banget, kompetitor jadi keliatan capek sendiri.", d: "9 Okt 2025", r: 5 },
+            { u: "@claramoon", c: "Sumpah ini salah satu pengalaman checkout paling enak yang pernah aku rasain. Cepet, jelas, dan ga bikin ribet.", d: "14 Okt 2025", r: 5 },
+            { u: "@gilanghehe", c: "Yang gue suka: ga jual mimpi. Apa yang dijanjiin ya itu yang dikasih. Kecil sih, tapi justru itu yang bikin yakin.", d: "18 Okt 2025", r: 5 },
+            { u: "@ichaaurell", c: "Aku kirain bakal standar aja, ternyata adminnya perhatian sampai hal kecil. Jadinya berasa dilayanin, bukan sekadar diproses.", d: "23 Okt 2025", r: 5 },
+            { u: "@renopecah", c: "Toko ini tuh sopan tapi nyindir kompetitor secara alami. Soalnya pas nyoba di sini, jadi sadar tempat lain seribet itu.", d: "28 Okt 2025", r: 5 },
+            { u: "@saskiagems", c: "Aku suka packaging informasinya, ringkes tapi jelas. Yang kayak gini bikin cewek-cewek nyaman buat order lagi.", d: "2 Nov 2025", r: 5 },
+            { u: "@abimletup", c: "Gue udah nyobain beberapa tempat, dan yang ini paling stabil. Ga paling rame, tapi paling ngerti cara bikin customer betah.", d: "7 Nov 2025", r: 5 },
+            { u: "@nindyaaris", c: "Adminnya baik banget, pas aku telat respon juga tetap dibantu. Jadi ga ada rasa dikejar-kejar atau dibikin panik.", d: "11 Nov 2025", r: 5 },
+            { u: "@oktamars", c: "Bener-bener sat set. Gue masuk bentar, bayar, terus beres. Kayak speedrun tapi versi aman dan memuaskan.", d: "16 Nov 2025", r: 5 },
+            { u: "@shafabee", c: "Aku seneng karena hasilnya sesuai ekspektasi. Ga overpromise, ga lebay, tapi pas diterima malah bikin senyum sendiri.", d: "20 Nov 2025", r: 5 },
+            { u: "@yudhaplug", c: "Kalau boleh jujur, toko ini bikin gue pelit pujian jadi luluh. Soalnya performanya emang ga malu-maluin sama sekali.", d: "25 Nov 2025", r: 5 },
+            { u: "@mellowrani", c: "Pelayanan ramah plus cepat tuh kombinasi paling bahaya, bikin aku pengen balik lagi. Untung dompet masih punya rem.", d: "30 Nov 2025", r: 5 },
+            { u: "@rafikygy", c: "Ga ada drama, ga ada alasan aneh, semuanya jalan. Simpel begini justru mewah di zaman seller hobi menghilang.", d: "5 Des 2025", r: 5 },
+            { u: "@keylanaa", c: "Aku kasih 4 karena sempat nunggu dikit, tapi selebihnya aman banget dan adminnya tetap komunikatif. Tetep recommended.", d: "10 Des 2025", r: 4 },
+            { u: "@bintanggas", c: "Yang ini tuh bukan jualan doang, tapi ngerti pengalaman user. Jadi ga heran kalau testinya rame dan orang-orang repeat.", d: "15 Des 2025", r: 5 },
+            { u: "@putrihaze", c: "Aku suka cara admin nenangin pas aku agak panik. Kalem, sopan, dan langsung kasih solusi. Nilai plus banget buat aku.", d: "21 Des 2025", r: 5 },
+            { u: "@ferdymager", c: "Asli ya, tempat lain banyak yang sok eksklusif padahal lemot. Di sini santai tapi kerjanya niat, itu yang penting.", d: "28 Des 2025", r: 5 },
+            { u: "@aditnoir", c: "Gue jarang review, tapi ini layak. Flow-nya enak, adminnya paham, dan hasil akhirnya bikin gue bilang: oh pantes.", d: "12 Jan 2026", r: 5 },
+            { u: "@cecepmyluv", c: "Aku suka banget sama feel pelayanannya, hangat tapi ga lebay. Jadi cocok buat yang mau order tanpa drama panjang.", d: "21 Jan 2026", r: 5 },
+            { u: "@hanifbarbar", c: "Toxic sopan dikit: yang lain mending magang dulu di sini deh. Biar tau cara cepat tanpa bikin customer curiga.", d: "2 Feb 2026", r: 5 },
+            { u: "@meisavibe", c: "Aku ngerasa diperlakukan baik dari awal sampai selesai. Bukan cuma hasilnya yang oke, prosesnya juga bikin nyaman.", d: "14 Feb 2026", r: 5 },
+            { u: "@rasyidkelas", c: "Buat gue ini definisi worth it. Bayarnya masuk akal, hasilnya ga malu-maluin, dan komunikasi tetap jalan terus.", d: "25 Feb 2026", r: 5 },
+            { u: "@tiwipinkkk", c: "Aku kasih 4 karena sempat bingung di awal, tapi setelah dibantu ternyata lancar. Adminnya enak banget diajak ngobrol.", d: "8 Mar 2026", r: 4 },
+            { u: "@joesigmaa", c: "Begitu nyobain, gue langsung paham kenapa yang beli pada balik lagi. Simpel, rapi, dan ga bikin emosi.", d: "15 Mar 2026", r: 5 },
+            { u: "@kikimodeaktif", c: "Asli enak cok, prosesnya cepet dan ga muter-muter. Positif banget hasilnya, bikin pengen repeat tanpa mikir panjang.", d: "1 Jan 2026", r: 5 },
+            { u: "@bagasnihboss", c: "Njir ini rapi banget sih. Gue kira bakal biasa aja, ternyata hasilnya malah bikin senyum sendiri ajg, mantap.", d: "4 Jan 2026", r: 5 },
+            { u: "@salsacantikbanget", c: "Aku sukaa, sat set tapi tetap jelas. Yang begini tuh bikin hati tenang, bukan yang banyak omong doang cok.", d: "7 Jan 2026", r: 5 },
+            { u: "@fikriwoles", c: "Pelayanannya niat banget ajg, ga ada drama aneh. Positif semua dari awal sampe akhir, fix aman.", d: "10 Jan 2026", r: 5 },
+            { u: "@naylaaonly", c: "Njir aku kirain bakal ribet, eh ternyata simple dan hasilnya cakep. Adminnya juga enak diajak ngobrol.", d: "13 Jan 2026", r: 5 },
+            { u: "@ripanakbaik", c: "Gue ga nyangka semulus ini cok. Flow-nya jelas, prosesnya cepet, dan vibes-nya bikin percaya dari awal.", d: "17 Jan 2026", r: 5 },
+            { u: "@keziagemoyy", c: "Toxic dikit ya: kompetitor kayaknya perlu belajar di sini deh ajg. Soalnya yang ini beneran proper dan nyaman.", d: "20 Jan 2026", r: 5 },
+            { u: "@aldimagergercep", c: "Cok, ini worth it parah. Hasilnya sesuai, ga bikin nunggu lama, dan semuanya berasa niat banget.", d: "24 Jan 2026", r: 5 },
+            { u: "@tiarafleur", c: "Aku puas banget njir, jarang nemu yang cepet tapi tetap sopan. Positif semua sih pengalaman order di sini.", d: "28 Jan 2026", r: 5 },
+            { u: "@gerysatset", c: "Ajg ini enak banget prosesnya. Gue tinggal masuk, follow langkahnya, terus kelar tanpa bikin emosi.", d: "31 Jan 2026", r: 5 },
+            { u: "@putrihappykid", c: "Beneran aman dan manis pelayanannya. Sedikit toxic ya kak, murah tapi kualitasnya nonjok banget cok.", d: "3 Feb 2026", r: 5 },
+            { u: "@diongantengkatanya", c: "Njir seller begini yang dibutuhin. Niat, cepet, ga banyak alasan, dan hasilnya bikin puas maksimal.", d: "7 Feb 2026", r: 5 },
+            { u: "@mellapinkcloud", c: "Aku suka banget karena ga dibikin bingung. Semua dijelasin rapi, terus hasil akhirnya juga bagus ajg.", d: "11 Feb 2026", r: 5 },
+            { u: "@haekalrawr", c: "Asli ini gacor cok. Pelayanan jalan, komunikasi enak, dan ga ada tuh drama-dramaan seller ngilang.", d: "14 Feb 2026", r: 5 },
+            { u: "@cintalunaa", c: "Ajg aku ketagihan review bagus terus. Soalnya emang seenak itu prosesnya, halus, cepet, dan hasilnya pas.", d: "18 Feb 2026", r: 5 },
+            { u: "@panjibiasabgt", c: "Toxic sopan dikit: yang lain suka ribet sendiri, yang ini malah bikin hidup damai njir. Mantap pol.", d: "21 Feb 2026", r: 5 },
+            { u: "@deasweetpie", c: "Cok aku seneng banget, adminnya sabar dan ga bikin ilfeel. Pengalaman ordernya positif full dari awal.", d: "25 Feb 2026", r: 5 },
+            { u: "@raflymodegas", c: "Gue kasih jempol sih ajg. Harganya masuk, proses cepet, hasil aman, jadi ga ada alasan buat komplain.", d: "28 Feb 2026", r: 5 },
+            { u: "@shaniakiranaaa", c: "Njir ternyata sebagus itu. Aku kira cuma rame di omongan, eh pas dicoba malah beneran memuaskan.", d: "3 Mar 2026", r: 5 },
+            { u: "@fauzankeselaman", c: "Kesel gue cok, kenapa baru nemu sekarang. Soalnya enak banget dan bikin tempat lain keliatan lemot.", d: "6 Mar 2026", r: 5 },
+            { u: "@auliasenjaa", c: "Aku sukaa banget, komunikasinya lembut tapi sat set. Positif, jelas, dan ga bikin takut salah langkah ajg.", d: "10 Mar 2026", r: 5 },
+            { u: "@iqisigmah", c: "Cok ini salah satu pengalaman paling bersih yang pernah gue dapet. Rapi, aman, dan hasilnya ga mengecewakan.", d: "13 Mar 2026", r: 5 },
+            { u: "@mutiarabloomm", c: "Ajg lucu banget, aku masuk cuma iseng malah jadi suka. Pelayanannya enak dan hasilnya beneran sesuai.", d: "16 Mar 2026", r: 5 },
+            { u: "@erlanggaoke", c: "Njir mantap, prosesnya ga pake lama tapi tetap detail. Yang kayak gini nih bikin customer betah terus.", d: "19 Mar 2026", r: 5 },
+            { u: "@nadineluvit", c: "Enak banget cok, positif semua, dan adminnya beneran bikin nyaman. Fix repeat.", d: "22 Mar 2026", r: 5 },
+            { u: "@aurelliazx", c: "Aku tutup dengan jujur aja: ini enak, aman, dan bikin pengen repeat. Makasih udah bikin pengalaman belanja serapi ini.", d: "21 Mar 2026", r: 5 },
         ];
 
         function renderTestimonials() {
@@ -28502,7 +28615,9 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
 #kzTestiOverlay .kz-testi-body{padding:16px;overflow:auto;-webkit-overflow-scrolling:touch}
 #kzTestiOverlay .kz-testi-layout{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:14px}
 #kzTestiOverlay .kz-testi-form-card,#kzTestiOverlay .kz-testi-list-card{background:var(--bg-sec);border:1px solid var(--border);border-radius:20px;padding:14px}
-#kzTestiOverlay .kz-testi-form-title{font-size:.96rem;font-weight:900;color:var(--text-main);margin-bottom:6px}
+#kzTestiOverlay .kz-testi-form-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+#kzTestiOverlay .kz-testi-form-title{font-size:.96rem;font-weight:900;color:var(--text-main);margin-bottom:0}
+#kzTestiOverlay .kz-testi-form-user{font-size:.82rem;font-weight:900;color:var(--text-sec);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:48%;text-align:right}
 #kzTestiOverlay .kz-testi-form-note{font-size:.82rem;line-height:1.55;color:var(--text-sec);margin-bottom:12px}
 #kzTestiOverlay .kz-testi-field{margin-bottom:12px}
 #kzTestiOverlay .kz-testi-label{display:block;font-size:.8rem;font-weight:800;color:var(--text-sec);margin-bottom:7px}
@@ -28511,9 +28626,13 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
 #kzTestiOverlay .kz-testi-input:focus,#kzTestiOverlay .kz-testi-textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(255,0,0,.12)}
 #kzTestiOverlay .kz-testi-textarea{min-height:120px;resize:vertical;line-height:1.55}
 #kzTestiOverlay .kz-testi-counter{margin-top:6px;font-size:.75rem;color:var(--text-sec);text-align:right}
-#kzTestiOverlay .kz-testi-stars{display:flex;gap:8px;flex-wrap:wrap}
-#kzTestiOverlay .kz-star-btn{width:42px;height:42px;border-radius:14px;border:1px solid var(--border);background:var(--bg-card);color:#666;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem}
-#kzTestiOverlay .kz-star-btn.active{border-color:rgba(255,184,0,.45);background:rgba(255,184,0,.10);color:#ffb800}
+#kzTestiOverlay .kz-testi-account{width:100%;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text-main);border-radius:14px;padding:12px 13px;font-weight:800;line-height:1.35}
+#kzTestiOverlay .kz-testi-rate-wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#kzTestiOverlay .kz-testi-rate-stars{display:flex;align-items:center;gap:6px;flex-wrap:nowrap}
+#kzTestiOverlay .kz-rate-star{padding:0;border:0;background:transparent;color:#5e5e5e;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.75rem;line-height:1;transition:color .18s ease,transform .15s ease;appearance:none;-webkit-appearance:none}
+#kzTestiOverlay .kz-rate-star:hover{transform:translateY(-1px)}
+#kzTestiOverlay .kz-rate-star.is-active{color:#ffb800;background:transparent;box-shadow:none}
+#kzTestiOverlay .kz-testi-rate-text{min-height:auto;font-size:.84rem;font-weight:800;color:var(--text-sec);white-space:nowrap}
 #kzTestiOverlay .kz-testi-submit{width:100%;border:0;border-radius:14px;padding:13px 14px;background:linear-gradient(135deg,#ff0000,#b30000);color:#fff;font-weight:900;cursor:pointer;box-shadow:0 14px 28px rgba(255,0,0,.18)}
 #kzTestiOverlay .kz-testi-submit[disabled]{opacity:.55;cursor:not-allowed;box-shadow:none}
 #kzTestiOverlay .kz-testi-lock{margin-top:10px;padding:12px 13px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:.82rem;line-height:1.55;color:var(--text-sec)}
@@ -28543,21 +28662,24 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
     <div class="kz-testi-body">
       <div class="kz-testi-layout">
         <div class="kz-testi-form-card">
-          <div class="kz-testi-form-title">Tambah Testimoni</div>
-                    <form id="kzUserTestiForm">
-            <div class="kz-testi-field">
-              <label class="kz-testi-label" for="kzUserTestiName">Username Akun</label>
-              <input class="kz-testi-input" id="kzUserTestiName" maxlength="32" type="text" readonly />
-            </div>
+          <div class="kz-testi-form-head">
+            <div class="kz-testi-form-title">Tambah Testimoni</div>
+            <div class="kz-testi-form-user" id="kzUserTestiAccountName"></div>
+          </div>
+          <form id="kzUserTestiForm">
             <div class="kz-testi-field">
               <label class="kz-testi-label" for="kzUserTestiRating">Rating</label>
-              <select class="kz-testi-input" id="kzUserTestiRating">
-                <option value="5">5 - Sangat puas</option>
-                <option value="4">4 - Puas</option>
-                <option value="3">3 - Cukup</option>
-                <option value="2">2 - Kurang</option>
-                <option value="1">1 - Tidak puas</option>
-              </select>
+              <div class="kz-testi-rate-wrap">
+                <div class="kz-testi-rate-stars" id="kzUserTestiStars" role="radiogroup" aria-label="Pilih rating testimoni">
+                  <button class="kz-rate-star" type="button" data-value="1" aria-label="1 bintang"><i class="fas fa-star"></i></button>
+                  <button class="kz-rate-star" type="button" data-value="2" aria-label="2 bintang"><i class="fas fa-star"></i></button>
+                  <button class="kz-rate-star" type="button" data-value="3" aria-label="3 bintang"><i class="fas fa-star"></i></button>
+                  <button class="kz-rate-star" type="button" data-value="4" aria-label="4 bintang"><i class="fas fa-star"></i></button>
+                  <button class="kz-rate-star" type="button" data-value="5" aria-label="5 bintang"><i class="fas fa-star"></i></button>
+                </div>
+                <div class="kz-testi-rate-text" id="kzUserTestiRatingText">Belum dipilih</div>
+                <input id="kzUserTestiRating" type="hidden" value="0" />
+              </div>
             </div>
             <div class="kz-testi-field">
               <label class="kz-testi-label" for="kzUserTestiText">Testimoni</label>
@@ -28585,7 +28707,7 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
   var STORAGE_KEY = 'kz_user_testimonials_by_account_v1';
   var LEGACY_KEY = 'kz_user_testimonial_v2';
   var MIN_CHARS = 15;
-  var state = { rating: 5 };
+  var state = { rating: 0 };
 
   function esc(v){
     return String(v == null ? '' : v).replace(/[&<>"']/g, function(m){
@@ -28609,9 +28731,42 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
       return date.toLocaleDateString('id-ID');
     }
   }
+  function parseTestimonialTime(item){
+    if(!item) return 0;
+    var direct = Number(item.createdAt || item.ts || item.time || 0);
+    if(direct) return direct;
+    var raw = String(item.d || item.date || '').trim();
+    if(!raw) return 0;
+    var normalized = raw.toLowerCase()
+      .replace(/januari/g,'jan').replace(/februari/g,'feb').replace(/maret/g,'mar').replace(/april/g,'apr')
+      .replace(/mei/g,'may').replace(/juni/g,'jun').replace(/juli/g,'jul').replace(/agustus/g,'aug')
+      .replace(/oktober/g,'oct').replace(/desember/g,'dec')
+      .replace(/\s+/g,' ');
+    var months = {jan:0,feb:1,mar:2,apr:3,may:4,jun:5,jul:6,aug:7,agt:7,sep:8,sept:8,oct:9,okt:9,nov:10,dec:11,des:11};
+    var m = normalized.match(/(\d{1,2})\s+([a-z\.]+)\s+(\d{4})/i);
+    if(m){
+      var day = Number(m[1]) || 1;
+      var monKey = String(m[2] || '').replace(/\./g,'').slice(0,4);
+      var year = Number(m[3]) || 1970;
+      var mon = months[monKey];
+      if(mon == null) mon = months[monKey.slice(0,3)];
+      if(mon != null){
+        return new Date(year, mon, day, 12, 0, 0, 0).getTime();
+      }
+    }
+    var parsed = Date.parse(raw);
+    return isNaN(parsed) ? 0 : parsed;
+  }
+  function sortTestimonialsNewestFirst(list){
+    return (Array.isArray(list) ? list.slice() : []).sort(function(a,b){
+      var diff = parseTestimonialTime(b) - parseTestimonialTime(a);
+      if(diff) return diff;
+      return String(b && b.u || '').localeCompare(String(a && a.u || ''));
+    });
+  }
   function getBaseTestimonials(){
-    try{ if(typeof rawTestimonials !== 'undefined' && Array.isArray(rawTestimonials) && rawTestimonials.length) return rawTestimonials.slice(); }catch(e){}
-    try{ if(Array.isArray(window.rawTestimonials) && window.rawTestimonials.length) return window.rawTestimonials.slice(); }catch(e){}
+    try{ if(typeof rawTestimonials !== 'undefined' && Array.isArray(rawTestimonials) && rawTestimonials.length) return sortTestimonialsNewestFirst(rawTestimonials); }catch(e){}
+    try{ if(Array.isArray(window.rawTestimonials) && window.rawTestimonials.length) return sortTestimonialsNewestFirst(window.rawTestimonials); }catch(e){}
     return [];
   }
   function getMe(){
@@ -28678,8 +28833,7 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
       var item = store[key];
       if(item && item.c && item.u) custom.push(item);
     });
-    custom.sort(function(a,b){ return Number(b.createdAt || 0) - Number(a.createdAt || 0); });
-    return custom.concat(list);
+    return sortTestimonialsNewestFirst(custom.concat(list));
   }
   function getPreviewTestimonials(){
     return getAllTestimonials().slice(0,3);
@@ -28743,10 +28897,24 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
     renderProofGrid();
     syncFormState();
   }
+  function getRatingLabel(value){
+    var rating = Math.max(0, Math.min(5, Number(value) || 0));
+    return ({5:'Sangat puas',4:'Puas',3:'Cukup',2:'Kurang',1:'Tidak puas',0:'Belum dipilih'})[rating] || 'Belum dipilih';
+  }
   function setRating(next){
-    state.rating = Math.max(1, Math.min(5, Number(next) || 5));
-    var select = document.getElementById('kzUserTestiRating');
-    if(select) select.value = String(state.rating);
+    state.rating = Math.max(0, Math.min(5, Number(next) || 0));
+    var input = document.getElementById('kzUserTestiRating');
+    var text = document.getElementById('kzUserTestiRatingText');
+    var buttons = document.querySelectorAll('#kzUserTestiStars .kz-rate-star');
+    if(input) input.value = String(state.rating);
+    if(text) text.textContent = getRatingLabel(state.rating);
+    buttons.forEach(function(btn){
+      var value = Number(btn.getAttribute('data-value') || 0);
+      var active = value > 0 && value <= state.rating;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      btn.setAttribute('aria-checked', active ? 'true' : 'false');
+    });
   }
   function syncCounter(){
     var input = document.getElementById('kzUserTestiText');
@@ -28757,17 +28925,18 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
     var form = document.getElementById('kzUserTestiForm');
     var lock = document.getElementById('kzUserTestiLock');
     var title = document.querySelector('#kzTestiOverlay .kz-testi-form-card .kz-testi-form-title');
-    var nameInput = document.getElementById('kzUserTestiName');
+    var userEl = document.getElementById('kzUserTestiAccountName');
     if(!form || !lock) return;
     var me = getMe();
     var username = getAccountUsername(me);
+    if(userEl) userEl.textContent = username || '';
     var mine = getStoredTestimonial();
-    if(nameInput) nameInput.value = username || '';
     if(mine){
       form.style.display = 'none';
       lock.style.display = 'block';
       lock.textContent = 'Testimoni berhasil dikirim.';
       if(title) title.style.display = 'none';
+      if(userEl) userEl.style.display = 'none';
       return;
     }
     if(!username){
@@ -28775,11 +28944,13 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
       lock.style.display = 'block';
       lock.textContent = 'Login atau daftar akun dulu untuk menambahkan testimoni.';
       if(title) title.style.display = '';
+      if(userEl) userEl.style.display = 'none';
       return;
     }
     form.style.display = '';
     lock.style.display = 'none';
     if(title) title.style.display = '';
+    if(userEl) userEl.style.display = '';
   }
   function openOverlay(){
     var overlay = document.getElementById('kzTestiOverlay');
@@ -28800,15 +28971,21 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
   }
   function initForm(){
     var form = document.getElementById('kzUserTestiForm');
-    var nameInput = document.getElementById('kzUserTestiName');
     var ratingInput = document.getElementById('kzUserTestiRating');
+    var starsWrap = document.getElementById('kzUserTestiStars');
     var textInput = document.getElementById('kzUserTestiText');
-    if(!form || !nameInput || !ratingInput || !textInput) return;
-    nameInput.value = getAccountUsername(getMe()) || '';
+    if(!form || !ratingInput || !textInput || !starsWrap) return;
     textInput.addEventListener('input', syncCounter);
-    ratingInput.addEventListener('change', function(){ setRating(this.value); });
+    starsWrap.querySelectorAll('.kz-rate-star').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var clicked = Number(btn.getAttribute('data-value') || 5);
+        var next = clicked;
+        if(clicked === state.rating) next = clicked - 1;
+        setRating(next);
+      });
+    });
     syncCounter();
-    setRating(state.rating);
+    setRating(0);
     form.addEventListener('submit', function(e){
       e.preventDefault();
       var me = getMe();
@@ -28822,15 +28999,15 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
         syncFormState();
         return toast('⚠️ Akun ini sudah mengirim testimoni.');
       }
-      nameInput.value = username;
       var comment = String(textInput.value || '').trim();
       if(comment.length < MIN_CHARS) return toast('⚠️ Testimoni minimal ' + MIN_CHARS + ' karakter.');
+      if((Number(ratingInput.value) || 0) < 1) return toast('⚠️ Pilih minimal 1 bintang.');
       var payload = {
         accountKey: accountKey,
         u: username,
         c: comment,
         d: formatDate(new Date()),
-        r: Number(ratingInput.value) || state.rating || 5,
+        r: Number(ratingInput.value) || state.rating || 0,
         createdAt: Date.now()
       };
       try{
@@ -28840,7 +29017,7 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
       }catch(err){ return toast('⚠️ Gagal menyimpan testimoni.'); }
       textInput.value = '';
       syncCounter();
-      setRating(5);
+      setRating(0);
       refreshAllTestimonialsUi();
       toast('✅ Testimoni berhasil dikirim.');
     });
@@ -28881,4 +29058,13 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
 })();
 </script>
 
+
+<style id="kz-scrollbar-force-fix">
+html,body,body *{scrollbar-width:none !important;-ms-overflow-style:none !important;}
+html::-webkit-scrollbar,body::-webkit-scrollbar,body *::-webkit-scrollbar{display:none !important;width:0 !important;height:0 !important;background:transparent !important;}
+#kzTestiOverlay .kz-testi-body{scrollbar-width:auto !important;-ms-overflow-style:auto !important;}
+#kzTestiOverlay .kz-testi-body::-webkit-scrollbar{display:block !important;width:10px !important;height:10px !important;}
+#kzTestiOverlay .kz-testi-body::-webkit-scrollbar-track{background:rgba(255,255,255,.05) !important;border-radius:999px !important;}
+#kzTestiOverlay .kz-testi-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.22) !important;border-radius:999px !important;border:2px solid transparent !important;background-clip:padding-box !important;}
+</style>
 </body></html>
