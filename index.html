@@ -2161,7 +2161,126 @@ body.light-mode main{
 }
 </style>
 
-</head><body><div class="statusbar-space"></div><div class="app-wrapper"><div id="introOverlay" onclick="openApp()"><img class="intro-logo" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg"/><div class="intro-text">KZRIZUSMO STORE</div><small style="margin-top:10px; color:#aaa;">Tap untuk masuk</small></div><div id="welcomePopup"><div aria-label="Informasi proses order" aria-modal="true" class="popup-card" onclick="event.stopPropagation()" role="dialog"><button aria-label="Close" class="popup-close" onclick="playClick(); closeWelcomePopup()">×</button><img alt="Pahami alur proses order" class="popup-img" src="https://files.catbox.moe/5cpocn.jpg"/><div class="popup-actions"><a class="popup-btn popup-btn-left" href="https://chat.whatsapp.com/BvbJh4kPHNM9ixyWaUXR50?mode=gi_t" onclick="playClick()" rel="noopener" target="_blank">Join Group</a><a class="popup-btn popup-btn-right" href="https://whatsapp.com/channel/0029VbDOVUJIHphDqJoiNH1L" onclick="playClick()" rel="noopener" target="_blank">Join Saluran</a></div></div></div><div id="payOverlay" onclick="onPayOverlayClick(event)"><div aria-label="Payment" aria-modal="true" class="pay-modal" onclick="event.stopPropagation()" role="dialog"><div class="pay-head"><div><h3>Payment</h3><div class="pay-sub">Produk: <b id="payProductName">-</b><span id="payServerBadge" class="pay-server-badge" style="display:none;">S1</span></div></div><div class="pay-row"><div class="pay-badge" id="payTimerBadge"><span class="pay-dot" id="payTimerDot"></span><span id="payTimerText">Timer: belum mulai</span></div><button aria-label="Close" class="pay-close" onclick="playClick(); closePaymentFlow()">×</button></div></div><div id="payToast" class="pay-toast" aria-live="polite"></div><div class="pay-body"><div id="payMainView"><div style="font-weight:900">Metode Pembayaran</div><div class="pay-grid" id="payMethodGrid"><div class="pay-method" data-method="qris" onclick="selectPaymentMethod('qris')">QRIS</div><div class="pay-method" data-method="dana" onclick="selectPaymentMethod('dana')">DANA</div><div class="pay-method" data-method="gopay" onclick="selectPaymentMethod('gopay')">GOPAY</div><div class="pay-method" data-method="ovo" onclick="selectPaymentMethod('ovo')">OVO</div></div><div class="pay-panel" id="payDetailPanel" style="display:none;"><div class="pay-row" style="justify-content:space-between"><div style="font-weight:900">Detail Pembayaran</div><div class="pay-sub" id="payDeadlineText">Batas: -</div></div><div id="payQRISWrap" style="display:none; margin-top:10px;"><img alt="QRIS" class="pay-qr" id="payQrisImg"/><button class="pay-btn secondary" id="payBtnDownloadQRIS" type="button" onclick="downloadQris()">DOWNLOAD QRIS</button></div><div id="payNumberWrap" style="display:none; margin-top:10px;"><div class="pay-number"><code id="payNumberText">-</code><button class="pay-btn secondary" onclick="copyPaymentNumber()" style="width:auto; padding:10px 12px; margin-top:0;" type="button">SALIN</button></div></div><div id="payMethodInfo" class="pay-info" style="display:block; margin-top:10px;"></div><div class="pay-upload" id="payUploadSection"><div id="payUploadTitle" style="font-weight:900">Upload Bukti Pembayaran</div><form id="payProofForm" method="post" enctype="multipart/form-data"><input name="to_email" type="hidden" value="kzrizusmostore@gmail.com"/><input id="payFormOrderId" name="order_id" type="hidden" value=""/><input id="payFormProduct" name="product_name" type="hidden" value=""/><input id="payFormUnitPrice" name="unit_price" type="hidden" value=""/><input id="payFormTotal" name="total_price" type="hidden" value=""/><input id="payFormMethod" name="payment_method" type="hidden" value=""/><input id="payFormValue" name="payment_value" type="hidden" value=""/><input id="payFormDeadline" name="payment_deadline" type="hidden" value=""/><input id="payFormSubject" name="subject" type="hidden" value=""/><input id="payFormMessage" name="message" type="hidden" value=""/><input id="payFormFromName" name="from_name" type="hidden" value=""/><input id="payFormSenderName" name="sender_name" type="hidden" value=""/><input id="payFormWA" name="whatsapp" type="hidden" value=""/><textarea id="payFormDetail" name="order_detail" style="display:none"></textarea><div class="pay-summary"><div class="pay-srow"><span>Produk</span><b id="paySumProduct">-</b></div><div class="pay-srow"><span>Harga Satuan</span><b id="paySumUnit">-</b></div><div class="pay-srow"><span>Jumlah</span><div class="pay-qty-wrap"><button class="qty-btn" id="payQtyMinus" type="button" onclick="qtyMinus()">−</button><input class="pay-input pay-qty" id="payQtyInput" name="qty" type="number" min="1" value="1" inputmode="numeric" required/><button class="qty-btn" id="payQtyPlus" type="button" onclick="qtyPlus()">+</button></div></div><div class="pay-srow"><span>Subtotal</span><b id="paySumSubtotal">-</b></div><div class="pay-srow" id="payRowDiscount" style="display:none;"><span>Diskon Member</span><b id="paySumDiscount">-</b></div><div class="pay-srow" id="payRowPromo" style="display:none;"><span>Diskon Promo</span><b id="paySumPromo">-</b></div><div class="pay-srow" id="payRowUnique" style="display:none;"><span>Diskon Unik</span><b id="paySumUnique">-</b></div><div class="pay-srow"><span>Total Bayar</span><b id="paySumTotal">-</b></div><div class="pay-srow" id="payRowPromoCode" style="display:none;"><span>Kode Promo</span><b id="paySumPromoCode">-</b></div><div class="pay-srow" id="payRowSender" style="display:none;"><span>Username</span><b id="paySumSender">-</b></div><div class="pay-srow" id="payRowWA" style="display:none;"><span>Nomor WhatsApp</span><b id="paySumWA">-</b></div></div><div class="pay-field" id="payDepositField" style="display:none;"><label class="pay-label" for="payDepositAmountInput">Nominal Deposit</label><input class="pay-input" id="payDepositAmountInput" type="tel" inputmode="numeric" placeholder="contoh: 50000" autocomplete="off"/><div class="pay-sub" style="margin-top:6px;">Minimal Rp 1.000</div></div><div class="pay-field" id="payPromoField"><label class="pay-label" for="payPromoInput">Kode Promo (opsional)</label><div class="pay-inline"><input class="pay-input" id="payPromoInput" type="text" placeholder="contoh: PROMO123" autocomplete="off"/><button class="pay-btn secondary" id="payPromoApplyBtn" type="button" onclick="applyPromoCode()" style="width:auto; padding:10px 12px; margin-top:0;">PAKAI</button><button class="pay-btn secondary" id="payPromoClearBtn" type="button" onclick="clearPromoCode()" style="width:auto; padding:10px 12px; margin-top:0; opacity:.85;">HAPUS</button></div><div class="pay-sub" id="payPromoHint" style="margin-top:6px;"></div></div><div id="payZusmoUidField" class="pay-field" style="display:none;"><label class="pay-label" for="payZusmoUidInput">UID :</label><input class="pay-input" id="payZusmoUidInput" name="zusmo_uid" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Masukkan UID" autocomplete="off"/></div><div class="pay-field" id="payWhatsappFieldDefault"><label class="pay-label" for="payWhatsappInput">Nomor WhatsApp :</label><input class="pay-input" id="payWhatsappInput" name="buyer_whatsapp" type="tel" inputmode="tel" placeholder="08" autocomplete="tel" required/></div><div id="payZusmoFields" style="display:none;"><div class="pay-field"><label class="pay-label">Pilih Game :</label><div class="pay-choice-grid two" id="payZusmoGameChoices"><button class="pay-choice-btn" data-value="Free Fire" data-group="game" type="button">FREE FIRE</button><button class="pay-choice-btn" data-value="FF Max" data-group="game" type="button">FF MAX</button></div><input id="payZusmoGameInput" name="zusmo_game" type="hidden" value=""/></div><div class="pay-field"><label class="pay-label">Pilih Device :</label><div class="pay-choice-grid two" id="payZusmoPlatformChoices"><button class="pay-choice-btn" data-value="Android" data-group="platform" type="button">ANDROID</button><button class="pay-choice-btn" data-value="iOS" data-group="platform" type="button">IOS</button></div><input id="payZusmoPlatformInput" name="zusmo_platform" type="hidden" value=""/></div></div><div id="paySaldoSwipeMount" style="display:none; margin-top:10px;"></div><input accept="image/*,.pdf,application/pdf" id="payFileInput" class="kz-file-input-native" type="file"/><input id="payFormProofInfo" name="proof_info" type="hidden" value=""/></form><button class="pay-btn secondary" id="payBtnUpload" onclick="triggerPayUpload()" type="button">UPLOAD BUKTI</button><div class="pay-preview" id="payPreview"><img alt="Preview" id="payPreviewImg"/><div><div id="payPreviewName" style="font-weight:900">-</div><div class="pay-sub">Jika sudah benar, klik tombol kirim.</div></div></div><button class="pay-btn" id="payBtnSend" onclick="sendPaymentProof()" type="button">KONFIRMASI &amp; KIRIM</button><div class="pay-status" id="payStatus"></div></div><div class="pay-info">Pastikan seluruh data diisi dengan benar dan nomor WhatsApp dalam keadaan aktif.
+<style id="kz-qr-scanner-style">
+#qrScannerOverlay{
+  position:fixed;
+  inset:0;
+  z-index:17000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
+  background:rgba(0,0,0,.82);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+#qrScannerOverlay.show{display:flex}
+#qrScannerOverlay .qr-scanner-card{
+  width:min(560px,100%);
+  max-height:min(92vh,820px);
+  overflow:auto;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.12);
+  background:var(--bg-card);
+  color:var(--text-main);
+  box-shadow:0 24px 70px rgba(0,0,0,.5);
+}
+#qrScannerOverlay .qr-scanner-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding:16px;
+  border-bottom:1px solid var(--border);
+}
+#qrScannerOverlay .qr-scanner-title{
+  font-size:19px;
+  font-weight:900;
+  line-height:1.15;
+}
+#qrScannerOverlay .qr-scanner-sub{
+  margin-top:4px;
+  font-size:12px;
+  color:var(--text-sec);
+  line-height:1.5;
+}
+#qrScannerOverlay .qr-scanner-close{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.04);
+  color:var(--text-main);
+  font-size:22px;
+  font-weight:900;
+  cursor:pointer;
+  flex:0 0 auto;
+}
+#qrScannerOverlay .qr-scanner-body{padding:16px}
+#kzQrReader{
+  width:100%;
+  min-height:280px;
+  border-radius:18px;
+  overflow:hidden;
+  background:#000;
+  border:1px solid rgba(255,255,255,.08);
+}
+#qrScannerOverlay .qr-scanner-status{
+  margin-top:12px;
+  padding:12px 14px;
+  border-radius:14px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  color:var(--text-sec);
+  font-size:13px;
+  line-height:1.5;
+}
+#qrScannerOverlay .qr-scanner-status.error{
+  color:#ffb3b3;
+  border-color:rgba(255,77,77,.32);
+  background:rgba(255,77,77,.08);
+}
+#qrScannerOverlay .qr-scanner-result{
+  margin-top:12px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+#qrScannerOverlay .qr-scanner-result label{
+  font-size:12px;
+  font-weight:800;
+  color:var(--text-sec);
+  letter-spacing:.04em;
+}
+#kzQrResultText{
+  width:100%;
+  min-height:120px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  background:var(--bg-sec);
+  color:var(--text-main);
+  padding:14px;
+  resize:vertical;
+  outline:none;
+}
+#qrScannerOverlay .qr-scanner-actions{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:14px;
+}
+#qrScannerOverlay .qr-scanner-actions .pay-btn{
+  margin-top:0;
+}
+@media (max-width:560px){
+  #qrScannerOverlay{padding:12px}
+  #qrScannerOverlay .qr-scanner-head,
+  #qrScannerOverlay .qr-scanner-body{padding:14px}
+  #qrScannerOverlay .qr-scanner-actions{grid-template-columns:1fr}
+  #kzQrReader{min-height:240px}
+}
+</style>
+</head><body><div class="statusbar-space"></div><div class="app-wrapper"><div id="introOverlay" onclick="openApp()"><img class="intro-logo" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg"/><div class="intro-text">KZRIZUSMO STORE</div><small style="margin-top:10px; color:#aaa;">Tap untuk masuk</small></div><div id="welcomePopup"><div aria-label="Informasi proses order" aria-modal="true" class="popup-card" onclick="event.stopPropagation()" role="dialog"><button aria-label="Close" class="popup-close" onclick="playClick(); closeWelcomePopup()">×</button><img alt="Pahami alur proses order" class="popup-img" src="https://files.catbox.moe/5cpocn.jpg"/><div class="popup-actions"><a class="popup-btn popup-btn-left" href="https://chat.whatsapp.com/BvbJh4kPHNM9ixyWaUXR50?mode=gi_t" onclick="playClick()" rel="noopener" target="_blank">Join Group</a><a class="popup-btn popup-btn-right" href="https://whatsapp.com/channel/0029VbDOVUJIHphDqJoiNH1L" onclick="playClick()" rel="noopener" target="_blank">Join Saluran</a></div></div></div><div id="payOverlay" onclick="onPayOverlayClick(event)"><div aria-label="Payment" aria-modal="true" class="pay-modal" onclick="event.stopPropagation()" role="dialog"><div class="pay-head"><div><h3>Payment</h3><div class="pay-sub">Produk: <b id="payProductName">-</b><span id="payServerBadge" class="pay-server-badge" style="display:none;">S1</span></div></div><div class="pay-row"><div class="pay-badge" id="payTimerBadge"><span class="pay-dot" id="payTimerDot"></span><span id="payTimerText">Timer: belum mulai</span></div><button aria-label="Close" class="pay-close" onclick="playClick(); closePaymentFlow()">×</button></div></div><div id="payToast" class="pay-toast" aria-live="polite"></div><div class="pay-body"><div id="payMainView"><div style="font-weight:900">Metode Pembayaran</div><div class="pay-grid" id="payMethodGrid"><div class="pay-method" data-method="qris" onclick="selectPaymentMethod('qris')">QRIS</div><div class="pay-method" data-method="dana" onclick="selectPaymentMethod('dana')">DANA</div><div class="pay-method" data-method="gopay" onclick="selectPaymentMethod('gopay')">GOPAY</div><div class="pay-method" data-method="ovo" onclick="selectPaymentMethod('ovo')">OVO</div></div><div class="pay-panel" id="payDetailPanel" style="display:none;"><div class="pay-row" style="justify-content:space-between"><div style="font-weight:900">Detail Pembayaran</div><div class="pay-sub" id="payDeadlineText">Batas: -</div></div><div id="payQRISWrap" style="display:none; margin-top:10px;"><img alt="QRIS" class="pay-qr" id="payQrisImg"/><button class="pay-btn secondary" id="payBtnDownloadQRIS" type="button" onclick="downloadQris()">DOWNLOAD QRIS</button><button class="pay-btn secondary" id="payBtnScanQRIS" type="button">SCAN QR KAMERA</button></div><div id="payNumberWrap" style="display:none; margin-top:10px;"><div class="pay-number"><code id="payNumberText">-</code><button class="pay-btn secondary" onclick="copyPaymentNumber()" style="width:auto; padding:10px 12px; margin-top:0;" type="button">SALIN</button></div></div><div id="payMethodInfo" class="pay-info" style="display:block; margin-top:10px;"></div><div class="pay-upload" id="payUploadSection"><div id="payUploadTitle" style="font-weight:900">Upload Bukti Pembayaran</div><form id="payProofForm" method="post" enctype="multipart/form-data"><input name="to_email" type="hidden" value="kzrizusmostore@gmail.com"/><input id="payFormOrderId" name="order_id" type="hidden" value=""/><input id="payFormProduct" name="product_name" type="hidden" value=""/><input id="payFormUnitPrice" name="unit_price" type="hidden" value=""/><input id="payFormTotal" name="total_price" type="hidden" value=""/><input id="payFormMethod" name="payment_method" type="hidden" value=""/><input id="payFormValue" name="payment_value" type="hidden" value=""/><input id="payFormDeadline" name="payment_deadline" type="hidden" value=""/><input id="payFormSubject" name="subject" type="hidden" value=""/><input id="payFormMessage" name="message" type="hidden" value=""/><input id="payFormFromName" name="from_name" type="hidden" value=""/><input id="payFormSenderName" name="sender_name" type="hidden" value=""/><input id="payFormWA" name="whatsapp" type="hidden" value=""/><textarea id="payFormDetail" name="order_detail" style="display:none"></textarea><div class="pay-summary"><div class="pay-srow"><span>Produk</span><b id="paySumProduct">-</b></div><div class="pay-srow"><span>Harga Satuan</span><b id="paySumUnit">-</b></div><div class="pay-srow"><span>Jumlah</span><div class="pay-qty-wrap"><button class="qty-btn" id="payQtyMinus" type="button" onclick="qtyMinus()">−</button><input class="pay-input pay-qty" id="payQtyInput" name="qty" type="number" min="1" value="1" inputmode="numeric" required/><button class="qty-btn" id="payQtyPlus" type="button" onclick="qtyPlus()">+</button></div></div><div class="pay-srow"><span>Subtotal</span><b id="paySumSubtotal">-</b></div><div class="pay-srow" id="payRowDiscount" style="display:none;"><span>Diskon Member</span><b id="paySumDiscount">-</b></div><div class="pay-srow" id="payRowPromo" style="display:none;"><span>Diskon Promo</span><b id="paySumPromo">-</b></div><div class="pay-srow" id="payRowUnique" style="display:none;"><span>Diskon Unik</span><b id="paySumUnique">-</b></div><div class="pay-srow"><span>Total Bayar</span><b id="paySumTotal">-</b></div><div class="pay-srow" id="payRowPromoCode" style="display:none;"><span>Kode Promo</span><b id="paySumPromoCode">-</b></div><div class="pay-srow" id="payRowSender" style="display:none;"><span>Username</span><b id="paySumSender">-</b></div><div class="pay-srow" id="payRowWA" style="display:none;"><span>Nomor WhatsApp</span><b id="paySumWA">-</b></div></div><div class="pay-field" id="payDepositField" style="display:none;"><label class="pay-label" for="payDepositAmountInput">Nominal Deposit</label><input class="pay-input" id="payDepositAmountInput" type="tel" inputmode="numeric" placeholder="contoh: 50000" autocomplete="off"/><div class="pay-sub" style="margin-top:6px;">Minimal Rp 1.000</div></div><div class="pay-field" id="payPromoField"><label class="pay-label" for="payPromoInput">Kode Promo (opsional)</label><div class="pay-inline"><input class="pay-input" id="payPromoInput" type="text" placeholder="contoh: PROMO123" autocomplete="off"/><button class="pay-btn secondary" id="payPromoApplyBtn" type="button" onclick="applyPromoCode()" style="width:auto; padding:10px 12px; margin-top:0;">PAKAI</button><button class="pay-btn secondary" id="payPromoClearBtn" type="button" onclick="clearPromoCode()" style="width:auto; padding:10px 12px; margin-top:0; opacity:.85;">HAPUS</button></div><div class="pay-sub" id="payPromoHint" style="margin-top:6px;"></div></div><div id="payZusmoUidField" class="pay-field" style="display:none;"><label class="pay-label" for="payZusmoUidInput">UID :</label><input class="pay-input" id="payZusmoUidInput" name="zusmo_uid" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Masukkan UID" autocomplete="off"/></div><div class="pay-field" id="payWhatsappFieldDefault"><label class="pay-label" for="payWhatsappInput">Nomor WhatsApp :</label><input class="pay-input" id="payWhatsappInput" name="buyer_whatsapp" type="tel" inputmode="tel" placeholder="08" autocomplete="tel" required/></div><div id="payZusmoFields" style="display:none;"><div class="pay-field"><label class="pay-label">Pilih Game :</label><div class="pay-choice-grid two" id="payZusmoGameChoices"><button class="pay-choice-btn" data-value="Free Fire" data-group="game" type="button">FREE FIRE</button><button class="pay-choice-btn" data-value="FF Max" data-group="game" type="button">FF MAX</button></div><input id="payZusmoGameInput" name="zusmo_game" type="hidden" value=""/></div><div class="pay-field"><label class="pay-label">Pilih Device :</label><div class="pay-choice-grid two" id="payZusmoPlatformChoices"><button class="pay-choice-btn" data-value="Android" data-group="platform" type="button">ANDROID</button><button class="pay-choice-btn" data-value="iOS" data-group="platform" type="button">IOS</button></div><input id="payZusmoPlatformInput" name="zusmo_platform" type="hidden" value=""/></div></div><div id="paySaldoSwipeMount" style="display:none; margin-top:10px;"></div><input accept="image/*,.pdf,application/pdf" id="payFileInput" class="kz-file-input-native" type="file"/><input id="payFormProofInfo" name="proof_info" type="hidden" value=""/></form><button class="pay-btn secondary" id="payBtnUpload" onclick="triggerPayUpload()" type="button">UPLOAD BUKTI</button><div class="pay-preview" id="payPreview"><img alt="Preview" id="payPreviewImg"/><div><div id="payPreviewName" style="font-weight:900">-</div><div class="pay-sub">Jika sudah benar, klik tombol kirim.</div></div></div><button class="pay-btn" id="payBtnSend" onclick="sendPaymentProof()" type="button">KONFIRMASI &amp; KIRIM</button><div class="pay-status" id="payStatus"></div></div><div class="pay-info">Pastikan seluruh data diisi dengan benar dan nomor WhatsApp dalam keadaan aktif.
 
 ©ᴋᴢʀɪᴢᴜsᴍᴏsᴛᴏʀᴇ</div></div><div id="paySuccessView" data-state="success" style="display:none;"><div class="pay-success-wrap"><div class="pay-success-card"><div class="pay-success-check" aria-hidden="true"><svg viewBox="0 0 100 100" role="img" aria-label="Sukses"><circle class="ring" cx="50" cy="50" r="45"></circle><path class="tick" d="M30 52 L45 67 L72 38"></path></svg></div><div class="pay-success-title" id="paySuccessTitle">Bukti Pembayaran Terkirim</div><div class="pay-success-sub" id="paySuccessSub">Harap menunggu. Sedang diproses...</div><div class="rc-prod pay-success-prod"><img id="paySuccessProductImg" alt="Produk"/><div><div id="paySuccessProductName2" class="rc-prod-name">-</div></div></div><div class="pay-success-meta"><div class="pay-srow"><span>Order ID</span><b id="paySuccessOrderId">-</b></div><div class="pay-srow"><span>Waktu Order</span><b id="paySuccessOrderTime">-</b></div><div class="pay-srow"><span>Username</span><b id="paySuccessSenderName">-</b></div><div class="pay-srow"><span>WhatsApp</span><b id="paySuccessBuyerWA">-</b></div><div class="pay-srow"><span>Produk</span><b id="paySuccessProduct">-</b></div><div class="pay-srow"><span>Total Bayar</span><b id="paySuccessTotal">-</b></div><div class="pay-srow"><span>Metode</span><b id="paySuccessMethod">-</b></div><div class="pay-srow"><span>Tujuan</span><b id="paySuccessTarget">-</b></div></div><div class="pay-success-steps" id="paySuccessSteps"><div class="pay-step done"><i class="fas fa-check"></i> Bukti pembayaran berhasil dikirim</div><div class="pay-step"><i class="fas fa-clock"></i> Menunggu verifikasi admin</div><div class="pay-step"><i class="fab fa-whatsapp"></i> Proses kirim data akun ke WhatsApp</div></div><div class="pay-success-actions" id="paySuccessActions"><button class="pay-btn secondary" id="payBtnStruk" type="button" onclick="kzOpenReceiptFromSuccess()">STRUK</button><button class="pay-btn" id="payBtnFinish" type="button" onclick="kzTryFinishPayment()">SELESAI</button></div><div class="pay-success-note">
         Admin akan segera memproses pesanan Anda.
@@ -29509,6 +29628,390 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,.container::-webkit-scrollbar,.s
     kzBindQrisDownloadCompat();
   }
   window.addEventListener('load', kzBindQrisDownloadCompat);
+})();
+</script>
+
+<div id="qrScannerOverlay" aria-hidden="true">
+  <div class="qr-scanner-card" role="dialog" aria-modal="true" aria-labelledby="qrScannerTitle">
+    <div class="qr-scanner-head">
+      <div>
+        <div class="qr-scanner-title" id="qrScannerTitle">Scan QR dengan Kamera</div>
+        <div class="qr-scanner-sub">Arahkan kamera ke kode QR. Hasil scan akan muncul otomatis di bawah.</div>
+      </div>
+      <button class="qr-scanner-close" id="closeQrScannerBtn" type="button" aria-label="Tutup">x</button>
+    </div>
+    <div class="qr-scanner-body">
+      <div id="kzQrReader"></div>
+      <div class="qr-scanner-status" id="kzQrScannerStatus">Siap memulai scanner.</div>
+      <div class="qr-scanner-result">
+        <label for="kzQrResultText">HASIL SCAN</label>
+        <textarea id="kzQrResultText" readonly placeholder="Hasil QR akan tampil di sini..."></textarea>
+      </div>
+      <div class="qr-scanner-actions">
+        <button class="pay-btn secondary" id="kzQrRescanBtn" type="button">SCAN ULANG</button>
+        <button class="pay-btn secondary" id="kzQrCopyBtn" type="button">SALIN HASIL</button>
+        <button class="pay-btn secondary" id="kzQrOpenBtn" type="button">BUKA LINK</button>
+        <button class="pay-btn" id="kzQrUseBtn" type="button">PAKAI HASIL SCAN</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script id="kz-qr-scanner-script">
+(function(){
+  if(window.__kzQrScannerPatchLoaded) return;
+  window.__kzQrScannerPatchLoaded = true;
+
+  var state = {
+    scanner: null,
+    active: false,
+    loadingPromise: null,
+    lastResult: ''
+  };
+
+  function $(id){ return document.getElementById(id); }
+
+  function playSafe(){
+    try{ if(typeof playClick === 'function') playClick(); }catch(e){}
+  }
+
+  function toast(msg){
+    try{
+      if(typeof authToast === 'function'){
+        authToast(msg);
+        return;
+      }
+    }catch(e){}
+    try{
+      var payStatus = $('payStatus');
+      if(payStatus) payStatus.textContent = msg;
+    }catch(e){}
+  }
+
+  function setStatus(msg, isError){
+    var el = $('kzQrScannerStatus');
+    if(!el) return;
+    el.textContent = msg || '';
+    el.classList.toggle('error', !!isError);
+  }
+
+  function setResult(value){
+    state.lastResult = String(value || '');
+    var area = $('kzQrResultText');
+    if(area) area.value = state.lastResult;
+    updateActionState();
+  }
+
+  function updateActionState(){
+    var hasResult = !!String(state.lastResult || '').trim();
+    ['kzQrCopyBtn','kzQrOpenBtn','kzQrUseBtn'].forEach(function(id){
+      var btn = $(id);
+      if(btn) btn.disabled = !hasResult;
+    });
+  }
+
+  function overlay(){
+    return $('qrScannerOverlay');
+  }
+
+  function showOverlay(){
+    var el = overlay();
+    if(!el) return;
+    el.classList.add('show');
+    el.setAttribute('aria-hidden', 'false');
+  }
+
+  async function hideOverlay(){
+    var el = overlay();
+    await stopScanner();
+    if(!el) return;
+    el.classList.remove('show');
+    el.setAttribute('aria-hidden', 'true');
+  }
+
+  function loadQrLibrary(){
+    if(window.Html5Qrcode) return Promise.resolve(window.Html5Qrcode);
+    if(state.loadingPromise) return state.loadingPromise;
+
+    var urls = [
+      'https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js',
+      'https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js'
+    ];
+
+    state.loadingPromise = new Promise(function(resolve, reject){
+      var index = 0;
+      function tryLoad(){
+        if(window.Html5Qrcode){
+          resolve(window.Html5Qrcode);
+          return;
+        }
+        if(index >= urls.length){
+          reject(new Error('Library scanner gagal dimuat.'));
+          return;
+        }
+        var src = urls[index++];
+        var script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        script.onload = function(){
+          if(window.Html5Qrcode){
+            resolve(window.Html5Qrcode);
+          }else{
+            tryLoad();
+          }
+        };
+        script.onerror = function(){
+          try{ script.remove(); }catch(e){}
+          tryLoad();
+        };
+        document.head.appendChild(script);
+      }
+      tryLoad();
+    }).catch(function(err){
+      state.loadingPromise = null;
+      throw err;
+    });
+
+    return state.loadingPromise;
+  }
+
+  async function stopScanner(){
+    if(!state.scanner){
+      state.active = false;
+      return;
+    }
+    if(state.active){
+      try{
+        await state.scanner.stop();
+      }catch(e){}
+    }
+    try{
+      await state.scanner.clear();
+    }catch(e){}
+    state.scanner = null;
+    state.active = false;
+  }
+
+  async function createScanner(){
+    await loadQrLibrary();
+    if(!state.scanner){
+      state.scanner = new Html5Qrcode('kzQrReader');
+    }
+    return state.scanner;
+  }
+
+  async function startScanner(){
+    try{
+      setStatus('Menyalakan kamera...', false);
+      setResult('');
+      var scanner = await createScanner();
+      if(state.active) return true;
+
+      var config = { fps: 10, qrbox: { width: 220, height: 220 }, aspectRatio: 1 };
+      var started = false;
+
+      var cameraAttempts = [
+        { facingMode: { exact: 'environment' } },
+        { facingMode: 'environment' },
+        { facingMode: 'user' }
+      ];
+
+      for(var i = 0; i < cameraAttempts.length; i++){
+        try{
+          await scanner.start(
+            cameraAttempts[i],
+            config,
+            function(decodedText){
+              setResult(decodedText || '');
+              setStatus('QR berhasil dibaca.', false);
+              stopScanner();
+            },
+            function(){}
+          );
+          started = true;
+          break;
+        }catch(err){}
+      }
+
+      if(!started && typeof Html5Qrcode.getCameras === 'function'){
+        try{
+          var cams = await Html5Qrcode.getCameras();
+          if(cams && cams.length){
+            await scanner.start(
+              { deviceId: { exact: cams[0].id } },
+              config,
+              function(decodedText){
+                setResult(decodedText || '');
+                setStatus('QR berhasil dibaca.', false);
+                stopScanner();
+              },
+              function(){}
+            );
+            started = true;
+          }
+        }catch(err2){}
+      }
+
+      if(!started){
+        throw new Error('Kamera tidak bisa dibuka. Pastikan izin kamera aktif di browser atau APK.');
+      }
+
+      state.active = true;
+      setStatus('Scanner aktif. Arahkan kamera ke QR.', false);
+      return true;
+    }catch(err){
+      state.active = false;
+      setStatus((err && err.message) ? err.message : 'Scanner gagal dijalankan.', true);
+      return false;
+    }
+  }
+
+  async function openScanner(){
+    playSafe();
+    showOverlay();
+    await startScanner();
+  }
+
+  async function rescan(){
+    playSafe();
+    await stopScanner();
+    await startScanner();
+  }
+
+  async function copyResult(){
+    playSafe();
+    var value = String(state.lastResult || '').trim();
+    if(!value){
+      toast('Belum ada hasil scan.');
+      return;
+    }
+    try{
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        await navigator.clipboard.writeText(value);
+        toast('Hasil scan berhasil disalin.');
+      }else{
+        throw new Error('Clipboard tidak didukung');
+      }
+    }catch(e){
+      var area = $('kzQrResultText');
+      if(area){
+        area.removeAttribute('readonly');
+        area.focus();
+        area.select();
+        area.setAttribute('readonly','readonly');
+      }
+      toast('Salin manual dari kolom hasil scan.');
+    }
+  }
+
+  function openResult(){
+    playSafe();
+    var value = String(state.lastResult || '').trim();
+    if(!value){
+      toast('Belum ada hasil scan.');
+      return;
+    }
+    if(/^https?:\/\//i.test(value)){
+      window.open(value, '_blank', 'noopener');
+      return;
+    }
+    toast('Hasil scan bukan link, jadi tidak bisa dibuka langsung.');
+  }
+
+  function useResult(){
+    playSafe();
+    var value = String(state.lastResult || '').trim();
+    if(!value){
+      toast('Belum ada hasil scan.');
+      return;
+    }
+
+    try{
+      var hidden = $('payFormProofInfo');
+      if(hidden){
+        hidden.value = value;
+      }
+    }catch(e){}
+
+    try{
+      var status = $('payStatus');
+      if(status){
+        status.textContent = 'Hasil QR tersimpan. Lanjutkan proses sesuai kebutuhan.';
+      }
+    }catch(e){}
+
+    toast('Hasil scan sudah dimasukkan ke flow pembayaran.');
+    hideOverlay();
+  }
+
+  function bindEvents(){
+    var openBtn = $('payBtnScanQRIS');
+    if(openBtn && openBtn.dataset.kzBound !== '1'){
+      openBtn.dataset.kzBound = '1';
+      openBtn.addEventListener('click', openScanner, false);
+    }
+
+    var closeBtn = $('closeQrScannerBtn');
+    if(closeBtn && closeBtn.dataset.kzBound !== '1'){
+      closeBtn.dataset.kzBound = '1';
+      closeBtn.addEventListener('click', function(){ playSafe(); hideOverlay(); }, false);
+    }
+
+    var rescanBtn = $('kzQrRescanBtn');
+    if(rescanBtn && rescanBtn.dataset.kzBound !== '1'){
+      rescanBtn.dataset.kzBound = '1';
+      rescanBtn.addEventListener('click', rescan, false);
+    }
+
+    var copyBtn = $('kzQrCopyBtn');
+    if(copyBtn && copyBtn.dataset.kzBound !== '1'){
+      copyBtn.dataset.kzBound = '1';
+      copyBtn.addEventListener('click', copyResult, false);
+    }
+
+    var openResultBtn = $('kzQrOpenBtn');
+    if(openResultBtn && openResultBtn.dataset.kzBound !== '1'){
+      openResultBtn.dataset.kzBound = '1';
+      openResultBtn.addEventListener('click', openResult, false);
+    }
+
+    var useBtn = $('kzQrUseBtn');
+    if(useBtn && useBtn.dataset.kzBound !== '1'){
+      useBtn.dataset.kzBound = '1';
+      useBtn.addEventListener('click', useResult, false);
+    }
+
+    var ov = overlay();
+    if(ov && ov.dataset.kzBound !== '1'){
+      ov.dataset.kzBound = '1';
+      ov.addEventListener('click', function(ev){
+        if(ev.target === ov){
+          playSafe();
+          hideOverlay();
+        }
+      }, false);
+    }
+
+    updateActionState();
+  }
+
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden){
+      stopScanner();
+    }
+  });
+
+  window.addEventListener('beforeunload', function(){
+    stopScanner();
+  });
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', bindEvents);
+  }else{
+    bindEvents();
+  }
+
+  window.openQrScanner = openScanner;
 })();
 </script>
 
