@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="id"><head>
-<!-- PWA -->
+
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KZRIZUSMO Store">
-<!-- /PWA -->
+
 <meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/><meta content="no-cache" http-equiv="Pragma"/><meta content="0" http-equiv="Expires"><meta content="no-referrer" name="referrer"><title>KZRIZUSMO Store</title><meta name="description" content="KZRIZUSMO Store"/><meta name="theme-color" content="#050505"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -185,7 +185,6 @@ img, video, svg, canvas { max-width: 100%; height: auto; }
 #kzCsModal .kzcs-wa:active{transform:scale(.99)}
 #kzCsModal .kzcs-wa i{font-size:28px; color:#25D366}
 
-
 /* === PATCH: Sosmed scroll fix === */
 #page-sosmed{max-height:calc(100vh - 120px);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:32px}
 /* keep horizontal tabs scrollable without blocking vertical */
@@ -230,7 +229,7 @@ html.kz-skip-intro #introOverlay{display:none !important;opacity:0 !important;vi
   }catch(e){}
 })();
 </script>
-  <meta name="theme-color" content="#050505">
+  
 
 <style id="kz-home-banner-sidebar-match">
   #page-home .banner-container{
@@ -351,7 +350,6 @@ body.light-mode #accGenderPills .gpill.active{border-color:var(--primary)}
 .auth-field{gap:6px !important;margin-bottom:10px !important;}
 </style>
 
-
 <style id="fix-auth-overlap">
 /* Fix overlap between Info card and Status Member card in Akun modal */
 #authModal .admin-carditem{margin-bottom:14px !important; position:relative !important;}
@@ -359,7 +357,6 @@ body.light-mode #accGenderPills .gpill.active{border-color:var(--primary)}
 /* ensure text blocks don't visually spill */
 #authModal .admin-carditem *{max-width:100%;}
 </style>
-
 
 <style id="kz-points-ui-tweaks">
 /* Info icon: circular with 'i' centered, pinned top-right inside Points box */
@@ -473,7 +470,6 @@ body.light-mode .kz-pkg-cart-btn{
   color:rgba(0,0,0,.85);
 }
 
-
 .kz-cart-head{
   padding:16px 16px 14px;
   border-bottom:1px solid var(--border);
@@ -567,7 +563,6 @@ body.light-mode .kz-icon-btn{
   background:rgba(0,0,0,.06);
   color:rgba(0,0,0,.85);
 }
-
 
 .kz-cart-select{
   display:flex;
@@ -776,7 +771,6 @@ body.light-mode .kz-cart-foot{background:rgba(0,0,0,.04);}
 .kz-compressor .exit-btn{margin-top:10px;width:100%;border-radius:14px;padding:12px 14px;font-size:15px;font-weight:900;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.28);color:rgba(255,255,255,.9);cursor:pointer}
 .kz-compressor .exit-btn:disabled{opacity:.5;cursor:not-allowed}
 
-
 @supports (-webkit-mask-composite: xor){
   .kz-compressor .compressor-card{border:0;box-shadow:0 32px 95px rgba(0,0,0,.74), 0 0 0 1px rgba(255,0,0,.08);}
   .kz-compressor .compressor-card:before{opacity:.9;}
@@ -787,7 +781,6 @@ body.light-mode .kz-cart-foot{background:rgba(0,0,0,.04);}
   .kz-compressor .cinfo-value{font-size:20px}
 }
 
-
 /* === KZ: Compressor page wrapper === */
 #page-compressor{padding:0 !important}
 #page-compressor .kz-compressor{width:100%;min-height:calc(100vh - 70px);}
@@ -795,8 +788,6 @@ body.light-mode .kz-cart-foot{background:rgba(0,0,0,.04);}
 #page-compressor .kz-compressor{margin:0 auto;}
 
 </style>
-
-
 
 <style id="kz-cs-popover-overrides">
 /* === KZ: CS Sticker (character only; no circle) === */
@@ -866,14 +857,12 @@ body.light-mode .kz-cart-foot{background:rgba(0,0,0,.04);}
 .kz-cs-bubble{display:none !important;}
 </style>
 
-
 <style>
 /* KZ: deposit history refresh spin */
 @keyframes kzSpin360 { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
 .kz-spin360{ display:inline-block; animation: kzSpin360 0.9s linear infinite; will-change: transform; }
 #depHistRefreshBtn[disabled]{ opacity: .75; cursor: not-allowed; }
 </style>
-
 
 <style id="remove-saldo-guard">
 .saldo-chip, .sidebar-saldo-mini, #paySaldoWrap, #payRowSaldo, #paySaldoSwipeMount, [data-method="saldo"], .pay-method-tag-saldo, #page-deposit, #page-deposit-history, [onclick="openDepositPaymentDirect()"], [onclick="navTo('deposit-history')"]{display:none !important;}
@@ -1764,7 +1753,6 @@ body.light-mode .mem-upgrade-btn.btn-ghost{
 }
 </style>
 
-
 <script id="kz-fix10-tier-script">
 (function(){
   function ensureHeaderTierBadge(){
@@ -1858,7 +1846,6 @@ img[src="https://files.catbox.moe/o3hpkk.png"]{
 }
 </style>
 
-
 <style id="banner-fixes-v3">
 #page-home{
   padding-top:0 !important;
@@ -1898,7 +1885,6 @@ img[src="https://files.catbox.moe/o3hpkk.png"]{
 }
 </style>
 
-
 <style id="kz-banner-final-fix">
   /* final fix: only banner corner radius + top spacing */
   #page-home,
@@ -1928,7 +1914,6 @@ img[src="https://files.catbox.moe/o3hpkk.png"]{
     margin-top:0 !important;
   }
 </style>
-
 
 <style id="kz-step1-lightmode-fix">
 /* Step 1: light mode cleanup */
@@ -2099,7 +2084,6 @@ body.light-mode .intro-text{
 }
 </style>
 
-
 <style id="kz-home-top-layout-fix-final">
 #page-home .kz-home-top{
   display:grid !important;
@@ -2130,10 +2114,6 @@ body.light-mode .intro-text{
 }
 </style>
 
-
-
-
-
 <style id="kz-home-top-card-color-patch">
 #page-home .kz-home-card.kz-top-card{
   background:#050505 !important;
@@ -2145,7 +2125,6 @@ body.light-mode #page-home .kz-home-card.kz-top-card{
   box-shadow:0 12px 30px var(--shadow) !important;
 }
 </style>
-
 
 <style id="kz-force-light-bg-f4f5f7">
 body.light-mode,
@@ -2160,7 +2139,7 @@ body.light-mode main{
 
 </head><body><div class="statusbar-space"></div><div class="app-wrapper"><div id="introOverlay" onclick="openApp()"><img class="intro-logo" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg"/><div class="intro-text">KZRIZUSMO STORE</div><small style="margin-top:10px; color:#aaa;">Tap untuk masuk</small></div><div id="welcomePopup"><div aria-label="Informasi proses order" aria-modal="true" class="popup-card" onclick="event.stopPropagation()" role="dialog"><button aria-label="Close" class="popup-close" onclick="playClick(); closeWelcomePopup()">×</button><img alt="Pahami alur proses order" class="popup-img" src="https://files.catbox.moe/5cpocn.jpg"/><div class="popup-actions"><a class="popup-btn popup-btn-left" href="https://chat.whatsapp.com/BvbJh4kPHNM9ixyWaUXR50?mode=gi_t" onclick="playClick()" rel="noopener" target="_blank">Join Group</a><a class="popup-btn popup-btn-right" href="https://whatsapp.com/channel/0029VbDOVUJIHphDqJoiNH1L" onclick="playClick()" rel="noopener" target="_blank">Join Saluran</a></div></div></div><div id="payOverlay" onclick="onPayOverlayClick(event)"><div aria-label="Payment" aria-modal="true" class="pay-modal" onclick="event.stopPropagation()" role="dialog"><div class="pay-head"><div><h3>Payment</h3><div class="pay-sub">Produk: <b id="payProductName">-</b><span id="payServerBadge" class="pay-server-badge" style="display:none;">S1</span></div></div><div class="pay-row"><div class="pay-badge" id="payTimerBadge"><span class="pay-dot" id="payTimerDot"></span><span id="payTimerText">Timer: belum mulai</span></div><button aria-label="Close" class="pay-close" onclick="playClick(); closePaymentFlow()">×</button></div></div><div id="payToast" class="pay-toast" aria-live="polite"></div><div class="pay-body"><div id="payMainView"><div style="font-weight:900">Metode Pembayaran</div><div class="pay-grid" id="payMethodGrid"><div class="pay-method" data-method="qris" onclick="selectPaymentMethod('qris')">QRIS</div><div class="pay-method" data-method="dana" onclick="selectPaymentMethod('dana')">DANA</div><div class="pay-method" data-method="gopay" onclick="selectPaymentMethod('gopay')">GOPAY</div><div class="pay-method" data-method="ovo" onclick="selectPaymentMethod('ovo')">OVO</div></div><div class="pay-panel" id="payDetailPanel" style="display:none;"><div class="pay-row" style="justify-content:space-between"><div style="font-weight:900">Detail Pembayaran</div><div class="pay-sub" id="payDeadlineText">Batas: -</div></div><div id="payQRISWrap" style="display:none; margin-top:10px;"><img alt="QRIS" class="pay-qr" id="payQrisImg"/><button class="pay-btn secondary" id="payBtnDownloadQRIS" type="button" onclick="downloadQris()">DOWNLOAD QRIS</button></div><div id="payNumberWrap" style="display:none; margin-top:10px;"><div class="pay-number"><code id="payNumberText">-</code><button class="pay-btn secondary" onclick="copyPaymentNumber()" style="width:auto; padding:10px 12px; margin-top:0;" type="button">SALIN</button></div></div><div id="payMethodInfo" class="pay-info" style="display:block; margin-top:10px;"></div><div class="pay-upload" id="payUploadSection"><div id="payUploadTitle" style="font-weight:900">Upload Bukti Pembayaran</div><form id="payProofForm" method="post" enctype="multipart/form-data"><input name="to_email" type="hidden" value="kzrizusmostore@gmail.com"/><input id="payFormOrderId" name="order_id" type="hidden" value=""/><input id="payFormProduct" name="product_name" type="hidden" value=""/><input id="payFormUnitPrice" name="unit_price" type="hidden" value=""/><input id="payFormTotal" name="total_price" type="hidden" value=""/><input id="payFormMethod" name="payment_method" type="hidden" value=""/><input id="payFormValue" name="payment_value" type="hidden" value=""/><input id="payFormDeadline" name="payment_deadline" type="hidden" value=""/><input id="payFormSubject" name="subject" type="hidden" value=""/><input id="payFormMessage" name="message" type="hidden" value=""/><input id="payFormFromName" name="from_name" type="hidden" value=""/><input id="payFormSenderName" name="sender_name" type="hidden" value=""/><input id="payFormWA" name="whatsapp" type="hidden" value=""/><textarea id="payFormDetail" name="order_detail" style="display:none"></textarea><div class="pay-summary"><div class="pay-srow"><span>Produk</span><b id="paySumProduct">-</b></div><div class="pay-srow"><span>Harga Satuan</span><b id="paySumUnit">-</b></div><div class="pay-srow"><span>Jumlah</span><div class="pay-qty-wrap"><button class="qty-btn" id="payQtyMinus" type="button" onclick="qtyMinus()">−</button><input class="pay-input pay-qty" id="payQtyInput" name="qty" type="number" min="1" value="1" inputmode="numeric" required/><button class="qty-btn" id="payQtyPlus" type="button" onclick="qtyPlus()">+</button></div></div><div class="pay-srow"><span>Subtotal</span><b id="paySumSubtotal">-</b></div><div class="pay-srow" id="payRowDiscount" style="display:none;"><span>Diskon Member</span><b id="paySumDiscount">-</b></div><div class="pay-srow" id="payRowPromo" style="display:none;"><span>Diskon Promo</span><b id="paySumPromo">-</b></div><div class="pay-srow" id="payRowUnique" style="display:none;"><span>Diskon Unik</span><b id="paySumUnique">-</b></div><div class="pay-srow"><span>Total Bayar</span><b id="paySumTotal">-</b></div><div class="pay-srow" id="payRowPromoCode" style="display:none;"><span>Kode Promo</span><b id="paySumPromoCode">-</b></div><div class="pay-srow" id="payRowSender" style="display:none;"><span>Username</span><b id="paySumSender">-</b></div><div class="pay-srow" id="payRowWA" style="display:none;"><span>Nomor WhatsApp</span><b id="paySumWA">-</b></div></div><div class="pay-field" id="payDepositField" style="display:none;"><label class="pay-label" for="payDepositAmountInput">Nominal Deposit</label><input class="pay-input" id="payDepositAmountInput" type="tel" inputmode="numeric" placeholder="contoh: 50000" autocomplete="off"/><div class="pay-sub" style="margin-top:6px;">Minimal Rp 1.000</div></div><div class="pay-field" id="payPromoField"><label class="pay-label" for="payPromoInput">Kode Promo (opsional)</label><div class="pay-inline"><input class="pay-input" id="payPromoInput" type="text" placeholder="contoh: PROMO123" autocomplete="off"/><button class="pay-btn secondary" id="payPromoApplyBtn" type="button" onclick="applyPromoCode()" style="width:auto; padding:10px 12px; margin-top:0;">PAKAI</button><button class="pay-btn secondary" id="payPromoClearBtn" type="button" onclick="clearPromoCode()" style="width:auto; padding:10px 12px; margin-top:0; opacity:.85;">HAPUS</button></div><div class="pay-sub" id="payPromoHint" style="margin-top:6px;"></div></div><div id="payZusmoUidField" class="pay-field" style="display:none;"><label class="pay-label" for="payZusmoUidInput">UID :</label><input class="pay-input" id="payZusmoUidInput" name="zusmo_uid" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Masukkan UID" autocomplete="off"/></div><div class="pay-field" id="payWhatsappFieldDefault"><label class="pay-label" for="payWhatsappInput">Nomor WhatsApp :</label><input class="pay-input" id="payWhatsappInput" name="buyer_whatsapp" type="tel" inputmode="tel" placeholder="08" autocomplete="tel" required/></div><div id="payZusmoFields" style="display:none;"><div class="pay-field"><label class="pay-label">Pilih Game :</label><div class="pay-choice-grid two" id="payZusmoGameChoices"><button class="pay-choice-btn" data-value="Free Fire" data-group="game" type="button">FREE FIRE</button><button class="pay-choice-btn" data-value="FF Max" data-group="game" type="button">FF MAX</button></div><input id="payZusmoGameInput" name="zusmo_game" type="hidden" value=""/></div><div class="pay-field"><label class="pay-label">Pilih Device :</label><div class="pay-choice-grid two" id="payZusmoPlatformChoices"><button class="pay-choice-btn" data-value="Android" data-group="platform" type="button">ANDROID</button><button class="pay-choice-btn" data-value="iOS" data-group="platform" type="button">IOS</button></div><input id="payZusmoPlatformInput" name="zusmo_platform" type="hidden" value=""/></div></div><div id="paySaldoSwipeMount" style="display:none; margin-top:10px;"></div><input accept="image/*,.pdf,application/pdf" id="payFileInput" class="kz-file-input-native" type="file"/><input id="payFormProofInfo" name="proof_info" type="hidden" value=""/></form><button class="pay-btn secondary" id="payBtnUpload" onclick="triggerPayUpload()" type="button">UPLOAD BUKTI</button><div class="pay-preview" id="payPreview"><img alt="Preview" id="payPreviewImg"/><div><div id="payPreviewName" style="font-weight:900">-</div><div class="pay-sub">Jika sudah benar, klik tombol kirim.</div></div></div><button class="pay-btn" id="payBtnSend" onclick="sendPaymentProof()" type="button">KONFIRMASI &amp; KIRIM</button><div class="pay-status" id="payStatus"></div></div><div class="pay-info">Pastikan seluruh data diisi dengan benar dan nomor WhatsApp dalam keadaan aktif.
 
-©ᴋᴢʀɪᴢᴜsᴍᴏsᴛᴏʀᴇ</div></div><div id="paySuccessView" data-state="success" style="display:none;"><div class="pay-success-wrap"><div class="pay-success-card"><div class="pay-success-check" aria-hidden="true"><svg viewBox="0 0 100 100" role="img" aria-label="Sukses"><circle class="ring" cx="50" cy="50" r="45"></circle><path class="tick" d="M30 52 L45 67 L72 38"></path></svg></div><div class="pay-success-title" id="paySuccessTitle">Bukti Pembayaran Terkirim</div><div class="pay-success-sub" id="paySuccessSub">Harap menunggu. Sedang diproses...</div><div class="rc-prod pay-success-prod"><img id="paySuccessProductImg" alt="Produk"/><div><div id="paySuccessProductName2" class="rc-prod-name">-</div></div></div><div class="pay-success-meta"><div class="pay-srow"><span>Order ID</span><b id="paySuccessOrderId">-</b></div><div class="pay-srow"><span>Waktu Order</span><b id="paySuccessOrderTime">-</b></div><div class="pay-srow"><span>Username</span><b id="paySuccessSenderName">-</b></div><div class="pay-srow"><span>WhatsApp</span><b id="paySuccessBuyerWA">-</b></div><div class="pay-srow"><span>Produk</span><b id="paySuccessProduct">-</b></div><div class="pay-srow"><span>Total Bayar</span><b id="paySuccessTotal">-</b></div><div class="pay-srow"><span>Metode</span><b id="paySuccessMethod">-</b></div><div class="pay-srow"><span>Tujuan</span><b id="paySuccessTarget">-</b></div></div><div class="pay-success-steps" id="paySuccessSteps"><div class="pay-step done"><i class="fas fa-check"></i> Bukti pembayaran berhasil dikirim</div><div class="pay-step"><i class="fas fa-clock"></i> Menunggu verifikasi admin</div><div class="pay-step"><i class="fab fa-whatsapp"></i> Proses kirim data akun ke WhatsApp</div></div><div class="pay-success-actions" id="paySuccessActions"><button class="pay-btn secondary" id="payBtnStruk" type="button" onclick="kzOpenReceiptFromSuccess()">STRUK</button><button class="pay-btn" id="payBtnFinish" type="button" onclick="kzTryFinishPayment()">SELESAI</button></div><div class="pay-success-note">
+</div></div><div id="paySuccessView" data-state="success" style="display:none;"><div class="pay-success-wrap"><div class="pay-success-card"><div class="pay-success-check" aria-hidden="true"><svg viewBox="0 0 100 100" role="img" aria-label="Sukses"><circle class="ring" cx="50" cy="50" r="45"></circle><path class="tick" d="M30 52 L45 67 L72 38"></path></svg></div><div class="pay-success-title" id="paySuccessTitle">Bukti Pembayaran Terkirim</div><div class="pay-success-sub" id="paySuccessSub">Harap menunggu. Sedang diproses...</div><div class="rc-prod pay-success-prod"><img id="paySuccessProductImg" alt="Produk"/><div><div id="paySuccessProductName2" class="rc-prod-name">-</div></div></div><div class="pay-success-meta"><div class="pay-srow"><span>Order ID</span><b id="paySuccessOrderId">-</b></div><div class="pay-srow"><span>Waktu Order</span><b id="paySuccessOrderTime">-</b></div><div class="pay-srow"><span>Username</span><b id="paySuccessSenderName">-</b></div><div class="pay-srow"><span>WhatsApp</span><b id="paySuccessBuyerWA">-</b></div><div class="pay-srow"><span>Produk</span><b id="paySuccessProduct">-</b></div><div class="pay-srow"><span>Total Bayar</span><b id="paySuccessTotal">-</b></div><div class="pay-srow"><span>Metode</span><b id="paySuccessMethod">-</b></div><div class="pay-srow"><span>Tujuan</span><b id="paySuccessTarget">-</b></div></div><div class="pay-success-steps" id="paySuccessSteps"><div class="pay-step done"><i class="fas fa-check"></i> Bukti pembayaran berhasil dikirim</div><div class="pay-step"><i class="fas fa-clock"></i> Menunggu verifikasi admin</div><div class="pay-step"><i class="fab fa-whatsapp"></i> Proses kirim data akun ke WhatsApp</div></div><div class="pay-success-actions" id="paySuccessActions"><button class="pay-btn secondary" id="payBtnStruk" type="button" onclick="kzOpenReceiptFromSuccess()">STRUK</button><button class="pay-btn" id="payBtnFinish" type="button" onclick="kzTryFinishPayment()">SELESAI</button></div><div class="pay-success-note">
         Admin akan segera memproses pesanan Anda.
 Estimasi waktu maksimal 2 jam (sesuai antrean).
 Mohon menunggu dengan sabar. Terima kasih.
@@ -2200,7 +2179,7 @@ Mohon menunggu dengan sabar. Terima kasih.
               Setelah diganti, password default tidak berlaku lagi.
             </div></div><div class="admin-carditem"><div class="top"><div class="title">Tools Data</div><span class="mini-chip"><i class="fas fa-triangle-exclamation"></i> hati-hati</span></div><div class="admin-actions"><button class="btn-ghost" type="button" onclick="adminExportDB()"><i class="fas fa-file-export" style="margin-right:8px;"></i> Export JSON</button><button class="btn-ghost" type="button" onclick="adminImportDB()"><i class="fas fa-file-import" style="margin-right:8px;"></i> Import JSON</button><button class="btn-ghost" type="button" onclick="adminWipeDB()"><i class="fas fa-trash-can" style="margin-right:8px;"></i> Reset DB</button></div><div style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.5">
               Export/Import berguna kalau pindah device. Import akan menimpa data lokal sekarang.
-            </div></div><div class="admin-carditem"><div class="top"><div class="title">Export / Import HTML</div><span class="mini-chip"><i class="fas fa-file-code"></i> backup</span></div><div class="admin-actions"><button class="btn-solid" type="button" onclick="(window.kzOpenBackupModal?window.kzOpenBackupModal():null)"><i class="fas fa-box-archive" style="margin-right:8px;"></i> Buka Panel Export/Import</button><button class="btn-ghost" type="button" onclick="(window.kzExportBaseHTML?window.kzExportBaseHTML():null)"><i class="fas fa-file-export" style="margin-right:8px;"></i> Export HTML (Produk Inline)</button></div><div style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.5">Import bisa pakai <b>file</b> (JSON/HTML) tanpa copy-paste. Panel ini juga punya Backup HTML (Full) + Export/Import JSON.</div></div><div class="admin-carditem"><div class="top"><div class="title">Audit Log Admin</div><span class="mini-chip"><i class="fas fa-clipboard-check"></i> riwayat</span></div><div class="admin-row"><div class="admin-field" style="flex:1;"><label style="font-size:12px;color:var(--text-sec)">Cari</label><input id="adminAuditSearch" placeholder="aksi / user / order / info" oninput="renderAdminAudit()"/></div><div class="admin-field" style="max-width:180px;"><label style="font-size:12px;color:var(--text-sec)">Limit</label><select id="adminAuditLimit" onchange="renderAdminAudit()"><option value="50">50</option><option value="100" selected>100</option><option value="200">200</option></select></div></div><div class="admin-actions"><button class="btn-ghost" type="button" onclick="adminExportAudit()"><i class="fas fa-file-export" style="margin-right:8px;"></i> Export</button><button class="btn-ghost" type="button" onclick="adminClearAudit()" style="border-color: rgba(255,0,0,.18);"><i class="fas fa-trash-can" style="margin-right:8px;"></i> Clear</button></div><div style="height:10px"></div><div id="adminAuditList" class="admin-cardlist"></div><div id="adminAuditHint" style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.5">Audit log mencatat aksi admin penting (update order, deposit, poin, info, export). Disimpan lokal (device ini).</div></div></div></section></div></div></div><div id="accountOverlay" class="acc-overlay" onclick="closeAccountSettings()"><div class="acc-card" role="dialog" aria-modal="true" aria-label="Profil & Pengaturan Akun" onclick="event.stopPropagation()"><div class="acc-head"><div><div class="acc-title"><i id="accTitleIcon" class="fas fa-user-gear" style="margin-right:8px;color:var(--primary)"></i><span id="accPanelTitle">Akun Saya</span></div></div><button class="acc-close" type="button" onclick="closeAccountSettings()">×</button></div><div class="acc-body"><form onsubmit="accountSave(event)"><div class="acc-profile"><div class="acc-avatar kz-profile-hero"><div class="kz-avatar-stack" id="accAvatarStack"><img id="accAvatarPreview" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg" alt="Foto profil"/><button class="kz-avatar-edit-fab" type="button" onclick="document.getElementById('accAvatarInput').click()" aria-label="Ganti foto profil" title="Ganti foto profil"><i class="fas fa-pencil"></i></button></div><div class="acc-avatar-tier" id="accAvatarTierBadge">BASIC</div><input id="accAvatarInput" type="file" accept="image/*" style="display:none" onchange="accountAvatarPick(event)"/><div style="margin-top:8px; font-size:12px; color: var(--text-sec); line-height:1.4;"></div></div></div><div class="acc-account-sidebar"><div class="kz-profile-columns"><div class="acc-kv"><span>ID</span><b id="accUserId">-</b></div><div class="acc-kv"><span>Tanggal Bergabung</span><b id="accJoinedAt">-</b></div><div class="acc-kv kz-ref-kv"><span>Kode Referal</span><div class="kz-ref-wrap"><div class="kz-ref-top"><b id="accReferralCode">-</b><button class="acc-copy-btn" type="button" onclick="copyReferralCode()" title="Copy kode referal"><i class="fas fa-copy"></i></button></div><button class="acc-invite-btn" type="button" onclick="shareReferralLink()" title="Undang teman"><i class="fas fa-share-nodes"></i><span>Undang</span></button></div></div><div class="acc-kv"><span>Poin</span><b id="accPointsText">0</b></div><div class="acc-kv kz-status-akun-kv"><span>Status Akun</span><b id="accActiveText" class="status-active">AKTIF</b></div><div class="kz-install-kv"><button id="accInstallAppBtn" class="btn-solid kz-install-column-btn" type="button" onclick="kzHandleInstallClick()"><i class="fas fa-download" style="margin-right:8px;"></i><span id="accInstallAppLabel">Install</span></button></div></div><div class="acc-tier-panel"><div class="acc-tier-head"><div class="acc-tier-title">Tier</div><div class="acc-tier-current">Tier kamu: <b id="accTierActiveInline">BASIC</b></div></div><div class="acc-tier-list" id="accTierList"><span class="member-badge tier-basic">BASIC</span><span class="member-badge tier-elite">ELITE</span><span class="member-badge tier-ultimate">ULTIMATE</span><span class="member-badge tier-business">BUSINESS</span></div></div><div class="acc-upgrade-panel"><div class="acc-upgrade-head"><div class="acc-upgrade-title">Upgrade Membership</div></div><div class="acc-upgrade-list" id="accUpgradeList"></div><div class="acc-upgrade-note" id="accUpgradeHint"></div></div></div><div class="kz-profile-bio-fields"><div class="auth-field"><label>Nama Lengkap</label><input id="accDisplayName" placeholder="Nama yang tampil"/></div><div class="auth-field"><label>Nomor WhatsApp</label><input id="accWA" inputmode="numeric" placeholder="contoh: 08"/></div><div class="auth-field kz-hidden-account-field"><label>Email</label><input id="accEmail" type="email" placeholder="Masukkan email"/><div id="accEmailHint" style="margin-top:6px;font-size:12px;color:var(--text-sec);line-height:1.4;"></div></div><div class="auth-field"><label>Username</label><input id="accUsername" readonly/></div><div class="auth-field"><label>Tanggal Lahir</label><input id="accBirthDate" type="date"/></div><div class="auth-field"><label>Jenis Kelamin</label><input id="accGender" type="hidden" value=""/><div class="gender-pills" id="accGenderPills" role="group" aria-label="Jenis Kelamin"><button class="gpill" type="button" data-v="Laki-laki" onclick="setAccGender('Laki-laki', this)">Laki-laki</button><button class="gpill" type="button" data-v="Perempuan" onclick="setAccGender('Perempuan', this)">Perempuan</button></div><div style="margin-top:6px;font-size:12px;color:var(--text-sec);line-height:1.4;"></div></div></div><div class="kz-profile-security"><div class="auth-field"><label>Password Baru</label><div class="pw-wrap"><input id="accNewPass" type="password" autocomplete="new-password" placeholder="Kosongkan jika tidak ingin ganti"/><button class="pw-toggle" type="button" aria-label="Tampilkan password" onclick="togglePasswordVisibility('accNewPass', this)"><i class="fas fa-eye"></i></button></div></div><div class="auth-field"><label>Konfirmasi Password Baru</label><div class="pw-wrap"><input id="accNewPass2" type="password" autocomplete="new-password" placeholder="Ulangi password baru"/><button class="pw-toggle" type="button" aria-label="Tampilkan password" onclick="togglePasswordVisibility('accNewPass2', this)"><i class="fas fa-eye"></i></button></div></div></div><div class="kz-profile-save-section"><div class="auth-actions" style="margin-top:12px;"><button class="btn-ghost" type="button" onclick="closeAccountSettings()">Tutup</button><button class="btn-solid" type="submit"><i class="fas fa-check" style="margin-right:8px;"></i> Simpan Perubahan</button></div></div><div class="auth-actions" style="margin-top:10px;"><button class="btn-ghost btn-ghost-danger" style="width:100%;" type="button" onclick="logoutUser()"><i class="fas fa-right-from-bracket" style="margin-right:8px;"></i> Keluar</button></div><div class="auth-actions" style="margin-top:10px;"><button class="btn-ghost btn-ghost-danger" style="width:100%;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.12);" type="button" onclick="deleteMyAccount()"><i class="fas fa-trash" style="margin-right:8px;"></i> Hapus Akun Saya</button></div></form></div></div></div><div id="sysToast" class="pay-toast" aria-live="polite"></div><div class="sidebar-overlay" onclick="toggleSidebar()"></div><div class="sidebar" id="sidebar"><div class="sidebar-header"><div class="sidebar-header-left"><div class="sidebar-userbox" id="sidebarUserBox"><img id="sidebarProfileImg" class="sidebar-profile-img" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg" alt="Profile" title="Buka profil" role="button" tabindex="0" onclick="event.stopPropagation(); openMyAccountPanel();" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); openMyAccountPanel();}"/><div class="sidebar-usertext"><div class="sidebar-greeting" id="sidebarGreeting">Selamat Malam <span id="sidebarGreetingIcon">🌙</span></div><div class="sidebar-title" id="sidebarDynamicTitle">Kzrizusmo</div></div></div><div class="sidebar-title sidebar-guest-title" id="sidebarGuestTitle" style="display:none;">MENU</div></div><div class="sidebar-header-actions"><div class="sidebar-close" onclick="toggleSidebar()"><i class="fas fa-times"></i></div></div></div><div class="sidebar-menu"><div class="sidebar-item shiny-effect" onclick="navTo('home')"><i class="fas fa-house"></i><span>Home</span></div><div class="sidebar-item shiny-effect" id="profileUserMenuItem" style="display:none;" onclick="openProfileUser()"><i class="fas fa-user-gear"></i><span class="sidebar-label">Profile User</span></div><div class="sidebar-item shiny-effect" id="authMenuItem" onclick="openMyAccountPanel()"><i class="fas fa-user"></i><span class="sidebar-label" id="sidebarAuthLabel">Daftar / Masuk</span><span id="sidebarAuthTier" class="member-badge tier-basic sidebar-right" style="display:none;">BASIC</span></div><div class="sidebar-item shiny-effect" id="upgradeMembershipMenuItem" onclick="navTo(\'membership-upgrade\')"><i class="fas fa-crown"></i> Upgrade Membership</div><div class="sidebar-item shiny-effect" id="adminMenuItem" style="display:none;" onclick="openAdminPanel()"><i class="fas fa-user-shield"></i> Admin Panel</div><div class="sidebar-divider"></div><div class="sidebar-cat sidebar-cat-btn" onclick="toggleSidebarGroup('sidebarGroupNewOrders', this)">PESANAN BARU <i class="fas fa-chevron-down"></i></div><div class="sidebar-group" id="sidebarGroupNewOrders"><div class="sidebar-item shiny-effect" onclick="openPremiumApp()"><i class="fas fa-gem"></i> Aplikasi Premium</div><div class="sidebar-item shiny-effect" onclick="openProdukDigital()"><i class="fas fa-crown"></i> Produk Digital</div><div class="sidebar-item shiny-effect" onclick="navTo('sosmed-page')"><i class="fas fa-rocket"></i> Suntik Sosmed</div></div><div class="sidebar-cat">MENU LAIN</div><div class="sidebar-item shiny-effect" onclick="openMyOrdersFromMenu()"><i class="fas fa-receipt"></i> Pesanan Saya</div><div class="sidebar-item shiny-effect" onclick="kzOpenCartFromSidebar()"><i class="fas fa-shopping-cart"></i> Keranjang</div><div class="sidebar-item shiny-effect" onclick="navTo(\'all-products\')"><i class="fas fa-search"></i> Semua Produk</div><div class="sidebar-item shiny-effect" id="installAppMenuItem" onclick="kzHandleInstallClick()"><i class="fas fa-download"></i> <span id="installAppLabel">Install</span></div><div class="sidebar-item shiny-effect" onclick="navTo('info-page')"><i class="fas fa-circle-info"></i> Informasi</div><div class="sidebar-item shiny-effect" onclick="navTo('faq-page')"><i class="fas fa-question-circle"></i> Pertanyaan Umum</div></div></div><header><div class="header-left"><div class="burger-btn shiny-effect" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div><div class="header-title"><h1>KZRIZUSMO <span>STORE</span></h1><span class="header-subtitle">DIGITAL MARKETPLACE</span></div></div><div class="header-right"><img id="headerProfileImg" class="header-logo shiny-effect" onclick="openProfileUser()" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg"/></div></header><div class="container" id="mainContainer"><div class="page-section" id="page-home"><div class="banner-container"><div class="banner-track"><div class="banner-item"><img class="banner-img" src="https://img1.pixhost.to/images/11283/677288053_ochobot.jpg"/></div><div class="banner-item"><img class="banner-img" src="https://files.catbox.moe/7j7q60.jpg"/></div><div class="banner-item"><img class="banner-img" src="https://img1.pixhost.to/images/11620/685027953_miwamikadono.jpg"/></div><div class="banner-item"><a href="https://wa.me/6285135925745?text=Hallo%20min%20saya%20mau%20join%20reseller%20app%20premium%20nya%20bisa?" target="_blank"><img class="banner-img" src="https://img1.pixhost.to/images/11620/685027951_miwamikadono.jpg"/></a></div></div></div><div class="search-container" style="margin-top: 20px;"><input class="search-input" oninput="filterAppList(this.value)" placeholder="Cari nama aplikasi..." type="text"/></div><div class="filter-scroll" id="filterScrollStore"><div class="filter-btn shiny-effect" onclick="setFilter('all', this)">Semua</div><div class="filter-btn shiny-effect active" onclick="setFilter('populer', this)">Populer</div><div class="filter-btn shiny-effect" onclick="setFilter('editing', this)">Editing</div><div class="filter-btn shiny-effect" onclick="setFilter('streaming', this)">Streaming</div><div class="filter-btn shiny-effect" onclick="setFilter('music', this)">Music</div><div class="filter-btn shiny-effect" onclick="setFilter('ai', this)">AI</div><div class="filter-btn shiny-effect" onclick="setFilter('vpn', this)">VPN</div></div><div class="filter-scroll" id="filterScrollDigital" style="display:none"><div class="filter-btn shiny-effect active" data-cat="all" onclick="setFilter('all', this)">Semua</div><div class="filter-btn shiny-effect" data-cat="upgrade" onclick="setFilter('upgrade', this)">Upgrade</div><div class="filter-btn shiny-effect" data-cat="akun" onclick="setFilter('akun', this)">Akun</div><div class="filter-btn shiny-effect" data-cat="verified" onclick="setFilter('verified', this)">Verified</div><div class="filter-btn shiny-effect" data-cat="whatsapp" onclick="setFilter('whatsapp', this)">WhatsApp</div><div class="filter-btn shiny-effect" data-cat="apk" onclick="setFilter('apk', this)">APK</div><div class="filter-btn shiny-effect" data-cat="tutorial" onclick="setFilter('tutorial', this)">Tutorial</div><div class="filter-btn shiny-effect" data-cat="ml" onclick="setFilter('ml', this)">ML</div><div class="filter-btn shiny-effect" data-cat="lain" onclick="setFilter('lain', this)">Lain</div></div><div id="filterResults" style="margin-top: 15px;"></div><div id="appSection"><div class="section-header"><div class="section-title">Semua Aplikasi Premium</div></div><div class="app-grid" id="fullAppGrid"></div></div></div><div class="page-section" id="page-membership-upgrade" style="display:none;"><div style="padding: 18px 20px 6px; color: var(--text-sec); font-size: 12px; line-height: 1.55;"></div><div id="memberUpgradeSection" class="mem-upgrade-shell mem-upgrade-page"><div class="mem-upgrade-top"><div class="mem-upgrade-title"><i class="fas fa-crown" style="color:var(--accent-gold); margin-right:8px;"></i>Upgrade Membership</div></div><div class="mem-carousel-wrap"><div id="memberTierCarousel" class="mem-carousel" aria-label="Pilih tier membership (geser)"><div class="mem-tier-card tier-elite" data-tier="elite" role="button" tabindex="0" aria-label="Pilih ELITE"><div class="mem-tier-head"><div class="mem-tier-name">ELITE</div><div class="mem-tier-pill"><i class="fas fa-bolt" style="margin-right:6px;"></i>hemat Rp 2.000 / order</div></div><div class="mem-price-box"><div class="mem-price-old"><s>Rp 75.000</s></div><div class="mem-price-new"><b>Rp 40.000</b></div></div><div class="mem-tier-sample"><span class="mem-tier-sample-label">Contoh tier:</span><span class="member-badge tier-elite">ELITE</span></div><div class="mem-benefits-box"><div class="mem-benefits-title">Keuntungan</div><ul class="mem-benefits"><li>Potongan otomatis 𝗥𝗽 𝟮.𝟬𝟬𝟬 di setiap pesanan</li><li>Berlaku kelipatan sesuai jumlah order 〔semakin banyak order, semakin besar hematnya〕</li><li>Diskon aktif otomatis tanpa kode promo 〔langsung kepotong saat checkout〕</li><li>Member permanen: sekali bayar, aktif selamanya</li><li>Cocok untuk yang sering order dan ingin hemat stabil setiap transaksi</li><li>Pilihan tepat untuk pemakaian pribadi / order santai tapi rutin</li></ul></div><button class="mem-upgrade-btn btn-ghost" data-tier="elite" type="button" onclick="event.stopPropagation(); openMembershipUpgradeTier(\'elite\')" aria-label="Upgrade tier ini"><i class="fas fa-arrow-up" style="margin-right:8px;"></i>Upgrade Sekarang
+            </div></div><div class="admin-carditem"><div class="top"><div class="title">Export / Import HTML</div><span class="mini-chip"><i class="fas fa-file-code"></i> backup</span></div><div class="admin-actions"><button class="btn-solid" type="button" onclick="(window.kzOpenBackupModal?window.kzOpenBackupModal():null)"><i class="fas fa-box-archive" style="margin-right:8px;"></i> Buka Panel Export/Import</button><button class="btn-ghost" type="button" onclick="(window.kzExportBaseHTML?window.kzExportBaseHTML():null)"><i class="fas fa-file-export" style="margin-right:8px;"></i> Export HTML (Produk Inline)</button></div><div style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.5">Import bisa pakai <b>file</b> (JSON/HTML) tanpa copy-paste. Panel ini juga punya Backup HTML (Full) + Export/Import JSON.</div></div><div class="admin-carditem"><div class="top"><div class="title">Audit Log Admin</div><span class="mini-chip"><i class="fas fa-clipboard-check"></i> riwayat</span></div><div class="admin-row"><div class="admin-field" style="flex:1;"><label style="font-size:12px;color:var(--text-sec)">Cari</label><input id="adminAuditSearch" placeholder="aksi / user / order / info" oninput="renderAdminAudit()"/></div><div class="admin-field" style="max-width:180px;"><label style="font-size:12px;color:var(--text-sec)">Limit</label><select id="adminAuditLimit" onchange="renderAdminAudit()"><option value="50">50</option><option value="100" selected>100</option><option value="200">200</option></select></div></div><div class="admin-actions"><button class="btn-ghost" type="button" onclick="adminExportAudit()"><i class="fas fa-file-export" style="margin-right:8px;"></i> Export</button><button class="btn-ghost" type="button" onclick="adminClearAudit()" style="border-color: rgba(255,0,0,.18);"><i class="fas fa-trash-can" style="margin-right:8px;"></i> Clear</button></div><div style="height:10px"></div><div id="adminAuditList" class="admin-cardlist"></div><div id="adminAuditHint" style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.5">Audit log mencatat aksi admin penting (update order, deposit, poin, info, export). Disimpan lokal (device ini).</div></div></div></section></div></div></div><div id="accountOverlay" class="acc-overlay" onclick="closeAccountSettings()"><div class="acc-card" role="dialog" aria-modal="true" aria-label="Profil & Pengaturan Akun" onclick="event.stopPropagation()"><div class="acc-head"><div><div class="acc-title"><i id="accTitleIcon" class="fas fa-user-gear" style="margin-right:8px;color:var(--primary)"></i><span id="accPanelTitle">Akun Saya</span></div></div><button class="acc-close" type="button" onclick="closeAccountSettings()">×</button></div><div class="acc-body"><form onsubmit="accountSave(event)"><div class="acc-profile"><div class="acc-avatar kz-profile-hero"><div class="kz-avatar-stack" id="accAvatarStack"><img id="accAvatarPreview" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg" alt="Foto profil"/><button class="kz-avatar-edit-fab" type="button" onclick="document.getElementById('accAvatarInput').click()" aria-label="Ganti foto profil" title="Ganti foto profil"><i class="fas fa-pencil"></i></button></div><div class="acc-avatar-tier" id="accAvatarTierBadge">BASIC</div><input id="accAvatarInput" type="file" accept="image/*" style="display:none" onchange="accountAvatarPick(event)"/><div style="margin-top:8px; font-size:12px; color: var(--text-sec); line-height:1.4;"></div></div></div><div class="acc-account-sidebar"><div class="kz-profile-columns"><div class="acc-kv"><span>ID</span><b id="accUserId">-</b></div><div class="acc-kv"><span>Tanggal Bergabung</span><b id="accJoinedAt">-</b></div><div class="acc-kv kz-ref-kv"><span>Kode Referal</span><div class="kz-ref-wrap"><div class="kz-ref-top"><b id="accReferralCode">-</b><button class="acc-copy-btn" type="button" onclick="copyReferralCode()" title="Copy kode referal"><i class="fas fa-copy"></i></button></div><button class="acc-invite-btn" type="button" onclick="shareReferralLink()" title="Undang teman"><i class="fas fa-share-nodes"></i><span>Undang</span></button></div></div><div class="acc-kv"><span>Poin</span><b id="accPointsText">0</b></div><div class="acc-kv kz-status-akun-kv"><span>Status Akun</span><b id="accActiveText" class="status-active">AKTIF</b></div><div class="kz-install-kv"><button id="accInstallAppBtn" class="btn-solid kz-install-column-btn" type="button" onclick="kzHandleInstallClick()"><i class="fas fa-download" style="margin-right:8px;"></i><span id="accInstallAppLabel">Install</span></button></div></div><div class="acc-tier-panel"><div class="acc-tier-head"><div class="acc-tier-title">Tier</div><div class="acc-tier-current">Tier kamu: <b id="accTierActiveInline">BASIC</b></div></div><div class="acc-tier-list" id="accTierList"><span class="member-badge tier-basic">BASIC</span><span class="member-badge tier-elite">ELITE</span><span class="member-badge tier-ultimate">ULTIMATE</span><span class="member-badge tier-business">BUSINESS</span></div></div></div><div class="kz-profile-bio-fields"><div class="auth-field"><label>Nama Lengkap</label><input id="accDisplayName" placeholder="Nama yang tampil"/></div><div class="auth-field"><label>Nomor WhatsApp</label><input id="accWA" inputmode="numeric" placeholder="contoh: 08"/></div><div class="auth-field kz-hidden-account-field"><label>Email</label><input id="accEmail" type="email" placeholder="Masukkan email"/><div id="accEmailHint" style="margin-top:6px;font-size:12px;color:var(--text-sec);line-height:1.4;"></div></div><div class="auth-field"><label>Username</label><input id="accUsername" readonly/></div><div class="auth-field"><label>Tanggal Lahir</label><input id="accBirthDate" type="date"/></div><div class="auth-field"><label>Jenis Kelamin</label><input id="accGender" type="hidden" value=""/><div class="gender-pills" id="accGenderPills" role="group" aria-label="Jenis Kelamin"><button class="gpill" type="button" data-v="Laki-laki" onclick="setAccGender('Laki-laki', this)">Laki-laki</button><button class="gpill" type="button" data-v="Perempuan" onclick="setAccGender('Perempuan', this)">Perempuan</button></div><div style="margin-top:6px;font-size:12px;color:var(--text-sec);line-height:1.4;"></div></div></div><div class="kz-profile-security"><div class="auth-field"><label>Password Baru</label><div class="pw-wrap"><input id="accNewPass" type="password" autocomplete="new-password" placeholder="Kosongkan jika tidak ingin ganti"/><button class="pw-toggle" type="button" aria-label="Tampilkan password" onclick="togglePasswordVisibility('accNewPass', this)"><i class="fas fa-eye"></i></button></div></div><div class="auth-field"><label>Konfirmasi Password Baru</label><div class="pw-wrap"><input id="accNewPass2" type="password" autocomplete="new-password" placeholder="Ulangi password baru"/><button class="pw-toggle" type="button" aria-label="Tampilkan password" onclick="togglePasswordVisibility('accNewPass2', this)"><i class="fas fa-eye"></i></button></div></div></div><div class="kz-profile-save-section"><div class="auth-actions" style="margin-top:12px;"><button class="btn-ghost" type="button" onclick="closeAccountSettings()">Tutup</button><button class="btn-solid" type="submit"><i class="fas fa-check" style="margin-right:8px;"></i> Simpan Perubahan</button></div></div><div class="auth-actions" style="margin-top:10px;"><button class="btn-ghost btn-ghost-danger" style="width:100%;" type="button" onclick="logoutUser()"><i class="fas fa-right-from-bracket" style="margin-right:8px;"></i> Keluar</button></div><div class="auth-actions" style="margin-top:10px;"><button class="btn-ghost btn-ghost-danger" style="width:100%;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.12);" type="button" onclick="deleteMyAccount()"><i class="fas fa-trash" style="margin-right:8px;"></i> Hapus Akun Saya</button></div></form></div></div></div><div id="sysToast" class="pay-toast" aria-live="polite"></div><div class="sidebar-overlay" onclick="toggleSidebar()"></div><div class="sidebar" id="sidebar"><div class="sidebar-header"><div class="sidebar-header-left"><div class="sidebar-userbox" id="sidebarUserBox"><img id="sidebarProfileImg" class="sidebar-profile-img" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg" alt="Profile" title="Buka profil" role="button" tabindex="0" onclick="event.stopPropagation(); openMyAccountPanel();" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); openMyAccountPanel();}"/><div class="sidebar-usertext"><div class="sidebar-greeting" id="sidebarGreeting">Selamat Malam <span id="sidebarGreetingIcon">🌙</span></div><div class="sidebar-title" id="sidebarDynamicTitle">Kzrizusmo</div></div></div><div class="sidebar-title sidebar-guest-title" id="sidebarGuestTitle" style="display:none;">MENU</div></div><div class="sidebar-header-actions"><div class="sidebar-close" onclick="toggleSidebar()"><i class="fas fa-times"></i></div></div></div><div class="sidebar-menu"><div class="sidebar-item shiny-effect" onclick="navTo('home')"><i class="fas fa-house"></i><span>Home</span></div><div class="sidebar-item shiny-effect" id="profileUserMenuItem" style="display:none;" onclick="openProfileUser()"><i class="fas fa-user-gear"></i><span class="sidebar-label">Profile User</span></div><div class="sidebar-item shiny-effect" id="authMenuItem" onclick="openMyAccountPanel()"><i class="fas fa-user"></i><span class="sidebar-label" id="sidebarAuthLabel">Daftar / Masuk</span><span id="sidebarAuthTier" class="member-badge tier-basic sidebar-right" style="display:none;">BASIC</span></div><div class="sidebar-item shiny-effect" id="upgradeMembershipMenuItem" onclick="navTo(\'membership-upgrade\')"><i class="fas fa-crown"></i> Upgrade Membership</div><div class="sidebar-item shiny-effect" id="adminMenuItem" style="display:none;" onclick="openAdminPanel()"><i class="fas fa-user-shield"></i> Admin Panel</div><div class="sidebar-divider"></div><div class="sidebar-cat sidebar-cat-btn" onclick="toggleSidebarGroup('sidebarGroupNewOrders', this)">PESANAN BARU <i class="fas fa-chevron-down"></i></div><div class="sidebar-group" id="sidebarGroupNewOrders"><div class="sidebar-item shiny-effect" onclick="openPremiumApp()"><i class="fas fa-gem"></i> Aplikasi Premium</div><div class="sidebar-item shiny-effect" onclick="openProdukDigital()"><i class="fas fa-crown"></i> Produk Digital</div><div class="sidebar-item shiny-effect" onclick="navTo('sosmed-page')"><i class="fas fa-rocket"></i> Suntik Sosmed</div></div><div class="sidebar-cat">MENU LAIN</div><div class="sidebar-item shiny-effect" onclick="openMyOrdersFromMenu()"><i class="fas fa-receipt"></i> Pesanan Saya</div><div class="sidebar-item shiny-effect" onclick="kzOpenCartFromSidebar()"><i class="fas fa-shopping-cart"></i> Keranjang</div><div class="sidebar-item shiny-effect" onclick="navTo(\'all-products\')"><i class="fas fa-search"></i> Semua Produk</div><div class="sidebar-item shiny-effect" id="installAppMenuItem" onclick="kzHandleInstallClick()"><i class="fas fa-download"></i> <span id="installAppLabel">Install</span></div><div class="sidebar-item shiny-effect" onclick="navTo('info-page')"><i class="fas fa-circle-info"></i> Informasi</div><div class="sidebar-item shiny-effect" onclick="navTo('faq-page')"><i class="fas fa-question-circle"></i> Pertanyaan Umum</div></div></div><header><div class="header-left"><div class="burger-btn shiny-effect" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div><div class="header-title"><h1>KZRIZUSMO <span>STORE</span></h1><span class="header-subtitle">DIGITAL MARKETPLACE</span></div></div><div class="header-right"><img id="headerProfileImg" class="header-logo shiny-effect" onclick="openProfileUser()" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg"/></div></header><div class="container" id="mainContainer"><div class="page-section" id="page-home"><div class="banner-container"><div class="banner-track"><div class="banner-item"><img class="banner-img" src="https://img1.pixhost.to/images/11283/677288053_ochobot.jpg"/></div><div class="banner-item"><img class="banner-img" src="https://files.catbox.moe/7j7q60.jpg"/></div><div class="banner-item"><img class="banner-img" src="https://img1.pixhost.to/images/11620/685027953_miwamikadono.jpg"/></div><div class="banner-item"><a href="https://wa.me/6285135925745?text=Hallo%20min%20saya%20mau%20join%20reseller%20app%20premium%20nya%20bisa?" target="_blank"><img class="banner-img" src="https://img1.pixhost.to/images/11620/685027951_miwamikadono.jpg"/></a></div></div></div><div class="search-container" style="margin-top: 20px;"><input class="search-input" oninput="filterAppList(this.value)" placeholder="Cari nama aplikasi..." type="text"/></div><div class="filter-scroll" id="filterScrollStore"><div class="filter-btn shiny-effect" onclick="setFilter('all', this)">Semua</div><div class="filter-btn shiny-effect active" onclick="setFilter('populer', this)">Populer</div><div class="filter-btn shiny-effect" onclick="setFilter('editing', this)">Editing</div><div class="filter-btn shiny-effect" onclick="setFilter('streaming', this)">Streaming</div><div class="filter-btn shiny-effect" onclick="setFilter('music', this)">Music</div><div class="filter-btn shiny-effect" onclick="setFilter('ai', this)">AI</div><div class="filter-btn shiny-effect" onclick="setFilter('vpn', this)">VPN</div></div><div class="filter-scroll" id="filterScrollDigital" style="display:none"><div class="filter-btn shiny-effect active" data-cat="all" onclick="setFilter('all', this)">Semua</div><div class="filter-btn shiny-effect" data-cat="upgrade" onclick="setFilter('upgrade', this)">Upgrade</div><div class="filter-btn shiny-effect" data-cat="akun" onclick="setFilter('akun', this)">Akun</div><div class="filter-btn shiny-effect" data-cat="verified" onclick="setFilter('verified', this)">Verified</div><div class="filter-btn shiny-effect" data-cat="whatsapp" onclick="setFilter('whatsapp', this)">WhatsApp</div><div class="filter-btn shiny-effect" data-cat="apk" onclick="setFilter('apk', this)">APK</div><div class="filter-btn shiny-effect" data-cat="tutorial" onclick="setFilter('tutorial', this)">Tutorial</div><div class="filter-btn shiny-effect" data-cat="ml" onclick="setFilter('ml', this)">ML</div><div class="filter-btn shiny-effect" data-cat="lain" onclick="setFilter('lain', this)">Lain</div></div><div id="filterResults" style="margin-top: 15px;"></div><div id="appSection"><div class="section-header"><div class="section-title">Semua Aplikasi Premium</div></div><div class="app-grid" id="fullAppGrid"></div></div></div><div class="page-section" id="page-membership-upgrade" style="display:none;"><div style="padding: 18px 20px 6px; color: var(--text-sec); font-size: 12px; line-height: 1.55;"></div><div id="memberUpgradeSection" class="mem-upgrade-shell mem-upgrade-page"><div class="mem-upgrade-top"><div class="mem-upgrade-title"><i class="fas fa-crown" style="color:var(--accent-gold); margin-right:8px;"></i>Upgrade Membership</div></div><div class="mem-carousel-wrap"><div id="memberTierCarousel" class="mem-carousel" aria-label="Pilih tier membership (geser)"><div class="mem-tier-card tier-elite" data-tier="elite" role="button" tabindex="0" aria-label="Pilih ELITE"><div class="mem-tier-head"><div class="mem-tier-name">ELITE</div><div class="mem-tier-pill"><i class="fas fa-bolt" style="margin-right:6px;"></i>hemat Rp 2.000 / order</div></div><div class="mem-price-box"><div class="mem-price-old"><s>Rp 75.000</s></div><div class="mem-price-new"><b>Rp 40.000</b></div></div><div class="mem-tier-sample"><span class="mem-tier-sample-label">Contoh tier:</span><span class="member-badge tier-elite">ELITE</span></div><div class="mem-benefits-box"><div class="mem-benefits-title">Keuntungan</div><ul class="mem-benefits"><li>Potongan otomatis 𝗥𝗽 𝟮.𝟬𝟬𝟬 di setiap pesanan</li><li>Berlaku kelipatan sesuai jumlah order 〔semakin banyak order, semakin besar hematnya〕</li><li>Diskon aktif otomatis tanpa kode promo 〔langsung kepotong saat checkout〕</li><li>Member permanen: sekali bayar, aktif selamanya</li><li>Cocok untuk yang sering order dan ingin hemat stabil setiap transaksi</li><li>Pilihan tepat untuk pemakaian pribadi / order santai tapi rutin</li></ul></div><button class="mem-upgrade-btn btn-ghost" data-tier="elite" type="button" onclick="event.stopPropagation(); openMembershipUpgradeTier(\'elite\')" aria-label="Upgrade tier ini"><i class="fas fa-arrow-up" style="margin-right:8px;"></i>Upgrade Sekarang
       </button></div><div class="mem-tier-card tier-ultimate" data-tier="ultimate" role="button" tabindex="0" aria-label="Pilih ULTIMATE"><div class="mem-tier-head"><div class="mem-tier-name">ULTIMATE</div><div class="mem-tier-pill"><i class="fas fa-fire" style="margin-right:6px;"></i>hemat Rp 4.000 / order</div></div><div class="mem-price-box"><div class="mem-price-old"><s>Rp 150.000</s></div><div class="mem-price-new"><b>Rp 80.000</b></div></div><div class="mem-tier-sample"><span class="mem-tier-sample-label">Contoh tier:</span><span class="member-badge tier-ultimate">ULTIMATE</span></div><div class="mem-benefits-box"><div class="mem-benefits-title">Keuntungan</div><ul class="mem-benefits"><li>Potongan otomatis 𝗥𝗽 𝟰.𝟬𝟬𝟬 di setiap pesanan</li><li>Berlaku kelipatan sesuai jumlah order 〔semakin banyak order, semakin besar hematnya〕</li><li>Diskon aktif otomatis tanpa kode promo 〔langsung kepotong saat checkout〕</li><li>Member permanen: sekali bayar, aktif selamanya</li><li>Cocok untuk yang rutin order dan ingin potongan lebih besar tiap transaksi</li><li>Lebih hemat untuk pengguna aktif dengan frekuensi pembelian tinggi</li></ul></div><button class="mem-upgrade-btn btn-ghost" data-tier="ultimate" type="button" onclick="event.stopPropagation(); openMembershipUpgradeTier(\'ultimate\')" aria-label="Upgrade tier ini"><i class="fas fa-arrow-up" style="margin-right:8px;"></i>Upgrade Sekarang
       </button></div><div class="mem-tier-card tier-business" data-tier="business" role="button" tabindex="0" aria-label="Pilih BUSINESS"><div class="mem-tier-head"><div class="mem-tier-name">BUSINESS</div><div class="mem-tier-pill"><i class="fas fa-briefcase" style="margin-right:6px;"></i>hemat 𝗥𝗽 𝟲.𝟬𝟬𝟬 / order</div></div><div class="mem-price-box"><div class="mem-price-old"><s>Rp 210.000</s></div><div class="mem-price-new"><b>Rp 120.000</b></div></div><div class="mem-tier-sample"><span class="mem-tier-sample-label">Contoh tier:</span><span class="member-badge tier-business">BUSINESS</span></div><div class="mem-benefits-box"><div class="mem-benefits-title">Keuntungan</div><ul class="mem-benefits"><li>Potongan otomatis Rp 6.000 di setiap pesanan</li><li>Berlaku kelipatan sesuai jumlah order 〔semakin banyak order, semakin besar hematnya〕</li><li>Diskon aktif otomatis tanpa kode promo 〔langsung kepotong saat checkout〕</li><li>Member permanen: sekali bayar, aktif selamanya</li><li>Cocok untuk reseller / pemilik bisnis / kebutuhan order volume tinggi</li><li>Paling ideal untuk yang mengejar efisiensi biaya dan margin lebih aman</li></ul></div><button class="mem-upgrade-btn btn-ghost" data-tier="business" type="button" onclick="event.stopPropagation(); openMembershipUpgradeTier(\'business\')" aria-label="Upgrade tier ini"><i class="fas fa-arrow-up" style="margin-right:8px;"></i>Upgrade Sekarang
       </button></div></div></div><div class="mem-upgrade-note"></div></div></div><div class="page-section" id="page-app" style="display:none;"><div class="section-header"><div class="section-title">Semua Aplikasi Premium</div></div><div class="app-grid" id="pageAppGrid"></div></div><div class="page-section" id="page-sosmed" style="display:none;"><div class="section-header"><div class="section-title">Suntik Sosmed</div></div><div class="filter-scroll" id="sosmedTabs" style="padding-bottom:12px;"><div class="filter-btn shiny-effect sosmed-cat-btn active" data-filter="instagram" onclick="setSosmedPlatform('instagram', this)"><i class="fab fa-instagram"></i> Instagram</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="tiktok" onclick="setSosmedPlatform('tiktok', this)"><i class="fab fa-tiktok"></i> TikTok</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="youtube" onclick="setSosmedPlatform('youtube', this)"><i class="fab fa-youtube"></i> YouTube</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="whatsapp" onclick="setSosmedPlatform('whatsapp', this)"><i class="fab fa-whatsapp"></i> WhatsApp</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="shopee" onclick="setSosmedPlatform('shopee', this)"><i class="fas fa-shopping-bag"></i> Shopee</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="twitter" onclick="setSosmedPlatform('twitter', this)"><i class="fab fa-twitter"></i> Twitter/X</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="threads" onclick="setSosmedPlatform('threads', this)"><i class="fas fa-at"></i> Threads</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="spotify" onclick="setSosmedPlatform('spotify', this)"><i class="fab fa-spotify"></i> Spotify</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="discord" onclick="setSosmedPlatform('discord', this)"><i class="fab fa-discord"></i> Discord</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="pinterest" onclick="setSosmedPlatform('pinterest', this)"><i class="fab fa-pinterest"></i> Pinterest</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="linkedin" onclick="setSosmedPlatform('linkedin', this)"><i class="fab fa-linkedin"></i> LinkedIn</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="snackvideo" onclick="setSosmedPlatform('snackvideo', this)"><i class="fas fa-video"></i> Snack Video</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="webtraffic" onclick="setSosmedPlatform('webtraffic', this)"><i class="fas fa-chart-line"></i> Website Traffic</div></div><div class="search-container" style="padding-top:6px;"><input class="search-input" id="sosmedSearchInput" oninput="renderSosmedProducts(this.value)" placeholder="Cari paket di kategori ini..." type="text"/></div><div class="app-grid" id="sosmedProductList"></div></div><div class="page-section" id="page-all-products" style="display:none;"><div class="search-container"><input class="search-input" id="searchInput" oninput="renderAllProductsDebounced(this.value)" placeholder="Ketik nama paket..." type="text"/></div><div class="controls-row" style="padding:0 20px 14px 20px;"><div style="flex:1; position:relative;"><div class="control-btn shiny-effect" onclick="toggleSortMenu()"><i class="fas fa-sort-amount-down"></i> Urutkan
@@ -2528,7 +2507,6 @@ document.addEventListener('DOMContentLoaded', ()=> initCompressorPageOnce());
     <div class="faq-intro-desc">Punya pertanyaan? Kami punya jawabannya. Berikut adalah hal-hal yang sering ditanyakan oleh pengguna Kzrizusmo Store.</div>
   </div>
 
-
   <div class="faq-wrap">
     <div class="faq-item">
       <button class="faq-q" type="button">Apa itu Kzrizusmo Store?<span class="faq-ico"><i class="fas fa-chevron-down"></i></span></button>
@@ -2612,7 +2590,7 @@ document.addEventListener('DOMContentLoaded', ()=> initCompressorPageOnce());
   </div>
 </div>
 <footer id="kzMainFooter"><h3 style="margin-bottom: 20px;">Apa Kata Mereka?</h3><div class="testi-section"><div class="testi-track-container"><div class="testi-track" id="testiTrack"></div></div></div><div class="kz-footer-socials"><a class="kz-footer-social-btn" href="https://instagram.com/kzrizusmostore" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a><a class="kz-footer-social-btn" href="https://www.tiktok.com/@kzrizusmo_store" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i><span>TikTok</span></a><a class="kz-footer-social-btn" href="https://whatsapp.com/channel/0029VbDOVUJIHphDqJoiNH1L" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a><a class="kz-footer-social-btn" href="https://t.me/testikzrizusmostore" target="_blank" rel="noopener" aria-label="Testimoni" title="Testimoni"><i class="fas fa-paper-plane"></i><span>Testimoni</span></a></div><p style="margin:18px 0 0; font-size:0.8rem; color:var(--text-sec);">© 2025 kzrizusmostore</p></footer>
-<footer id="kzMiniFooter"><div class="kz-footer-socials"><a class="kz-footer-social-btn" href="https://instagram.com/kzrizusmostore" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a><a class="kz-footer-social-btn" href="https://tiktok.com/@kzrizusmostore" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i><span>TikTok</span></a><a class="kz-footer-social-btn" href="https://whatsapp.com/channel/0029VbDOVUJIHphDqJoiNH1L" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a><a class="kz-footer-social-btn" href="https://t.me/testikzrizusmostore" target="_blank" rel="noopener" aria-label="Testimoni" title="Testimoni"><i class="fas fa-paper-plane"></i><span>Testimoni</span></a></div><p style="margin:16px 0 0; font-size:0.8rem; color:var(--text-sec);">© 2025 kzrizusmostore</p></footer></div><div class="modal-page" id="detailModal"><div class="modal-header"><div class="back-icon" onclick="closeModal()"><i class="fas fa-arrow-left"></i></div><h2 id="modalTitle" style="font-size: 1.1rem;">Detail Produk</h2></div><div class="modal-content" id="modalBody"></div></div>
+<footer id="kzMiniFooter"><div class="kz-footer-socials"><a class="kz-footer-social-btn" href="https://instagram.com/kzrizusmostore" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a><a class="kz-footer-social-btn" href="https://www.tiktok.com/@kzrizusmo_store" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i><span>TikTok</span></a><a class="kz-footer-social-btn" href="https://whatsapp.com/channel/0029VbDOVUJIHphDqJoiNH1L" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a><a class="kz-footer-social-btn" href="https://t.me/testikzrizusmostore" target="_blank" rel="noopener" aria-label="Testimoni" title="Testimoni"><i class="fas fa-paper-plane"></i><span>Testimoni</span></a></div><p style="margin:16px 0 0; font-size:0.8rem; color:var(--text-sec);">© 2025 kzrizusmostore</p></footer></div><div class="modal-page" id="detailModal"><div class="modal-header"><div class="back-icon" onclick="closeModal()"><i class="fas fa-arrow-left"></i></div><h2 id="modalTitle" style="font-size: 1.1rem;">Detail Produk</h2></div><div class="modal-content" id="modalBody"></div></div>
 <script>let __clickAudioCtx = null;
 function playClick() { return; }
 </script>
@@ -4457,8 +4435,6 @@ function playClick() { return; }
             }
 
         ];
-
-
 
 /* ===== SUNTIK SOSMED DATA (DARI indexsosmed.html) ===== */
 const sosmedData = [
@@ -10557,7 +10533,6 @@ const sosmedData = [
   }
 ];
 
-
 /* ===== PRODUK DIGITAL (DARI INDEX2) ===== */
 const digitalAppsData = [
   {
@@ -11022,8 +10997,6 @@ const digitalAppsData = [
 ];
 /* ===== END PRODUK DIGITAL ===== */
 
-
-
 /* ===== KZ SAFE STORAGE HELPERS (localStorage + embedded fallback) ===== */
 try{
   if (!window.__kzEmbeddedStorage || typeof window.__kzEmbeddedStorage !== "object") window.__kzEmbeddedStorage = {};
@@ -11059,7 +11032,6 @@ function kzSafeRemoveItem(key){
   }catch(e){}
 }
 /* ===== END KZ SAFE STORAGE HELPERS ===== */
-
 
 /* ===== PRODUCTS ADMIN OVERRIDE ===== */
 const PRODUCTS_DB_KEY = "KZRIZUSMO_PRODUCTS_V1";
@@ -11438,10 +11410,6 @@ function kzApplyInfosOverride(){
 kzApplyInfosOverride();
 /* ===== END INFOS / INFORMASI ADMIN OVERRIDE ===== */
 
-
-
-
-
         // --- INIT ---
         window.onload = () => {
                         // aman: hilangkan intro overlay total (biar tidak nge-block klik/scroll)
@@ -11530,7 +11498,6 @@ renderGrid('populer');
             return false;
         }
 
-
         function openPremiumApp() {
             try { playClick(); } catch (e) {}
             try { navTo('home'); } catch (e) { try { document.getElementById('page-home').style.display = 'block'; } catch (e2) {} }
@@ -11550,7 +11517,6 @@ renderGrid('populer');
             } catch (e) {}
         }
 
-
         function openProdukDigital() {
             try { playClick(); } catch (e) {}
             try { navTo('home'); } catch (e) { try { document.getElementById('page-home').style.display = 'block'; } catch (e2) {} }
@@ -11569,7 +11535,6 @@ renderGrid('populer');
               else if (typeof renderGrid === "function") renderGrid('all', '');
             } catch (e) {}
         }
-
 
         
 function kzSetFooterMode(page){
@@ -11680,7 +11645,6 @@ function navTo(page) {
 // Footer default mode
 try{ document.addEventListener('DOMContentLoaded', ()=>{ try{ kzSetFooterMode('home'); }catch(e){} }); }catch(e){}
 
-
         
 
 /* ===== FAQ ACCORDION (Pertanyaan Umum) ===== */
@@ -11704,8 +11668,6 @@ function kzInitFaqOnce(){
     });
   }catch(e){}
 }
-
-
 
 try{document.addEventListener('DOMContentLoaded', ()=>{try{kzInitFaqOnce();}catch(e){}});}catch(e){}
 
@@ -11783,7 +11745,6 @@ function renderSosmedProducts(query = '') {
 // expose (anti-scope issues)
 try { window.initSosmedPage = initSosmedPage; window.setSosmedPlatform = setSosmedPlatform; window.renderSosmedProducts = renderSosmedProducts; } catch (e) {}
 
-
 function kzSafeUrl(u){
             const s = String(u ?? "").trim();
             if(!s) return "";
@@ -11830,14 +11791,14 @@ function kzGetView(id){
 }
 
 function openInfoDetail(id){
-  const item = (Array.isArray(infosData) ? infosData : []).find(x => x && x.id === id);
+  try { playClick(); } catch (e) {}
+  const item = (Array.isArray(infosData) ? infosData : []).find(x => x && String(x.id) === String(id));
   if (!item) return;
 
   kzIncView(item.id);
 
   const cat = kzNormalizeInfoCategory(item.category ?? item.type);
   const when = (typeof authFmtDate === "function") ? authFmtDate(item.updatedAt || item.createdAt) : "-";
-  const views = kzFmtNum(kzGetView(item.id));
   const safeLink = kzSafeUrl(item.link);
   const contentHtml = escapeHtml(String(item.content ?? "")).replace(/\n/g, "<br>");
   const mUrl = kzSafeUrl(item.mediaUrl ?? item.media?.url) || "";
@@ -11879,7 +11840,6 @@ function openInfoDetail(id){
 
       <div class="info-card-meta" style="margin-top:10px;">
         <span class="mini-chip"><i class="fas fa-calendar-day"></i> ${escapeHtml(when)}</span>
-        <span class="mini-chip"><i class="fas fa-eye"></i> ${escapeHtml(views)} dilihat</span>
       </div>
 
       <div style="margin-top:10px; font-size:12px; color:var(--text-sec); line-height:1.7;">
@@ -11897,6 +11857,7 @@ function openInfoDetail(id){
   `;
 
   document.getElementById("detailModal").style.display = "block";
+  try { document.getElementById("detailModal").classList.add("kz-open"); } catch (e) {}
 }
 // ===== END INFO PAGE FILTER + SEARCH =====
 
@@ -11946,7 +11907,6 @@ function renderInfoPage(){
     const cat = kzNormalizeInfoCategory(it.category ?? it.type);
     const icon = iconMap[cat] || "fa-circle-info";
     const when = (typeof authFmtDate === "function") ? authFmtDate(it.updatedAt || it.createdAt) : "-";
-    const views = kzFmtNum(kzGetView(it.id));
     const pinned = it.pinned ? `<span class="mini-chip pembaruan"><i class="fas fa-thumbtack"></i> PIN</span>` : "";
 
     const raw = String(it.content ?? "");
@@ -11973,7 +11933,6 @@ function renderInfoPage(){
 
         <div class="info-card-meta" style="display:flex; gap:14px; flex-wrap:wrap;">
           <span><i class="fas fa-calendar-day"></i> ${escapeHtml(when)}</span>
-          <span><i class="fas fa-eye"></i> ${escapeHtml(views)} dilihat</span>
         </div>
 
         ${(it.mediaUrl ? `<div class="info-media-badge" style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;"><span class="mini-chip"><i class="fas ${it.mediaType==='video'?'fa-film':'fa-image'}"></i> ${it.mediaType==='video'?'Media Video':'Media Gambar'}</span></div>` : "")}
@@ -11983,14 +11942,13 @@ function renderInfoPage(){
         </div>
 
         <div class="info-card-actions" style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="info-link-btn" href="javascript:void(0)" onclick="openInfoDetail('${escapeHtml(it.id)}')">Baca selengkapnya</a>
+          <button class="info-link-btn" type="button" onclick="openInfoDetail(${JSON.stringify(String(it.id || ""))})">Detail selengkapnya</button>
           ${kzSafeUrl(it.link) ? `<a class="info-link-btn" href="${escapeHtml(kzSafeUrl(it.link))}" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> Link</a>` : ""}
         </div>
       </div>
     `;
   }).join("");
 }
-
 
         
         function renderGrid(category, query = '') {
@@ -12069,7 +12027,6 @@ function renderInfoPage(){
                 renderGrid(__homeActiveFilter || "populer", q);
             }, 130);
         }
-
 
         function renderFullAppGrid() {
             const containers = [document.getElementById('fullAppGrid'), document.getElementById('pageAppGrid')];
@@ -12337,7 +12294,6 @@ function kzParseServerTier(rawName){
   return { tier, clean };
 }
 
-
 function kzServerBadgeHtml(tier){
   const t = String(tier || "S1").toUpperCase();
   const n = (t.match(/S([1-5])/i)||[])[1] || "1";
@@ -12352,8 +12308,6 @@ function kzServerCornerBadgeHtml(tier){
   return `<span class="${cls}">SERVER ${n}</span>`;
 }
 
-
-
         function getIconForDesc(text) {
             text = text.toLowerCase();
             if (text.includes("garansi")) return "fa-shield-alt";
@@ -12366,7 +12320,6 @@ function kzServerCornerBadgeHtml(tier){
             if (text.includes("resiko")) return "fa-exclamation-triangle";
             return "fa-check"; 
         }
-
 
 function openDetail(id) {
     playClick();
@@ -12426,7 +12379,6 @@ function openDetail(id) {
     document.getElementById('detailModal').style.display = 'block';
 }
 
-
         function togglePkg(head) {
             playClick();
             const body = head.nextElementSibling;
@@ -12482,8 +12434,6 @@ function orderNow(pkgName, appName, priceVal, priceText, appImg, serverTier, noS
 }
 // expose globally (anti-scope issues)
 window.orderNow = orderNow;
-
-
 
         /* =============================
            PAYMENT FLOW SCRIPT (EmailJS) — v2 (Lock Order + Timer Global)
@@ -12804,7 +12754,6 @@ function setPayStatus(text) {
             }
           }
 
-
           if (isSaldo) {
             if (swrap) swrap.style.display = "block";
             if (dlBtn) dlBtn.style.display = "none";
@@ -12858,7 +12807,6 @@ function setPayStatus(text) {
           try { syncPaySummaryUI(); } catch {}
         }
 
-
         function selectPaymentMethod(method) {
           try { if (typeof playClick === "function") playClick(); } catch {}
 
@@ -12902,15 +12850,7 @@ function setPayStatus(text) {
           try { validatePaySendButton(); } catch {}
 
           try { startPaymentTimerLoop(); } catch {}
-
-          // status hint singkat
-          try {
-            if (key === "saldo") setPayStatus("Geser ke kanan untuk konfirmasi bayar.");
-            else if (key === "qris") setPayStatus("Scan QRIS, lalu upload bukti & kirim.");
-            else setPayStatus("Transfer sesuai tujuan, lalu upload bukti & kirim.");
-          } catch {}
         }
-
 
         function computeTotals() {
           const __isMemberUpgrade = (window.payState && String(payState.kind || "") === "membership");
@@ -13097,7 +13037,6 @@ function setPayStatus(text) {
           try { btn.classList.toggle("kz-soft-disabled", !ready); } catch {}
         }
 
-
         // === FIX: bind input WA + upload bukti supaya tombol "KONFIRMASI & KIRIM" bisa aktif ===
         function kzBindPayCoreInputs(){
           // bind WA input (aktifkan tombol saat user mengetik)
@@ -13212,8 +13151,6 @@ function resolveProductImg(productName, productImg, appName){
           } catch {}
           return "";
         }
-
-
 
         function ensurePaySuccessOnBody() {
           const suc = document.getElementById("paySuccessView");
@@ -13578,9 +13515,6 @@ function closeReceiptModal() {
     pre{white-space:pre-wrap;background:#0f0f12;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.08);color:#fff;overflow:auto}
   </style>
 
-
-
-
 <style id="kz-home-top-card-color-patch">
 #page-home .kz-home-card.kz-top-card{
   background:#050505 !important;
@@ -13592,7 +13526,6 @@ body.light-mode #page-home .kz-home-card.kz-top-card{
   box-shadow:0 12px 30px var(--shadow) !important;
 }
 </style>
-
 
 <style id="kz-remove-big-column-wrapper">
 .acc-profile-meta,
@@ -13610,15 +13543,6 @@ body.light-mode #page-home .kz-home-card.kz-top-card{
     <p>Simpan file ini sebagai bukti detail transaksi.</p>
     <pre>${safe}</pre>
   </div>
-
-
-
-
-
-
-
-
-
 
 <style id="kz-home-top-3cols-final">
 #page-home .kz-home-top{
@@ -13686,8 +13610,6 @@ body.light-mode #page-home .kz-home-card.kz-top-card{
 }
 </style>
 
-
-
 <style id="kz-home-top-no-big-card-final">
 #page-home .kz-home-top{
   display:grid !important;
@@ -13733,12 +13655,10 @@ body.light-mode #page-home .kz-home-card.kz-top-card{
 }
 </style>
 
-
 <style id="kz-lightmode-f4f5f7-final">
 html, body.light-mode{background:#F4F5F7 !important;background-color:#F4F5F7 !important;}
 body.light-mode{--bg-body:#F4F5F7 !important;}
 </style>
-
 
 <style id="kz-scrollbar-visibility-patch">
 html,body,*{scrollbar-width:none;-ms-overflow-style:none;}
@@ -13748,7 +13668,6 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,*::-webkit-scrollbar{width:0!imp
 #kzTestiOverlay .kz-testi-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.28)!important;border-radius:999px!important;}
 #kzTestiOverlay .kz-testi-body::-webkit-scrollbar-track{background:transparent!important;}
 </style>
-
 
 </body>
 </html>`;
@@ -13942,10 +13861,7 @@ function kzOpenOrderReceipt(anyId){
   try{ if(typeof renderInfoPage === "function") renderInfoPage(); }catch(e){}
 })();
 </script>
-<!-- ===== KZRIZUSMO FIX V9 END ===== -->
 
-
-<!-- ===== KZRIZUSMO FIX: restore payment flow JS (wrap) ===== -->
 <script>
 function startPaymentTimerLoop() {
           if (payTimerInterval) clearInterval(payTimerInterval);
@@ -14110,7 +14026,6 @@ syncPaySummaryUI();
   return;
 }
 
-
           // resume order yang sama
           if (active && isActivePending(active) && active.product === requestedProduct) {
             payState = normalizePayState(active);
@@ -14142,7 +14057,7 @@ savePayStorage();
           resetUploadState();
           syncPaySummaryUI();
 
-          setPayStatus("Silakan lakukan pembayaran, lalu upload bukti.");
+          setPayStatus("Silakan lakukan pembayaran.");
           try { if (typeof kzSetPaymentModeMembership === "function") kzSetPaymentModeMembership(String(payState.kind||"") === "membership"); } catch {}
           validatePaySendButton();
 
@@ -14210,7 +14125,6 @@ function openDepositPaymentDirect(){
 
   setPayStatus("Isi nominal deposit, lalu bayar & upload bukti.");
 }
-
 
 function startDepositRequest(){
   try { if (typeof playClick === "function") playClick(); } catch {}
@@ -14467,7 +14381,6 @@ async function copyPaymentNumber() {
                 validatePaySendButton();
               }
             }catch(_e){}
-
 
             // Getar saat sukses kirim bukti ✅
             try { if (navigator.vibrate) navigator.vibrate([20, 35, 20]); } catch {}
@@ -14844,7 +14757,6 @@ function renderDepositHistory(){
   }).join("");
 }
 
-
 // KZ: Deposit History Refresh (spin icon + re-render)
 function kzDepHistRefresh(btn){
   const b = btn || document.getElementById("depHistRefreshBtn");
@@ -14883,7 +14795,6 @@ function kzDepHistRefresh(btn){
     }, 650);
   }
 }
-
 
 function closeWelcomePopup() {
   const popup = document.getElementById("welcomePopup");
@@ -15037,7 +14948,6 @@ const AUTH_DB_KEY = "kz_auth_db_v1";
 const AUTH_SESSION_KEY = "kz_auth_session_v1";
 
 const AUTH_DEFAULT_PROFILE_IMG = "https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg";
-
 
 /* =============================
    MEMBER STATUS SYSTEM
@@ -15376,7 +15286,6 @@ function adminApplyMembershipUpgradeIfNeeded(db, order){
   }
 }
 
-
 function adminApplyDepositTopupIfNeeded(db, order){
   try {
     if (!db || !order) return;
@@ -15420,7 +15329,6 @@ function adminApplyDepositTopupIfNeeded(db, order){
   }
 }
 
-
 function adminSetSelectedMemberTier(){
   const me = authGetMe();
   if (!me || me.role !== "admin") return;
@@ -15442,8 +15350,6 @@ function adminSetSelectedMemberTier(){
   renderAdminUsers();
   try { renderAccountPanel(); } catch {}
 }
-
-
 
 function adminAdjustSelectedPoints(sign){
   const me = authGetMe();
@@ -15472,8 +15378,6 @@ function adminAdjustSelectedPoints(sign){
 
 function adminAddPointsSelected(){ adminAdjustSelectedPoints(1); }
 function adminSubPointsSelected(){ adminAdjustSelectedPoints(-1); }
-
-
 
 function normalizeMemberTier(t) {
   const k = String(t || "").toLowerCase().trim();
@@ -15536,35 +15440,39 @@ function authUpgradeMember(toTier) {
   const from = normalizeMemberTier(me.memberTier || "basic");
   const to = normalizeMemberTier(toTier || "");
   const key = `${from}>${to}`;
-  const cost = MEMBER_UPGRADE_COST[key];
+  const cost = Number(MEMBER_UPGRADE_COST[key] || 0) || 0;
 
   if (!cost) return authToast("⚠️ Upgrade tidak tersedia untuk status kamu.");
-  if (!confirm(`Upgrade ${from.toUpperCase()} → ${to.toUpperCase()} seharga ${authFormatRp(cost)}?
-Saldo akan dipotong otomatis.`)) return;
 
-  const db = authLoadDB();
-  const u = db.users.find(x => x.id === me.id);
-  if (!u) return authToast("⚠️ Akun tidak ditemukan.");
+  const productName = "UPGRADE MEMBER - " + String(to).toUpperCase();
+  const priceText = authFormatRpCompact(cost);
 
-  const bal = Number(u.balance || 0) || 0;
-  if (bal < cost) return authToast("⛔ Saldo tidak cukup untuk upgrade.");
+  try { closeAccountSettings(); } catch {}
+  try { closeAuthModal(); } catch {}
 
-  u.balance = Math.max(0, bal - cost);
-  u.memberTier = to;
-  try { adminLogAction('points_add', { userId: (__adminSelectedUserId||''), delta: Number(delta||0)||0 }); } catch(e){}
-  try { adminLogAction('points_sub', { userId: (__adminSelectedUserId||''), delta: Number(delta||0)||0 }); } catch(e){}
+  try {
+    openPaymentFlow(productName, cost, priceText, "", "");
+  } catch (e) {
+    console.warn(e);
+    return authToast("⚠️ Gagal membuka pembayaran.");
+  }
 
+  try {
+    payState.kind = "membership";
+    payState.upgradeToTier = to;
+    payState.qty = 1;
+    payState.promoApplied = false;
+    payState.promoCode = "";
+    payState.lastPromoDiscountVal = 0;
+    kzSetPaymentModeMembership(true);
+    if (typeof highlightPayMethod === "function") highlightPayMethod(payState.method || DEFAULT_METHOD);
+    if (typeof renderPaymentDetail === "function") renderPaymentDetail(payState.method || DEFAULT_METHOD);
+    if (typeof syncPaySummaryUI === "function") syncPaySummaryUI();
+    if (typeof validatePaySendButton === "function") validatePaySendButton();
+    if (typeof savePayStorage === "function") savePayStorage();
+  } catch (e) { console.warn(e); }
 
-  authSaveDB(db);
-
-  try { adminRecordDeposit(u.id, cost, `Upgrade member: ${from} -> ${to}`, "withdraw"); } catch {}
-
-  authToast("✅ Upgrade berhasil.");
-  authRefreshAuthModal();
-  authUpdateSidebarUI();
-  authUpdateHeaderUI();
-  authRenderMemberUI();
-  try { kzUpdateSidebarIdentity(); } catch {}
+  try { authToast("Silakan pilih metode pembayaran untuk upgrade membership."); } catch {}
 }
 
 function authUpdateHeaderUI() {
@@ -15643,7 +15551,7 @@ function authRenderMemberUI() {
         upHint.textContent = "";
       } else {
         const opts = memberGetUpgradeOptions(me);
-        upHint.textContent = opts.length ? "Upgrade memotong saldo otomatis. Diskon member akan aktif saat order." : "Tidak ada upgrade lanjutan untuk status ini.";
+        upHint.textContent = opts.length ? "Upgrade dibayar lewat metode pembayaran biasa. Diskon member akan aktif saat order." : "Tidak ada upgrade lanjutan untuk status ini.";
       }
     }
   }
@@ -15686,10 +15594,10 @@ function authRenderMemberUI() {
       accUpgradeHint.textContent = "Akun admin tidak membutuhkan upgrade membership.";
     } else {
       const opts = memberGetUpgradeOptions(me);
+      accUpgradeHint.textContent = opts.length ? "Upgrade dibayar lewat metode pembayaran biasa seperti checkout normal." : "Tidak ada upgrade lanjutan untuk status ini.";
     }
   }
 }
-
 
 let __adminSelectedUserId = "";
 let __adminSelectedOrderId = "";
@@ -15722,7 +15630,6 @@ function authRand() {
     return Math.random().toString(16).slice(2) + Math.random().toString(16).slice(2);
   }
 }
-
 
 function authMakeUserId(){
   const t = authNow().toString(36).toUpperCase().slice(-5);
@@ -15900,7 +15807,6 @@ function adjustHeaderSaldoFont(el){
   el.style.fontSize = px + "px";
   el.style.whiteSpace = "nowrap";
 }
-
 
 async function authEnsureDefaultAdmin() {
   const db = authLoadDB();
@@ -16254,8 +16160,6 @@ async function shareReferralLink(){
   authToast("✅ Link referal siap dibagikan.");
 }
 
-
-
 function setAccountPanelMode(mode) {
   const card = document.querySelector("#accountOverlay .acc-card");
   const title = document.getElementById("accPanelTitle");
@@ -16604,7 +16508,6 @@ function logoutUser() {
   closeAdminPanel();
 }
 
-
 function deleteMyAccount(){
   try { if (typeof playClick === "function") playClick(); } catch {}
   const me = authGetMe();
@@ -16651,7 +16554,6 @@ function syncAccGenderPills(val){
     b.classList.toggle("active", !!v && bv === v);
   });
 }
-
 
 function openMyOrdersFromAuth(solo = false) {
   const box = document.getElementById("authMyOrdersBox");
@@ -16901,7 +16803,6 @@ function authApplyReferralBonusForOrder(db, order){
   }
 }
 
-
 function authFindOrderByAnyId(anyId) {
   const db = authLoadDB();
   const k = String(anyId || "");
@@ -16983,8 +16884,6 @@ function authMaybeGrantPointsForOrderKey(orderKey){
   } catch { return false; }
 }
 
-
-
 /* ====== Capture order from payment flow ======
    Dipanggil dari showPaySuccessView (atau saat reopen success)
 */
@@ -17004,8 +16903,6 @@ function authCaptureFromPayState(status) {
     const total = totals ? totals.total : (payState.lastTotalVal || 0);
     const tier = totals ? totals.tier : getMemberTier(me);
 
-
-
 // existing order (idempotent poin)
 let __existingOrder = null;
 try {
@@ -17022,7 +16919,6 @@ const __pointsGranted = !!(__existingOrder && __existingOrder.pointsGranted);
 const __pointsGrantedAt = (__existingOrder && __existingOrder.pointsGrantedAt)
   ? (Number(__existingOrder.pointsGrantedAt || 0) || 0)
   : 0;
-
 
     const buyerWA = payState.buyerWA || "";
     const buyerName = payState.senderName || "";
@@ -17332,7 +17228,6 @@ function renderAdminOrders() {
   const hasMore = totalCount > limitNow;
   orders = orders.slice(0, limitNow);
 
-
   list.innerHTML = orders.map(o => {
     const pill = adminStatusPill(o.status || "proof_submitted");
     const total = authFormatRp(o.totalVal || 0);
@@ -17414,7 +17309,6 @@ function adminUpdateOrder(internalId) {
   try { authGrantOrderPointsIfEligible(db, o); } catch (e) { console.warn(e); }
   adminLogAction('order_update', { id: internalId, status: st, note: note })
 
-
   authSaveDB(db);
   authToast("✅ Order diupdate.");
   renderAdminAll();
@@ -17426,8 +17320,6 @@ function adminQuickOpenWA(wa, orderId) {
   const msg = `Halo kak, ini admin. Untuk order ${orderId}, status sedang kami proses ya.`;
   window.open(`https://wa.me/${w}?text=${encodeURIComponent(msg)}`, "_blank");
 }
-
-
 
 /* ===== ADMIN AUDIT LOG ===== */
 function kzAuditRead(){
@@ -18492,7 +18384,6 @@ async function kzPayWithSaldo(){
   }
 }
 
-
 /* =============================
    PROMO COMMIT (idempotent)
    ============================= */
@@ -18679,7 +18570,6 @@ function adminResetPromoUsage(){
   adminSetPromoStatus("✅ Pemakaian di-reset.");
 }
 
-
 // ====== FIX: Membership Upgrade button reliable click ======
 document.addEventListener("click", function(e){
   const btn = e.target.closest && e.target.closest(".mem-upgrade-btn");
@@ -18692,8 +18582,6 @@ document.addEventListener("click", function(e){
     openMembershipUpgradeTier(tier);
   }
 });
-
-
 
 /* =============================
    ADMIN PRODUCTS UI
@@ -18911,7 +18799,6 @@ function renderAdminProductDraft(){
     `;
   }).join("");
 }
-
 
 function renderAdminServerDraft(){
   const wrap = document.getElementById("adminProdServerDraft");
@@ -19525,11 +19412,10 @@ function renderAdminInfos(){
 }
 /* ===== END ADMIN INFOS UI ===== */
 
-
 /* ===== END ADMIN PRODUCTS UI ===== */</script>
 
 </div>
-<!-- ===== KZRIZUSMO FIX V5 START ===== -->
+
 <style>
 /* Header: keep exactly 2 lines */
 header .header-title h1{
@@ -20019,7 +19905,6 @@ header .header-title .header-subtitle{
   return out;
 }
 
-
   // Kategori di modal Tukar Poin
   window.__kzRedeemCat = "store";
   window.kzRedeemSetCat = function(cat){
@@ -20037,7 +19922,6 @@ header .header-title .header-subtitle{
       if(typeof kzRenderRedeemList === "function") kzRenderRedeemList(s ? s.value : "");
     }catch(e){ console.warn(e); }
   };
-
 
   // expose functions
   window.kzOpenRedeemModal = function(){
@@ -20349,7 +20233,6 @@ window.kzRedeemLoadMore = function(){
         }
       }catch{}
 
-
       // Wrap adminSaveInfo to persist media fields
       if(!window.__kzAdminSaveInfoWrapped && typeof window.adminSaveInfo === "function"){
         window.__kzAdminSaveInfoWrapped = true;
@@ -20443,7 +20326,6 @@ window.kzRedeemLoadMore = function(){
 
     }catch(e){ console.warn("kzPatchAdminInfoMedia error", e); }
   }
-
 
   function kzNormalizeWA08(v){
     // strict: only allow 08xxxxxxxxxx (10-13 digits)
@@ -20541,7 +20423,6 @@ window.kzRedeemLoadMore = function(){
     ["payWhatsappInput","payFormWA","depositWA","authRegWA","authMeWA","accWA","adminAddUserWA","adminDeliverWA"].forEach(kzBindWA08);
   }
 
-
   onReady(function(){
     // Fix the root bug: info UI was outside #page-info
     kzMoveInfoIntoPage();
@@ -20568,8 +20449,6 @@ window.kzRedeemLoadMore = function(){
 
 })();
 </script>
-<!-- ===== KZRIZUSMO FIX V5 END ===== -->
-
 
 <style id="kzPatchV6">
 /* ===== KZRIZUSMO v6: Mobile stability & layout fixes ===== */
@@ -20621,8 +20500,6 @@ header { display:flex; align-items:center; justify-content:space-between; gap:10
 }
 </style>
 
-
-<!-- ===== KZRIZUSMO FIX V9 START (WA strict + Info media persist) ===== -->
 <script id="kzPatchV9">
 (function(){
   try{
@@ -20718,8 +20595,6 @@ header { display:flex; align-items:center; justify-content:space-between; gap:10
   try{ if(typeof renderInfoPage === "function") renderInfoPage(); }catch(e){}
 })();
 </script>
-<!-- ===== KZRIZUSMO FIX V9 END ===== -->
-
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -20745,8 +20620,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-
-<!-- ===== KZRIZUSMO: ERROR LOGGER + BACKUP/RESTORE (v19 UI POLISH) ===== -->
 <style>
 /* Scoped UI only for backup/log modal (no global side effects) */
 #kzBackupModal{
@@ -20998,7 +20871,6 @@ document.addEventListener('DOMContentLoaded', () => {
   #kzBackupModal .kz-section-bar{ flex-direction:column; align-items:stretch; }
   #kzBackupModal .kz-actions{ justify-content:flex-start; }
 }
-
 
 /* Admin toolbar button (scoped by id, not red) */
 #kzAdminBackupBtn{
@@ -21529,8 +21401,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const b64 = toB64(payload);
-    const START = "<!-- KZ_EMBEDDED_BACKUP_V1_START -->";
-    const END   = "<!-- KZ_EMBEDDED_BACKUP_V1_END -->";
+    const START = "";
+    const END   = "";
     const SCRIPT_CLOSE = "</scr" + "ipt>";
 
     const loader = `(function(){
@@ -21568,20 +21440,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let out = dt + "\n" + document.documentElement.outerHTML;
 
     try{
-      out = out.replace(/<!--\s*KZ_EMBEDDED_BACKUP_V1_START\s*-->[\s\S]*?<!--\s*KZ_EMBEDDED_BACKUP_V1_END\s*-->/g, "");
+      out = out.replace(/[\s\S]*?/g, "");
     }catch(e){}
     const lower = out.toLowerCase();
-    let idx = lower.indexOf("
-
-
-<style id="kz-lightmode-f4f5f7-final">
-html, body.light-mode{background:#F4F5F7 !important;background-color:#F4F5F7 !important;}
-body.light-mode{--bg-body:#F4F5F7 !important;}
-</style>
-
-
-
-</body>");
+    let idx = lower.indexOf("</body>");
     if (idx < 0) idx = out.length;
     out = out.slice(0, idx) + "\n" + block + "\n" + out.slice(idx);
 
@@ -21731,7 +21593,6 @@ body.light-mode{--bg-body:#F4F5F7 !important;}
   });
 })();
 </script>
-<!-- ===== /KZRIZUSMO ERROR LOGGER + BACKUP/RESTORE ===== -->
 
 <script id="kzSchemaPatchV22">
 /* ===== KZRIZUSMO v22: schema versioning + data integrity ===== */
@@ -21827,7 +21688,6 @@ body.light-mode{--bg-body:#F4F5F7 !important;}
 })();
 </script>
 
-
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
@@ -21883,7 +21743,6 @@ function resetHome(){
   } catch(e){}
 })();
 
-
 /* === KZ: CS Sticker + Modal Logic === */
 (function(){
   function initKzCs(){
@@ -21911,7 +21770,6 @@ function resetHome(){
       };
       // default hidden until navTo decides
       try{ window.kzSetCsVisible(false); }catch(e){}
-
 
       // set image if provided (and show fallback if it fails)
       if (img && fallback){
@@ -22020,7 +21878,6 @@ function resetHome(){
 
 </script>
 
-<!-- === KZ: Floating CS Sticker === -->
 <div class="kz-cs-float" id="kzCsFloat" style="display:none">
   <button class="kz-cs-sticker" id="kzCsSticker" type="button" aria-label="Customer Service">
     <img id="kzCsAvatarImg" src="https://files.catbox.moe/xtib4y.png" alt="CS" referrerpolicy="no-referrer" loading="eager"
@@ -22043,7 +21900,6 @@ function resetHome(){
   </button>
 </div>
 
-<!-- === KZ: CS Modal === -->
 <div id="kzCsModal" role="dialog" aria-modal="true" aria-label="Customer Service">
   <div class="kzcs-card" role="document">
     <div class="kzcs-head">
@@ -22065,7 +21921,6 @@ function resetHome(){
     </div>
   </div>
 </div>
-
 
 <script>
 /* ===== PATCH: Lock text copy + lock image context menu ===== */
@@ -22131,7 +21986,6 @@ function resetHome(){
   }, true);
 
 })();
-
 
 /* === KZ CART SIDEBAR (v1) === */
 (function(){
@@ -22431,7 +22285,6 @@ function resetHome(){
     window.kzCartAddItem(item, true);
   };
 
-
   // Add item to cart from product list (detail modal)
   window.kzCartAddFromPackage = function(pkgName, appName, priceVal, appImg, serverTier, noServer){
     try{ if(typeof playClick === "function") playClick(); }catch(_){}
@@ -22496,7 +22349,6 @@ function resetHome(){
             }
           }
         }catch(_){}
-
 
         // set qty in payment UI
         const q = Math.max(1, parseInt(it.qty || 1, 10) || 1);
@@ -22906,8 +22758,6 @@ function init(){
 })();
 </script>
 
-
-
 <script>
 /* ===== KZRIZUSMO PWA ===== */
 (function(){
@@ -23017,7 +22867,6 @@ function init(){
 })();
 </script>
 
-
 <style id="kz-profile-popup-fix-final">
 .acc-profile{display:flex !important;flex-wrap:wrap !important;justify-content:center !important;align-items:flex-start !important;gap:16px !important;width:100% !important;}
 .kz-profile-hero{display:flex !important;justify-content:center !important;align-items:center !important;flex:0 0 92px !important;width:92px !important;margin:0 !important;}
@@ -23077,7 +22926,6 @@ body.light-mode #accGenderSelect{background:#0B0B0B !important;color:#fff !impor
 })();
 </script>
 
-
 <script id="kz-v8-product-recovery">
 (function(){
   function esc(s){ return String(s==null?'':s).replace(/[&<>\"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
@@ -23135,14 +22983,9 @@ body.light-mode #accGenderSelect{background:#0B0B0B !important;color:#fff !impor
 })();
 </script>
 
-
-
-
-
 <style id="kz-fast-premium-patch">
 :root{--primary:#d60000;--text-sec:#b8b8b8;--status-success:#22c55e}body.light-mode{--text-sec:#5d5d5d}*{font-family:Inter,Segoe UI,Tahoma,Geneva,Verdana,sans-serif}body,.pay-info,.auth-sub,.section-subtitle,.faq-intro-desc,.admin-carditem,.admin-kv,.pay-sub{line-height:1.6}header{padding:12px 18px;border-bottom:1px solid rgba(214,0,0,.35);background:color-mix(in srgb,var(--bg-card) 84%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.18)}.header-left{gap:12px}.header-right{gap:8px}.header-logo{width:38px;height:38px;border-color:rgba(214,0,0,.45)}.section-title,.modal-header h2,.admin-title,.auth-title{font-size:1.08rem!important;font-weight:900}.header-subtitle,.item-subtitle,.pay-sub,.section-subtitle,.faq-intro-desc,[style*="color:var(--text-sec)"],[style*="color: var(--text-sec)"]{color:var(--text-sec)!important}.shiny-effect,.btn-solid,.btn-ghost,.filter-btn,.pay-btn,.qty-btn,.sidebar-item,.item-card,.package-card,.pay-method,.auth-tab,.admin-tab,.kz-order-chip,.kz-order-btn{transition:transform .18s ease,box-shadow .25s ease,background-color .25s ease,border-color .25s ease,color .25s ease}.shiny-effect:hover,.btn-solid:hover,.btn-ghost:hover,.filter-btn:hover,.pay-btn:hover,.pay-method:hover,.item-card:hover,.package-card:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,0,0,.18)}.shiny-effect:active,.btn-solid:active,.btn-ghost:active,.filter-btn:active,.pay-btn:active,.pay-method:active,.item-card:active,.package-card:active{transform:scale(.985)}.btn-solid,.pay-btn:not(.secondary){background:linear-gradient(135deg,#b80000,var(--primary));border-color:transparent;box-shadow:0 14px 28px rgba(214,0,0,.22)}.item-card,.package-card{border-radius: 14px;min-height:100%}.item-card{padding:14px 14px 16px}.item-card img{width:68px;height:68px;border-radius:16px;margin-bottom:12px}.item-title{font-size:.9rem;font-weight:800;line-height:1.4;min-height:2.8em}.pkg-price,.item-card .item-price,.package-card .price,.list-item .price{font-size:1rem;font-weight:900;color:var(--text-main)}.kz-pkg-actions{gap:12px!important}.kz-pkg-cart-btn,.kz-pkg-chevron{margin:0 2px!important}.faq-item{border-radius: 14px;box-shadow:0 16px 28px rgba(0,0,0,.08)}.faq-q{background:linear-gradient(135deg,#ab0000,#e11d1d);padding:14px 14px}.faq-a{transition:max-height .42s cubic-bezier(.22,1,.36,1),padding .32s ease,opacity .28s ease;opacity:.68}.faq-item.open .faq-a{opacity:1}.modal-page,.auth-card,.admin-card,.rc-card{border-radius: 14px;transform:translateY(18px) scale(.985);opacity:0;transition:transform .32s cubic-bezier(.22,1,.36,1),opacity .26s ease}.modal-page.kz-open,.auth-overlay.show .auth-card,.admin-overlay.show .admin-card,#receiptModal.show .rc-card{transform:translateY(0) scale(1);opacity:1}.pay-method.active{box-shadow:0 12px 26px rgba(214,0,0,.22)}#sysToast{min-width:min(92vw,360px);border-radius:16px;border:1px solid rgba(255,255,255,.12);box-shadow:0 20px 50px rgba(0,0,0,.34);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}#sysToast.kz-toast-success{background:rgba(34,197,94,.14)!important;border-color:rgba(34,197,94,.35)!important;color:#dcfce7!important}#sysToast.kz-toast-error{background:rgba(214,0,0,.16)!important;border-color:rgba(214,0,0,.35)!important;color:#ffe0e0!important}#sysToast.kz-toast-warning{background:rgba(250,204,21,.14)!important;border-color:rgba(250,204,21,.35)!important;color:#fff6cf!important}.kz-checkout-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:12px 0 16px}.kz-step{position:relative;padding:10px 8px 10px 12px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid var(--border);min-height:66px}.kz-step small{display:block;font-size:11px;color:var(--text-sec);margin-bottom:4px;font-weight:700}.kz-step b{display:block;font-size:12px;line-height:1.35}.kz-step::after{content:'';position:absolute;top:50%;right:-8px;width:16px;height:2px;background:rgba(255,255,255,.12);transform:translateY(-50%)}.kz-step:last-child::after{display:none}.kz-step.active{background:rgba(214,0,0,.12);border-color:rgba(214,0,0,.35);box-shadow:0 12px 24px rgba(214,0,0,.12)}.kz-step.done{background:rgba(34,197,94,.11);border-color:rgba(34,197,94,.34)}.kz-step.done b:before{content:'✓ ';color:var(--status-success)}.kz-orders-toolbar{display:grid;gap:10px;margin-bottom:12px}.kz-orders-search{width:100%;padding:11px 13px;border-radius:14px;border:1px solid var(--border);background:var(--bg-sec);color:var(--text-main)}.kz-orders-filters{display:flex;gap:8px;overflow:auto;padding-bottom:2px}.kz-order-chip{white-space:nowrap;padding:8px 12px;border-radius:999px;border:1px solid var(--border);background:var(--bg-sec);color:var(--text-sec);font-size:12px;font-weight:800;cursor:pointer}.kz-order-chip.active{background:rgba(214,0,0,.12);border-color:rgba(214,0,0,.35);color:#fff}.kz-order-meta{display:grid;grid-template-columns:110px 1fr;gap:8px 12px;font-size:12px;line-height:1.55;margin-top:12px}.kz-order-meta .key{color:var(--text-sec)}.kz-order-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.kz-order-btn{flex:1;min-width:140px;padding:10px 12px;border-radius:14px;border:1px solid var(--border);background:var(--bg-sec);color:var(--text-main);font-weight:800;cursor:pointer}.kz-orders-skeleton{display:grid;gap:10px}.kz-skeleton{height:92px;border-radius: 14px;background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,255,255,.09),rgba(255,255,255,.05));background-size:220% 100%;animation:kzSkeleton 1.15s linear infinite}@keyframes kzSkeleton{0%{background-position:200% 0}100%{background-position:-20% 0}}.kz-success-extra{margin-top:14px;padding:14px;border-radius: 14px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04)}.kz-success-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}.kz-success-box{padding:12px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}.kz-success-box small{display:block;color:var(--text-sec);margin-bottom:4px}.kz-success-cta{margin-top:12px;width:100%}@media(max-width:720px){.kz-checkout-steps{grid-template-columns:1fr}.kz-step::after{display:none}}@media(max-width:640px){.kz-success-grid{grid-template-columns:1fr}}</style>
 <script id="kz-fast-premium-script">(function(){const fmt=n=>{try{return typeof authFormatRp==='function'?authFormatRp(Number(n||0)):'Rp '+Number(n||0).toLocaleString('id-ID')}catch(e){return 'Rp '+(Number(n||0)||0)}};const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));function toastClass(msg){msg=String(msg||'').toLowerCase();if(/berhasil|sukses|aktif|ditambahkan|terkirim/.test(msg))return'kz-toast-success';if(/gagal|error|expired|tidak ditemukan|kosong|bukan/.test(msg))return'kz-toast-error';return'kz-toast-warning'}function initToast(){const el=document.getElementById('sysToast');if(!el)return;new MutationObserver(()=>{el.classList.remove('kz-toast-success','kz-toast-error','kz-toast-warning');if((el.textContent||'').trim())el.classList.add(toastClass(el.textContent))}).observe(el,{childList:true,subtree:true,characterData:true})}function initModal(){if(typeof window.openDetail==='function'&&!window.__kzFastOpen){const old=window.openDetail;window.openDetail=function(){const r=old.apply(this,arguments);setTimeout(()=>document.getElementById('detailModal')?.classList.add('kz-open'),10);return r};window.__kzFastOpen=true}if(typeof window.closeModal==='function'&&!window.__kzFastClose){const old=window.closeModal;window.closeModal=function(){const m=document.getElementById('detailModal');if(m){m.classList.remove('kz-open');setTimeout(()=>old.apply(this,arguments),170);return}return old.apply(this,arguments)};window.__kzFastClose=true}}function initSteps(){const methods=document.getElementById('payMethodGrid');if(!methods||document.getElementById('kzCheckoutSteps'))return;const d=document.createElement('div');d.id='kzCheckoutSteps';d.className='kz-checkout-steps';d.innerHTML=['Pilih produk','Isi data','Bayar','Upload bukti','Selesai'].map((t,i)=>`<div class="kz-step"><small>Step ${i+1}</small><b>${t}</b></div>`).join('');methods.parentNode.insertBefore(d,methods)}function updateSteps(){initSteps();const steps=[...document.querySelectorAll('#kzCheckoutSteps .kz-step')];if(!steps.length)return;const wa=document.getElementById('payWhatsappInput')?.value?.trim();const method=document.querySelector('#payMethodGrid .pay-method.active');const preview=(document.getElementById('payPreviewName')?.textContent||'').trim();const success=(document.getElementById('paySuccessView')?.style.display||'')!=='none';let a=1;if(wa||document.getElementById('paySumProduct')?.textContent?.trim()!=='-')a=2;if(method)a=3;if(preview&&preview!=='-')a=4;if(success)a=5;steps.forEach((el,i)=>{const n=i+1;el.classList.toggle('done',n<a);el.classList.toggle('active',n===a)})}function bindStepTrack(){document.addEventListener('input',e=>{if(e.target&&['payWhatsappInput','payQtyInput','payPromoInput'].includes(e.target.id))setTimeout(updateSteps,20)},true);document.addEventListener('click',e=>{if(e.target.closest('#payMethodGrid,.qty-btn,#payBtnUpload,#payBtnSend,.pay-btn,.btn-solid,.btn-ghost'))setTimeout(updateSteps,20)},true);setInterval(updateSteps,1200)}function patchExit(){if(typeof window.closePaymentFlow!=='function'||window.__kzFastExit)return;const old=window.closePaymentFlow;window.closePaymentFlow=function(){try{const shown=getComputedStyle(document.getElementById('payOverlay')).display!=='none';const success=(document.getElementById('paySuccessView')?.style.display||'')!=='none';const dirty=!!(document.getElementById('payWhatsappInput')?.value?.trim()||document.querySelector('#payMethodGrid .pay-method.active')||((document.getElementById('payPreviewName')?.textContent||'').trim()&&((document.getElementById('payPreviewName')?.textContent||'').trim()!=='-')));if(shown&&!success&&dirty&&!window.__kzBypassExitConfirm){if(!confirm('Keluar dari flow pembayaran? Data yang belum dikirim bisa hilang dan timer akan di-reset.'))return}}catch(e){}return old.apply(this,arguments)};window.__kzFastExit=true}function initSuccess(){const actions=document.getElementById('paySuccessActions');if(!actions||document.getElementById('kzSuccessExtra'))return;const box=document.createElement('div');box.id='kzSuccessExtra';box.className='kz-success-extra';box.innerHTML='<div style="font-weight:900;font-size:15px;">Ringkasan Setelah Bayar</div><div class="kz-success-grid"><div class="kz-success-box"><small>Status order</small><b id="kzSuccessStatus">Menunggu verifikasi admin</b></div><div class="kz-success-box"><small>Estimasi proses</small><b id="kzSuccessEstimate">otomatis 2 jam per tahap • total 4 jam</b></div></div><button class="pay-btn kz-success-cta" id="kzGoMyOrders" type="button">KE PESANAN SAYA</button>';actions.parentNode.insertBefore(box,actions);document.getElementById('kzGoMyOrders').onclick=function(){window.__kzBypassExitConfirm=true;try{closePaymentFlow()}catch(e){}setTimeout(()=>{try{openMyOrdersFromMenu()}catch(e){}window.__kzBypassExitConfirm=false},80)}}function updateSuccess(){initSuccess();const title=document.getElementById('paySuccessTitle');const sub=document.getElementById('paySuccessSub');const status=document.getElementById('kzSuccessStatus');if(title&&/terkirim/i.test(title.textContent||''))title.textContent='Pembayaran Berhasil Dikirim';if(sub)sub.textContent='Order kamu sudah masuk. Simpan kode order lalu cek statusnya di Pesanan Saya.';if(status)status.textContent='Bukti diterima • order '+(document.getElementById('paySuccessOrderId')?.textContent?.trim()||'-')}function myOrders(){const me=typeof authGetMe==='function'?authGetMe():null;const db=typeof authLoadDB==='function'?authLoadDB():{};const wa=me?(me.wa||''):'';const waSet=new Set();try{const n=authNormalizeWA(wa);if(n)waSet.add(n);(Array.isArray(me?.waHistory)?me.waHistory:[]).forEach(v=>{const nn=authNormalizeWA(v);if(nn)waSet.add(nn)})}catch(e){}const myId=me?String(me.id||''):'';return(Array.isArray(db.orders)?db.orders:[]).filter(o=>{if(!o)return false;const buyerId=(o.buyer&&o.buyer.userId!=null)?String(o.buyer.userId):(o.buyerId!=null?String(o.buyerId):(o.userId!=null?String(o.userId):''));if(myId&&buyerId&&buyerId===myId)return true;const bwa=(o&&o.buyer&&o.buyer.wa)?o.buyer.wa:(o.buyerWA||'');const n=typeof authNormalizeWA==='function'?authNormalizeWA(bwa):bwa;return waSet.size&&n&&waSet.has(n)}).sort((a,b)=>(b.updatedAt||b.orderedAt||0)-(a.orderedAt||a.updatedAt||0)).slice(0,50)}function statusLabel(s){return({proof_submitted:'Menunggu Verifikasi',pending:'Pending',processing:'Diproses',delivered:'Selesai',completed:'Selesai',done:'Selesai',success:'Selesai',cancelled:'Dibatalkan',expired:'Expired'})[String(s||'proof_submitted')]||String(s||'proof_submitted')}function ensureOrdersUi(){const wrap=document.getElementById('authMyOrdersList');if(!wrap||document.getElementById('kzOrdersToolbar'))return;const t=document.createElement('div');t.id='kzOrdersToolbar';t.className='kz-orders-toolbar';t.innerHTML='<input id="kzOrdersSearch" class="kz-orders-search" placeholder="Cari berdasarkan kode order..."><div class="kz-orders-filters"><button class="kz-order-chip active" data-f="all" type="button">Semua</button><button class="kz-order-chip" data-f="proof_submitted" type="button">Menunggu Verifikasi</button><button class="kz-order-chip" data-f="processing" type="button">Diproses</button><button class="kz-order-chip" data-f="delivered" type="button">Selesai</button></div>';wrap.parentNode.insertBefore(t,wrap);t.onclick=e=>{const b=e.target.closest('.kz-order-chip');if(!b)return;t.querySelectorAll('.kz-order-chip').forEach(x=>x.classList.toggle('active',x===b));renderOrdersPremium()};document.getElementById('kzOrdersSearch').oninput=renderOrdersPremium}window.renderOrdersPremium=function(){const wrap=document.getElementById('authMyOrdersList');if(!wrap)return;ensureOrdersUi();const q=(document.getElementById('kzOrdersSearch')?.value||'').trim().toLowerCase();const f=document.querySelector('#kzOrdersToolbar .kz-order-chip.active')?.dataset?.f||'all';let arr=myOrders().filter(o=>{const code=String(o.orderId||o.id||'').toLowerCase();const st=String(o.status||'proof_submitted');return (!q||code.includes(q))&&(f==='all'||st===f||(f==='delivered'&&/delivered|completed|done|success/.test(st)))});if(!arr.length){wrap.innerHTML='<div style="font-size:12px;color:var(--text-sec);line-height:1.6;padding:8px 2px;">Tidak ada pesanan yang cocok. Coba ubah filter atau cari dengan kode order.</div>';return}wrap.innerHTML=arr.map(o=>{const code=String(o.orderId||o.id||'');const total=(o.kind==='redeem'||o.source==='redeem')?'Gratis (Poin)':fmt(o.totalVal||0);const tm=o.orderedAt?new Date(o.orderedAt).toLocaleString('id-ID'):'-';return `<div class="admin-carditem kz-order-card"><div class="kz-order-headline"><div class="kz-order-code">${esc(code)}</div>${typeof adminStatusPill==='function'?adminStatusPill(o.status||'proof_submitted'):'<span>'+esc(statusLabel(o.status))+'</span>'}</div><div class="kz-order-meta"><div class="key">Produk</div><b>${esc(o.product||'-')}</b><div class="key">Total</div><b>${esc(total)}</b><div class="key">Status</div><b>${esc(statusLabel(o.status))}</b><div class="key">Waktu</div><b>${esc(tm)}</b></div><div class="kz-order-actions"><button class="kz-order-btn" type="button" onclick="kzOpenOrderReceipt('${code.replace(/'/g,"\'")}')">Lihat Detail</button><button class="kz-order-btn" type="button" onclick="navigator.clipboard&&navigator.clipboard.writeText('${code.replace(/'/g,"\'")}');try{authToast('Kode order berhasil disalin ✅')}catch(e){}">Salin Kode Pesanan</button></div></div>`}).join('')} ;if(typeof window.renderMyOrders==='function'&&!window.__kzRenderOrdersWrapped){const old=window.renderMyOrders;window.renderMyOrders=function(){const wrap=document.getElementById('authMyOrdersList');if(wrap)wrap.innerHTML='<div class="kz-orders-skeleton"><div class="kz-skeleton"></div><div class="kz-skeleton"></div><div class="kz-skeleton"></div></div>';setTimeout(()=>{try{renderOrdersPremium()}catch(e){old.apply(this,arguments)}},180)};window.__kzRenderOrdersWrapped=true}function boot(){initToast();initModal();initSteps();bindStepTrack();patchExit();updateSuccess();setInterval(updateSuccess,1000)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot()})();</script>
-
 
 <style id="kz-user-request-revision-20260313">
 /* 1) Sidebar home + toggle mode switch */
@@ -23239,7 +23082,6 @@ body.light-mode #accGenderSelect{background:#0B0B0B !important;color:#fff !impor
   try{ setInterval(forceDarkMode, 1000); }catch(e){}
 })();
 </script>
-
 
 <style id="kz-home-clean-fix">
 :root{--primary:#ff0000;--primary-rgb:255,0,0;--primary-border:rgba(255,0,0,.24);}
@@ -23497,10 +23339,6 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
   window.addEventListener('load', function(){ setTimeout(init,160); });
 })();
 </script>
-
-
-
-
 
 <style id="kz-home-final-userfix">
 #page-home{padding:0 16px 120px!important}
@@ -23889,233 +23727,17 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
 </script>
 
 
-<style id="kz-home-v6-patch-style">
-#page-home .kz-preview{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:11px!important}
-#page-home .kz-preview-item{aspect-ratio:1/1!important;min-height:0!important;padding:8px!important;border-radius: 14px!important;display:flex!important;align-items:center!important;justify-content:center!important}
-#page-home .kz-preview-thumb{width:100%!important;height:100%!important;max-width:92px!important;max-height:92px!important;aspect-ratio:1/1!important;border-radius: 14px!important;display:flex!important;align-items:center!important;justify-content:center!important;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 8px 24px rgba(0,0,0,.22)!important}
-#page-home .kz-preview-item img{width:100%!important;height:100%!important;max-width:72px!important;max-height:72px!important;aspect-ratio:1/1!important;object-fit:contain!important;border-radius: 14px!important;display:block!important}
-#page-home .kz-preview-item.more{border-color:rgba(255,255,255,.14)!important}
-#page-home .kz-preview-item .more-icon{width:100%!important;height:100%!important;max-width:92px!important;max-height:92px!important;aspect-ratio:1/1!important;border-radius: 14px!important;background:rgba(255,255,255,.06)!important;color:rgba(255,255,255,.68)!important;display:flex!important;align-items:center!important;justify-content:center!important}
-#page-home .kz-preview-item .more-icon i{font-size:22px!important}
-#page-home .kz-preview-item .nm,#page-home .kz-preview-item .meta{display:none!important}
-#page-home .kz-marquee{grid-template-columns:24px minmax(0,1fr)!important;gap:10px!important;align-items:center!important}
-#page-home .kz-marquee-viewport{overflow:hidden!important;position:relative!important;min-width:0!important}
-#page-home .kz-marquee-track{display:inline-flex!important;align-items:center!important;gap:40px!important;white-space:nowrap!important;will-change:transform!important;padding-left:0!important;animation:none!important;transform:translateX(0)}
-</style>
-<script id="kz-home-v6-patch-script">
-(function(){
-  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];});}
-  function clone(a){return (Array.isArray(a)?a:[]).map(function(x){return Object.assign({},x||{})})}
-  function sourceStore(){try{ if(Array.isArray(window.__kzStoreState)&&window.__kzStoreState.length) return clone(window.__kzStoreState);}catch(e){} try{ if(Array.isArray(window.appsData)&&window.appsData.length) return clone(window.appsData);}catch(e){} return [];}
-  function sourceDigital(){try{ if(Array.isArray(window.__kzDigitalState)&&window.__kzDigitalState.length) return clone(window.__kzDigitalState);}catch(e){} try{ if(Array.isArray(window.digitalAppsData)&&window.digitalAppsData.length) return clone(window.digitalAppsData);}catch(e){} return [];}
-  function sourceSosmed(){try{ if(Array.isArray(window.__kzSosmedState)&&window.__kzSosmedState.length) return clone(window.__kzSosmedState);}catch(e){} try{ if(Array.isArray(window.sosmedData)&&window.sosmedData.length) return clone(window.sosmedData);}catch(e){} return [];}
-  function sourceByTab(tab){ return tab==='digital' ? sourceDigital() : (tab==='sosmed' ? sourceSosmed() : sourceStore()); }
-  function svgIcon(label,bg,fg){ var l=String(label||'P').trim(); var parts=l.split(/\s+/).filter(Boolean); var initials=((parts[0]||'P').slice(0,1)+(parts[1]||'').slice(0,1)).toUpperCase().slice(0,2); var svg='<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><rect x="6" y="6" width="84" height="84" rx="24" fill="'+bg+'"/><text x="48" y="57" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="700" text-anchor="middle" fill="'+fg+'">'+initials+'</text></svg>'; return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg); }
-  function cleanList(src){ return src.filter(function(it){ return it && (it.id||it.name); }); }
-  function detailAction(it, tab){ var id=JSON.stringify(String(it&&it.id||'')); if(tab==='digital') return 'window.kzOpenDigitalDetail&&window.kzOpenDigitalDetail('+id+')'; if(tab==='sosmed') return 'window.kzOpenSosmedPreview&&window.kzOpenSosmedPreview('+id+')'; return 'window.openDetail&&window.openDetail('+id+')'; }
-  function card(it, tab){ var img=it.image||svgIcon(it.name||'Produk','#151515','#ff0000'); return '<div class="kz-preview-item" onclick="'+detailAction(it,tab)+'"><div class="kz-preview-thumb"><img src="'+esc(img)+'" alt="'+esc(it.name||'Produk')+'"></div><div class="nm">'+esc(it.name||'Produk')+'</div><div class="meta"><span></span><b></b></div></div>'; }
-  function moreCard(tab){ return '<div class="kz-preview-item more" onclick="window.kzHomeOpenMore&&window.kzHomeOpenMore('+JSON.stringify(String(tab||'apk'))+')"><div class="more-icon"><i class="fas fa-ellipsis-h"></i></div><div class="nm">...</div><div class="meta"><span></span><b></b></div></div>'; }
-  function previewFor(tab){ return cleanList(sourceByTab(tab)).slice(0,7).map(function(it){ return Object.assign({__src:tab}, it); }); }
-  function getMe(){try{return typeof authGetMe==='function'?authGetMe():null}catch(e){return null}}
-  function getPoints(){var m=getMe();return Number((m&&(m.points||m.point||m.poin))||0)||0}
-  function fmt(n){try{return new Intl.NumberFormat('id-ID').format(Number(n||0)||0)}catch(e){return String(n||0)}}
-  function marqueeText(){ return ''; }
-  function initHomeMarquee(){
-    var viewport=document.querySelector('#page-home .kz-marquee-viewport');
-    var track=document.querySelector('#page-home .kz-marquee-track');
-    if(!viewport||!track) return;
-    try{ if(window.__kzMarqueeRaf) cancelAnimationFrame(window.__kzMarqueeRaf); }catch(e){}
-    var text=marqueeText();
-    track.innerHTML='<span>'+esc(text)+'</span><span aria-hidden="true">'+esc(text)+'</span><span aria-hidden="true">'+esc(text)+'</span>';
-    var x=(typeof window.__kzMarqueeX==='number')?window.__kzMarqueeX:0;
-    var last=performance.now();
-    function measureReset(){
-      var first=track.firstElementChild;
-      if(!first) return 0;
-      var gap=40;
-      return first.offsetWidth + gap;
-    }
-    function step(now){
-      var dt=Math.max(12, Math.min(40, now-last));
-      last=now;
-      var speed=0.06;
-      x -= dt*speed;
-      var resetAt=measureReset();
-      if(resetAt>0 && Math.abs(x)>=resetAt) x += resetAt;
-      track.style.transform='translateX('+x+'px)';
-      window.__kzMarqueeX=x;
-      window.__kzMarqueeRaf=requestAnimationFrame(step);
-    }
-    track.style.transform='translateX('+x+'px)';
-    window.__kzMarqueeRaf=requestAnimationFrame(step);
-  }
-  function renderHomeV6(tab){
-    tab=tab||window.__kzHomeTab||'apk'; window.__kzHomeTab=tab;
-    var home=document.getElementById('page-home'); if(!home) return;
-    var m=getMe()||{}; var user=esc(m.username||'user'); var tier=esc(m.membershipTier||m.membership||m.level||'Basic'); var status=(m.username?'Aktif':'Guest');
-    var items=previewFor(tab); var html=items.map(function(it){return card(it,tab);}); html.push(moreCard(tab));
-    home.innerHTML=''+
-      '<div class="kz-home-shell">'+
-        '<div class="kz-home-card kz-top-card">'+
-          '<div class="kz-home-top">'+
-            '<div class="kz-balance"><div><div class="lbl">Poin User</div><div class="val">'+fmt(getPoints())+'</div></div>'+dailyClaimMarkup(m)+'</div>'+
-            '<div class="kz-side-mini"><div class="kz-mini"><div class="t">Membership</div><div class="v">'+tier+'</div></div><div class="kz-mini"><div class="t">Status Akun</div><div class="v">'+status+'</div></div></div>'+
-          '</div>'+
-        '</div>'+
-        '<div class="kz-shortcuts">'+
-          '<div class="kz-shortcut" onclick="navTo(\'all-products\')"><i class="fas fa-box-open"></i><span>Semua Produk</span></div>'+
-          '<div class="kz-shortcut" onclick="window.kzOpenCartFromSidebar&&window.kzOpenCartFromSidebar()"><i class="fas fa-cart-shopping"></i><span>Keranjang</span></div>'+
-          '<div class="kz-shortcut" onclick="window.openMyOrdersFromMenu&&window.openMyOrdersFromMenu()"><i class="fas fa-receipt"></i><span>Pesanan Saya</span></div>'+
-          '<div class="kz-shortcut" onclick="navTo(\'membership-upgrade\')"><i class="fas fa-crown"></i><span>Upgrade Membership</span></div>'+
-        '</div>'+
-        '<div class="kz-marquee"><i class="fas fa-bullhorn"></i><div class="kz-marquee-viewport"><div class="kz-marquee-track"></div></div></div>'+
-        '<div class="kz-home-card"><div class="kz-tabs">'+
-          '<button class="kz-tab '+(tab==='apk'?'active':'')+'" onclick="window.kzHomeSetTab&&window.kzHomeSetTab(\'apk\')">Apk Premium</button>'+
-          '<button class="kz-tab '+(tab==='digital'?'active':'')+'" onclick="window.kzHomeSetTab&&window.kzHomeSetTab(\'digital\')">Produk Digital</button>'+
-          '<button class="kz-tab '+(tab==='sosmed'?'active':'')+'" onclick="window.kzHomeSetTab&&window.kzHomeSetTab(\'sosmed\')">Suntik Sosmed</button>'+
-        '</div><div class="kz-preview">'+html.join('')+'</div></div>'+
-      '</div>';
-    var inp=document.getElementById('kzHomeGlobalSearch');
-    if(inp){ inp.value=window.__kzHomeSearch||''; inp.oninput=function(){window.__kzHomeSearch=this.value||''}; inp.onkeydown=function(ev){ if(ev.key==='Enter'){ev.preventDefault(); try{ navTo('all-products'); }catch(e){} setTimeout(function(){ var i=document.getElementById('searchInput'); if(i){ i.value=inp.value||''; try{ if(typeof renderAllProductsDebounced==='function') renderAllProductsDebounced(inp.value||''); }catch(e){} } },80); }}; }
-    initHomeMarquee();
-  }
-  function openCategoryAll(tab){
-    window.__kzHomeTab=tab||'apk';
-    if(tab==='digital'){
-      try{ window.__kzCatalogMode='digital'; if(typeof kzSetCatalogMode==='function') kzSetCatalogMode('digital'); }catch(e){}
-      try{ navTo('app-page'); }catch(e){}
-      setTimeout(function(){ try{ var t=document.querySelector('#page-app .section-title'); if(t) t.textContent='Semua Produk Digital'; }catch(e){} try{ if(typeof renderFullAppGrid==='function') renderFullAppGrid(); }catch(e){} },80);
-      return;
-    }
-    if(tab==='sosmed'){
-      try{ navTo('sosmed-page'); }catch(e){}
-      setTimeout(function(){ try{ if(typeof initSosmedPage==='function') initSosmedPage(); }catch(e){} try{ var t=document.querySelector('#page-sosmed .section-title'); if(t) t.textContent='Semua Produk Suntik Sosmed'; }catch(e){} },80);
-      return;
-    }
-    try{ window.__kzCatalogMode='store'; if(typeof kzSetCatalogMode==='function') kzSetCatalogMode('store'); }catch(e){}
-    try{ navTo('app-page'); }catch(e){}
-    setTimeout(function(){ try{ var t=document.querySelector('#page-app .section-title'); if(t) t.textContent='Semua Apk Premium'; }catch(e){} try{ if(typeof renderFullAppGrid==='function') renderFullAppGrid(); }catch(e){} },80);
-  }
-  window.kzHomeSetTab=renderHomeV6;
-  window.kzHomeOpenMore=openCategoryAll;
-  var oldNav=window.navTo;
-  if(typeof oldNav==='function' && !window.__kzHomeV6NavWrapped){
-    window.navTo=function(page){ var r=oldNav.apply(this, arguments); setTimeout(function(){ if(page==='home') renderHomeV6(window.__kzHomeTab||'apk'); },60); return r; };
-    window.__kzHomeV6NavWrapped=true;
-  }
-  function boot(){ renderHomeV6(window.__kzHomeTab||'apk'); }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', boot); else boot();
-  window.addEventListener('load', function(){ setTimeout(boot,120); });
-})();
-</script>
+<!-- removed style kz-home-v6-patch-style: superseded home patch -->
 
 
-<style id="kz-home-v7-final-style">
-#page-home .kz-preview-item.more .nm,
-#page-home .kz-preview-item.more .meta{display:none!important}
-</style>
-<script id="kz-home-v7-final-script">
-(function(){
-  function runLater(fn, delays){ (delays||[0,80,180,320]).forEach(function(ms){ setTimeout(function(){ try{ fn(); }catch(e){} }, ms); }); }
-  function openMoreFixed(tab){
-    tab=String(tab||window.__kzHomeTab||'apk');
-    window.__kzHomeTab=tab;
-    if(tab==='apk' || tab==='digital'){
-      runLater(function(){
-        try{ if(typeof kzSetCatalogMode==='function') kzSetCatalogMode(tab==='digital'?'digital':'store'); }catch(e){}
-        try{ window.__kzCatalogMode=(tab==='digital'?'digital':'store'); }catch(e){}
-        try{ if(typeof navTo==='function') navTo('app-page'); }catch(e){}
-        try{ var page=document.getElementById('page-app'); if(page) page.style.display='block'; }catch(e){}
-        try{ var t=document.querySelector('#page-app .section-title'); if(t) t.textContent=(tab==='digital'?'Semua Produk Digital':'Semua Apk Premium'); }catch(e){}
-        try{ if(typeof renderFullAppGrid==='function') renderFullAppGrid(); }catch(e){}
-        try{ if(typeof renderGrid==='function') renderGrid('all',''); }catch(e){}
-      }, [0,60,160,320,520]);
-      return;
-    }
-    runLater(function(){
-      try{ if(typeof navTo==='function') navTo('sosmed-page'); }catch(e){}
-      try{ var page=document.getElementById('page-sosmed'); if(page) page.style.display='block'; }catch(e){}
-      try{ var t=document.querySelector('#page-sosmed .section-title'); if(t) t.textContent='Semua Produk Suntik Sosmed'; }catch(e){}
-      try{ if(typeof initSosmedPage==='function') initSosmedPage(); }catch(e){}
-      try{ if(typeof renderSosmedProducts==='function') renderSosmedProducts(''); }catch(e){}
-    }, [0,60,160,320,520]);
-  }
-  window.kzHomeOpenMore=openMoreFixed;
+<!-- removed script kz-home-v6-patch-script: superseded home patch -->
 
-  function startMarquee(){
-    var viewport=document.querySelector('#page-home .kz-marquee-viewport');
-    var track=document.querySelector('#page-home .kz-marquee-track');
-    if(!viewport || !track) return;
-    var text='Informasi Penting! Bergabunglah dengan saluran resmi kami untuk mendapatkan update terbaru, promo menarik, dan informasi penting lainnya! ';
-    if(track.getAttribute('data-kz-marquee-ready')!=='1'){
-      track.innerHTML='<span>'+text+'</span><span aria-hidden="true">'+text+'</span><span aria-hidden="true">'+text+'</span>';
-      track.setAttribute('data-kz-marquee-ready','1');
-    }
-    track.style.display='inline-flex';
-    track.style.alignItems='center';
-    track.style.gap='40px';
-    track.style.whiteSpace='nowrap';
-    track.style.willChange='transform';
-    track.style.animation='none';
-    var x=(typeof window.__kzMarqueeX2==='number')?window.__kzMarqueeX2:0;
-    var last=performance.now();
-    try{ if(window.__kzMarqueeRaf2) cancelAnimationFrame(window.__kzMarqueeRaf2); }catch(e){}
-    function resetAt(){ var first=track.firstElementChild; return first ? (first.offsetWidth+40) : 0; }
-    function step(now){
-      var dt=Math.max(12, Math.min(40, now-last));
-      last=now;
-      x -= dt*0.06;
-      var r=resetAt();
-      if(r>0 && Math.abs(x)>=r) x += r;
-      track.style.transform='translateX('+x+'px)';
-      window.__kzMarqueeX2=x;
-      window.__kzMarqueeRaf2=requestAnimationFrame(step);
-    }
-    track.style.transform='translateX('+x+'px)';
-    window.__kzMarqueeRaf2=requestAnimationFrame(step);
-  }
 
-  function ensureHomeHooks(){
-    startMarquee();
-    var more=document.querySelectorAll('#page-home .kz-preview-item.more');
-    more.forEach(function(el){
-      el.onclick=function(ev){ if(ev) ev.preventDefault(); openMoreFixed(window.__kzHomeTab||'apk'); return false; };
-      el.style.cursor='pointer';
-      var nm=el.querySelector('.nm'); if(nm) nm.textContent='';
-    });
-  }
 
-  function installObserver(){
-    if(window.__kzHomeObserverInstalled) return;
-    window.__kzHomeObserverInstalled=true;
-    try{
-      var home=document.getElementById('page-home');
-      if(home){
-        var mo=new MutationObserver(function(){ ensureHomeHooks(); });
-        mo.observe(home,{childList:true,subtree:true});
-      }
-    }catch(e){}
-  }
+<!-- removed style kz-home-v7-final-style: superseded home patch -->
 
-  var oldNav=window.navTo;
-  if(typeof oldNav==='function' && !window.__kzHomeV7NavWrapped){
-    window.navTo=function(page){
-      var r=oldNav.apply(this, arguments);
-      runLater(function(){ if(page==='home'){ ensureHomeHooks(); startMarquee(); } }, [0,80,180,320]);
-      return r;
-    };
-    window.__kzHomeV7NavWrapped=true;
-  }
 
-  document.addEventListener('visibilitychange', function(){ if(!document.hidden) runLater(ensureHomeHooks,[0,80]); });
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded', function(){ installObserver(); runLater(ensureHomeHooks,[0,80,180,320,700]); });
-  } else {
-    installObserver(); runLater(ensureHomeHooks,[0,80,180,320,700]);
-  }
-  window.addEventListener('load', function(){ installObserver(); runLater(ensureHomeHooks,[0,80,180,320,700]); });
-})();
-</script>
+<!-- removed script kz-home-v7-final-script: superseded home patch -->
 
 
 <style id="kz-home-v8-cleanup-style">
@@ -24216,129 +23838,10 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
 </script>
 
 
-<style id="kz-home-v9-stable-style">
-#page-home .kz-preview-item{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-#page-home .kz-preview-item.busy{pointer-events:none;opacity:.92}
-</style>
-<script id="kz-home-v9-stable-script">
-(function(){
-  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];});}
-  function clone(a){return (Array.isArray(a)?a:[]).map(function(x){return Object.assign({},x||{})})}
-  function getMe(){try{return typeof authGetMe==='function'?authGetMe():null}catch(e){return null}}
-  function getPoints(){var m=getMe();return Number((m&&(m.points||m.point||m.poin))||0)||0}
-  function fmt(n){try{return new Intl.NumberFormat('id-ID').format(Number(n||0)||0)}catch(e){return String(n||0)}}
-  function svgIcon(label,bg,fg){ var l=String(label||'P').trim(); var parts=l.split(/\s+/).filter(Boolean); var initials=((parts[0]||'P').slice(0,1)+(parts[1]||'').slice(0,1)).toUpperCase().slice(0,2); var svg='<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><rect x="6" y="6" width="84" height="84" rx="24" fill="'+bg+'"/><text x="48" y="57" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="700" text-anchor="middle" fill="'+fg+'">'+initials+'</text></svg>'; return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg); }
-  function sourceStore(){try{ if(Array.isArray(window.__kzStoreState)&&window.__kzStoreState.length) return clone(window.__kzStoreState);}catch(e){} try{ if(Array.isArray(window.appsData)&&window.appsData.length) return clone(window.appsData);}catch(e){} try{ var raw=localStorage.getItem('KZRIZUSMO_PRODUCTS_V1'); if(raw){ var x=JSON.parse(raw); if(Array.isArray(x)&&x.length) return clone(x); } }catch(e){} return [];}
-  function sourceDigital(){try{ if(Array.isArray(window.__kzDigitalState)&&window.__kzDigitalState.length) return clone(window.__kzDigitalState);}catch(e){} try{ if(Array.isArray(window.digitalAppsData)&&window.digitalAppsData.length) return clone(window.digitalAppsData);}catch(e){} return [];}
-  function sourceSosmed(){try{ if(Array.isArray(window.__kzSosmedState)&&window.__kzSosmedState.length) return clone(window.__kzSosmedState);}catch(e){} try{ if(Array.isArray(window.sosmedData)&&window.sosmedData.length) return clone(window.sosmedData);}catch(e){} return [];}
-  function sourceByTab(tab){ return tab==='digital' ? sourceDigital() : (tab==='sosmed' ? sourceSosmed() : sourceStore()); }
-  function previewFor(tab){ return sourceByTab(tab).filter(function(it){ return it && (it.id||it.name); }).slice(0,7); }
-  function productAction(id, tab){
-    id=String(id||'');
-    if(!id) return;
-    if(tab==='digital'){
-      try{ if(typeof window.kzOpenDigitalDetail==='function') return window.kzOpenDigitalDetail(id); }catch(e){}
-      try{ if(typeof window.openDetail==='function') return window.openDetail(id); }catch(e){}
-      return;
-    }
-    if(tab==='sosmed'){
-      try{ if(typeof window.kzOpenSosmedPreview==='function') return window.kzOpenSosmedPreview(id); }catch(e){}
-      try{ if(typeof window.openDetail==='function') return window.openDetail(id); }catch(e){}
-      return;
-    }
-    try{ if(typeof window.openDetail==='function') return window.openDetail(id); }catch(e){}
-  }
-  function openMoreOnce(tab){
-    tab=String(tab||window.__kzHomeTab||'apk');
-    if(tab==='digital'){
-      try{ window.__kzCatalogMode='digital'; }catch(e){}
-      try{ if(typeof kzSetCatalogMode==='function') kzSetCatalogMode('digital'); }catch(e){}
-      try{ if(typeof navTo==='function') navTo('app-page'); }catch(e){}
-      setTimeout(function(){ try{ if(typeof renderFullAppGrid==='function') renderFullAppGrid(); }catch(e){} }, 80);
-      return;
-    }
-    if(tab==='sosmed'){
-      try{ if(typeof navTo==='function') navTo('sosmed-page'); }catch(e){}
-      setTimeout(function(){ try{ if(typeof initSosmedPage==='function') initSosmedPage(); }catch(e){} try{ if(typeof renderSosmedProducts==='function') renderSosmedProducts(''); }catch(e){} }, 80);
-      return;
-    }
-    try{ window.__kzCatalogMode='store'; }catch(e){}
-    try{ if(typeof kzSetCatalogMode==='function') kzSetCatalogMode('store'); }catch(e){}
-    try{ if(typeof navTo==='function') navTo('app-page'); }catch(e){}
-    setTimeout(function(){ try{ if(typeof renderFullAppGrid==='function') renderFullAppGrid(); }catch(e){} }, 80);
-  }
-  function cardHtml(it, tab){
-    var img=it.image||svgIcon(it.name||'Produk','#151515','#ff0000');
-    return '<div class="kz-preview-item" data-kz-action="product" data-kz-id="'+esc(it.id||'')+'" data-kz-tab="'+esc(tab)+'"><div class="kz-preview-thumb"><img src="'+esc(img)+'" alt="'+esc(it.name||'Produk')+'"></div><div class="nm"></div><div class="meta"></div></div>';
-  }
-  function moreHtml(tab){
-    return '<div class="kz-preview-item more" data-kz-action="more" data-kz-tab="'+esc(tab)+'"><div class="more-icon"><i class="fas fa-ellipsis-h"></i></div><div class="nm"></div><div class="meta"></div></div>';
-  }
-  function renderHomeStable(tab){
-    tab=String(tab||window.__kzHomeTab||'apk');
-    window.__kzHomeTab=tab;
-    var home=document.getElementById('page-home'); if(!home) return;
-    var m=getMe()||{}; var user=esc(m.username||'user'); var tier=esc(m.membershipTier||m.membership||m.level||'Basic'); var status=(m.username?'Aktif':'Guest');
-    var items=previewFor(tab); var html=items.map(function(it){ return cardHtml(it, tab); }); html.push(moreHtml(tab));
-    home.innerHTML=''+
-      '<div class="kz-home-shell">'+
-        '<div class="kz-home-card kz-top-card">'+
-          '<div class="kz-home-top">'+
-            '<div class="kz-balance"><div><div class="lbl">Poin User</div><div class="val">'+fmt(getPoints())+'</div></div>'+dailyClaimMarkup(m)+'</div>'+
-            '<div class="kz-side-mini"><div class="kz-mini"><div class="t">Membership</div><div class="v">'+tier+'</div></div><div class="kz-mini"><div class="t">Status Akun</div><div class="v">'+status+'</div></div></div>'+
-          '</div>'+
-        '</div>'+
-        '<div class="kz-shortcuts">'+
-          '<div class="kz-shortcut" onclick="navTo(\'all-products\')"><i class="fas fa-box-open"></i><span>Semua Produk</span></div>'+
-          '<div class="kz-shortcut" onclick="window.kzOpenCartFromSidebar&&window.kzOpenCartFromSidebar()"><i class="fas fa-cart-shopping"></i><span>Keranjang</span></div>'+
-          '<div class="kz-shortcut" onclick="window.openMyOrdersFromMenu&&window.openMyOrdersFromMenu()"><i class="fas fa-receipt"></i><span>Pesanan Saya</span></div>'+
-          '<div class="kz-shortcut" onclick="navTo(\'membership-upgrade\')"><i class="fas fa-crown"></i><span>Upgrade Membership</span></div>'+
-        '</div>'+
-        '<div class="kz-marquee"><i class="fas fa-bullhorn"></i><div class="kz-marquee-viewport"><div class="kz-marquee-track"></div></div></div>'+
-        '<div class="kz-home-card"><div class="kz-tabs">'+
-          '<button class="kz-tab '+(tab==='apk'?'active':'')+'" onclick="window.kzHomeSetTab&&window.kzHomeSetTab(\'apk\')">Apk Premium</button>'+
-          '<button class="kz-tab '+(tab==='digital'?'active':'')+'" onclick="window.kzHomeSetTab&&window.kzHomeSetTab(\'digital\')">Produk Digital</button>'+
-          '<button class="kz-tab '+(tab==='sosmed'?'active':'')+'" onclick="window.kzHomeSetTab&&window.kzHomeSetTab(\'sosmed\')">Suntik Sosmed</button>'+
-        '</div><div class="kz-preview">'+html.join('')+'</div></div>'+
-      '</div>';
-    var inp=document.getElementById('kzHomeGlobalSearch');
-    if(inp){ inp.value=window.__kzHomeSearch||''; inp.oninput=function(){window.__kzHomeSearch=this.value||''}; inp.onkeydown=function(ev){ if(ev.key==='Enter'){ev.preventDefault(); try{ navTo('all-products'); }catch(e){} setTimeout(function(){ var i=document.getElementById('searchInput'); if(i){ i.value=inp.value||''; try{ if(typeof renderAllProductsDebounced==='function') renderAllProductsDebounced(inp.value||''); }catch(e){} } },80); }}; }
-    try{ if(typeof window.startMarquee==='function') window.startMarquee(); }catch(e){}
-    bindHomeClicks();
-  }
-  var clickLock=0;
-  function bindHomeClicks(){
-    var preview=document.querySelector('#page-home .kz-preview');
-    if(!preview || preview.__kzBound) return;
-    preview.__kzBound=true;
-    preview.addEventListener('click', function(ev){
-      var item=ev.target && ev.target.closest ? ev.target.closest('.kz-preview-item') : null;
-      if(!item) return;
-      ev.preventDefault(); ev.stopPropagation();
-      var now=Date.now();
-      if(now-clickLock<500) return false;
-      clickLock=now;
-      item.classList.add('busy');
-      setTimeout(function(){ item.classList.remove('busy'); }, 520);
-      var action=item.getAttribute('data-kz-action');
-      var tab=item.getAttribute('data-kz-tab') || window.__kzHomeTab || 'apk';
-      if(action==='more') return openMoreOnce(tab);
-      return productAction(item.getAttribute('data-kz-id')||'', tab);
-    }, true);
-  }
-  window.kzHomeSetTab=renderHomeStable;
-  window.kzHomeOpenMore=openMoreOnce;
-  window.kzHomeRenderStable=renderHomeStable;
-  var oldNav=window.navTo;
-  if(typeof oldNav==='function' && !window.__kzHomeV9NavWrapped){
-    window.navTo=function(page){ var r=oldNav.apply(this, arguments); setTimeout(function(){ if(page==='home') renderHomeStable(window.__kzHomeTab||'apk'); }, 60); return r; };
-    window.__kzHomeV9NavWrapped=true;
-  }
-  function boot(){ renderHomeStable(window.__kzHomeTab||'apk'); }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', boot); else boot();
-  window.addEventListener('load', function(){ setTimeout(boot, 120); });
-})();
-</script>
+<!-- removed style kz-home-v9-stable-style: superseded home patch -->
+
+
+<!-- removed script kz-home-v9-stable-script: superseded home patch -->
 
 
 <style id="kz-home-v10-final-style">
@@ -24805,7 +24308,6 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
 })();
 </script>
 
-
 <style id="kz-home-click-fix17-style">
 #page-home .kz-preview-item,
 #page-home .kz-preview-item *{-webkit-tap-highlight-color:transparent}
@@ -25017,7 +24519,6 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
 })();
 </script>
 
-
 <style id="kz-home-click-fix18-style">
 #page-home .kz-preview-item{position:relative}
 #page-home .kz-preview-item{touch-action:manipulation;user-select:none}
@@ -25163,7 +24664,6 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
 })();
 </script>
 
-
 <style id="kz-home-click-fix19-style">
 #page-home .kz-preview-item{isolation:isolate}
 </style>
@@ -25258,8 +24758,6 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
   });
 })();
 </script>
-
-
 
 <script id="kz-sidebar-perkategori-fix">
 (function(){
@@ -25422,7 +24920,7 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
       '</div>'+
       '<div id="sbFilterResults" style="margin-top:15px;"></div>'+
       '<div id="sbAppSection"><div class="section-header"><div class="section-title">Semua Aplikasi Premium</div></div><div class="app-grid" id="sbFullAppGrid"></div></div>'+
-      '<footer><h3 style="margin-bottom:20px;">Apa Kata Mereka?</h3><div class="testi-section"><div class="testi-track-container"><div class="testi-track" id="sbTestiTrack"></div></div></div><div class="kz-footer-socials"><a class="kz-footer-social-btn" href="https://instagram.com/kzrizusmostore" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a><a class="kz-footer-social-btn" href="https://tiktok.com/@kzrizusmostore" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i><span>TikTok</span></a><a class="kz-footer-social-btn" href="https://whatsapp.com/channel/0029VbDOVUJIHphDqJoiNH1L" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a><a class="kz-footer-social-btn" href="https://t.me/testikzrizusmostore" target="_blank" rel="noopener" aria-label="Testimoni" title="Testimoni"><i class="fas fa-paper-plane"></i><span>Testimoni</span></a></div><p style="margin:18px 0 0; font-size:0.8rem; color:var(--text-sec);">© 2025 kzrizusmostore</p></footer>';
+      '<footer><h3 style="margin-bottom:20px;">Apa Kata Mereka?</h3><div class="testi-section"><div class="testi-track-container"><div class="testi-track" id="sbTestiTrack"></div></div></div><div class="kz-footer-socials"><a class="kz-footer-social-btn" href="https://instagram.com/kzrizusmostore" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a><a class="kz-footer-social-btn" href="https://www.tiktok.com/@kzrizusmo_store" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i><span>TikTok</span></a><a class="kz-footer-social-btn" href="https://whatsapp.com/channel/0029VbDOVUJIHphDqJoiNH1L" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a><a class="kz-footer-social-btn" href="https://t.me/testikzrizusmostore" target="_blank" rel="noopener" aria-label="Testimoni" title="Testimoni"><i class="fas fa-paper-plane"></i><span>Testimoni</span></a></div><p style="margin:18px 0 0; font-size:0.8rem; color:var(--text-sec);">© 2025 kzrizusmostore</p></footer>';
     getMain().appendChild(page);
     bindPage(page);
     renderTestimonials(page);
@@ -25548,8 +25046,6 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
 })();
 </script>
 
-
-
 <style id="kz-home-v11-hotfix-style">
 #page-home .kz-preview-item,
 #page-home .kz-preview-item *{touch-action:manipulation}
@@ -25746,7 +25242,6 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
 })();
 </script>
 
-
 <style id="kz-runtime-fix-v3-style">
 #page-home .kz-tab{color:#fff!important}
 #page-home .kz-tab.active{color:#fff!important}
@@ -25860,542 +25355,6 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
   window.addEventListener('load', function(){ setTimeout(bindFixes,100); setTimeout(cleanLeakedText,150); setTimeout(hideSpinners,150); });
 })();
 </script>
-
-
-<style id="kz-all-products-v10-style">
-#page-all-products .controls-row{display:flex!important;flex-wrap:wrap!important;gap:12px!important;padding:0 20px 14px 20px!important;align-items:stretch!important}
-#page-all-products .controls-row>div{flex:1 1 180px!important;min-width:160px!important}
-#page-all-products .control-btn{min-height:56px!important;border-radius: 14px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;padding:0 16px!important;font-weight:800!important}
-#page-all-products #filterDrawer{display:none;width:100%!important;padding:16px!important;border-radius: 14px!important;background:rgba(255,255,255,.03)!important;border:1px solid rgba(255,255,255,.10)!important;box-shadow:0 14px 34px rgba(0,0,0,.24)!important}
-#page-all-products #filterDrawer.open{display:block!important}
-#page-all-products .chip-container{display:flex!important;flex-wrap:wrap!important;gap:10px!important}
-#page-all-products .filter-chip{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:42px!important;padding:10px 16px!important;border-radius:999px!important}
-#page-all-products .filter-chip.active{background:linear-gradient(180deg,#ff1e1e,#db0000)!important;color:#fff!important;border-color:rgba(255,0,0,.55)!important}
-#page-all-products .kz-all-products-empty{margin:0 20px 14px;padding:18px;border-radius: 14px;background:var(--bg-card);border:1px solid var(--border);color:var(--text-sec)}
-#page-all-products .kz-all-products-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-#page-all-products .kz-all-products-header img{width:40px;height:40px;border-radius:12px;object-fit: contain;border:1px solid rgba(255,255,255,.12)}
-#page-all-products .kz-all-products-header .meta{min-width:0;flex:1}
-#page-all-products .kz-all-products-header .name{font-weight:800;font-size:1rem;line-height:1.2}
-#page-all-products .kz-all-products-header .sub{font-size:.82rem;color:var(--text-sec);margin-top:2px}
-#page-all-products .kz-load-more-wrap{margin-top:10px}
-#page-all-products .app-list{display:flex;flex-direction:column;gap:10px}
-</style>
-<script id="kz-all-products-v10-script">
-(function(){
-  function exposeData(){
-    try{ if(typeof appsData!=='undefined') window.appsData = appsData; }catch(e){}
-    try{ if(typeof digitalAppsData!=='undefined') window.digitalAppsData = digitalAppsData; }catch(e){}
-    try{ if(typeof sosmedData!=='undefined') window.sosmedData = sosmedData; }catch(e){}
-  }
-  function arr(name, fallback){
-    try{ if(typeof fallback !== 'undefined' && Array.isArray(fallback)) return fallback; }catch(e){}
-    var v=window[name];
-    return Array.isArray(v)?v:[];
-  }
-  function storeArr(){ try{ if(Array.isArray(window.__kzStoreState)&&window.__kzStoreState.length) return window.__kzStoreState; }catch(e){} try{ if(typeof appsData!=='undefined' && Array.isArray(appsData)) return appsData; }catch(e){} return arr('appsData'); }
-  function digitalArr(){ try{ if(Array.isArray(window.__kzDigitalState)&&window.__kzDigitalState.length) return window.__kzDigitalState; }catch(e){} try{ if(typeof digitalAppsData!=='undefined' && Array.isArray(digitalAppsData)) return digitalAppsData; }catch(e){} return arr('digitalAppsData'); }
-  function sosmedArr(){ try{ if(Array.isArray(window.__kzSosmedState)&&window.__kzSosmedState.length) return window.__kzSosmedState; }catch(e){} try{ if(typeof sosmedData!=='undefined' && Array.isArray(sosmedData)) return sosmedData; }catch(e){} return arr('sosmedData'); }
-
-  function rebuildUi(){
-    var page=document.getElementById('page-all-products');
-    if(!page) return;
-    var row=page.querySelector('.controls-row');
-    if(!row) return;
-    row.innerHTML=''
-      + '<div style="position:relative;">'
-      + '  <div class="control-btn shiny-effect" onclick="toggleSortMenu()"><i class="fas fa-sort-amount-down"></i><span>Urutkan</span></div>'
-      + '  <div class="sort-dropdown" id="sortMenu">'
-      + '    <div class="sort-option" onclick="setSort(\'abjad\')">Abjad (A-Z)</div>'
-      + '    <div class="sort-option" onclick="setSort(\'murah\')">Termurah</div>'
-      + '    <div class="sort-option" onclick="setSort(\'mahal\')">Termahal</div>'
-      + '  </div>'
-      + '</div>'
-      + '<div>'
-      + '  <div class="control-btn shiny-effect" onclick="toggleFilterDrawer()"><i class="fas fa-sliders-h"></i><span>Filter Produk</span></div>'
-      + '</div>'
-      + '<div class="filter-drawer" id="filterDrawer">'
-      + '  <div style="color:var(--text-sec);font-size:.82rem;margin-bottom:8px;">Kategori</div>'
-      + '  <div class="chip-container">'
-      + '    <div class="filter-chip active" onclick="toggleFilter(this, \'cat\', \'all\')">Semua Produk</div>'
-      + '    <div class="filter-chip" onclick="toggleFilter(this, \'cat\', \'app\')">App Premium</div>'
-      + '    <div class="filter-chip" onclick="toggleFilter(this, \'cat\', \'digital\')">Produk Digital</div>'
-      + '    <div class="filter-chip" onclick="toggleFilter(this, \'cat\', \'sosmed\')">Suntik Sosmed</div>'
-      + '  </div>'
-      + '  <div style="color:var(--text-sec);font-size:.82rem;margin:12px 0 8px;">Range Harga</div>'
-      + '  <div class="chip-container">'
-      + '    <div class="filter-chip" onclick="toggleFilter(this, \'price\', \'low\')">&lt; 10Rb</div>'
-      + '    <div class="filter-chip" onclick="toggleFilter(this, \'price\', \'mid\')">10Rb - 25Rb</div>'
-      + '    <div class="filter-chip" onclick="toggleFilter(this, \'price\', \'high\')">&gt; 25Rb</div>'
-      + '  </div>'
-      + '</div>';
-  }
-
-  window.toggleFilterDrawer=function(){
-    var el=document.getElementById('filterDrawer');
-    if(!el) return;
-    el.classList.toggle('open');
-  };
-
-  window.toggleFilter=function(btn,type,val){
-    window.activeFilters = window.activeFilters || {cat:['all'],price:[],tag:[]};
-    if(type==='cat'){
-      activeFilters.cat=[val];
-      var wrap=btn && btn.parentElement;
-      if(wrap) [].forEach.call(wrap.querySelectorAll('.filter-chip'), function(ch){ ch.classList.remove('active'); });
-      if(btn) btn.classList.add('active');
-    }else{
-      activeFilters[type]=Array.isArray(activeFilters[type])?activeFilters[type]:[];
-      if(activeFilters[type].indexOf(val)>-1) activeFilters[type]=activeFilters[type].filter(function(x){ return x!==val; });
-      else activeFilters[type].push(val);
-      if(btn) btn.classList.toggle('active');
-    }
-    try{ window.renderAllProducts((document.getElementById('searchInput')||{}).value || ''); }catch(e){ console.error(e); }
-  };
-
-  function flat(){
-    exposeData();
-    var out=[];
-    function push(source, data){
-      (Array.isArray(data)?data:[]).forEach(function(app){
-        (Array.isArray(app && app.packages)?app.packages:[]).forEach(function(pkg){
-          out.push({
-            source:source,
-            groupName:String((app&&app.name)||''),
-            groupImg:(app&&app.image)||'',
-            name:String((pkg&&pkg.name)||''),
-            price:(pkg&&pkg.price)||('Rp '+(((pkg&&pkg.priceVal)||0))),
-            priceVal:Number((pkg&&pkg.priceVal)||0)||0,
-            tag:(pkg&&pkg.tag)||'',
-            tagName:(pkg&&pkg.tagName)||'',
-            raw:pkg||{}
-          });
-        });
-      });
-    }
-    push('app', storeArr());
-    push('digital', digitalArr());
-    push('sosmed', sosmedArr());
-    return out;
-  }
-
-  function priceOk(priceVal){
-    var af=window.activeFilters||{price:[]};
-    if(!af.price || !af.price.length) return true;
-    var ok=false;
-    if(af.price.indexOf('low')>-1 && priceVal<10000) ok=true;
-    if(af.price.indexOf('mid')>-1 && priceVal>=10000 && priceVal<=25000) ok=true;
-    if(af.price.indexOf('high')>-1 && priceVal>25000) ok=true;
-    return ok;
-  }
-
-  function parsed(name){
-    try{ if(typeof kzParseServerTier==='function') return kzParseServerTier(name); }catch(e){}
-    return {clean:String(name||''),tier:''};
-  }
-
-  window.renderAllProducts=function(query){
-    rebuildUi();
-    var container=document.getElementById('allProductList');
-    if(!container) return;
-    var q=String(query||'').toLowerCase().trim();
-    var token=(window.__kzAllProductsRenderToken=(window.__kzAllProductsRenderToken||0)+1);
-    var af=window.activeFilters||{cat:['all'],price:[],tag:[]};
-    var cat=(af.cat&&af.cat.length)?af.cat[0]:'all';
-    var filtered=flat().filter(function(item){
-      var hay=(item.name+' '+item.groupName).toLowerCase();
-      if(q && hay.indexOf(q)===-1) return false;
-      if(cat!=='all' && item.source!==cat) return false;
-      if(!priceOk(item.priceVal)) return false;
-      return true;
-    });
-    var sort=window.currentSort||'abjad';
-    if(sort==='abjad') filtered.sort(function(a,b){ return a.groupName.localeCompare(b.groupName)||a.name.localeCompare(b.name); });
-    if(sort==='murah') filtered.sort(function(a,b){ return a.priceVal-b.priceVal; });
-    if(sort==='mahal') filtered.sort(function(a,b){ return b.priceVal-a.priceVal; });
-    if(!filtered.length){
-      container.innerHTML='<div class="kz-all-products-empty">Produk tidak ditemukan. Coba kata kunci atau filter lain.</div>';
-      return;
-    }
-    container.innerHTML='';
-    var groupsMap=new Map();
-    filtered.forEach(function(item){
-      var key=item.source+'__'+item.groupName;
-      if(!groupsMap.has(key)) groupsMap.set(key,{name:item.groupName,img:item.groupImg,source:item.source,items:[]});
-      groupsMap.get(key).items.push(item);
-    });
-    var groups=Array.from(groupsMap.values());
-    var groupIndex=0, BATCH_GROUPS=2, BATCH_ITEMS=18;
-
-    function sourceLabel(source){ return source==='digital'?'Produk Digital':(source==='sosmed'?'Suntik Sosmed':'App Premium'); }
-    function buildItem(item){
-      if(item.source==='sosmed'){
-        var click='orderNow('+JSON.stringify(item.name)+','+JSON.stringify(item.groupName)+','+(item.priceVal||0)+','+JSON.stringify(item.price)+','+JSON.stringify(item.groupImg)+',"",true)';
-        return '<div class="list-item shiny-effect"><img src="'+item.groupImg+'" class="list-img"><div class="list-info"><div class="list-name">'+item.groupName+' - '+item.name+'</div><div class="list-price">'+item.price+'</div></div><button class="list-btn" onclick=\''+click+'\'>ORDER</button></div>';
-      }
-      var p=parsed(item.name), serverHtml='';
-      try{ if(typeof kzServerBadgeHtml==='function') serverHtml=kzServerBadgeHtml(p.tier); }catch(e){}
-      var extra='';
-      if(item.tagName && !(item.tag && /^srv[1-5]$/i.test(String(item.tag)))){
-        var color=item.tag==='best'?'tag-gold':(item.tag==='rec'?'tag-blue':'tag-green');
-        extra=' <span class="tag-shiny '+color+'" style="margin-left:6px;">'+item.tagName+'</span>';
-      }
-      var click='orderNow('+JSON.stringify(p.clean)+','+JSON.stringify(item.groupName)+','+(item.priceVal||0)+','+JSON.stringify(item.price)+','+JSON.stringify(item.groupImg)+','+JSON.stringify(p.tier)+')';
-      return '<div class="list-item shiny-effect"><img src="'+item.groupImg+'" class="list-img"><div class="list-info"><div class="list-name">'+item.groupName+' - '+p.clean+' '+serverHtml+extra+'</div><div class="list-price">'+item.price+'</div></div><button class="list-btn" onclick=\''+click+'\'>ORDER</button></div>';
-    }
-    function mount(group){
-      var section=document.createElement('section');
-      section.className='app-card';
-      section.style.marginBottom='14px';
-      section.innerHTML='<div class="kz-all-products-header"><img src="'+group.img+'"><div class="meta"><div class="name">'+group.name+'</div><div class="sub">'+sourceLabel(group.source)+'</div></div></div><div class="app-list"></div>';
-      var list=section.querySelector('.app-list');
-      var cursor=0;
-      function more(){
-        if(token!==window.__kzAllProductsRenderToken) return;
-        var end=Math.min(cursor+BATCH_ITEMS, group.items.length), html='';
-        for(var i=cursor;i<end;i++) html += buildItem(group.items[i]);
-        list.insertAdjacentHTML('beforeend', html);
-        cursor=end;
-        var wrap=section.querySelector('.kz-load-more-wrap');
-        if(cursor<group.items.length){
-          if(!wrap){ wrap=document.createElement('div'); wrap.className='kz-load-more-wrap'; wrap.innerHTML='<button class="control-btn shiny-effect" style="width:100%;margin-top:10px;" type="button">Muat lebih banyak</button>'; wrap.querySelector('button').onclick=more; section.appendChild(wrap); }
-        } else if(wrap){ wrap.remove(); }
-      }
-      more();
-      container.appendChild(section);
-    }
-    function pump(){
-      if(token!==window.__kzAllProductsRenderToken) return;
-      var end=Math.min(groupIndex+BATCH_GROUPS, groups.length);
-      for(;groupIndex<end;groupIndex++) mount(groups[groupIndex]);
-      if(groupIndex<groups.length){ if(window.requestAnimationFrame) requestAnimationFrame(pump); else setTimeout(pump,16); }
-    }
-    pump();
-  };
-
-  window.renderAllProductsDebounced=function(val){
-    var q=String(val||'');
-    if(window.__kzAllProductsT) clearTimeout(window.__kzAllProductsT);
-    window.__kzAllProductsT=setTimeout(function(){ try{ window.renderAllProducts(q); }catch(e){ console.error(e); } },120);
-  };
-
-  exposeData();
-  rebuildUi();
-})();
-</script>
-
-
-
-<style id="kz-home-v11-hotfix-style">
-#page-home .kz-preview-item,
-#page-home .kz-preview-item *{touch-action:manipulation}
-#page-home .kz-preview-item.busy{pointer-events:none !important}
-</style>
-<script id="kz-home-v11-hotfix-script">
-(function(){
-  if(window.__kzHomeV11Applied) return; window.__kzHomeV11Applied=true;
-  function q(sel,root){ try{return (root||document).querySelector(sel);}catch(e){return null;} }
-  function qa(sel,root){ try{return Array.prototype.slice.call((root||document).querySelectorAll(sel));}catch(e){return [];} }
-  function countFor(tab){
-    try{
-      var arr = tab==='digital' ? (window.__kzDigitalState && window.__kzDigitalState.length ? window.__kzDigitalState : window.digitalAppsData)
-              : tab==='sosmed' ? (window.__kzSosmedState && window.__kzSosmedState.length ? window.__kzSosmedState : window.sosmedData)
-              : (window.__kzStoreState && window.__kzStoreState.length ? window.__kzStoreState : window.appsData);
-      return Array.isArray(arr) ? arr.filter(function(it){ return it && (it.id || it.name); }).length : 0;
-    }catch(e){ return 0; }
-  }
-  function refreshHomeIfNeeded(force){
-    var home = document.getElementById('page-home');
-    if(!home) return;
-    var activeTab = String(window.__kzHomeTab || 'apk');
-    var count = countFor(activeTab);
-    var currentItems = qa('#page-home .kz-preview .kz-preview-item:not(.more)').length;
-    if(force || (count > 0 && currentItems === 0)){
-      try{ if(typeof window.kzHomeRenderStable === 'function') window.kzHomeRenderStable(activeTab); }catch(e){}
-    }
-  }
-
-  var swallowUntil = 0;
-  var swallowX = -9999;
-  var swallowY = -9999;
-  function armSwallowFromEvent(ev, ms){
-    var pt = ev && ev.changedTouches && ev.changedTouches[0] ? ev.changedTouches[0] : ev;
-    swallowUntil = Date.now() + (ms || 700);
-    swallowX = pt && typeof pt.clientX === 'number' ? pt.clientX : -9999;
-    swallowY = pt && typeof pt.clientY === 'number' ? pt.clientY : -9999;
-  }
-  function shouldSwallow(ev){
-    if(Date.now() > swallowUntil) return false;
-    var pt = ev && ev.changedTouches && ev.changedTouches[0] ? ev.changedTouches[0] : ev;
-    var x = pt && typeof pt.clientX === 'number' ? pt.clientX : -9999;
-    var y = pt && typeof pt.clientY === 'number' ? pt.clientY : -9999;
-    return Math.abs(x - swallowX) < 26 && Math.abs(y - swallowY) < 26;
-  }
-
-  function stopGhostClick(ev){
-    if(!shouldSwallow(ev)) return;
-    var inHomePreview = ev.target && ev.target.closest && ev.target.closest('#page-home .kz-preview-item');
-    if(inHomePreview) return;
-    ev.preventDefault();
-    ev.stopPropagation();
-    if(ev.stopImmediatePropagation) ev.stopImmediatePropagation();
-    return false;
-  }
-  document.addEventListener('click', stopGhostClick, true);
-  document.addEventListener('pointerup', stopGhostClick, true);
-  document.addEventListener('touchend', stopGhostClick, true);
-
-  var lastDown = null;
-  document.addEventListener('pointerdown', function(ev){
-    var item = ev.target && ev.target.closest ? ev.target.closest('#page-home .kz-preview-item') : null;
-    if(!item) return;
-    lastDown = {el:item, x:ev.clientX, y:ev.clientY, t:Date.now()};
-  }, true);
-
-  function homeActionGate(ev){
-    var item = ev.target && ev.target.closest ? ev.target.closest('#page-home .kz-preview-item') : null;
-    if(!item) return;
-    if(ev.type === 'click'){
-      ev.preventDefault();
-      ev.stopPropagation();
-      if(ev.stopImmediatePropagation) ev.stopImmediatePropagation();
-      return false;
-    }
-    if(ev.type === 'pointerup' && lastDown && lastDown.el === item){
-      var moved = Math.abs((ev.clientX||0) - (lastDown.x||0)) > 18 || Math.abs((ev.clientY||0) - (lastDown.y||0)) > 18;
-      if(moved) return false;
-      armSwallowFromEvent(ev, 750);
-    }
-  }
-  document.addEventListener('click', homeActionGate, true);
-  document.addEventListener('pointerup', homeActionGate, true);
-
-  var checks = 0;
-  function poll(){
-    checks += 1;
-    refreshHomeIfNeeded(false);
-    if(checks < 80) setTimeout(poll, 250);
-  }
-  setTimeout(function(){ refreshHomeIfNeeded(true); }, 100);
-  setTimeout(function(){ refreshHomeIfNeeded(true); }, 500);
-  setTimeout(function(){ refreshHomeIfNeeded(true); }, 1200);
-  poll();
-
-  var oldSetTab = window.kzHomeSetTab;
-  if(typeof oldSetTab === 'function' && !window.__kzHomeV11SetTabWrapped){
-    window.kzHomeSetTab = function(tab){
-      var r = oldSetTab.apply(this, arguments);
-      setTimeout(function(){ refreshHomeIfNeeded(true); }, 60);
-      setTimeout(function(){ refreshHomeIfNeeded(true); }, 300);
-      return r;
-    };
-    window.__kzHomeV11SetTabWrapped = true;
-  }
-
-  var oldDirect = window.kzHomeDirectAction;
-  if(typeof oldDirect === 'function' && !window.__kzHomeV11DirectWrapped){
-    var actionLock = 0;
-    window.kzHomeDirectAction = function(action, id, tab){
-      var now = Date.now();
-      if(now - actionLock < 550) return false;
-      actionLock = now;
-      armSwallowFromEvent(window.event || {}, 800);
-      return oldDirect.apply(this, arguments);
-    };
-    window.__kzHomeV11DirectWrapped = true;
-  }
-
-(function(){
-  function bindSwipe(){
-    try{
-      var el=document.getElementById('kzHomePreviewMount');
-      if(!el || el.__kzSwipeBound) return;
-      el.__kzSwipeBound=true;
-      var sx=0, sy=0, active=false, moved=false;
-      function getPt(ev){ return (ev && ev.changedTouches && ev.changedTouches[0]) || (ev && ev.touches && ev.touches[0]) || ev || {}; }
-      function onStart(ev){
-        var t = ev.target;
-        if(t && t.closest && (t.closest('.kz-preview-item') || t.closest('.kz-tab') || t.closest('button, a, input, textarea, select'))) { active=false; return; }
-        var p=getPt(ev); sx=Number(p.clientX||0); sy=Number(p.clientY||0); active=true; moved=false;
-      }
-      function onMove(ev){
-        if(!active) return;
-        var p=getPt(ev), dx=Number(p.clientX||0)-sx, dy=Number(p.clientY||0)-sy;
-        if(Math.abs(dx)>10 && Math.abs(dx)>Math.abs(dy)*1.2) moved=true;
-      }
-      function onEnd(ev){
-        if(!active || !moved) return;
-        var p=getPt(ev), dx=Number(p.clientX||0)-sx, dy=Number(p.clientY||0)-sy;
-        active=false;
-        if(Math.abs(dx)<36 || Math.abs(dx)<Math.abs(dy)*1.2) return;
-        if(ev.cancelable) ev.preventDefault();
-        var tabs=['apk','digital','sosmed'];
-        var cur=String(window.__kzHomeTab||'apk');
-        var idx=tabs.indexOf(cur); idx = idx < 0 ? 0 : idx;
-        var next=dx<0 ? Math.min(idx+1, tabs.length-1) : Math.max(idx-1, 0);
-        if(next!==idx && typeof window.kzHomeSetTab==='function') window.kzHomeSetTab(tabs[next]);
-      }
-      el.addEventListener('touchstart', onStart, {passive:true});
-      el.addEventListener('touchmove', onMove, {passive:true});
-      el.addEventListener('touchend', onEnd, {passive:false});
-      el.addEventListener('pointerdown', onStart, true);
-      el.addEventListener('pointermove', onMove, true);
-      el.addEventListener('pointerup', onEnd, true);
-    }catch(e){}
-  }
-  function cleanLeakedText(){
-    try{
-      var body=document.body; if(!body) return;
-      Array.prototype.slice.call(body.childNodes).forEach(function(node){
-        if(node && node.nodeType===3){
-          var t=String(node.textContent||'').trim();
-          if(/downloadBlob\('struk-|kzReceiptDownloaded|kzCopyExport|kzExportArea|Export HTML selesai|window\.kzCopyExport/i.test(t)) node.textContent='';
-        }
-      });
-    }catch(e){}
-  }
-  function applyTabStyle(){
-    try{
-      var cssId='kz-home-v7-style';
-      if(!document.getElementById(cssId)){
-        var st=document.createElement('style'); st.id=cssId;
-        st.textContent='\n#page-home .kz-tab{color:#fff !important;}\n#page-home .kz-tab.active{color:#fff !important;}\n#page-home .kz-tab::after{background:#ff0000 !important;}\n#page-home #kzHomePreviewMount{touch-action:pan-y !important;}\n';
-        document.head.appendChild(st);
-      }
-    }catch(e){}
-  }
-  function refresh(){ bindSwipe(); cleanLeakedText(); applyTabStyle(); }
-  var oldSetTab = window.kzHomeSetTab;
-  if(typeof oldSetTab==='function' && !window.__kzHomeV13SetTabWrapped){
-    window.kzHomeSetTab = function(){
-      var r = oldSetTab.apply(this, arguments);
-      setTimeout(refresh, 30);
-      setTimeout(refresh, 220);
-      return r;
-    };
-    window.__kzHomeV13SetTabWrapped = true;
-  }
-  setTimeout(refresh, 60);
-  setTimeout(refresh, 320);
-})();
-
-})();
-</script>
-
-
-<style id="kz-runtime-fix-v3-style">
-#page-home .kz-tab{color:#fff!important}
-#page-home .kz-tab.active{color:#fff!important}
-#page-home .kz-tab::after{background:#ff0000!important}
-</style>
-<script id="kz-runtime-fix-v3-script">
-(function(){
-  if(window.__kzRuntimeFixV3Applied) return;
-  window.__kzRuntimeFixV3Applied = true;
-
-  function closeSidebarSafe(){
-    try{ if(typeof closeSidebar === 'function') closeSidebar(); }catch(e){}
-    try{ document.getElementById('sidebar')?.classList.remove('active'); }catch(e){}
-    try{ document.getElementById('sidebarOverlay')?.classList.remove('active'); }catch(e){}
-    try{ document.querySelector('.sidebar')?.classList.remove('active'); }catch(e){}
-    try{ document.querySelector('.sidebar-overlay')?.classList.remove('active'); }catch(e){}
-  }
-
-  if(typeof window.renderFullSearchGrid !== 'function'){
-    window.renderFullSearchGrid = function(){
-      try{
-        var input = document.getElementById('searchInput');
-        var q = input ? (input.value || '') : '';
-        if(typeof window.renderAllProducts === 'function') return window.renderAllProducts(q);
-      }catch(e){ console.error('renderFullSearchGrid fallback error', e); }
-    };
-  }
-
-  function goPage(page){
-    try{
-      if(typeof window.navTo === 'function'){
-        window.navTo(page);
-      }else{
-        document.querySelectorAll('.page-section').forEach(function(el){ el.style.display='none'; });
-        var target = document.getElementById('page-' + page);
-        if(target) target.style.display='block';
-      }
-      if(page === 'all-products'){
-        setTimeout(function(){
-          try{ window.renderFullSearchGrid && window.renderFullSearchGrid(); }catch(e){ console.error(e); }
-        }, 30);
-      }
-      if(page === 'membership-upgrade'){
-        setTimeout(function(){
-          try{ if(typeof window.kzInitMembershipUpgradeUI === 'function') window.kzInitMembershipUpgradeUI(); }catch(e){}
-        }, 50);
-      }
-      closeSidebarSafe();
-    }catch(e){ console.error('goPage error', e); }
-  }
-
-  function bindOne(el, page){
-    if(!el || el.__kzBoundV3) return;
-    el.__kzBoundV3 = true;
-    ['click','touchend'].forEach(function(evt){
-      el.addEventListener(evt, function(ev){
-        ev.preventDefault();
-        ev.stopPropagation();
-        if(ev.stopImmediatePropagation) ev.stopImmediatePropagation();
-        goPage(page);
-        return false;
-      }, true);
-    });
-  }
-
-  function bindFixes(){
-    try{
-      bindOne(document.getElementById('upgradeMembershipMenuItem'), 'membership-upgrade');
-      bindOne(document.querySelector('.sidebar-item[onclick*="membership-upgrade"]'), 'membership-upgrade');
-      bindOne(document.querySelector('.sidebar-item[onclick*="all-products"]'), 'all-products');
-      document.querySelectorAll('.kz-shortcut[onclick*="membership-upgrade"]').forEach(function(el){ bindOne(el,'membership-upgrade'); });
-      document.querySelectorAll('.kz-shortcut[onclick*="all-products"]').forEach(function(el){ bindOne(el,'all-products'); });
-    }catch(e){ console.error('bindFixes error', e); }
-  }
-
-  function cleanLeakedText(){
-    try{
-      var walker = document.createTreeWalker(document.body || document.documentElement, NodeFilter.SHOW_TEXT);
-      var bad=[];
-      while(walker.nextNode()){
-        var node = walker.currentNode;
-        var t = String(node.textContent || '').trim();
-        if(!t) continue;
-        if(/\(mt === "video"\)|renderFullSearchGrid fallback error|bindSidebarFixes error|downloadBlob\(|kzReceiptDownloaded|kzCopyExport|window\.kzCopyExport|Struk Order/.test(t)){
-          bad.push(node);
-        }
-      }
-      bad.forEach(function(node){
-        var t = String(node.textContent || '').trim();
-        if(t.length < 500 || /\(mt === "video"\)|downloadBlob\(|renderFullSearchGrid/.test(t)) node.textContent = '';
-      });
-    }catch(e){}
-  }
-
-  function hideSpinners(){
-    try{
-      setTimeout(function(){
-        document.querySelectorAll('.loading,.loader,.spinner,[data-loading="true"]').forEach(function(el){
-          var txt = (el.textContent||'').trim();
-          if(!txt || txt === '...') el.style.display = 'none';
-        });
-      }, 1200);
-    }catch(e){}
-  }
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', function(){ bindFixes(); cleanLeakedText(); hideSpinners(); });
-  }else{
-    bindFixes(); cleanLeakedText(); hideSpinners();
-  }
-  window.addEventListener('load', function(){ setTimeout(bindFixes,100); setTimeout(cleanLeakedText,150); setTimeout(hideSpinners,150); });
-})();
-</script>
-
 
 <style id="kz-all-products-v10-style">
 #page-all-products .controls-row{display:flex!important;flex-wrap:wrap!important;gap:12px!important;padding:0 20px 14px 20px!important;align-items:stretch!important}
@@ -26628,7 +25587,6 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
 #page-home .kz-home-card.kz-top-card{margin-top:0!important}
 </style>
 
-
 <style id="kz-banner-user-final-override">
 /* Force final banner shape + top alignment */
 #page-home{padding-top:0 !important;}
@@ -26639,8 +25597,6 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
 }
 #page-home .kz-home-hero-dots{display:none !important;}
 </style>
-
-
 
 <style id="kz-home-all-products-grid-style">
 #page-home .kz-home-all-overlay{position:fixed;inset:0;z-index:9998;background:var(--bg-body);display:none;flex-direction:column;overflow:hidden}
@@ -26833,13 +25789,10 @@ body.light-mode #page-home .kz-home-all-head{background:#fff}
 })();
 </script>
 
-
-
 <style id="kz-lightmode-f4f5f7-final">
 html, body.light-mode{background:#F4F5F7 !important;background-color:#F4F5F7 !important;}
 body.light-mode{--bg-body:#F4F5F7 !important;}
 </style>
-
 
 <script id="kz-zusmo-beta-patch">
 (function(){
@@ -27084,7 +26037,7 @@ body.light-mode #page-home .kz-tab:not(.active){color:#666;opacity:1}
     var cards = raw.map(function(t){
       return '<div class="kz-home-testi-card"><div class="kz-home-testi-top"><div class="kz-home-testi-avatar"><i class="fas fa-user"></i></div><div><div class="kz-home-testi-name">'+esc(t.u||'Pelanggan')+'</div><div class="kz-home-testi-date">'+esc(t.d||'')+'</div></div></div><div class="kz-home-testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><div class="kz-home-testi-text">'+esc(t.c||'')+'</div></div>';
     }).join('');
-    return '<div class="kz-home-testi"><div class="kz-home-testi-head"><div><h3>Apa Kata Mereka</h3><p>Beberapa testimoni pelanggan dan akses sosial media resmi kami.</p></div></div><div class="kz-home-testi-grid">'+cards+'</div><div class="kz-home-proof-actions"><a class="kz-home-proof-btn" href="javascript:void(0)" onclick="if(window.openAllTestimonialProofs) openAllTestimonialProofs(); return false;"><i class="fas fa-eye"></i><span>Lihat Semua Bukti</span></a></div></div><div class="kz-home-socials"><a class="kz-home-social-btn" href="https://instagram.com/kzrizusmostore" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a><a class="kz-home-social-btn" href="https://tiktok.com/@kzrizusmostore" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i><span>TikTok</span></a><a class="kz-home-social-btn" href="https://whatsapp.com/channel/0029VbDOVUJIHphDqJoiNH1L" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a><a class="kz-home-social-btn" href="https://t.me/testikzrizusmostore" target="_blank" rel="noopener" aria-label="Testimoni" title="Testimoni"><i class="fas fa-paper-plane"></i><span>Testimoni</span></a></div>';
+    return '<div class="kz-home-testi"><div class="kz-home-testi-head"><div><h3>Apa Kata Mereka</h3><p>Beberapa testimoni pelanggan dan akses sosial media resmi kami.</p></div></div><div class="kz-home-testi-grid">'+cards+'</div><div class="kz-home-proof-actions"><a class="kz-home-proof-btn" href="javascript:void(0)" onclick="if(window.openAllTestimonialProofs) openAllTestimonialProofs(); return false;"><i class="fas fa-eye"></i><span>Lihat Semua Bukti</span></a></div></div><div class="kz-home-socials"><a class="kz-home-social-btn" href="https://instagram.com/kzrizusmostore" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a><a class="kz-home-social-btn" href="https://www.tiktok.com/@kzrizusmo_store" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i><span>TikTok</span></a><a class="kz-home-social-btn" href="https://whatsapp.com/channel/0029VbDOVUJIHphDqJoiNH1L" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a><a class="kz-home-social-btn" href="https://t.me/testikzrizusmostore" target="_blank" rel="noopener" aria-label="Testimoni" title="Testimoni"><i class="fas fa-paper-plane"></i><span>Testimoni</span></a></div>';
   }
   function sliderMarkup(activeTab){
     var tabs=[['apk','Apk Premium'],['digital','Produk Digital'],['sosmed','Suntik Sosmed']];
@@ -27308,7 +26261,7 @@ body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb i{color:rgba(17,17,17,.
       + '</div>'
       + '<div class="kz-home-socials">'
       + '  <a class="kz-home-social-btn" href="https://instagram.com/kzrizusmostore" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a>'
-      + '  <a class="kz-home-social-btn" href="https://tiktok.com/@kzrizusmostore" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i><span>TikTok</span></a>'
+      + '  <a class="kz-home-social-btn" href="https://www.tiktok.com/@kzrizusmo_store" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i><span>TikTok</span></a>'
       + '  <a class="kz-home-social-btn" href="https://whatsapp.com/channel/0029VbDOVUJIHphDqJoiNH1L" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>'
       + '  <a class="kz-home-social-btn" href="https://t.me/testikzrizusmostore" target="_blank" rel="noopener" aria-label="Testimoni" title="Testimoni"><i class="fas fa-paper-plane"></i><span>Testimoni</span></a>'
       + '</div>';
@@ -27588,7 +26541,6 @@ body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb i{color:rgba(17,17,17,.
 })();
 </script>
 
-
 <style id="kz-home-restore-preview-original-look">
 #page-home .kz-hs-panel{padding:0 !important;border:0 !important;background:transparent !important;border-radius:0 !important;box-shadow:none !important}
 #page-home .kz-hs-grid{display:grid !important;grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:11px !important;padding-top:4px !important}
@@ -27626,7 +26578,6 @@ body.light-mode .sidebar-userline{background:#151515 !important;border-color:#26
 body.light-mode .sidebar-profile-img{border-color:#262626 !important}
 </style>
 
-
 <style id="kz-home-preview-seven-no-single-box">
 #page-home .kz-hs-panel{padding:8px 6px !important}
 #page-home .kz-hs-grid{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:8px !important;padding-top:2px !important}
@@ -27644,8 +26595,6 @@ body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb i{color:rgba(17,17,17,.
   #page-home .kz-hs-item img{max-width:64px !important;max-height:64px !important}
 }
 </style>
-
-
 
 <style id="kz-request-20260320-preview-bigger">
 #page-home .kz-hs-panel{padding:8px 4px !important}
@@ -27837,7 +26786,6 @@ body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb i{color:rgba(17,17,17,.
   window.addEventListener('load', schedule);
 })();
 </script>
-
 
 <style id="kz-mar20-user-fix-style">
 #page-home .kz-home-all-card[data-kz-open-id]{cursor:pointer}
@@ -28213,7 +27161,6 @@ body.light-mode.kz-membership-page .burger-btn{background:rgba(0,0,0,.05)}
 })();
 </script>
 
-
 <style id="kz-followup-20260320-style">
 /* Compact topbar to match product/pricelist header */
 body.kz-simple-topbar header{
@@ -28533,7 +27480,6 @@ body.kz-simple-topbar .header-title h1 span{
 })();
 </script>
 
-
 <style id="kz-revisi-20260320-v4-style">
 #detailModal{
   z-index:10050 !important;
@@ -28664,8 +27610,6 @@ body.kz-simple-topbar .header-title h1 span{
 })();
 </script>
 
-
-
 <script>
 (function(){
   function kzGetAllTestimonialsList(){
@@ -28757,7 +27701,6 @@ body{padding-bottom:24px;}
 })();
 <\/script>
 
-
 </body>
 </html>`;
   }
@@ -28792,7 +27735,6 @@ body{padding-bottom:24px;}
   }catch(e){}
 })();
 </script>
-
 
 <style id="kz-testi-overlay-patch">
 body.kz-testi-open{overflow:hidden !important;touch-action:none;}
@@ -29288,7 +28230,6 @@ body.kz-testi-open .testi-track{animation-play-state:paused !important;}
 })();
 </script>
 
-
 <style id="kz-scrollbar-force-fix">
 html,body,.container,.sidebar,.sidebar-menu,.filter-scroll,.banner-container,.banner-track,.app-grid,.modal-page,.auth-modal-page,.auth-content,.auth-body,#authMyOrdersList,.kz-orders-filters,.kz-orders-list,.kz-orders-scroll,.kz-orders-wrap,.testi-track-container,.testi-track,.kz-home-testi,.kz-home-testi-grid,.admin-overlay,.admin-box,.admin-content,.admin-tab,.admin-tab-content,.admin-list,.admin-cardlist,.admin-body,body *{scrollbar-width:none !important;-ms-overflow-style:none !important;scrollbar-color:transparent transparent !important;}
 html,body{overflow-x:hidden !important;}
@@ -29650,7 +28591,7 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,.container::-webkit-scrollbar,.s
           kzSetPayStatusSafe('QRIS siap disimpan dari menu bagikan perangkat.');
           return false;
         }
-        kzSetPayStatusSafe('Download QRIS otomatis belum didukung di aplikasi ini. Buka versi web untuk mengunduh.');
+        kzSetPayStatusSafe('Gagal. silakan lakukan screenshot saja.');
         return false;
       }
 
@@ -29659,9 +28600,9 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,.container::-webkit-scrollbar,.s
         return false;
       }
 
-      kzSetPayStatusSafe(isApp ? 'Download QRIS otomatis belum didukung di aplikasi ini. Buka versi web untuk mengunduh.' : 'Gagal menyiapkan download QRIS.');
+      kzSetPayStatusSafe(isApp ? 'Gagal. silakan lakukan screenshot saja.' : 'Gagal menyiapkan download QRIS.');
     }catch(err){
-      kzSetPayStatusSafe(isApp ? 'Download QRIS otomatis belum didukung di aplikasi ini. Buka versi web untuk mengunduh.' : 'Gagal menyiapkan download QRIS.');
+      kzSetPayStatusSafe(isApp ? 'Gagal. silakan lakukan screenshot saja.' : 'Gagal menyiapkan download QRIS.');
     }finally{
       setTimeout(function(){
         window.__kzQrisDownloadBusy = false;
@@ -29700,9 +28641,6 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,.container::-webkit-scrollbar,.s
   window.addEventListener('load', kzBindQrisDownloadCompat);
 })();
 </script>
-
-
-
 
 <script id="kz-fix-back-payment-homeall-20260326">
 (function(){
@@ -29821,7 +28759,6 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,.container::-webkit-scrollbar,.s
   }, false);
 })();
 </script>
-
 
 <style id="kz-daily-claim-overlay-v2-style">
 #page-home .kz-daily-claim-entry{
@@ -30363,6 +29300,442 @@ body.light-mode #kzDailyClaimOverlay .kz-dco-day.done-today .kz-dco-day-circle{b
     setTimeout(refreshAll, 80);
     setTimeout(refreshAll, 260);
   });
+})();
+</script>
+
+<style id="kz-final-fix-patch">
+.kz-upgrade-price-btn{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:4px !important;
+  text-align:center !important;
+  line-height:1.18 !important;
+  white-space:normal !important;
+  min-height:58px !important;
+}
+.kz-upgrade-btn-title{
+  display:block !important;
+  font-weight:900 !important;
+}
+.kz-upgrade-btn-price{
+  display:block !important;
+  font-size:12px !important;
+  font-weight:800 !important;
+  opacity:.92 !important;
+}
+#payToast,
+#sysToast,
+.pay-toast{
+  z-index:2147483646 !important;
+  text-align:center !important;
+}
+#payToast *,
+#sysToast *,
+.pay-toast *{
+  text-align:center !important;
+}
+</style>
+<script id="kz-final-fix-script">
+(function(){
+  if (window.__kzFinalFixApplied) return;
+  window.__kzFinalFixApplied = true;
+
+  var TIKTOK_URL = 'https://www.tiktok.com/@kzrizusmo_store';
+
+  function rp(n){
+    var v = Number(n || 0) || 0;
+    try { return (typeof authFormatRpCompact === 'function') ? authFormatRpCompact(v) : ('Rp ' + v.toLocaleString('id-ID')); }
+    catch(e){ return 'Rp ' + v; }
+  }
+
+  function tierLabel(t){
+    try { return String((typeof memberTierLabel === 'function' ? memberTierLabel(t) : t) || '').toUpperCase(); }
+    catch(e){ return String(t || '').toUpperCase(); }
+  }
+
+  function normalizeTierSafe(t){
+    try { return (typeof normalizeMemberTier === 'function') ? normalizeMemberTier(t) : String(t || '').toLowerCase(); }
+    catch(e){ return String(t || '').toLowerCase(); }
+  }
+
+  function forceTikTokLinks(){
+    try{
+      document.querySelectorAll('a, button').forEach(function(el){
+        var txt = String(el.textContent || '').toLowerCase();
+        var href = String(el.getAttribute('href') || '').toLowerCase();
+        var aria = String(el.getAttribute('aria-label') || '').toLowerCase();
+        var title = String(el.getAttribute('title') || '').toLowerCase();
+        var hasIcon = !!el.querySelector('.fa-tiktok');
+        if (!(hasIcon || txt.indexOf('tiktok') >= 0 || aria.indexOf('tiktok') >= 0 || title.indexOf('tiktok') >= 0 || href.indexOf('tiktok.com') >= 0 || href.indexOf('@kzrizusmo_store') >= 0)) return;
+        if (el.tagName === 'A') {
+          el.setAttribute('href', TIKTOK_URL);
+          el.setAttribute('target', '_blank');
+          el.setAttribute('rel', 'noopener');
+        } else {
+          el.onclick = function(ev){
+            try{ if (ev) { ev.preventDefault(); ev.stopPropagation(); } }catch(e){}
+            try{ window.open(TIKTOK_URL, '_blank', 'noopener'); }catch(e){}
+            return false;
+          };
+        }
+      });
+    }catch(e){ console.warn(e); }
+  }
+
+  function cleanupInfoViews(){
+    try{
+      ['#page-info', '#detailModal'].forEach(function(sel){
+        var root = document.querySelector(sel);
+        if (!root) return;
+        root.querySelectorAll('*').forEach(function(el){
+          if (!el || el.children.length) return;
+          var t = String(el.textContent || '').trim().toLowerCase();
+          if (t && t.indexOf('dilihat') >= 0) {
+            try { el.remove(); } catch(e) { el.style.display = 'none'; }
+          }
+        });
+      });
+    }catch(e){}
+  }
+
+  function safeOpenInfoDetail(id){
+    try { if (typeof playClick === 'function') playClick(); } catch (e) {}
+    var item = null;
+    try {
+      item = (Array.isArray(window.infosData) ? window.infosData : []).find(function(x){ return x && String(x.id) === String(id); });
+    } catch(e) {}
+    if (!item) return;
+
+    var cat = '';
+    try { cat = (typeof kzNormalizeInfoCategory === 'function') ? kzNormalizeInfoCategory(item.category ?? item.type) : String(item.category || item.type || 'penting'); } catch(e) { cat = String(item.category || item.type || 'penting'); }
+    var when = '-';
+    try { when = (typeof authFmtDate === 'function') ? authFmtDate(item.updatedAt || item.createdAt) : '-'; } catch(e) {}
+    var safeLink = '';
+    try { safeLink = (typeof kzSafeUrl === 'function') ? (kzSafeUrl(item.link) || '') : String(item.link || ''); } catch(e) {}
+    var esc = function(v){
+      try { return (typeof escapeHtml === 'function') ? escapeHtml(String(v == null ? '' : v)) : String(v == null ? '' : v).replace(/[&<>\"]/g, function(s){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[s] || s; }); }
+      catch(e){ return String(v == null ? '' : v); }
+    };
+    var contentHtml = esc(String(item.content ?? '')).replace(/\n/g, '<br>');
+    var mUrl = '';
+    try {
+      mUrl = (typeof kzSafeUrl === 'function') ? (kzSafeUrl(item.mediaUrl ?? item.mediaSrc ?? item.mediaURL ?? item.mediaUrl ?? (item.media && item.media.url)) || '') : String(item.mediaUrl || item.mediaSrc || item.mediaURL || item.mediaUrl || (item.media && item.media.url) || '');
+    } catch(e) {}
+    var mType = String(item.mediaType ?? (item.media && item.media.type) ?? '').toLowerCase();
+    if (mUrl && ['image','video'].indexOf(mType) < 0) mType = /\.(mp4|webm|ogg)(\?|#|$)/i.test(mUrl) ? 'video' : 'image';
+
+    var mediaHtml = '';
+    if (mUrl) {
+      if (mType === 'video') {
+        mediaHtml = '<div style="margin-top:14px;">'
+          + '<div style="font-size:12px;color:var(--text-sec);margin-bottom:8px;"><i class="fas fa-film"></i> Media</div>'
+          + '<video src="' + esc(mUrl) + '" controls playsinline preload="metadata" style="width:100%; max-height:340px; border-radius:16px; border:1px solid rgba(255,255,255,.08); background:#000;"></video>'
+          + '</div>';
+      } else {
+        mediaHtml = '<div style="margin-top:14px;">'
+          + '<div style="font-size:12px;color:var(--text-sec);margin-bottom:8px;"><i class="fas fa-image"></i> Media</div>'
+          + '<img src="' + esc(mUrl) + '" alt="media" loading="lazy" decoding="async" style="width:100%; max-height:340px; object-fit:contain; border-radius:16px; border:1px solid rgba(255,255,255,.08);"/>'
+          + '</div>';
+      }
+    }
+
+    var iconMap = {
+      penting: 'fa-star',
+      tutorial: 'fa-graduation-cap',
+      promo: 'fa-tags',
+      pembaruan: 'fa-wrench',
+      peringatan: 'fa-triangle-exclamation'
+    };
+    var title = item.title || 'Informasi';
+    var modalTitle = document.getElementById('modalTitle');
+    var modalBody = document.getElementById('modalBody');
+    var detailModal = document.getElementById('detailModal');
+    if (!modalBody || !detailModal) return;
+    if (modalTitle) modalTitle.innerText = title;
+
+    modalBody.innerHTML = ''
+      + '<div class="admin-carditem">'
+      + '  <div class="top">'
+      + '    <div class="title" style="font-weight:900;">' + esc(title) + '</div>'
+      + '    <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">'
+      + '      <span class="mini-chip ' + esc(cat) + '"><i class="fas ' + esc(iconMap[cat] || 'fa-circle-info') + '"></i> ' + esc(String(cat || '').toUpperCase()) + '</span>'
+      + '    </div>'
+      + '  </div>'
+      + '  <div class="info-card-meta" style="margin-top:10px;">'
+      + '    <span><i class="fas fa-calendar-day"></i> ' + esc(when) + '</span>'
+      + '  </div>'
+      + '  <div style="margin-top:10px; font-size:12px; color:var(--text-sec); line-height:1.7;">' + (contentHtml || '-') + '</div>'
+      + mediaHtml
+      + (safeLink ? ('<div style="margin-top:12px;"><a class="info-link-btn" href="' + esc(safeLink) + '" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> Buka link</a></div>') : '')
+      + '</div>';
+
+    detailModal.style.display = 'block';
+    try { detailModal.classList.add('kz-open'); } catch (e) {}
+    cleanupInfoViews();
+  }
+
+  window.openInfoDetail = safeOpenInfoDetail;
+
+  function patchInfoDetailButtons(){
+    try{
+      document.querySelectorAll('#infoPageList .info-link-btn').forEach(function(btn){
+        var txt = String(btn.textContent || '').toLowerCase();
+        var oc = String(btn.getAttribute('onclick') || '');
+        if (txt.indexOf('detail') < 0 && oc.indexOf('openInfoDetail') < 0) return;
+        var id = String(btn.getAttribute('data-info-detail') || '').trim();
+        if (!id) {
+          var m = oc.match(/openInfoDetail\((?:'([^']+)'|"([^"]+)")\)/);
+          if (m) id = m[1] || m[2] || '';
+        }
+        if (id) btn.setAttribute('data-info-detail', id);
+        btn.setAttribute('type', 'button');
+      });
+      cleanupInfoViews();
+    }catch(e){ console.warn(e); }
+  }
+
+  function getUpgradeCost(me, target){
+    var cur = normalizeTierSafe(me && me.memberTier ? me.memberTier : 'basic');
+    var to = normalizeTierSafe(target);
+    var key = cur + '>' + to;
+    try {
+      if (typeof MEMBER_UPGRADE_COST !== 'undefined' && MEMBER_UPGRADE_COST && MEMBER_UPGRADE_COST[key]) return Number(MEMBER_UPGRADE_COST[key]) || 0;
+    } catch(e) {}
+    try {
+      if (typeof MEMBER_TIER_PRICE !== 'undefined' && MEMBER_TIER_PRICE && MEMBER_TIER_PRICE[to]) return Number(MEMBER_TIER_PRICE[to]) || 0;
+    } catch(e) {}
+    return 0;
+  }
+
+  function renderUpgradeButtonHTML(toTier, cost){
+    return '<span class="kz-upgrade-btn-title">Upgrade ke ' + tierLabel(toTier) + '</span>'
+      + '<span class="kz-upgrade-btn-price">' + rp(cost) + '</span>';
+  }
+
+  function patchMembershipPageButtons(){
+    try{
+      var me = null;
+      try { me = (typeof authGetMe === 'function') ? authGetMe() : null; } catch(e) {}
+      document.querySelectorAll('#page-membership-upgrade .mem-upgrade-btn[data-tier]').forEach(function(btn){
+        var tier = normalizeTierSafe(btn.getAttribute('data-tier') || '');
+        var cost = getUpgradeCost(me, tier);
+        if (!cost) {
+          try { if (typeof MEMBER_TIER_PRICE !== 'undefined' && MEMBER_TIER_PRICE[tier]) cost = Number(MEMBER_TIER_PRICE[tier]) || 0; } catch(e) {}
+        }
+        btn.classList.add('kz-upgrade-price-btn');
+        btn.innerHTML = renderUpgradeButtonHTML(tier, cost);
+      });
+    }catch(e){ console.warn(e); }
+  }
+
+  function renderAccountUpgradeLists(){
+    try{
+      var me = (typeof authGetMe === 'function') ? authGetMe() : null;
+      var opts = [];
+      try { opts = (typeof memberGetUpgradeOptions === 'function' && me) ? memberGetUpgradeOptions(me) : []; } catch(e) { opts = []; }
+
+      var makeHtml = function(){
+        if (!me || me.role === 'admin' || !opts.length) return '';
+        return opts.map(function(o){
+          var cost = Number(o.cost || getUpgradeCost(me, o.to) || 0) || 0;
+          return '<button class="btn-solid kz-upgrade-price-btn" type="button" onclick="authUpgradeMember(\'' + String(o.to) + '\')">'
+            + renderUpgradeButtonHTML(o.to, cost)
+            + '</button>';
+        }).join('');
+      };
+
+      var html = makeHtml();
+      var accUpgradeList = document.getElementById('accUpgradeList');
+      var authUpgradeList = document.getElementById('authUpgradeList');
+      if (accUpgradeList) accUpgradeList.innerHTML = html;
+      if (authUpgradeList) authUpgradeList.innerHTML = html;
+
+      var accHint = document.getElementById('accUpgradeHint');
+      var authHint = document.getElementById('authUpgradeHint');
+      var hintText = '';
+      if (!me) hintText = 'Login dulu untuk upgrade membership dari akun aktif kamu.';
+      else if (me.role === 'admin') hintText = 'Akun admin tidak membutuhkan upgrade membership.';
+      else hintText = opts.length ? 'Klik tombol upgrade untuk langsung masuk ke pembayaran.' : 'Tidak ada upgrade lanjutan untuk status ini.';
+      if (accHint) accHint.textContent = hintText;
+      if (authHint) authHint.textContent = hintText;
+    }catch(e){ console.warn(e); }
+  }
+
+  function ensurePaymentReady(method){
+    var useMethod = String(method || 'qris').toLowerCase();
+    try {
+      if (window.payState) window.payState.method = useMethod;
+      if (typeof savePayStorage === 'function') savePayStorage();
+    } catch(e) {}
+    try { if (typeof kzSetPaymentModeMembership === 'function') kzSetPaymentModeMembership(true); } catch(e) {}
+    try { var dp = document.getElementById('payDetailPanel'); if (dp) dp.style.display = 'block'; } catch(e) {}
+    try { if (typeof highlightPayMethod === 'function') highlightPayMethod(useMethod); } catch(e) {}
+    try { if (typeof renderPaymentDetail === 'function') renderPaymentDetail(useMethod); } catch(e) {}
+    try { if (typeof syncPaySummaryUI === 'function') syncPaySummaryUI(); } catch(e) {}
+    try { if (typeof validatePaySendButton === 'function') validatePaySendButton(); } catch(e) {}
+  }
+
+  function openMembershipCheckout(targetTier, cost, closeAccount){
+    var me = null;
+    try { me = (typeof authGetMe === 'function') ? authGetMe() : null; } catch(e) {}
+    if (!me) {
+      try { if (typeof openAuthModal === 'function') openAuthModal(); } catch(e) {}
+      try { if (typeof authToast === 'function') authToast('⚠️ Login dulu untuk upgrade.'); } catch(e) {}
+      return;
+    }
+    if (String(me.role || '').toLowerCase() === 'admin') {
+      try { if (typeof authToast === 'function') authToast('✅ Kamu sudah ADMIN.'); } catch(e) {}
+      return;
+    }
+
+    var to = normalizeTierSafe(targetTier);
+    var from = normalizeTierSafe(me.memberTier || 'basic');
+    if (!to) return;
+    try {
+      if (typeof memberTierRank === 'function' && memberTierRank(to) <= memberTierRank(from)) {
+        if (typeof authToast === 'function') authToast('⚠️ Tier kamu sudah ' + tierLabel(from) + ' (atau lebih tinggi).');
+        return;
+      }
+    } catch(e) {}
+
+    var finalCost = Number(cost || getUpgradeCost(me, to) || 0) || 0;
+    if (!finalCost) {
+      try { if (typeof authToast === 'function') authToast('⚠️ Upgrade tidak tersedia untuk status kamu.'); } catch(e) {}
+      return;
+    }
+
+    var productName = 'UPGRADE MEMBER - ' + String(to).toUpperCase();
+    var priceText = rp(finalCost);
+
+    try { if (closeAccount && typeof closeAccountSettings === 'function') closeAccountSettings(); } catch(e) {}
+    try { if (closeAccount && typeof closeAuthModal === 'function') closeAuthModal(); } catch(e) {}
+
+    try {
+      if (typeof openPaymentFlow !== 'function') throw new Error('openPaymentFlow missing');
+      openPaymentFlow(productName, finalCost, priceText, '', '');
+    } catch (e) {
+      console.warn(e);
+      try { if (typeof authToast === 'function') authToast('⚠️ Gagal membuka pembayaran.'); } catch(_) {}
+      return;
+    }
+
+    try {
+      if (window.payState) {
+        window.payState.kind = 'membership';
+        window.payState.upgradeToTier = to;
+        window.payState.qty = 1;
+        window.payState.promoApplied = false;
+        window.payState.promoCode = '';
+        window.payState.lastPromoDiscountVal = 0;
+        window.payState.method = 'qris';
+      }
+      if (typeof savePayStorage === 'function') savePayStorage();
+    } catch(e) { console.warn(e); }
+
+    ensurePaymentReady('qris');
+    setTimeout(function(){ ensurePaymentReady('qris'); }, 60);
+  }
+
+  window.authUpgradeMember = function(toTier){
+    var me = null;
+    try { me = (typeof authGetMe === 'function') ? authGetMe() : null; } catch(e) {}
+    openMembershipCheckout(toTier, getUpgradeCost(me, toTier), true);
+  };
+
+  window.openMembershipUpgradeTier = function(tier){
+    var me = null;
+    try { me = (typeof authGetMe === 'function') ? authGetMe() : null; } catch(e) {}
+    openMembershipCheckout(tier, getUpgradeCost(me, tier), false);
+  };
+
+  window.openMembershipUpgrade = function(){
+    var target = 'elite';
+    try { target = (typeof getSelectedUpgradeTier === 'function') ? getSelectedUpgradeTier() : 'elite'; } catch(e) {}
+    window.openMembershipUpgradeTier(target);
+  };
+
+  function liftToasts(){
+    try{
+      ['payToast','sysToast'].forEach(function(id){
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.style.zIndex = '2147483646';
+        el.style.textAlign = 'center';
+        el.style.left = '50%';
+        el.style.right = 'auto';
+        el.style.transform = 'translateX(-50%)';
+      });
+    }catch(e){}
+  }
+
+  function applyFixes(){
+    forceTikTokLinks();
+    patchInfoDetailButtons();
+    patchMembershipPageButtons();
+    renderAccountUpgradeLists();
+    liftToasts();
+  }
+
+  if (typeof window.renderInfoPage === 'function' && !window.__kzInfoDetailWrapped) {
+    window.__kzInfoDetailWrapped = true;
+    var oldRenderInfoPage = window.renderInfoPage;
+    window.renderInfoPage = function(){
+      var r = oldRenderInfoPage.apply(this, arguments);
+      patchInfoDetailButtons();
+      return r;
+    };
+  }
+
+  if (typeof window.authRenderMemberUI === 'function' && !window.__kzAuthRenderWrapped) {
+    window.__kzAuthRenderWrapped = true;
+    var oldAuthRenderMemberUI = window.authRenderMemberUI;
+    window.authRenderMemberUI = function(){
+      var r = oldAuthRenderMemberUI.apply(this, arguments);
+      renderAccountUpgradeLists();
+      patchMembershipPageButtons();
+      return r;
+    };
+  }
+
+  document.addEventListener('click', function(ev){
+    try{
+      var btn = ev.target.closest('#infoPageList [data-info-detail], #infoPageList [onclick*="openInfoDetail"], #page-info .info-link-btn');
+      if (!btn) return;
+      var txt = String(btn.textContent || '').toLowerCase();
+      var oc = String(btn.getAttribute('onclick') || '');
+      var id = String(btn.getAttribute('data-info-detail') || '').trim();
+      if (!id) {
+        var m = oc.match(/openInfoDetail\((?:'([^']+)'|"([^"]+)")\)/);
+        if (m) id = m[1] || m[2] || '';
+      }
+      if (!id) return;
+      if (txt.indexOf('detail') < 0 && oc.indexOf('openInfoDetail') < 0 && !btn.hasAttribute('data-info-detail')) return;
+      ev.preventDefault();
+      ev.stopPropagation();
+      if (ev.stopImmediatePropagation) ev.stopImmediatePropagation();
+      safeOpenInfoDetail(id);
+      return false;
+    } catch(e){ console.warn(e); }
+  }, true);
+
+  var moTimer = null;
+  try{
+    var mo = new MutationObserver(function(){
+      clearTimeout(moTimer);
+      moTimer = setTimeout(applyFixes, 80);
+    });
+    mo.observe(document.documentElement || document.body, { childList:true, subtree:true });
+  }catch(e){}
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyFixes, { once:true });
+  } else {
+    applyFixes();
+  }
+  setTimeout(applyFixes, 120);
+  setTimeout(applyFixes, 600);
 })();
 </script>
 
