@@ -34110,4 +34110,110 @@ body.kz-home-populer-active #sbFilterResults .item-card .badge-ribbon{
 })();
 </script>
 
+
+<style id="kz-daily-claim-app-safe-style">
+#kzDailyClaimOverlay .claimable-today,
+#kzDailyClaimOverlay .claimable-today .kz-dco-day-circle,
+#kzDailyClaimOverlay .kz-dco-btn,
+.kz-daily-claim,
+.kz-daily-claim-entry{
+  touch-action:manipulation !important;
+  pointer-events:auto !important;
+  cursor:pointer !important;
+}
+#kzDailyClaimOverlay .claimable-today,
+.kz-daily-claim,
+.kz-daily-claim-entry{
+  position:relative !important;
+  z-index:5 !important;
+}
+</style>
+
+<script id="kz-daily-claim-app-safe-script">
+(function(){
+  if(window.__kzDailyClaimAppSafePatch){ return; }
+  window.__kzDailyClaimAppSafePatch = true;
+
+  function hasClass(el, name){
+    if(!el || !el.className){ return false; }
+    return (' ' + el.className + ' ').indexOf(' ' + name + ' ') !== -1;
+  }
+
+  function getAttr(el, name){
+    try{ return (el && el.getAttribute) ? (el.getAttribute(name) || '') : ''; }catch(e){ return ''; }
+  }
+
+  function findClaimTarget(node){
+    while(node && node !== document && node !== document.documentElement){
+      var oc = getAttr(node, 'onclick');
+      if(
+        hasClass(node, 'kz-daily-claim') ||
+        hasClass(node, 'kz-daily-claim-entry') ||
+        hasClass(node, 'claimable-today') ||
+        hasClass(node, 'kz-dco-btn') ||
+        oc.indexOf('kzClaimDailyPoint') !== -1 ||
+        oc.indexOf('kzOpenDailyClaimOverlay') !== -1
+      ){
+        return node;
+      }
+      node = node.parentNode;
+    }
+    return null;
+  }
+
+  function isOverlayOpen(){
+    var overlay = document.getElementById('kzDailyClaimOverlay');
+    return !!(overlay && overlay.classList && overlay.classList.contains('active'));
+  }
+
+  var lastActionAt = 0;
+  function triggerClaim(target, ev){
+    var now = new Date().getTime();
+    if(now - lastActionAt < 450){
+      return false;
+    }
+    lastActionAt = now;
+
+    var oc = getAttr(target, 'onclick');
+    var shouldOpenOverlay =
+      hasClass(target, 'kz-daily-claim') ||
+      hasClass(target, 'kz-daily-claim-entry') ||
+      oc.indexOf('kzOpenDailyClaimOverlay') !== -1;
+
+    try{
+      if(shouldOpenOverlay && !isOverlayOpen()){
+        if(typeof window.kzOpenDailyClaimOverlay === 'function'){
+          window.kzOpenDailyClaimOverlay();
+          return false;
+        }
+      }
+
+      if(typeof window.kzClaimDailyPoint === 'function'){
+        window.kzClaimDailyPoint({ fromOverlay: isOverlayOpen() });
+        return false;
+      }
+    }catch(err){
+      try{ console.error(err); }catch(e){}
+    }
+    return false;
+  }
+
+  function handleTap(ev){
+    var target = findClaimTarget(ev.target || ev.srcElement);
+    if(!target){ return; }
+
+    if(ev && ev.preventDefault){ ev.preventDefault(); }
+    if(ev && ev.stopPropagation){ ev.stopPropagation(); }
+    if(ev && ev.stopImmediatePropagation){ ev.stopImmediatePropagation(); }
+
+    triggerClaim(target, ev);
+    return false;
+  }
+
+  document.addEventListener('touchend', handleTap, true);
+  document.addEventListener('pointerup', handleTap, true);
+  document.addEventListener('click', handleTap, true);
+})();
+</script>
+
 </body></html>
