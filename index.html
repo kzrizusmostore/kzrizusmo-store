@@ -15913,7 +15913,7 @@ function kzInitMembershipUpgradeUI(){
 // init: fokus ke tier yang sesuai (kalau sudah punya member, fokus ke tier saat ini)
   let me = null;
   try { me = authGetMe(); } catch {}
-  const curTier = normalizeMemberTier(me && me.memberTier ? me.memberTier : "basic");
+  const curTier = getMemberTier(me);
   const prefer = (curTier === "business") ? "business" : (curTier === "ultimate") ? "ultimate" : (curTier === "elite") ? "elite" : "elite";
 
   const card = wrap.querySelector(`.mem-tier-card[data-tier="${prefer}"]`) || wrap.querySelector(".mem-tier-card");
@@ -16197,8 +16197,42 @@ function normalizeMemberTier(t) {
   return "basic";
 }
 
+const KZ_SPECIAL_TIER_OVERRIDES = [
+  {
+    usernames: ["anxelliaa", "vigo"],
+    tier: "elite",
+    expiresAt: new Date(2026, 6, 8, 0, 0, 0, 0).getTime()
+  }
+];
+
+function kzNormalizeTierUsername(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function kzGetSpecialTierOverride(userLike) {
+  try {
+    if (!userLike || (userLike && userLike.role === "admin")) return "";
+    const username = kzNormalizeTierUsername(userLike && userLike.username);
+    if (!username) return "";
+    const now = Date.now();
+    for (const item of KZ_SPECIAL_TIER_OVERRIDES) {
+      if (!item) continue;
+      const expiresAt = Number(item.expiresAt || 0) || 0;
+      const usernames = Array.isArray(item.usernames) ? item.usernames.map(kzNormalizeTierUsername) : [];
+      if (expiresAt && now < expiresAt && usernames.includes(username)) {
+        return normalizeMemberTier(item.tier || "basic");
+      }
+    }
+  } catch (e) {
+    console.warn("kzGetSpecialTierOverride", e);
+  }
+  return "";
+}
+
 function getMemberTier(u) {
   if (u && u.role === "admin") return "admin";
+  const specialTier = kzGetSpecialTierOverride(u);
+  if (specialTier) return specialTier;
   return normalizeMemberTier(u && u.memberTier ? u.memberTier : "basic");
 }
 
@@ -16226,7 +16260,7 @@ function memberTierClass(tier) {
 
 function memberGetUpgradeOptions(me) {
   if (!me || me.role === "admin") return [];
-  const cur = normalizeMemberTier(me.memberTier || "basic");
+  const cur = getMemberTier(me);
   const out = [];
   Object.keys(MEMBER_UPGRADE_COST).forEach(k => {
     const parts = k.split(">");
@@ -16249,7 +16283,7 @@ function authUpgradeMember(toTier) {
   }
   if (me.role === "admin") return authToast("✅ Kamu sudah ADMIN.");
 
-  const from = normalizeMemberTier(me.memberTier || "basic");
+  const from = getMemberTier(me);
   const to = normalizeMemberTier(toTier || "");
   const key = `${from}>${to}`;
   const cost = Number(MEMBER_UPGRADE_COST[key] || 0) || 0;
@@ -29440,7 +29474,7 @@ body.light-mode #kzDailyClaimOverlay .kz-dco-day.done-today .kz-dco-day-circle{b
   }
 
   function getUpgradeCost(me, target){
-    var cur = normalizeTierSafe(me && me.memberTier ? me.memberTier : 'basic');
+    var cur = normalizeTierSafe((typeof getMemberTier === 'function') ? getMemberTier(me) : (me && me.memberTier ? me.memberTier : 'basic'));
     var to = normalizeTierSafe(target);
     var key = cur + '>' + to;
     try {
@@ -29534,7 +29568,7 @@ body.light-mode #kzDailyClaimOverlay .kz-dco-day.done-today .kz-dco-day-circle{b
     }
 
     var to = normalizeTierSafe(targetTier);
-    var from = normalizeTierSafe(me.memberTier || 'basic');
+    var from = normalizeTierSafe((typeof getMemberTier === 'function') ? getMemberTier(me) : (me.memberTier || 'basic'));
     if (!to) return;
     try {
       if (typeof memberTierRank === 'function' && memberTierRank(to) <= memberTierRank(from)) {
