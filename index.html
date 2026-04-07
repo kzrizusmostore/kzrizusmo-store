@@ -12146,6 +12146,35 @@ const digitalAppsData = [
     ]
   }
 
+
+,
+  {
+    id: "jasa-pembuatan-apk",
+    name: "Jasa Pembuatan Apk",
+    image: "https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg",
+    cat: ["apk"],
+    homePreview: false,
+    packages: [
+      {
+        name: "Convert/Build Web ke Apk",
+        price: "Rp 5.000",
+        priceVal: 5000,
+        requestFormat: "Link Website"
+      },
+      {
+        name: "Convert/Build Html ke Apk",
+        price: "Rp 5.000",
+        priceVal: 5000,
+        requestFormat: "File Html"
+      },
+      {
+        name: "Upload Apk ke PlayStore",
+        price: "Rp 400.000",
+        priceVal: 400000,
+        requestFormat: "File Apk"
+      }
+    ]
+  }
 ];
 /* ===== END PRODUK DIGITAL ===== */
 
@@ -35183,5 +35212,251 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
   try{ window.addEventListener('pageshow', boot); }catch(e){}
 })();
 </script>
+
+
+<script id="kz-jasa-pembuatan-apk-format-patch">
+(function(){
+  if(window.__kzJasaPembuatanApkPatchApplied) return;
+  window.__kzJasaPembuatanApkPatchApplied = true;
+
+  var APP_KEY = 'jasa pembuatan apk';
+  var CONFIGS = [
+    {
+      key: 'convert/build web ke apk',
+      label: 'Link Website',
+      placeholder: 'Contoh: https://websitekamu.com',
+      hint: 'Masukkan link website yang ingin di-convert/build menjadi APK.',
+      type: 'url'
+    },
+    {
+      key: 'convert/build html ke apk',
+      label: 'File Html',
+      placeholder: 'Contoh: index.html atau link file HTML',
+      hint: 'Masukkan nama file HTML atau link file HTML yang akan di-convert/build menjadi APK.',
+      type: 'text'
+    },
+    {
+      key: 'upload apk ke playstore',
+      label: 'File Apk',
+      placeholder: 'Contoh: app-release.apk atau link file APK',
+      hint: 'Masukkan nama file APK atau link file APK yang akan di-upload ke Play Store.',
+      type: 'text'
+    }
+  ];
+
+  function byId(id){ try { return document.getElementById(id); } catch(e){ return null; } }
+  function norm(v){ return String(v == null ? '' : v).trim(); }
+  function getProductName(){
+    try { return String((window.payState && payState.product) || '').toLowerCase(); } catch(e){ return ''; }
+  }
+  function getConfig(){
+    var product = getProductName();
+    if(product.indexOf(APP_KEY) === -1) return null;
+    for(var i=0;i<CONFIGS.length;i++){
+      if(product.indexOf(CONFIGS[i].key) !== -1) return CONFIGS[i];
+    }
+    return null;
+  }
+  function getStateValue(){
+    try {
+      return norm(window.payState && payState.apkServiceFormat && payState.apkServiceFormat.value);
+    } catch(e){ return ''; }
+  }
+  function setStateValue(label, value){
+    try {
+      if(!window.payState) return;
+      payState.apkServiceFormat = { label: norm(label), value: norm(value) };
+      if(typeof savePayStorage === 'function') savePayStorage();
+    } catch(e){}
+  }
+  function ensureField(){
+    var anchor = byId('payWhatsappFieldDefault');
+    if(!anchor || byId('payApkServiceField')) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'pay-field';
+    wrap.id = 'payApkServiceField';
+    wrap.style.display = 'none';
+    wrap.innerHTML = ''
+      + '<label class="pay-label" id="payApkServiceLabel" for="payApkServiceInput">Format</label>'
+      + '<input autocomplete="off" class="pay-input" id="payApkServiceInput" name="apk_service_format_value" placeholder="Masukkan data" type="text">'
+      + '<div class="pay-sub" id="payApkServiceHint" style="margin-top:6px;"></div>';
+    anchor.insertAdjacentElement('afterend', wrap);
+
+    var input = byId('payApkServiceInput');
+    if(input && !input.dataset.kzBound){
+      input.dataset.kzBound = '1';
+      input.addEventListener('input', function(){
+        syncHidden();
+        renderSummary();
+      }, true);
+    }
+  }
+  function ensureHidden(){
+    var form = byId('payProofForm');
+    if(!form || byId('payFormApkServiceLabel')) return;
+    var label = document.createElement('input');
+    label.type = 'hidden';
+    label.id = 'payFormApkServiceLabel';
+    label.name = 'apk_service_format_label';
+    form.appendChild(label);
+    var value = document.createElement('input');
+    value.type = 'hidden';
+    value.id = 'payFormApkServiceValue';
+    value.name = 'apk_service_format_value';
+    form.appendChild(value);
+  }
+  function ensureSummary(){
+    var anchor = byId('payRowWA');
+    if(!anchor || byId('payRowApkService')) return;
+    var row = document.createElement('div');
+    row.className = 'pay-srow';
+    row.id = 'payRowApkService';
+    row.style.display = 'none';
+    row.innerHTML = '<span id="payRowApkServiceLabel">Format</span><b id="paySumApkService">-</b>';
+    anchor.insertAdjacentElement('afterend', row);
+  }
+  function syncHidden(){
+    ensureHidden();
+    var cfg = getConfig();
+    var input = byId('payApkServiceInput');
+    var value = norm(input && input.value);
+    var labelEl = byId('payFormApkServiceLabel');
+    var valueEl = byId('payFormApkServiceValue');
+    if(labelEl) labelEl.value = cfg ? cfg.label : '';
+    if(valueEl) valueEl.value = cfg ? value : '';
+    setStateValue(cfg ? cfg.label : '', cfg ? value : '');
+    return value;
+  }
+  function renderSummary(){
+    ensureSummary();
+    var cfg = getConfig();
+    var row = byId('payRowApkService');
+    var label = byId('payRowApkServiceLabel');
+    var valueEl = byId('paySumApkService');
+    var value = syncHidden();
+    if(label) label.textContent = cfg ? cfg.label : 'Format';
+    if(valueEl) valueEl.textContent = value || '-';
+    if(row) row.style.display = (cfg && value) ? 'flex' : 'none';
+  }
+  function applyField(){
+    ensureField();
+    ensureHidden();
+    ensureSummary();
+    var cfg = getConfig();
+    var field = byId('payApkServiceField');
+    var label = byId('payApkServiceLabel');
+    var input = byId('payApkServiceInput');
+    var hint = byId('payApkServiceHint');
+    if(!field || !label || !input || !hint) return;
+    if(!cfg){
+      field.style.display = 'none';
+      input.value = '';
+      input.type = 'text';
+      input.placeholder = 'Masukkan data';
+      label.textContent = 'Format';
+      hint.textContent = '';
+      syncHidden();
+      renderSummary();
+      return;
+    }
+    field.style.display = 'block';
+    label.textContent = cfg.label;
+    input.type = cfg.type || 'text';
+    input.placeholder = cfg.placeholder || 'Masukkan data';
+    hint.textContent = cfg.hint || '';
+    if(document.activeElement !== input) input.value = getStateValue();
+    syncHidden();
+    renderSummary();
+  }
+  function isReady(){
+    var cfg = getConfig();
+    if(!cfg) return true;
+    return !!syncHidden();
+  }
+  function focusField(){
+    var field = byId('payApkServiceField');
+    var input = byId('payApkServiceInput');
+    try { if(field && field.scrollIntoView) field.scrollIntoView({ behavior:'smooth', block:'center' }); } catch(e){}
+    try { if(input) input.focus(); } catch(e){}
+  }
+  function boot(){
+    applyField();
+  }
+
+  var oldStartNewOrder = window.startNewOrder;
+  if(typeof oldStartNewOrder === 'function'){
+    window.startNewOrder = function(){
+      var out = oldStartNewOrder.apply(this, arguments);
+      try { if(window.payState) payState.apkServiceFormat = { label:'', value:'' }; } catch(e){}
+      return out;
+    };
+  }
+
+  var oldOpenPaymentFlow = window.openPaymentFlow;
+  if(typeof oldOpenPaymentFlow === 'function'){
+    window.openPaymentFlow = function(){
+      var out = oldOpenPaymentFlow.apply(this, arguments);
+      boot();
+      return out;
+    };
+  }
+
+  var oldSyncPaySummaryUI = window.syncPaySummaryUI;
+  if(typeof oldSyncPaySummaryUI === 'function'){
+    window.syncPaySummaryUI = function(){
+      var out = oldSyncPaySummaryUI.apply(this, arguments);
+      renderSummary();
+      return out;
+    };
+  }
+
+  var oldClosePaymentFlow = window.closePaymentFlow;
+  if(typeof oldClosePaymentFlow === 'function'){
+    window.closePaymentFlow = function(){
+      var out = oldClosePaymentFlow.apply(this, arguments);
+      setTimeout(boot, 0);
+      return out;
+    };
+  }
+
+  var oldSendPaymentProof = window.sendPaymentProof;
+  if(typeof oldSendPaymentProof === 'function'){
+    window.sendPaymentProof = function(){
+      boot();
+      var cfg = getConfig();
+      if(cfg && !isReady()){
+        try { if(typeof setPayStatus === 'function') setPayStatus('⚠️ Isi ' + cfg.label + ' terlebih dahulu.'); } catch(e){}
+        focusField();
+        return;
+      }
+      syncHidden();
+      return oldSendPaymentProof.apply(this, arguments);
+    };
+  }
+
+  var oldZusmoLines = window.kzGetZusmoBetaDetailLines;
+  if(typeof oldZusmoLines === 'function'){
+    window.kzGetZusmoBetaDetailLines = function(){
+      var lines = [];
+      try { lines = oldZusmoLines.apply(this, arguments) || []; } catch(e){ lines = []; }
+      var cfg = getConfig();
+      var value = syncHidden();
+      if(cfg && value) lines.push(cfg.label + ': ' + value);
+      return lines;
+    };
+  } else {
+    window.kzGetZusmoBetaDetailLines = function(){
+      var cfg = getConfig();
+      var value = syncHidden();
+      return (cfg && value) ? [cfg.label + ': ' + value] : [];
+    };
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, { once:true });
+  else boot();
+  try { window.addEventListener('pageshow', boot); } catch(e){}
+})();
+</script>
+
 
 </body></html>
