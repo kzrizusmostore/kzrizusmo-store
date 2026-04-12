@@ -36844,7 +36844,7 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
     if(/delivered|completed|done|success/.test(key)) return 'Pesanan selesai. Simpan kode order dan cek data yang sudah dikirim.';
     if(key === 'processing' || key === 'verified') return 'Order sedang diproses admin. Tunggu data akun atau hasil pengiriman.';
     if(key === 'proof_submitted' || key === 'pending') return 'Bukti pembayaran sudah masuk. Admin akan memverifikasi order kamu.';
-    if(key === 'cancelled' || key === 'expired' || key === 'rejected') return 'Order tidak lanjut. Hubungi admin jika ingin bantu cek ulang.';
+    if(key === 'cancelled' || key === 'expired' || key === 'rejected') return '';
     return 'Cek status order secara berkala dari halaman ini.';
   }
   function getMineOrders(){
@@ -37275,10 +37275,10 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
         if(waNote){
           var digits = clean.replace(/\D/g,'');
           if(digits.length >= 10){
-            waNote.textContent = 'Nomor WhatsApp terlihat valid. Admin akan kirim update ke sini.';
+            waNote.textContent = 'Nomor WhatsApp terlihat valid.';
             waNote.className = 'kz-pay-inline-note ok';
           }else{
-            waNote.textContent = 'Masukkan nomor WhatsApp aktif dengan benar, minimal 10 digit.';
+            waNote.textContent = 'Masukkan nomor WhatsApp aktif dengan benar.';
             waNote.className = 'kz-pay-inline-note warn';
           }
         }
@@ -37675,7 +37675,7 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
   if(window.__kzRefundPatchApplied) return;
   window.__kzRefundPatchApplied = true;
 
-  var REFUND_EMAIL = 'kzrizusmostore@gmail.com';
+  var REFUND_EMAIL = 'kzrizusmorefund@gmail.com';
   var MAX_INLINE_PROOF_SIZE = 1250000;
 
   function byId(id){ return document.getElementById(id); }
@@ -37808,23 +37808,32 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
     var status = txt(order.status || '-');
     var buyer = order.buyer || {};
     var method = order.method || {};
+    var orderTime = '-';
+    try{ orderTime = order.orderedAt ? new Date(order.orderedAt).toLocaleString('id-ID') : '-'; }catch(e){}
     var lines = [
-      'Halo Admin Kzrizusmo Store,',
+      'Halo Admin Kzrizusmo Refund,',
       '',
       'Saya ingin mengajukan refund untuk order yang gagal dengan detail berikut:',
       'Kode Order: ' + txt(order.orderId || order.id || '-'),
       'Produk: ' + txt(order.product || '-'),
       'Status Order: ' + status,
       'Total Pembayaran: ' + fmtRp(order.totalVal || 0),
-      'Metode Pembayaran: ' + txt(method.label || method.key || '-'),
+      'Metode Pembayaran Awal: ' + txt(method.label || method.key || '-'),
       'Username: ' + txt(buyer.name || order.senderName || '-'),
       'WhatsApp: ' + txt(buyer.wa || order.buyerWA || '-'),
-      'Waktu Order: ' + (order.orderedAt ? new Date(order.orderedAt).toLocaleString('id-ID') : '-'),
+      'Waktu Order: ' + orderTime,
       '',
-      'Alasan Refund:',
-      '- Order dinyatakan gagal / tidak lanjut.',
+      'Data Refund (WAJIB DIISI USER):',
+      'Jenis Refund (pilih salah satu): [Refund Uang ke DANA / Refund Saldo]',
+      'Nomor DANA Tujuan: ',
+      'Nama Akun DANA: ',
+      'Nominal Refund: ' + fmtRp(order.totalVal || 0),
+      'Alasan Refund: Order gagal / tidak lanjut.',
       '',
-      'Bukti transfer saya lampirkan ulang pada email ini.',
+      'Catatan Penting:',
+      '- Upload ulang bukti transfer pada ikon peniti di pojok kanan atas Gmail.',
+      '- Mohon jangan kirim email refund tanpa melampirkan bukti transfer ulang.',
+      '',
       'Mohon bantu proses refund untuk order tersebut.',
       '',
       'Terima kasih.'
@@ -37856,7 +37865,7 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
     var att = order.proofAttachment || {};
     if(!att || !att.dataUrl) {
       try{
-        authToast(att && (att.name || order.proofInfo) ? 'Template refund dibuka. Lampirkan ulang bukti transfer secara manual ya.' : 'Template refund dibuka. Tambahkan bukti transfer secara manual ya.');
+        authToast(att && (att.name || order.proofInfo) ? 'Template refund dibuka. Upload ulang bukti transfer lewat ikon peniti di pojok kanan atas Gmail ya.' : 'Template refund dibuka. Upload ulang bukti transfer lewat ikon peniti di pojok kanan atas Gmail ya.');
       }catch(e){}
       return false;
     }
@@ -37873,11 +37882,11 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
         try{ URL.revokeObjectURL(url); }catch(e){}
         try{ a.remove(); }catch(e){}
       }, 1800);
-      try{ authToast('Template refund dibuka. Bukti transfer lama juga disiapkan untuk dilampirkan ulang.'); }catch(e){}
+      try{ authToast('Template refund dibuka. File bukti transfer lama juga disiapkan. Tetap upload ulang lewat ikon peniti di pojok kanan atas Gmail ya.'); }catch(e){}
       return true;
     }catch(e){
       console.warn('refund proof prepare', e);
-      try{ authToast('Template refund dibuka. Lampirkan ulang bukti transfer secara manual ya.'); }catch(_e){}
+      try{ authToast('Template refund dibuka. Upload ulang bukti transfer lewat ikon peniti di pojok kanan atas Gmail ya.'); }catch(_e){}
       return false;
     }
   }
@@ -37910,7 +37919,7 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
       if(!oldNote){
         var note = document.createElement('div');
         note.className = 'kz-refund-note';
-        note.textContent = 'Refund akan membuka template email otomatis ke admin. Bukti transfer lama akan disiapkan ulang jika tersedia.';
+        note.textContent = '';
         card.appendChild(note);
       }
     });
@@ -38091,7 +38100,7 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
         if(card.querySelector('.kz-refund-test-note')) return;
         var note = document.createElement('div');
         note.className = 'kz-refund-test-note';
-        note.innerHTML = '<b>Mode tes refund aktif.</b> Pesanan akun ini sementara dipaksa gagal agar tombol Pengajuan Refund Gmail bisa diuji.';
+        note.innerHTML = '<b>Mode tes refund aktif.</b> Pesanan akun ini sementara dipaksa gagal agar tombol Pengajuan Refund Gmail ke kzrizusmorefund@gmail.com bisa diuji.';
         card.appendChild(note);
       });
     }catch(e){}
