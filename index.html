@@ -2105,6 +2105,155 @@ window.kzSetSidebarMenuMode = function(mode){
 })();
 </script>
 
+
+<style id="kz-apk-info-popup-styles">
+#apkInfoPopup{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:rgba(0,0,0,.68);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  z-index:16050;
+}
+#apkInfoPopup.show{display:flex}
+#apkInfoPopup .apk-popup-card{
+  width:min(340px,90vw);
+  border-radius:24px;
+  overflow:visible;
+  position:relative;
+  background:linear-gradient(180deg,#111,#090909);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 24px 70px rgba(0,0,0,.65);
+}
+#apkInfoPopup .apk-popup-img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-top-left-radius:24px;
+  border-top-right-radius:24px;
+  object-fit:cover;
+}
+#apkInfoPopup .apk-popup-close{
+  position:absolute;
+  top:0;
+  right:0;
+  transform:translate(50%,-50%);
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  border:2px solid rgba(255,255,255,.92);
+  background:rgba(0,0,0,.35);
+  color:#fff;
+  font-size:22px;
+  font-weight:900;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+  z-index:5;
+}
+#apkInfoPopup .apk-popup-body{
+  padding:16px 16px 14px;
+  color:#fff;
+}
+#apkInfoPopup .apk-popup-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,0,0,.14);
+  border:1px solid rgba(255,0,0,.34);
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.04em;
+  margin-bottom:12px;
+}
+#apkInfoPopup .apk-popup-title{
+  font-size:18px;
+  font-weight:1000;
+  line-height:1.2;
+  margin-bottom:8px;
+}
+#apkInfoPopup .apk-popup-desc{
+  font-size:12px;
+  color:rgba(255,255,255,.76);
+  line-height:1.55;
+  margin-bottom:12px;
+}
+#apkInfoPopup .apk-popup-kv{
+  display:grid;
+  gap:10px;
+  margin-bottom:14px;
+}
+#apkInfoPopup .apk-popup-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 12px;
+  border-radius:16px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.10);
+}
+#apkInfoPopup .apk-popup-label{
+  font-size:12px;
+  color:rgba(255,255,255,.68);
+  font-weight:800;
+}
+#apkInfoPopup .apk-popup-value{
+  font-size:13px;
+  color:#fff;
+  font-weight:1000;
+  text-align:right;
+  word-break:break-word;
+}
+#apkInfoPopup .apk-popup-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+#apkInfoPopup .apk-popup-btn{
+  padding:14px 14px;
+  text-align:center;
+  font-weight:1000;
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:.2px;
+  user-select:none;
+  border:0;
+  cursor:pointer;
+}
+#apkInfoPopup .apk-popup-btn-left{
+  background:#fff;
+  color:#1a1a1a;
+  border-bottom-left-radius:24px;
+}
+#apkInfoPopup .apk-popup-btn-right{
+  background:#f00;
+  color:#fff;
+  border-bottom-right-radius:24px;
+}
+body.light-mode #apkInfoPopup .apk-popup-card{
+  background:linear-gradient(180deg,#ffffff,#f2f2f2);
+  border-color:rgba(0,0,0,.08);
+}
+body.light-mode #apkInfoPopup .apk-popup-body,
+body.light-mode #apkInfoPopup .apk-popup-title,
+body.light-mode #apkInfoPopup .apk-popup-value{color:#111}
+body.light-mode #apkInfoPopup .apk-popup-desc,
+body.light-mode #apkInfoPopup .apk-popup-label{color:#555}
+body.light-mode #apkInfoPopup .apk-popup-row{
+  background:rgba(0,0,0,.04);
+  border-color:rgba(0,0,0,.08);
+}
+</style>
+
 </head><body class="kz-sidebar-home"><div class="statusbar-space"></div><div class="app-wrapper"><div id="welcomePopup"><div aria-label="Informasi proses order" aria-modal="true" class="popup-card" onclick="event.stopPropagation()" role="dialog"><button aria-label="Close" class="popup-close" onclick="playClick(); closeWelcomePopup()">×</button><img alt="Promo group dan saluran KZRIZUSMO STORE" class="popup-img" src="https://cdn.yupra.my.id/yp/zyws30dk.jpg"/><div class="popup-actions"><a class="popup-btn popup-btn-left" href="https://chat.whatsapp.com/BvbJh4kPHNM9ixyWaUXR50?mode=gi_t" onclick="playClick()" rel="noopener" target="_blank">Join Group</a><a class="popup-btn popup-btn-right" href="https://whatsapp.com/channel/0029VbDOVUJIHphDqJoiNH1L" onclick="playClick()" rel="noopener" target="_blank">Join Saluran</a></div></div></div><div id="payOverlay" onclick="onPayOverlayClick(event)"><div aria-label="Payment" aria-modal="true" class="pay-modal" onclick="event.stopPropagation()" role="dialog"><div class="pay-head"><div><h3>Payment</h3><div class="pay-sub">Produk: <b id="payProductName">-</b><span class="pay-server-badge" id="payServerBadge" style="display:none;">S1</span></div></div><div class="pay-row"><div class="pay-badge" id="payTimerBadge"><span class="pay-dot" id="payTimerDot"></span><span id="payTimerText">Timer: belum mulai</span></div><button aria-label="Close" class="pay-close" onclick="playClick(); closePaymentFlow()">×</button></div></div><div aria-live="polite" class="pay-toast" id="payToast"></div><div class="pay-body"><div id="payMainView"><div style="font-weight:900">Metode Pembayaran</div><div class="pay-grid" id="payMethodGrid"><div class="pay-method" data-method="qris" onclick="selectPaymentMethod('qris')">QRIS</div><div class="pay-method" data-method="dana" onclick="selectPaymentMethod('dana')">DANA</div><div class="pay-method" data-method="gopay" onclick="selectPaymentMethod('gopay')">GOPAY</div><div class="pay-method" data-method="ovo" onclick="selectPaymentMethod('ovo')">OVO</div></div><div class="pay-panel" id="payDetailPanel" style="display:none;"><div class="pay-row" style="justify-content:space-between"><div style="font-weight:900">Detail Pembayaran</div><div class="pay-sub" id="payDeadlineText">Batas: -</div></div><div id="payQRISWrap" style="display:none; margin-top:10px;"><img alt="QRIS" class="pay-qr" id="payQrisImg"/><button class="pay-btn secondary" id="payBtnDownloadQRIS" onclick="downloadQris()" type="button">DOWNLOAD QRIS</button></div><div id="payNumberWrap" style="display:none; margin-top:10px;"><div class="pay-number"><code id="payNumberText">-</code><button class="pay-btn secondary" onclick="copyPaymentNumber()" style="width:auto; padding:10px 12px; margin-top:0;" type="button">SALIN</button></div></div><div class="pay-info" id="payMethodInfo" style="display:block; margin-top:10px;"></div><div class="pay-upload" id="payUploadSection"><div id="payUploadTitle" style="font-weight:900">Upload Bukti Pembayaran</div><form enctype="multipart/form-data" id="payProofForm" method="post"><input name="to_email" type="hidden" value="kzrizusmostore@gmail.com"/><input id="payFormOrderId" name="order_id" type="hidden" value=""/><input id="payFormProduct" name="product_name" type="hidden" value=""/><input id="payFormUnitPrice" name="unit_price" type="hidden" value=""/><input id="payFormTotal" name="total_price" type="hidden" value=""/><input id="payFormMethod" name="payment_method" type="hidden" value=""/><input id="payFormValue" name="payment_value" type="hidden" value=""/><input id="payFormDeadline" name="payment_deadline" type="hidden" value=""/><input id="payFormSubject" name="subject" type="hidden" value=""/><input id="payFormMessage" name="message" type="hidden" value=""/><input id="payFormFromName" name="from_name" type="hidden" value=""/><input id="payFormSenderName" name="sender_name" type="hidden" value=""/><input id="payFormWA" name="whatsapp" type="hidden" value=""/><textarea id="payFormDetail" name="order_detail" style="display:none"></textarea><div class="pay-summary"><div class="pay-srow"><span>Produk</span><b id="paySumProduct">-</b></div><div class="pay-srow"><span>Harga Satuan</span><b id="paySumUnit">-</b></div><div class="pay-srow"><span>Jumlah</span><div class="pay-qty-wrap"><button class="qty-btn" id="payQtyMinus" onclick="qtyMinus()" type="button">−</button><input class="pay-input pay-qty" id="payQtyInput" inputmode="numeric" min="1" name="qty" required="" type="number" value="1"/><button class="qty-btn" id="payQtyPlus" onclick="qtyPlus()" type="button">+</button></div></div><div class="pay-srow"><span>Subtotal</span><b id="paySumSubtotal">-</b></div><div class="pay-srow" id="payRowDiscount" style="display:none;"><span>Diskon Member</span><b id="paySumDiscount">-</b></div><div class="pay-srow" id="payRowPromo" style="display:none;"><span>Diskon Promo</span><b id="paySumPromo">-</b></div><div class="pay-srow" id="payRowUnique" style="display:none;"><span>Diskon Unik</span><b id="paySumUnique">-</b></div><div class="pay-srow"><span>Total Bayar</span><b id="paySumTotal">-</b></div><div class="pay-srow" id="payRowPromoCode" style="display:none;"><span>Kode Promo</span><b id="paySumPromoCode">-</b></div><div class="pay-srow" id="payRowSender" style="display:none;"><span>Username</span><b id="paySumSender">-</b></div><div class="pay-srow" id="payRowWA" style="display:none;"><span>Nomor WhatsApp</span><b id="paySumWA">-</b></div></div><div class="pay-field" id="payDepositField" style="display:none;"><label class="pay-label" for="payDepositAmountInput">Nominal Deposit</label><input autocomplete="off" class="pay-input" id="payDepositAmountInput" inputmode="numeric" placeholder="contoh: 50000" type="tel"/><div class="pay-sub" style="margin-top:6px;">Minimal Rp 1.000</div></div><div class="pay-field" id="payPromoField"><label class="pay-label" for="payPromoInput">Kode Promo (opsional)</label><div class="pay-inline"><input autocomplete="off" class="pay-input" id="payPromoInput" placeholder="contoh: PROMO123" type="text"/><button class="pay-btn secondary" id="payPromoApplyBtn" onclick="applyPromoCode()" style="width:auto; padding:10px 12px; margin-top:0;" type="button">PAKAI</button><button class="pay-btn secondary" id="payPromoClearBtn" onclick="clearPromoCode()" style="width:auto; padding:10px 12px; margin-top:0; opacity:.85;" type="button">HAPUS</button></div><div class="pay-sub" id="payPromoHint" style="margin-top:6px;"></div></div><div class="pay-field" id="payZusmoUidField" style="display:none;"><label class="pay-label" for="payZusmoUidInput">UID :</label><input autocomplete="off" class="pay-input" id="payZusmoUidInput" inputmode="numeric" name="zusmo_uid" pattern="[0-9]*" placeholder="Masukkan UID" type="text"/></div><div class="pay-field" id="payWhatsappFieldDefault"><label class="pay-label" for="payWhatsappInput">Nomor WhatsApp :</label><input autocomplete="tel" class="pay-input" id="payWhatsappInput" inputmode="tel" name="buyer_whatsapp" placeholder="08" required="" type="tel"/></div><div id="payZusmoFields" style="display:none;"><div class="pay-field"><label class="pay-label">Pilih Game :</label><div class="pay-choice-grid two" id="payZusmoGameChoices"><button class="pay-choice-btn" data-group="game" data-value="Free Fire" type="button">FREE FIRE</button><button class="pay-choice-btn" data-group="game" data-value="FF Max" type="button">FF MAX</button></div><input id="payZusmoGameInput" name="zusmo_game" type="hidden" value=""/></div><div class="pay-field"><label class="pay-label">Pilih Device :</label><div class="pay-choice-grid two" id="payZusmoPlatformChoices"><button class="pay-choice-btn" data-group="platform" data-value="Android" type="button">ANDROID</button><button class="pay-choice-btn" data-group="platform" data-value="iOS" type="button">IOS</button></div><input id="payZusmoPlatformInput" name="zusmo_platform" type="hidden" value=""/></div></div><div id="paySaldoSwipeMount" style="display:none; margin-top:10px;"></div><input accept="image/*,.pdf,application/pdf" class="kz-file-input-native" id="payFileInput" type="file"/><input id="payFormProofInfo" name="proof_info" type="hidden" value=""/></form><button class="pay-btn secondary" id="payBtnUpload" onclick="triggerPayUpload()" type="button">UPLOAD BUKTI</button><div class="pay-preview" id="payPreview"><img alt="Preview" id="payPreviewImg"/><div><div id="payPreviewName" style="font-weight:900">-</div><div class="pay-sub">Jika sudah benar, klik tombol kirim.</div></div></div><button class="pay-btn" id="payBtnSend" onclick="sendPaymentProof()" type="button">KONFIRMASI &amp; KIRIM</button><div class="pay-status" id="payStatus"></div></div><div class="pay-info">Pastikan seluruh data diisi dengan benar dan nomor WhatsApp dalam keadaan aktif.
 
 </div></div><div data-state="success" id="paySuccessView" style="display:none;"><div class="pay-success-wrap"><div class="pay-success-card"><div aria-hidden="true" class="pay-success-check"><svg aria-label="Sukses" role="img" viewbox="0 0 100 100"><circle class="ring" cx="50" cy="50" r="45"></circle><path class="tick" d="M30 52 L45 67 L72 38"></path></svg></div><div class="pay-success-title" id="paySuccessTitle">Bukti Pembayaran Terkirim</div><div class="pay-success-sub" id="paySuccessSub">Harap menunggu. Sedang diproses...</div><div class="rc-prod pay-success-prod"><img alt="Produk" id="paySuccessProductImg"/><div><div class="rc-prod-name" id="paySuccessProductName2">-</div></div></div><div class="pay-success-meta"><div class="pay-srow"><span>Order ID</span><b id="paySuccessOrderId">-</b></div><div class="pay-srow"><span>Waktu Order</span><b id="paySuccessOrderTime">-</b></div><div class="pay-srow"><span>Username</span><b id="paySuccessSenderName">-</b></div><div class="pay-srow"><span>WhatsApp</span><b id="paySuccessBuyerWA">-</b></div><div class="pay-srow"><span>Produk</span><b id="paySuccessProduct">-</b></div><div class="pay-srow"><span>Total Bayar</span><b id="paySuccessTotal">-</b></div><div class="pay-srow"><span>Metode</span><b id="paySuccessMethod">-</b></div><div class="pay-srow"><span>Tujuan</span><b id="paySuccessTarget">-</b></div></div><div class="pay-success-steps" id="paySuccessSteps"><div class="pay-step done"><i class="fas fa-check"></i> Bukti pembayaran berhasil dikirim</div><div class="pay-step"><i class="fas fa-clock"></i> Menunggu verifikasi admin</div><div class="pay-step"><i class="fab fa-whatsapp"></i> Proses kirim data akun ke WhatsApp</div></div><div class="pay-success-actions" id="paySuccessActions"><button class="pay-btn secondary" id="payBtnStruk" onclick="kzOpenReceiptFromSuccess()" type="button">STRUK</button><button class="pay-btn" id="payBtnFinish" onclick="kzTryFinishPayment()" type="button">SELESAI</button></div><div class="pay-success-note">
@@ -2147,7 +2296,7 @@ Mohon menunggu dengan sabar. Terima kasih.
               Setelah diganti, password default tidak berlaku lagi.
             </div></div><div class="admin-carditem"><div class="top"><div class="title">Tools Data</div><span class="mini-chip"><i class="fas fa-triangle-exclamation"></i> hati-hati</span></div><div class="admin-actions"><button class="btn-ghost" onclick="adminExportDB()" type="button"><i class="fas fa-file-export" style="margin-right:8px;"></i> Export JSON</button><button class="btn-ghost" onclick="adminImportDB()" type="button"><i class="fas fa-file-import" style="margin-right:8px;"></i> Import JSON</button><button class="btn-ghost" onclick="adminWipeDB()" type="button"><i class="fas fa-trash-can" style="margin-right:8px;"></i> Reset DB</button></div><div style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.5">
               Export/Import berguna kalau pindah device. Import akan menimpa data lokal sekarang.
-            </div></div><div class="admin-carditem"><div class="top"><div class="title">Export / Import HTML</div><span class="mini-chip"><i class="fas fa-file-code"></i> backup</span></div><div class="admin-actions"><button class="btn-solid" onclick="(window.kzOpenBackupModal?window.kzOpenBackupModal():null)" type="button"><i class="fas fa-box-archive" style="margin-right:8px;"></i> Buka Panel Export/Import</button><button class="btn-ghost" onclick="(window.kzExportBaseHTML?window.kzExportBaseHTML():null)" type="button"><i class="fas fa-file-export" style="margin-right:8px;"></i> Export HTML (Produk Inline)</button></div><div style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.5">Import bisa pakai <b>file</b> (JSON/HTML) tanpa copy-paste. Panel ini juga punya Backup HTML (Full) + Export/Import JSON.</div></div><div class="admin-carditem"><div class="top"><div class="title">Audit Log Admin</div><span class="mini-chip"><i class="fas fa-clipboard-check"></i> riwayat</span></div><div class="admin-row"><div class="admin-field" style="flex:1;"><label style="font-size:12px;color:var(--text-sec)">Cari</label><input id="adminAuditSearch" oninput="renderAdminAudit()" placeholder="aksi / user / order / info"/></div><div class="admin-field" style="max-width:180px;"><label style="font-size:12px;color:var(--text-sec)">Limit</label><select id="adminAuditLimit" onchange="renderAdminAudit()"><option value="50">50</option><option selected="" value="100">100</option><option value="200">200</option></select></div></div><div class="admin-actions"><button class="btn-ghost" onclick="adminExportAudit()" type="button"><i class="fas fa-file-export" style="margin-right:8px;"></i> Export</button><button class="btn-ghost" onclick="adminClearAudit()" style="border-color: rgba(255,0,0,.18);" type="button"><i class="fas fa-trash-can" style="margin-right:8px;"></i> Clear</button></div><div style="height:10px"></div><div class="admin-cardlist" id="adminAuditList"></div><div id="adminAuditHint" style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.5">Audit log mencatat aksi admin penting (update order, deposit, poin, info, export). Disimpan lokal (device ini).</div></div></div></section></div></div></div><div class="acc-overlay" id="accountOverlay" onclick="closeAccountSettings()"><div aria-label="Profil &amp; Pengaturan Akun" aria-modal="true" class="acc-card" onclick="event.stopPropagation()" role="dialog"><div class="acc-head"><div><div class="acc-title"><i class="fas fa-user-gear" id="accTitleIcon" style="margin-right:8px;color:var(--primary)"></i><span id="accPanelTitle">Akun Saya</span></div></div><button class="acc-close" onclick="closeAccountSettings()" type="button">×</button></div><div class="acc-body"><form onsubmit="accountSave(event)"><div class="acc-profile"><div class="acc-avatar kz-profile-hero"><div class="kz-avatar-stack" id="accAvatarStack"><img alt="Foto profil" id="accAvatarPreview" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg"/><button aria-label="Ganti foto profil" class="kz-avatar-edit-fab" onclick="document.getElementById('accAvatarInput').click()" title="Ganti foto profil" type="button"><i class="fas fa-pencil"></i></button></div><div class="acc-avatar-tier" id="accAvatarTierBadge">BASIC</div><input accept="image/*" id="accAvatarInput" onchange="accountAvatarPick(event)" style="display:none" type="file"/><div style="margin-top:8px; font-size:12px; color: var(--text-sec); line-height:1.4;"></div></div></div><div class="acc-account-sidebar"><div class="kz-profile-columns"><div class="acc-kv"><span>ID</span><b id="accUserId">-</b></div><div class="acc-kv"><span>Tanggal Bergabung</span><b id="accJoinedAt">-</b></div><div class="acc-kv kz-ref-kv"><span>Kode Referal</span><div class="kz-ref-wrap"><div class="kz-ref-top"><b id="accReferralCode">-</b><button class="acc-copy-btn" onclick="copyReferralCode()" title="Copy kode referal" type="button"><i class="fas fa-copy"></i></button></div><button class="acc-invite-btn" onclick="shareReferralLink()" title="Undang teman" type="button"><i class="fas fa-share-nodes"></i><span>Undang</span></button></div></div><div class="acc-kv"><span>Poin</span><b id="accPointsText">0</b></div><div class="acc-kv kz-status-akun-kv"><span>Status Akun</span><b class="status-active" id="accActiveText">AKTIF</b></div><div class="kz-install-kv"><button class="btn-solid kz-install-column-btn" id="accInstallAppBtn" onclick="kzSetSidebarMenuMode('nonhome');kzHandleInstallClick()" type="button"><i class="fas fa-download" style="margin-right:8px;"></i><span id="accInstallAppLabel">Install Aplikasi</span></button></div></div><div class="acc-tier-panel"><div class="acc-tier-head"><div class="acc-tier-title">Tier</div><div class="acc-tier-current">Tier kamu: <b id="accTierActiveInline">BASIC</b></div></div><div class="acc-tier-list" id="accTierList"><span class="member-badge tier-basic">BASIC</span><span class="member-badge tier-elite">ELITE</span><span class="member-badge tier-ultimate">ULTIMATE</span><span class="member-badge tier-business">BUSINESS</span></div></div></div><div class="kz-profile-bio-fields"><div class="auth-field"><label>Nama Lengkap</label><input id="accDisplayName" placeholder="Nama yang tampil"/></div><div class="auth-field"><label>Nomor WhatsApp</label><input id="accWA" inputmode="numeric" placeholder="contoh: 08"/></div><div class="auth-field kz-hidden-account-field"><label>Email</label><input id="accEmail" placeholder="Masukkan email" type="email"/><div id="accEmailHint" style="margin-top:6px;font-size:12px;color:var(--text-sec);line-height:1.4;"></div></div><div class="auth-field"><label>Username</label><input id="accUsername" readonly=""/></div><div class="auth-field"><label>Tanggal Lahir</label><input id="accBirthDate" type="date"/></div><div class="auth-field"><label>Jenis Kelamin</label><input id="accGender" type="hidden" value=""/><div aria-label="Jenis Kelamin" class="gender-pills" id="accGenderPills" role="group"><button class="gpill" data-v="Laki-laki" onclick="setAccGender('Laki-laki', this)" type="button">Laki-laki</button><button class="gpill" data-v="Perempuan" onclick="setAccGender('Perempuan', this)" type="button">Perempuan</button></div><div style="margin-top:6px;font-size:12px;color:var(--text-sec);line-height:1.4;"></div></div></div><div class="kz-profile-security"><div class="auth-field"><label>Password Baru</label><div class="pw-wrap"><input autocomplete="new-password" id="accNewPass" placeholder="Kosongkan jika tidak ingin ganti" type="password"/><button aria-label="Tampilkan password" class="pw-toggle" onclick="togglePasswordVisibility('accNewPass', this)" type="button"><i class="fas fa-eye"></i></button></div></div><div class="auth-field"><label>Konfirmasi Password Baru</label><div class="pw-wrap"><input autocomplete="new-password" id="accNewPass2" placeholder="Ulangi password baru" type="password"/><button aria-label="Tampilkan password" class="pw-toggle" onclick="togglePasswordVisibility('accNewPass2', this)" type="button"><i class="fas fa-eye"></i></button></div></div></div><div class="kz-profile-save-section"><div class="auth-actions" style="margin-top:12px;"><button class="btn-ghost" onclick="closeAccountSettings()" type="button">Tutup</button><button class="btn-solid" type="submit"><i class="fas fa-check" style="margin-right:8px;"></i> Simpan Perubahan</button></div></div><div class="auth-actions" style="margin-top:10px;"><button class="btn-ghost btn-ghost-danger" onclick="logoutUser()" style="width:100%;" type="button"><i class="fas fa-right-from-bracket" style="margin-right:8px;"></i> Keluar</button></div><div class="auth-actions" style="margin-top:10px;"><button class="btn-ghost btn-ghost-danger" onclick="deleteMyAccount()" style="width:100%;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.12);" type="button"><i class="fas fa-trash" style="margin-right:8px;"></i> Hapus Akun Saya</button></div></form></div></div></div><div aria-live="polite" class="pay-toast" id="sysToast"></div><div class="sidebar-overlay" onclick="toggleSidebar()"></div><div class="sidebar" id="sidebar"><div class="sidebar-header"><div class="sidebar-header-left"><div class="sidebar-userbox" id="sidebarUserBox"><img alt="Profile" class="sidebar-profile-img" id="sidebarProfileImg" onclick="event.stopPropagation(); openMyAccountPanel();" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); openMyAccountPanel();}" role="button" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg" tabindex="0" title="Buka profil"/><div class="sidebar-usertext"><div class="sidebar-greeting" id="sidebarGreeting">Selamat Malam <span id="sidebarGreetingIcon">🌙</span></div><div class="sidebar-title" id="sidebarDynamicTitle">Kzrizusmo</div></div></div><div class="sidebar-title sidebar-guest-title" id="sidebarGuestTitle" style="display:none;">MENU</div></div><div class="sidebar-header-actions"><div class="sidebar-close" onclick="toggleSidebar()"><i class="fas fa-times"></i></div></div></div><div class="sidebar-menu"><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('home');navTo('home')"><i class="fas fa-house"></i><span>Home</span></div><div class="sidebar-item shiny-effect" id="profileUserMenuItem" onclick="openProfileUser()" style="display:none;"><i class="fas fa-user-gear"></i><span class="sidebar-label">Profile User</span></div><div class="sidebar-item shiny-effect" id="authMenuItem" onclick="openMyAccountPanel()"><i class="fas fa-user"></i><span class="sidebar-label" id="sidebarAuthLabel">Daftar / Masuk</span><span class="member-badge tier-basic sidebar-right" id="sidebarAuthTier" style="display:none;">BASIC</span></div><div class="sidebar-item shiny-effect" id="upgradeMembershipMenuItem" onclick="navTo(\'membership-upgrade\')"><i class="fas fa-crown"></i> Upgrade Membership</div><div class="sidebar-item shiny-effect" id="adminMenuItem" onclick="openAdminPanel()" style="display:none;"><i class="fas fa-user-shield"></i> Admin Panel</div><div class="sidebar-divider"></div><div class="sidebar-cat sidebar-cat-btn" onclick="toggleSidebarGroup('sidebarGroupNewOrders', this)">PESANAN BARU <i class="fas fa-chevron-down"></i></div><div class="sidebar-group" id="sidebarGroupNewOrders"><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');openPremiumApp()"><i class="fas fa-gem"></i> Aplikasi Premium</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');openProdukDigital()"><i class="fas fa-crown"></i> Produk Digital</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('sosmed-page')"><i class="fas fa-rocket"></i> Suntik Sosmed</div></div><div class="sidebar-cat">MENU LAIN</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');openMyOrdersFromMenu()"><i class="fas fa-receipt"></i> Pesanan Saya</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');kzOpenCartFromSidebar()"><i class="fas fa-shopping-cart"></i> Keranjang</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode(\'nonhome\');navTo(\'all-products\')"><i class="fas fa-search"></i> Semua Produk</div><div class="sidebar-item shiny-effect" id="installAppMenuItem" onclick="kzSetSidebarMenuMode('nonhome');kzHandleInstallClick()"><i class="fas fa-download"></i> <span id="installAppLabel">Install Aplikasi</span></div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('apk-download-page')"><i class="fas fa-file-arrow-down"></i> Kumpulan APK</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('info-page')"><i class="fas fa-circle-info"></i> Informasi</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('faq-page')"><i class="fas fa-question-circle"></i> Pertanyaan Umum</div></div></div><header><div class="header-left"><div class="burger-btn shiny-effect" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div><div class="header-title"><h1>KZRIZUSMO <span>STORE</span></h1><span class="header-subtitle">DIGITAL MARKETPLACE</span></div></div><div class="header-right"><img class="header-logo shiny-effect" id="headerProfileImg" onclick="openProfileUser()" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg"/></div></header><div class="container" id="mainContainer"><div class="page-section" id="page-home"><div class="banner-container"><div class="banner-track"><div class="banner-item"><img class="banner-img" src="https://img1.pixhost.to/images/11283/677288053_ochobot.jpg"/></div><div class="banner-item"><img class="banner-img" src="https://files.catbox.moe/7j7q60.jpg"/></div><div class="banner-item"><img class="banner-img" src="https://img1.pixhost.to/images/11620/685027953_miwamikadono.jpg"/></div><div class="banner-item"><a href="https://wa.me/6285135925745?text=Hallo%20min%20saya%20mau%20join%20reseller%20app%20premium%20nya%20bisa?" target="_blank"><img class="banner-img" src="https://img1.pixhost.to/images/11620/685027951_miwamikadono.jpg"/></a></div></div></div><div class="search-container" style="margin-top: 20px;"><input class="search-input" oninput="filterAppList(this.value)" placeholder="Cari nama aplikasi..." type="text"/></div><div class="filter-scroll" id="filterScrollStore"><div class="filter-btn shiny-effect" onclick="setFilter('all', this)">Semua</div><div class="filter-btn shiny-effect active" onclick="setFilter('populer', this)">Populer</div><div class="filter-btn shiny-effect" onclick="setFilter('editing', this)">Editing</div><div class="filter-btn shiny-effect" onclick="setFilter('streaming', this)">Streaming</div><div class="filter-btn shiny-effect" onclick="setFilter('music', this)">Music</div><div class="filter-btn shiny-effect" onclick="setFilter('ai', this)">AI</div><div class="filter-btn shiny-effect" onclick="setFilter('vpn', this)">VPN</div></div><div class="filter-scroll" id="filterScrollDigital" style="display:none"><div class="filter-btn shiny-effect active" data-cat="all" onclick="setFilter('all', this)">Semua</div><div class="filter-btn shiny-effect" data-cat="upgrade" onclick="setFilter('upgrade', this)">Upgrade</div><div class="filter-btn shiny-effect" data-cat="akun" onclick="setFilter('akun', this)">Akun</div><div class="filter-btn shiny-effect" data-cat="verified" onclick="setFilter('verified', this)">Verified</div><div class="filter-btn shiny-effect" data-cat="whatsapp" onclick="setFilter('whatsapp', this)">WhatsApp</div><div class="filter-btn shiny-effect" data-cat="apk" onclick="setFilter('apk', this)">APK</div><div class="filter-btn shiny-effect" data-cat="tutorial" onclick="setFilter('tutorial', this)">Tutorial</div><div class="filter-btn shiny-effect" data-cat="ml" onclick="setFilter('ml', this)">ML</div><div class="filter-btn shiny-effect" data-cat="lain" onclick="setFilter('lain', this)">Lain</div></div><div id="filterResults" style="margin-top: 15px;"></div><div id="appSection"><div class="section-header"><div class="section-title">Semua Aplikasi Premium</div></div><div class="app-grid" id="fullAppGrid"></div></div></div><div class="page-section" id="page-membership-upgrade" style="display:none;"><div style="padding: 18px 20px 6px; color: var(--text-sec); font-size: 12px; line-height: 1.55;"></div><div class="mem-upgrade-shell mem-upgrade-page" id="memberUpgradeSection"><div class="mem-upgrade-top"><div class="mem-upgrade-title"><i class="fas fa-crown" style="color:var(--accent-gold); margin-right:8px;"></i>Upgrade Membership</div></div><div class="mem-carousel-wrap"><div aria-label="Pilih tier membership (geser)" class="mem-carousel" id="memberTierCarousel"><div aria-label="Pilih ELITE" class="mem-tier-card tier-elite" data-tier="elite" role="button" tabindex="0"><div class="mem-tier-head"><div class="mem-tier-name">ELITE</div><div class="mem-tier-pill"><i class="fas fa-bolt" style="margin-right:6px;"></i>hemat Rp 2.000 / order</div></div><div class="mem-price-box"><div class="mem-price-old"><s>Rp 75.000</s></div><div class="mem-price-new"><b>Rp 40.000</b></div></div><div class="mem-tier-sample"><span class="mem-tier-sample-label">Contoh tier:</span><span class="member-badge tier-elite">ELITE</span></div><div class="mem-benefits-box"><div class="mem-benefits-title">Keuntungan</div><ul class="mem-benefits"><li>Potongan otomatis 𝗥𝗽 𝟮.𝟬𝟬𝟬 di setiap pesanan</li><li>Berlaku kelipatan sesuai jumlah order 〔semakin banyak order, semakin besar hematnya〕</li><li>Diskon aktif otomatis tanpa kode promo 〔langsung kepotong saat checkout〕</li><li>Member permanen: sekali bayar, aktif selamanya</li><li>Cocok untuk yang sering order dan ingin hemat stabil setiap transaksi</li><li>Pilihan tepat untuk pemakaian pribadi / order santai tapi rutin</li></ul></div><button aria-label="Upgrade tier ini" class="mem-upgrade-btn btn-ghost" data-tier="elite" onclick="event.stopPropagation(); openMembershipUpgradeTier(\'elite\')" type="button"><i class="fas fa-arrow-up" style="margin-right:8px;"></i>Upgrade Sekarang
+            </div></div><div class="admin-carditem"><div class="top"><div class="title">Export / Import HTML</div><span class="mini-chip"><i class="fas fa-file-code"></i> backup</span></div><div class="admin-actions"><button class="btn-solid" onclick="(window.kzOpenBackupModal?window.kzOpenBackupModal():null)" type="button"><i class="fas fa-box-archive" style="margin-right:8px;"></i> Buka Panel Export/Import</button><button class="btn-ghost" onclick="(window.kzExportBaseHTML?window.kzExportBaseHTML():null)" type="button"><i class="fas fa-file-export" style="margin-right:8px;"></i> Export HTML (Produk Inline)</button></div><div style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.5">Import bisa pakai <b>file</b> (JSON/HTML) tanpa copy-paste. Panel ini juga punya Backup HTML (Full) + Export/Import JSON.</div></div><div class="admin-carditem"><div class="top"><div class="title">Audit Log Admin</div><span class="mini-chip"><i class="fas fa-clipboard-check"></i> riwayat</span></div><div class="admin-row"><div class="admin-field" style="flex:1;"><label style="font-size:12px;color:var(--text-sec)">Cari</label><input id="adminAuditSearch" oninput="renderAdminAudit()" placeholder="aksi / user / order / info"/></div><div class="admin-field" style="max-width:180px;"><label style="font-size:12px;color:var(--text-sec)">Limit</label><select id="adminAuditLimit" onchange="renderAdminAudit()"><option value="50">50</option><option selected="" value="100">100</option><option value="200">200</option></select></div></div><div class="admin-actions"><button class="btn-ghost" onclick="adminExportAudit()" type="button"><i class="fas fa-file-export" style="margin-right:8px;"></i> Export</button><button class="btn-ghost" onclick="adminClearAudit()" style="border-color: rgba(255,0,0,.18);" type="button"><i class="fas fa-trash-can" style="margin-right:8px;"></i> Clear</button></div><div style="height:10px"></div><div class="admin-cardlist" id="adminAuditList"></div><div id="adminAuditHint" style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.5">Audit log mencatat aksi admin penting (update order, deposit, poin, info, export). Disimpan lokal (device ini).</div></div></div></section></div></div></div><div class="acc-overlay" id="accountOverlay" onclick="closeAccountSettings()"><div aria-label="Profil &amp; Pengaturan Akun" aria-modal="true" class="acc-card" onclick="event.stopPropagation()" role="dialog"><div class="acc-head"><div><div class="acc-title"><i class="fas fa-user-gear" id="accTitleIcon" style="margin-right:8px;color:var(--primary)"></i><span id="accPanelTitle">Akun Saya</span></div></div><button class="acc-close" onclick="closeAccountSettings()" type="button">×</button></div><div class="acc-body"><form onsubmit="accountSave(event)"><div class="acc-profile"><div class="acc-avatar kz-profile-hero"><div class="kz-avatar-stack" id="accAvatarStack"><img alt="Foto profil" id="accAvatarPreview" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg"/><button aria-label="Ganti foto profil" class="kz-avatar-edit-fab" onclick="document.getElementById('accAvatarInput').click()" title="Ganti foto profil" type="button"><i class="fas fa-pencil"></i></button></div><div class="acc-avatar-tier" id="accAvatarTierBadge">BASIC</div><input accept="image/*" id="accAvatarInput" onchange="accountAvatarPick(event)" style="display:none" type="file"/><div style="margin-top:8px; font-size:12px; color: var(--text-sec); line-height:1.4;"></div></div></div><div class="acc-account-sidebar"><div class="kz-profile-columns"><div class="acc-kv"><span>ID</span><b id="accUserId">-</b></div><div class="acc-kv"><span>Tanggal Bergabung</span><b id="accJoinedAt">-</b></div><div class="acc-kv kz-ref-kv"><span>Kode Referal</span><div class="kz-ref-wrap"><div class="kz-ref-top"><b id="accReferralCode">-</b><button class="acc-copy-btn" onclick="copyReferralCode()" title="Copy kode referal" type="button"><i class="fas fa-copy"></i></button></div><button class="acc-invite-btn" onclick="shareReferralLink()" title="Undang teman" type="button"><i class="fas fa-share-nodes"></i><span>Undang</span></button></div></div><div class="acc-kv"><span>Poin</span><b id="accPointsText">0</b></div><div class="acc-kv kz-status-akun-kv"><span>Status Akun</span><b class="status-active" id="accActiveText">AKTIF</b></div><div class="kz-install-kv"><button class="btn-solid kz-install-column-btn" id="accInstallAppBtn" onclick="kzSetSidebarMenuMode('nonhome');kzHandleInstallClick()" type="button"><i class="fas fa-download" style="margin-right:8px;"></i><span id="accInstallAppLabel">Install Aplikasi</span></button></div></div><div class="acc-tier-panel"><div class="acc-tier-head"><div class="acc-tier-title">Tier</div><div class="acc-tier-current">Tier kamu: <b id="accTierActiveInline">BASIC</b></div></div><div class="acc-tier-list" id="accTierList"><span class="member-badge tier-basic">BASIC</span><span class="member-badge tier-elite">ELITE</span><span class="member-badge tier-ultimate">ULTIMATE</span><span class="member-badge tier-business">BUSINESS</span></div></div></div><div class="kz-profile-bio-fields"><div class="auth-field"><label>Nama Lengkap</label><input id="accDisplayName" placeholder="Nama yang tampil"/></div><div class="auth-field"><label>Nomor WhatsApp</label><input id="accWA" inputmode="numeric" placeholder="contoh: 08"/></div><div class="auth-field kz-hidden-account-field"><label>Email</label><input id="accEmail" placeholder="Masukkan email" type="email"/><div id="accEmailHint" style="margin-top:6px;font-size:12px;color:var(--text-sec);line-height:1.4;"></div></div><div class="auth-field"><label>Username</label><input id="accUsername" readonly=""/></div><div class="auth-field"><label>Tanggal Lahir</label><input id="accBirthDate" type="date"/></div><div class="auth-field"><label>Jenis Kelamin</label><input id="accGender" type="hidden" value=""/><div aria-label="Jenis Kelamin" class="gender-pills" id="accGenderPills" role="group"><button class="gpill" data-v="Laki-laki" onclick="setAccGender('Laki-laki', this)" type="button">Laki-laki</button><button class="gpill" data-v="Perempuan" onclick="setAccGender('Perempuan', this)" type="button">Perempuan</button></div><div style="margin-top:6px;font-size:12px;color:var(--text-sec);line-height:1.4;"></div></div></div><div class="kz-profile-security"><div class="auth-field"><label>Password Baru</label><div class="pw-wrap"><input autocomplete="new-password" id="accNewPass" placeholder="Kosongkan jika tidak ingin ganti" type="password"/><button aria-label="Tampilkan password" class="pw-toggle" onclick="togglePasswordVisibility('accNewPass', this)" type="button"><i class="fas fa-eye"></i></button></div></div><div class="auth-field"><label>Konfirmasi Password Baru</label><div class="pw-wrap"><input autocomplete="new-password" id="accNewPass2" placeholder="Ulangi password baru" type="password"/><button aria-label="Tampilkan password" class="pw-toggle" onclick="togglePasswordVisibility('accNewPass2', this)" type="button"><i class="fas fa-eye"></i></button></div></div></div><div class="kz-profile-save-section"><div class="auth-actions" style="margin-top:12px;"><button class="btn-ghost" onclick="closeAccountSettings()" type="button">Tutup</button><button class="btn-solid" type="submit"><i class="fas fa-check" style="margin-right:8px;"></i> Simpan Perubahan</button></div></div><div class="auth-actions" style="margin-top:10px;"><button class="btn-ghost btn-ghost-danger" onclick="logoutUser()" style="width:100%;" type="button"><i class="fas fa-right-from-bracket" style="margin-right:8px;"></i> Keluar</button></div><div class="auth-actions" style="margin-top:10px;"><button class="btn-ghost btn-ghost-danger" onclick="deleteMyAccount()" style="width:100%;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.12);" type="button"><i class="fas fa-trash" style="margin-right:8px;"></i> Hapus Akun Saya</button></div></form></div></div></div><div aria-live="polite" class="pay-toast" id="sysToast"></div><div class="sidebar-overlay" onclick="toggleSidebar()"></div><div class="sidebar" id="sidebar"><div class="sidebar-header"><div class="sidebar-header-left"><div class="sidebar-userbox" id="sidebarUserBox"><img alt="Profile" class="sidebar-profile-img" id="sidebarProfileImg" onclick="event.stopPropagation(); openMyAccountPanel();" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); openMyAccountPanel();}" role="button" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg" tabindex="0" title="Buka profil"/><div class="sidebar-usertext"><div class="sidebar-greeting" id="sidebarGreeting">Selamat Malam <span id="sidebarGreetingIcon">🌙</span></div><div class="sidebar-title" id="sidebarDynamicTitle">Kzrizusmo</div></div></div><div class="sidebar-title sidebar-guest-title" id="sidebarGuestTitle" style="display:none;">MENU</div></div><div class="sidebar-header-actions"><div class="sidebar-close" onclick="toggleSidebar()"><i class="fas fa-times"></i></div></div></div><div class="sidebar-menu"><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('home');navTo('home')"><i class="fas fa-house"></i><span>Home</span></div><div class="sidebar-item shiny-effect" id="profileUserMenuItem" onclick="openProfileUser()" style="display:none;"><i class="fas fa-user-gear"></i><span class="sidebar-label">Profile User</span></div><div class="sidebar-item shiny-effect" id="authMenuItem" onclick="openMyAccountPanel()"><i class="fas fa-user"></i><span class="sidebar-label" id="sidebarAuthLabel">Daftar / Masuk</span><span class="member-badge tier-basic sidebar-right" id="sidebarAuthTier" style="display:none;">BASIC</span></div><div class="sidebar-item shiny-effect" id="upgradeMembershipMenuItem" onclick="navTo(\'membership-upgrade\')"><i class="fas fa-crown"></i> Upgrade Membership</div><div class="sidebar-item shiny-effect" id="adminMenuItem" onclick="openAdminPanel()" style="display:none;"><i class="fas fa-user-shield"></i> Admin Panel</div><div class="sidebar-divider"></div><div class="sidebar-cat sidebar-cat-btn" onclick="toggleSidebarGroup('sidebarGroupNewOrders', this)">PESANAN BARU <i class="fas fa-chevron-down"></i></div><div class="sidebar-group" id="sidebarGroupNewOrders"><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');openPremiumApp()"><i class="fas fa-gem"></i> Aplikasi Premium</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');openProdukDigital()"><i class="fas fa-crown"></i> Produk Digital</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('sosmed-page')"><i class="fas fa-rocket"></i> Suntik Sosmed</div></div><div class="sidebar-cat">MENU LAIN</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');openMyOrdersFromMenu()"><i class="fas fa-receipt"></i> Pesanan Saya</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');kzOpenCartFromSidebar()"><i class="fas fa-shopping-cart"></i> Keranjang</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode(\'nonhome\');navTo(\'all-products\')"><i class="fas fa-search"></i> Semua Produk</div><div class="sidebar-item shiny-effect" id="installAppMenuItem" onclick="kzSetSidebarMenuMode('nonhome');kzHandleInstallClick()"><i class="fas fa-download"></i> <span id="installAppLabel">Install Aplikasi</span></div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('apk-download-page')"><i class="fas fa-file-arrow-down"></i> Free Apk JB</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('info-page')"><i class="fas fa-circle-info"></i> Informasi</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('faq-page')"><i class="fas fa-question-circle"></i> Pertanyaan Umum</div></div></div><header><div class="header-left"><div class="burger-btn shiny-effect" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div><div class="header-title"><h1>KZRIZUSMO <span>STORE</span></h1><span class="header-subtitle">DIGITAL MARKETPLACE</span></div></div><div class="header-right"><img class="header-logo shiny-effect" id="headerProfileImg" onclick="openProfileUser()" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg"/></div></header><div class="container" id="mainContainer"><div class="page-section" id="page-home"><div class="banner-container"><div class="banner-track"><div class="banner-item"><img class="banner-img" src="https://img1.pixhost.to/images/11283/677288053_ochobot.jpg"/></div><div class="banner-item"><img class="banner-img" src="https://files.catbox.moe/7j7q60.jpg"/></div><div class="banner-item"><img class="banner-img" src="https://img1.pixhost.to/images/11620/685027953_miwamikadono.jpg"/></div><div class="banner-item"><a href="https://wa.me/6285135925745?text=Hallo%20min%20saya%20mau%20join%20reseller%20app%20premium%20nya%20bisa?" target="_blank"><img class="banner-img" src="https://img1.pixhost.to/images/11620/685027951_miwamikadono.jpg"/></a></div></div></div><div class="search-container" style="margin-top: 20px;"><input class="search-input" oninput="filterAppList(this.value)" placeholder="Cari nama aplikasi..." type="text"/></div><div class="filter-scroll" id="filterScrollStore"><div class="filter-btn shiny-effect" onclick="setFilter('all', this)">Semua</div><div class="filter-btn shiny-effect active" onclick="setFilter('populer', this)">Populer</div><div class="filter-btn shiny-effect" onclick="setFilter('editing', this)">Editing</div><div class="filter-btn shiny-effect" onclick="setFilter('streaming', this)">Streaming</div><div class="filter-btn shiny-effect" onclick="setFilter('music', this)">Music</div><div class="filter-btn shiny-effect" onclick="setFilter('ai', this)">AI</div><div class="filter-btn shiny-effect" onclick="setFilter('vpn', this)">VPN</div></div><div class="filter-scroll" id="filterScrollDigital" style="display:none"><div class="filter-btn shiny-effect active" data-cat="all" onclick="setFilter('all', this)">Semua</div><div class="filter-btn shiny-effect" data-cat="upgrade" onclick="setFilter('upgrade', this)">Upgrade</div><div class="filter-btn shiny-effect" data-cat="akun" onclick="setFilter('akun', this)">Akun</div><div class="filter-btn shiny-effect" data-cat="verified" onclick="setFilter('verified', this)">Verified</div><div class="filter-btn shiny-effect" data-cat="whatsapp" onclick="setFilter('whatsapp', this)">WhatsApp</div><div class="filter-btn shiny-effect" data-cat="apk" onclick="setFilter('apk', this)">APK</div><div class="filter-btn shiny-effect" data-cat="tutorial" onclick="setFilter('tutorial', this)">Tutorial</div><div class="filter-btn shiny-effect" data-cat="ml" onclick="setFilter('ml', this)">ML</div><div class="filter-btn shiny-effect" data-cat="lain" onclick="setFilter('lain', this)">Lain</div></div><div id="filterResults" style="margin-top: 15px;"></div><div id="appSection"><div class="section-header"><div class="section-title">Semua Aplikasi Premium</div></div><div class="app-grid" id="fullAppGrid"></div></div></div><div class="page-section" id="page-membership-upgrade" style="display:none;"><div style="padding: 18px 20px 6px; color: var(--text-sec); font-size: 12px; line-height: 1.55;"></div><div class="mem-upgrade-shell mem-upgrade-page" id="memberUpgradeSection"><div class="mem-upgrade-top"><div class="mem-upgrade-title"><i class="fas fa-crown" style="color:var(--accent-gold); margin-right:8px;"></i>Upgrade Membership</div></div><div class="mem-carousel-wrap"><div aria-label="Pilih tier membership (geser)" class="mem-carousel" id="memberTierCarousel"><div aria-label="Pilih ELITE" class="mem-tier-card tier-elite" data-tier="elite" role="button" tabindex="0"><div class="mem-tier-head"><div class="mem-tier-name">ELITE</div><div class="mem-tier-pill"><i class="fas fa-bolt" style="margin-right:6px;"></i>hemat Rp 2.000 / order</div></div><div class="mem-price-box"><div class="mem-price-old"><s>Rp 75.000</s></div><div class="mem-price-new"><b>Rp 40.000</b></div></div><div class="mem-tier-sample"><span class="mem-tier-sample-label">Contoh tier:</span><span class="member-badge tier-elite">ELITE</span></div><div class="mem-benefits-box"><div class="mem-benefits-title">Keuntungan</div><ul class="mem-benefits"><li>Potongan otomatis 𝗥𝗽 𝟮.𝟬𝟬𝟬 di setiap pesanan</li><li>Berlaku kelipatan sesuai jumlah order 〔semakin banyak order, semakin besar hematnya〕</li><li>Diskon aktif otomatis tanpa kode promo 〔langsung kepotong saat checkout〕</li><li>Member permanen: sekali bayar, aktif selamanya</li><li>Cocok untuk yang sering order dan ingin hemat stabil setiap transaksi</li><li>Pilihan tepat untuk pemakaian pribadi / order santai tapi rutin</li></ul></div><button aria-label="Upgrade tier ini" class="mem-upgrade-btn btn-ghost" data-tier="elite" onclick="event.stopPropagation(); openMembershipUpgradeTier(\'elite\')" type="button"><i class="fas fa-arrow-up" style="margin-right:8px;"></i>Upgrade Sekarang
       </button></div><div aria-label="Pilih ULTIMATE" class="mem-tier-card tier-ultimate" data-tier="ultimate" role="button" tabindex="0"><div class="mem-tier-head"><div class="mem-tier-name">ULTIMATE</div><div class="mem-tier-pill"><i class="fas fa-fire" style="margin-right:6px;"></i>hemat Rp 4.000 / order</div></div><div class="mem-price-box"><div class="mem-price-old"><s>Rp 150.000</s></div><div class="mem-price-new"><b>Rp 80.000</b></div></div><div class="mem-tier-sample"><span class="mem-tier-sample-label">Contoh tier:</span><span class="member-badge tier-ultimate">ULTIMATE</span></div><div class="mem-benefits-box"><div class="mem-benefits-title">Keuntungan</div><ul class="mem-benefits"><li>Potongan otomatis 𝗥𝗽 𝟰.𝟬𝟬𝟬 di setiap pesanan</li><li>Berlaku kelipatan sesuai jumlah order 〔semakin banyak order, semakin besar hematnya〕</li><li>Diskon aktif otomatis tanpa kode promo 〔langsung kepotong saat checkout〕</li><li>Member permanen: sekali bayar, aktif selamanya</li><li>Cocok untuk yang rutin order dan ingin potongan lebih besar tiap transaksi</li><li>Lebih hemat untuk pengguna aktif dengan frekuensi pembelian tinggi</li></ul></div><button aria-label="Upgrade tier ini" class="mem-upgrade-btn btn-ghost" data-tier="ultimate" onclick="event.stopPropagation(); openMembershipUpgradeTier(\'ultimate\')" type="button"><i class="fas fa-arrow-up" style="margin-right:8px;"></i>Upgrade Sekarang
       </button></div><div aria-label="Pilih BUSINESS" class="mem-tier-card tier-business" data-tier="business" role="button" tabindex="0"><div class="mem-tier-head"><div class="mem-tier-name">BUSINESS</div><div class="mem-tier-pill"><i class="fas fa-briefcase" style="margin-right:6px;"></i>hemat 𝗥𝗽 𝟲.𝟬𝟬𝟬 / order</div></div><div class="mem-price-box"><div class="mem-price-old"><s>Rp 210.000</s></div><div class="mem-price-new"><b>Rp 120.000</b></div></div><div class="mem-tier-sample"><span class="mem-tier-sample-label">Contoh tier:</span><span class="member-badge tier-business">BUSINESS</span></div><div class="mem-benefits-box"><div class="mem-benefits-title">Keuntungan</div><ul class="mem-benefits"><li>Potongan otomatis Rp 6.000 di setiap pesanan</li><li>Berlaku kelipatan sesuai jumlah order 〔semakin banyak order, semakin besar hematnya〕</li><li>Diskon aktif otomatis tanpa kode promo 〔langsung kepotong saat checkout〕</li><li>Member permanen: sekali bayar, aktif selamanya</li><li>Cocok untuk reseller / pemilik bisnis / kebutuhan order volume tinggi</li><li>Paling ideal untuk yang mengejar efisiensi biaya dan margin lebih aman</li></ul></div><button aria-label="Upgrade tier ini" class="mem-upgrade-btn btn-ghost" data-tier="business" onclick="event.stopPropagation(); openMembershipUpgradeTier(\'business\')" type="button"><i class="fas fa-arrow-up" style="margin-right:8px;"></i>Upgrade Sekarang
       </button></div></div></div><div class="mem-upgrade-note"></div></div></div><div class="page-section" id="page-app" style="display:none;"><div class="section-header"><div class="section-title">Semua Aplikasi Premium</div></div><div class="app-grid" id="pageAppGrid"></div></div><div class="page-section" id="page-sosmed" style="display:none;"><div class="section-header"><div class="section-title">Suntik Sosmed</div></div><div class="filter-scroll" id="sosmedTabs" style="padding-bottom:12px;"><div class="filter-btn shiny-effect sosmed-cat-btn active" data-filter="instagram" onclick="setSosmedPlatform('instagram', this)"><i class="fab fa-instagram"></i> Instagram</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="tiktok" onclick="setSosmedPlatform('tiktok', this)"><i class="fab fa-tiktok"></i> TikTok</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="youtube" onclick="setSosmedPlatform('youtube', this)"><i class="fab fa-youtube"></i> YouTube</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="whatsapp" onclick="setSosmedPlatform('whatsapp', this)"><i class="fab fa-whatsapp"></i> WhatsApp</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="shopee" onclick="setSosmedPlatform('shopee', this)"><i class="fas fa-shopping-bag"></i> Shopee</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="twitter" onclick="setSosmedPlatform('twitter', this)"><i class="fab fa-twitter"></i> Twitter/X</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="threads" onclick="setSosmedPlatform('threads', this)"><i class="fas fa-at"></i> Threads</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="spotify" onclick="setSosmedPlatform('spotify', this)"><i class="fab fa-spotify"></i> Spotify</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="discord" onclick="setSosmedPlatform('discord', this)"><i class="fab fa-discord"></i> Discord</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="pinterest" onclick="setSosmedPlatform('pinterest', this)"><i class="fab fa-pinterest"></i> Pinterest</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="linkedin" onclick="setSosmedPlatform('linkedin', this)"><i class="fab fa-linkedin"></i> LinkedIn</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="snackvideo" onclick="setSosmedPlatform('snackvideo', this)"><i class="fas fa-video"></i> Snack Video</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="webtraffic" onclick="setSosmedPlatform('webtraffic', this)"><i class="fas fa-chart-line"></i> Website Traffic</div></div><div class="search-container" style="padding-top:6px;"><input class="search-input" id="sosmedSearchInput" oninput="renderSosmedProducts(this.value)" placeholder="Cari paket di kategori ini..." type="text"/></div><div class="app-grid" id="sosmedProductList"></div></div><div class="page-section" id="page-all-products" style="display:none;"><div class="search-container"><input class="search-input" id="searchInput" oninput="renderAllProductsDebounced(this.value)" placeholder="Ketik nama paket..." type="text"/></div><div class="controls-row" style="padding:0 20px 14px 20px;"><div style="flex:1; position:relative;"><div class="control-btn shiny-effect" onclick="toggleSortMenu()"><i class="fas fa-sort-amount-down"></i> Urutkan
@@ -2416,7 +2565,7 @@ function initCompressorPageOnce(){
 
 document.addEventListener('DOMContentLoaded', ()=> initCompressorPageOnce());
 </script>
-</div></div><div class="page-section" id="page-apk-download" style="display:none;"><div class="section-header"><div class="section-title">Kumpulan APK</div></div><div class="apk-download-intro"></div><div class="app-grid apk-download-grid"><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/xjpct43aatjyxm9/SpamOtp-kzrizusmo.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Auto Spam Otp" src="https://files.catbox.moe/ncs8wr.jpg"/><div class="item-title">Auto Spam Otp</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/vr4sv2r5msus5bd/AutoSave-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Auto Save Kontak" src="https://files.catbox.moe/4gd9s6.png"/><div class="item-title">Auto Save Kontak</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/f52v9p89nzdlz4v/Banned-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Banned 1" src="https://files.catbox.moe/hszt8x.png"/><div class="item-title">Banned 1</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/top80vlnu5hwtri/BannedKzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Banned 2" src="https://files.catbox.moe/6mgxsq.png"/><div class="item-title">Banned 2</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/zh9rl3yk7kv0m9h/BannedUnbanned-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Banned 3" src="https://files.catbox.moe/lkjn7k.png"/><div class="item-title">Banned 3</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/si2rkiqhleygd35/BekuPayment-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Beku Payment" src="https://files.catbox.moe/vzwn7r.png"/><div class="item-title">Beku Payment</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/v24au5y6b862vo5/Jpm-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Jpm" src="https://files.catbox.moe/twiseh.png"/><div class="item-title">Jpm</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/vpgi9b5cgplaff5/Kenon-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Banned 4" src="https://files.catbox.moe/vzwn7r.png"/><div class="item-title">Banned 4</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/zye539dtbl0qq41/Unbanned.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Unbanned" src="https://cdn.yupra.my.id/yp/ge3zywgi.jpg"/><div class="item-title">Unbanned</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/z3scm6l6kok58x7/Autoresbot.apk/file" rel="noopener noreferrer" target="_blank"><img alt="AutoResBot" src="https://files.catbox.moe/kk4mmg.png"/><div class="item-title">AutoResBot</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/ss3q87xvkence35/PixelLab-Kzrizusmo.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Pixellab Mod" src="https://files.catbox.moe/cai4fl.png"/><div class="item-title">Pixellab Mod</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/c3x5lct6t9djc7e/Jadibot.apk/file" rel="noopener noreferrer" target="_blank"><img alt="JadiBot" src="https://cdn.yupra.my.id/yp/eux9ng7g.jpg"/><div class="item-title">JadiBot</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/54yibjw5bdlrvaz/Zusmo_Shadow.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Zusmo Shadow" src="https://files.catbox.moe/qq5zjk.png"/><div class="item-title">Zusmo Shadow</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/u6nncpvat6dv1p1/ZusmoEmote-V2.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Zusmo EmoteFF" src="https://files.catbox.moe/ylr3da.png"/><div class="item-title">Zusmo EmoteFF</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://sfile.co/UQthc0ylwY7?utm_source=e33b140fb91ce1ebc79f66931ff2eea9" rel="noopener noreferrer" target="_blank"><img alt="Fake Notif BCA" src="https://files.catbox.moe/fv4qmj.jpg"/><div class="item-title">Fake Notif BCA</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/rmb1tjs870mz2wk/Notif_Fake_Ovo.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Fake Notif OVO" src="https://cdn.yupra.my.id/yp/ewdjl8ot.jpg"/><div class="item-title">Fake Notif OVO</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/lkh3dxx5a1os3fv/notifikasi_gopay_%2528SFILE.MOBI%2529.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Fake Notif GOPAY" src="https://files.catbox.moe/ldc500.jpg"/><div class="item-title">Fake Notif GOPAY</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/6l1k6qfkwzk9s1b/Notif_Fake_Dana.zip/file" rel="noopener noreferrer" target="_blank"><img alt="Fake Notif DANA" src="https://files.catbox.moe/unyswp.jpg"/><div class="item-title">Fake Notif DANA</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/0f8srdmpcs7azcm/ranstoreee.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Kzrizusmo Ransomware" src="https://files.catbox.moe/h8yvwn.jpg"/><div class="item-title">Kzrizusmo Ransomware</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a></div><div class="section-header apk-download-subsection"><div class="section-title">Game's By Kzrizusmo</div></div><div class="apk-download-intro apk-download-subintro"></div><div class="app-grid apk-download-grid"><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/txcgfdkyeuobbm6/Sky_Hopper.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Sky Hopper" src="https://files.catbox.moe/e04ful.jpg"/><div class="item-title">Sky Hopper</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/j12pkr2ztokormw/Steel_Rush.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Steel Rush" src="https://files.catbox.moe/riuh19.jpg"/><div class="item-title">Steel Rush</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/60rx74hhf18agud/Shark.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Shark Simulator" src="https://files.catbox.moe/w1j74m.jpg"/><div class="item-title">Shark Simulator</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a></div></div><div class="page-section" id="page-info" style="display:none;"><div class="search-container" style="padding: 0 20px 12px 20px;"><input class="search-input" id="infoSearchInput" oninput="infoOnSearch(this.value)" placeholder="Cari Informasi" type="text"/></div><div style="padding: 0 20px 12px 20px;"><div class="info-filter-grid"><div class="filter-chip active" onclick="infoSetFilter('all', this)"><i class="fas fa-border-all"></i> Semua</div><div class="filter-chip" onclick="infoSetFilter('penting', this)"><i class="fas fa-thumbtack"></i> Penting</div><div class="filter-chip" onclick="infoSetFilter('tutorial', this)"><i class="fas fa-lightbulb"></i> Tutorial</div><div class="filter-chip" onclick="infoSetFilter('promo', this)"><i class="fas fa-tags"></i> Promo</div><div class="filter-chip" onclick="infoSetFilter('pembaruan', this)"><i class="fas fa-bell"></i> Pembaruan</div><div class="filter-chip" onclick="infoSetFilter('peringatan', this)"><i class="fas fa-triangle-exclamation"></i> Peringatan</div></div></div><div class="section-header" style="margin-top: 10px;"><div class="section-title"></div></div><div class="admin-cardlist" id="infoPageList"></div><div id="infoPageHint" style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.6;">
+</div></div><div class="page-section" id="page-apk-download" style="display:none;"><div class="section-header"><div class="section-title">Free Apk JB</div></div><div class="apk-download-intro"></div><div class="app-grid apk-download-grid"><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/0974x2pd5qdy8a1/Kzrizusmo_Tools.apk/file" onclick="return kzOpenApkWithNotice(event, 'https://www.mediafire.com/file/0974x2pd5qdy8a1/Kzrizusmo_Tools.apk/file', 'Kzrizusmo Tools', 'Username : xy\nPassword : xy');"><img alt="Kzrizusmo Tools" src="https://files.catbox.moe/y9zvv8.jpg"/><div class="item-title">Kzrizusmo Tools</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/xjpct43aatjyxm9/SpamOtp-kzrizusmo.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Auto Spam Otp" src="https://files.catbox.moe/ncs8wr.jpg"/><div class="item-title">Auto Spam Otp</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/vr4sv2r5msus5bd/AutoSave-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Auto Save Kontak" src="https://files.catbox.moe/4gd9s6.png"/><div class="item-title">Auto Save Kontak</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/f52v9p89nzdlz4v/Banned-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Banned 1" src="https://files.catbox.moe/hszt8x.png"/><div class="item-title">Banned 1</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/top80vlnu5hwtri/BannedKzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Banned 2" src="https://files.catbox.moe/6mgxsq.png"/><div class="item-title">Banned 2</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/zh9rl3yk7kv0m9h/BannedUnbanned-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Banned 3" src="https://files.catbox.moe/lkjn7k.png"/><div class="item-title">Banned 3</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/si2rkiqhleygd35/BekuPayment-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Beku Payment" src="https://files.catbox.moe/vzwn7r.png"/><div class="item-title">Beku Payment</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/v24au5y6b862vo5/Jpm-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Jpm" src="https://files.catbox.moe/twiseh.png"/><div class="item-title">Jpm</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/vpgi9b5cgplaff5/Kenon-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Banned 4" src="https://files.catbox.moe/vzwn7r.png"/><div class="item-title">Banned 4</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/zye539dtbl0qq41/Unbanned.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Unbanned" src="https://cdn.yupra.my.id/yp/ge3zywgi.jpg"/><div class="item-title">Unbanned</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/z3scm6l6kok58x7/Autoresbot.apk/file" rel="noopener noreferrer" target="_blank"><img alt="AutoResBot" src="https://files.catbox.moe/kk4mmg.png"/><div class="item-title">AutoResBot</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/ss3q87xvkence35/PixelLab-Kzrizusmo.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Pixellab Mod" src="https://files.catbox.moe/cai4fl.png"/><div class="item-title">Pixellab Mod</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/c3x5lct6t9djc7e/Jadibot.apk/file" rel="noopener noreferrer" target="_blank"><img alt="JadiBot" src="https://cdn.yupra.my.id/yp/eux9ng7g.jpg"/><div class="item-title">JadiBot</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/54yibjw5bdlrvaz/Zusmo_Shadow.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Zusmo Shadow" src="https://files.catbox.moe/qq5zjk.png"/><div class="item-title">Zusmo Shadow</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/u6nncpvat6dv1p1/ZusmoEmote-V2.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Zusmo EmoteFF" src="https://files.catbox.moe/ylr3da.png"/><div class="item-title">Zusmo EmoteFF</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://sfile.co/UQthc0ylwY7?utm_source=e33b140fb91ce1ebc79f66931ff2eea9" rel="noopener noreferrer" target="_blank"><img alt="Fake Notif BCA" src="https://files.catbox.moe/fv4qmj.jpg"/><div class="item-title">Fake Notif BCA</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/rmb1tjs870mz2wk/Notif_Fake_Ovo.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Fake Notif OVO" src="https://cdn.yupra.my.id/yp/ewdjl8ot.jpg"/><div class="item-title">Fake Notif OVO</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/lkh3dxx5a1os3fv/notifikasi_gopay_%2528SFILE.MOBI%2529.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Fake Notif GOPAY" src="https://files.catbox.moe/ldc500.jpg"/><div class="item-title">Fake Notif GOPAY</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/6l1k6qfkwzk9s1b/Notif_Fake_Dana.zip/file" rel="noopener noreferrer" target="_blank"><img alt="Fake Notif DANA" src="https://files.catbox.moe/unyswp.jpg"/><div class="item-title">Fake Notif DANA</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/0f8srdmpcs7azcm/ranstoreee.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Kzrizusmo Ransomware" src="https://files.catbox.moe/h8yvwn.jpg"/><div class="item-title">Kzrizusmo Ransomware</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a></div><div class="section-header apk-download-subsection"><div class="section-title">Game's By Kzrizusmo</div></div><div class="apk-download-intro apk-download-subintro"></div><div class="app-grid apk-download-grid"><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/txcgfdkyeuobbm6/Sky_Hopper.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Sky Hopper" src="https://files.catbox.moe/e04ful.jpg"/><div class="item-title">Sky Hopper</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/j12pkr2ztokormw/Steel_Rush.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Steel Rush" src="https://files.catbox.moe/riuh19.jpg"/><div class="item-title">Steel Rush</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/60rx74hhf18agud/Shark.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Shark Simulator" src="https://files.catbox.moe/w1j74m.jpg"/><div class="item-title">Shark Simulator</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a></div></div><div class="page-section" id="page-info" style="display:none;"><div class="search-container" style="padding: 0 20px 12px 20px;"><input class="search-input" id="infoSearchInput" oninput="infoOnSearch(this.value)" placeholder="Cari Informasi" type="text"/></div><div style="padding: 0 20px 12px 20px;"><div class="info-filter-grid"><div class="filter-chip active" onclick="infoSetFilter('all', this)"><i class="fas fa-border-all"></i> Semua</div><div class="filter-chip" onclick="infoSetFilter('penting', this)"><i class="fas fa-thumbtack"></i> Penting</div><div class="filter-chip" onclick="infoSetFilter('tutorial', this)"><i class="fas fa-lightbulb"></i> Tutorial</div><div class="filter-chip" onclick="infoSetFilter('promo', this)"><i class="fas fa-tags"></i> Promo</div><div class="filter-chip" onclick="infoSetFilter('pembaruan', this)"><i class="fas fa-bell"></i> Pembaruan</div><div class="filter-chip" onclick="infoSetFilter('peringatan', this)"><i class="fas fa-triangle-exclamation"></i> Peringatan</div></div></div><div class="section-header" style="margin-top: 10px;"><div class="section-title"></div></div><div class="admin-cardlist" id="infoPageList"></div><div id="infoPageHint" style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.6;">
     Informasi terbaru dari admin akan tampil di sini.
   </div></div></div>
 <div class="page-section" id="page-faq" style="display:none;">
@@ -15645,6 +15794,155 @@ function closeReceiptModal() {
     p{margin:0 0 12px;color:#cfcfcf}
     pre{white-space:pre-wrap;background:#0f0f12;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.08);color:#fff;overflow:auto}
   </style>
+
+<style id="kz-apk-info-popup-styles">
+#apkInfoPopup{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:rgba(0,0,0,.68);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  z-index:16050;
+}
+#apkInfoPopup.show{display:flex}
+#apkInfoPopup .apk-popup-card{
+  width:min(340px,90vw);
+  border-radius:24px;
+  overflow:visible;
+  position:relative;
+  background:linear-gradient(180deg,#111,#090909);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 24px 70px rgba(0,0,0,.65);
+}
+#apkInfoPopup .apk-popup-img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-top-left-radius:24px;
+  border-top-right-radius:24px;
+  object-fit:cover;
+}
+#apkInfoPopup .apk-popup-close{
+  position:absolute;
+  top:0;
+  right:0;
+  transform:translate(50%,-50%);
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  border:2px solid rgba(255,255,255,.92);
+  background:rgba(0,0,0,.35);
+  color:#fff;
+  font-size:22px;
+  font-weight:900;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+  z-index:5;
+}
+#apkInfoPopup .apk-popup-body{
+  padding:16px 16px 14px;
+  color:#fff;
+}
+#apkInfoPopup .apk-popup-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,0,0,.14);
+  border:1px solid rgba(255,0,0,.34);
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.04em;
+  margin-bottom:12px;
+}
+#apkInfoPopup .apk-popup-title{
+  font-size:18px;
+  font-weight:1000;
+  line-height:1.2;
+  margin-bottom:8px;
+}
+#apkInfoPopup .apk-popup-desc{
+  font-size:12px;
+  color:rgba(255,255,255,.76);
+  line-height:1.55;
+  margin-bottom:12px;
+}
+#apkInfoPopup .apk-popup-kv{
+  display:grid;
+  gap:10px;
+  margin-bottom:14px;
+}
+#apkInfoPopup .apk-popup-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 12px;
+  border-radius:16px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.10);
+}
+#apkInfoPopup .apk-popup-label{
+  font-size:12px;
+  color:rgba(255,255,255,.68);
+  font-weight:800;
+}
+#apkInfoPopup .apk-popup-value{
+  font-size:13px;
+  color:#fff;
+  font-weight:1000;
+  text-align:right;
+  word-break:break-word;
+}
+#apkInfoPopup .apk-popup-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+#apkInfoPopup .apk-popup-btn{
+  padding:14px 14px;
+  text-align:center;
+  font-weight:1000;
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:.2px;
+  user-select:none;
+  border:0;
+  cursor:pointer;
+}
+#apkInfoPopup .apk-popup-btn-left{
+  background:#fff;
+  color:#1a1a1a;
+  border-bottom-left-radius:24px;
+}
+#apkInfoPopup .apk-popup-btn-right{
+  background:#f00;
+  color:#fff;
+  border-bottom-right-radius:24px;
+}
+body.light-mode #apkInfoPopup .apk-popup-card{
+  background:linear-gradient(180deg,#ffffff,#f2f2f2);
+  border-color:rgba(0,0,0,.08);
+}
+body.light-mode #apkInfoPopup .apk-popup-body,
+body.light-mode #apkInfoPopup .apk-popup-title,
+body.light-mode #apkInfoPopup .apk-popup-value{color:#111}
+body.light-mode #apkInfoPopup .apk-popup-desc,
+body.light-mode #apkInfoPopup .apk-popup-label{color:#555}
+body.light-mode #apkInfoPopup .apk-popup-row{
+  background:rgba(0,0,0,.04);
+  border-color:rgba(0,0,0,.08);
+}
+</style>
+
 </head>
 <body>
   <div class="card">
@@ -15660,6 +15958,33 @@ function closeReceiptModal() {
 
 
 
+
+
+<div id="apkInfoPopup" onclick="if(event.target===this) kzHideApkInfoPopup()">
+  <div class="apk-popup-card">
+    <button class="apk-popup-close" onclick="kzHideApkInfoPopup()" type="button">×</button>
+    <img id="apkInfoPopupImg" class="apk-popup-img" alt="Informasi Login" src="https://files.catbox.moe/y9zvv8.jpg"/>
+    <div class="apk-popup-body">
+      <div class="apk-popup-badge"><i class="fas fa-circle-info"></i><span>Informasi Login</span></div>
+      <div id="apkInfoPopupTitle" class="apk-popup-title">Kzrizusmo Tools</div>
+      <div class="apk-popup-desc">Berikut adalah key login Kzrizusmo Tools</div>
+      <div class="apk-popup-kv">
+        <div class="apk-popup-row">
+          <span class="apk-popup-label">Username</span>
+          <span id="apkInfoPopupUsername" class="apk-popup-value">xy</span>
+        </div>
+        <div class="apk-popup-row">
+          <span class="apk-popup-label">Password</span>
+          <span id="apkInfoPopupPassword" class="apk-popup-value">xy</span>
+        </div>
+      </div>
+    </div>
+    <div class="apk-popup-actions">
+      <button class="apk-popup-btn apk-popup-btn-left" onclick="kzHideApkInfoPopup()" type="button">Nanti</button>
+      <button class="apk-popup-btn apk-popup-btn-right" onclick="kzConfirmApkInfoPopup()" type="button">Lanjut</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>`;
@@ -23272,7 +23597,34 @@ document.addEventListener('DOMContentLoaded', () => {
       out = out.replace(/[\s\S]*?/g, "");
     }catch(e){}
     const lower = out.toLowerCase();
-    let idx = lower.indexOf("</body>");
+    let idx = lower.indexOf("
+<div id="apkInfoPopup" onclick="if(event.target===this) kzHideApkInfoPopup()">
+  <div class="apk-popup-card">
+    <button class="apk-popup-close" onclick="kzHideApkInfoPopup()" type="button">×</button>
+    <img id="apkInfoPopupImg" class="apk-popup-img" alt="Informasi Login" src="https://files.catbox.moe/y9zvv8.jpg"/>
+    <div class="apk-popup-body">
+      <div class="apk-popup-badge"><i class="fas fa-circle-info"></i><span>Informasi Login</span></div>
+      <div id="apkInfoPopupTitle" class="apk-popup-title">Kzrizusmo Tools</div>
+      <div class="apk-popup-desc">Berikut adalah key login Kzrizusmo Tools</div>
+      <div class="apk-popup-kv">
+        <div class="apk-popup-row">
+          <span class="apk-popup-label">Username</span>
+          <span id="apkInfoPopupUsername" class="apk-popup-value">xy</span>
+        </div>
+        <div class="apk-popup-row">
+          <span class="apk-popup-label">Password</span>
+          <span id="apkInfoPopupPassword" class="apk-popup-value">xy</span>
+        </div>
+      </div>
+    </div>
+    <div class="apk-popup-actions">
+      <button class="apk-popup-btn apk-popup-btn-left" onclick="kzHideApkInfoPopup()" type="button">Nanti</button>
+      <button class="apk-popup-btn apk-popup-btn-right" onclick="kzConfirmApkInfoPopup()" type="button">Lanjut</button>
+    </div>
+  </div>
+</div>
+
+</body>");
     if (idx < 0) idx = out.length;
     out = out.slice(0, idx) + "\n" + block + "\n" + out.slice(idx);
 
@@ -28598,6 +28950,155 @@ body{padding-bottom:24px;}
 .empty{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;color:var(--muted);}
 @media (max-width:640px){.topbar{padding:12px;gap:8px}.top-title{font-size:.98rem}.top-sub{font-size:.74rem}.top-spacer{display:none}.back-btn{padding:10px 12px;font-size:.9rem}.wrap{padding:12px}.grid{grid-template-columns:1fr;}}
 </style>
+
+<style id="kz-apk-info-popup-styles">
+#apkInfoPopup{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:rgba(0,0,0,.68);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  z-index:16050;
+}
+#apkInfoPopup.show{display:flex}
+#apkInfoPopup .apk-popup-card{
+  width:min(340px,90vw);
+  border-radius:24px;
+  overflow:visible;
+  position:relative;
+  background:linear-gradient(180deg,#111,#090909);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 24px 70px rgba(0,0,0,.65);
+}
+#apkInfoPopup .apk-popup-img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-top-left-radius:24px;
+  border-top-right-radius:24px;
+  object-fit:cover;
+}
+#apkInfoPopup .apk-popup-close{
+  position:absolute;
+  top:0;
+  right:0;
+  transform:translate(50%,-50%);
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  border:2px solid rgba(255,255,255,.92);
+  background:rgba(0,0,0,.35);
+  color:#fff;
+  font-size:22px;
+  font-weight:900;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+  z-index:5;
+}
+#apkInfoPopup .apk-popup-body{
+  padding:16px 16px 14px;
+  color:#fff;
+}
+#apkInfoPopup .apk-popup-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,0,0,.14);
+  border:1px solid rgba(255,0,0,.34);
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.04em;
+  margin-bottom:12px;
+}
+#apkInfoPopup .apk-popup-title{
+  font-size:18px;
+  font-weight:1000;
+  line-height:1.2;
+  margin-bottom:8px;
+}
+#apkInfoPopup .apk-popup-desc{
+  font-size:12px;
+  color:rgba(255,255,255,.76);
+  line-height:1.55;
+  margin-bottom:12px;
+}
+#apkInfoPopup .apk-popup-kv{
+  display:grid;
+  gap:10px;
+  margin-bottom:14px;
+}
+#apkInfoPopup .apk-popup-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 12px;
+  border-radius:16px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.10);
+}
+#apkInfoPopup .apk-popup-label{
+  font-size:12px;
+  color:rgba(255,255,255,.68);
+  font-weight:800;
+}
+#apkInfoPopup .apk-popup-value{
+  font-size:13px;
+  color:#fff;
+  font-weight:1000;
+  text-align:right;
+  word-break:break-word;
+}
+#apkInfoPopup .apk-popup-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+#apkInfoPopup .apk-popup-btn{
+  padding:14px 14px;
+  text-align:center;
+  font-weight:1000;
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:.2px;
+  user-select:none;
+  border:0;
+  cursor:pointer;
+}
+#apkInfoPopup .apk-popup-btn-left{
+  background:#fff;
+  color:#1a1a1a;
+  border-bottom-left-radius:24px;
+}
+#apkInfoPopup .apk-popup-btn-right{
+  background:#f00;
+  color:#fff;
+  border-bottom-right-radius:24px;
+}
+body.light-mode #apkInfoPopup .apk-popup-card{
+  background:linear-gradient(180deg,#ffffff,#f2f2f2);
+  border-color:rgba(0,0,0,.08);
+}
+body.light-mode #apkInfoPopup .apk-popup-body,
+body.light-mode #apkInfoPopup .apk-popup-title,
+body.light-mode #apkInfoPopup .apk-popup-value{color:#111}
+body.light-mode #apkInfoPopup .apk-popup-desc,
+body.light-mode #apkInfoPopup .apk-popup-label{color:#555}
+body.light-mode #apkInfoPopup .apk-popup-row{
+  background:rgba(0,0,0,.04);
+  border-color:rgba(0,0,0,.08);
+}
+</style>
+
 </head>
 <body>
 <div class="topbar">
@@ -28649,6 +29150,33 @@ body{padding-bottom:24px;}
 
 
 
+
+
+<div id="apkInfoPopup" onclick="if(event.target===this) kzHideApkInfoPopup()">
+  <div class="apk-popup-card">
+    <button class="apk-popup-close" onclick="kzHideApkInfoPopup()" type="button">×</button>
+    <img id="apkInfoPopupImg" class="apk-popup-img" alt="Informasi Login" src="https://files.catbox.moe/y9zvv8.jpg"/>
+    <div class="apk-popup-body">
+      <div class="apk-popup-badge"><i class="fas fa-circle-info"></i><span>Informasi Login</span></div>
+      <div id="apkInfoPopupTitle" class="apk-popup-title">Kzrizusmo Tools</div>
+      <div class="apk-popup-desc">Berikut adalah key login Kzrizusmo Tools</div>
+      <div class="apk-popup-kv">
+        <div class="apk-popup-row">
+          <span class="apk-popup-label">Username</span>
+          <span id="apkInfoPopupUsername" class="apk-popup-value">xy</span>
+        </div>
+        <div class="apk-popup-row">
+          <span class="apk-popup-label">Password</span>
+          <span id="apkInfoPopupPassword" class="apk-popup-value">xy</span>
+        </div>
+      </div>
+    </div>
+    <div class="apk-popup-actions">
+      <button class="apk-popup-btn apk-popup-btn-left" onclick="kzHideApkInfoPopup()" type="button">Nanti</button>
+      <button class="apk-popup-btn apk-popup-btn-right" onclick="kzConfirmApkInfoPopup()" type="button">Lanjut</button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>`;
@@ -38506,136 +39034,118 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
 }
 .kz-refund-test-note b{color:var(--text-main)}
 </style>
-<script id="kz-v9-temp-refund-test-script">
+
+<script id="kz-apk-info-popup-script">
 (function(){
-  if(window.__kzTempRefundTestApplied) return;
-  window.__kzTempRefundTestApplied = true;
+  const kzApkPopupState = { url: "#", fallbackImg: "https://files.catbox.moe/y9zvv8.jpg" };
 
-  var TARGET_USERNAMES = ['kzrizusmo','admin'];
-  var FAILED_STATUS = 'rejected';
-  var TEST_NOTE = 'Mode tes refund Gmail aktif sementara untuk akun kzrizusmo/admin.';
+  function kzSetText(id, value){
+    const el = document.getElementById(id);
+    if(el) el.textContent = String(value || "");
+  }
 
-  function txt(v){ return String(v == null ? '' : v).trim(); }
-  function norm(v){ return txt(v).toLowerCase(); }
-  function getMe(){ try{ return (typeof authGetMe === 'function') ? authGetMe() : null; }catch(e){ return null; } }
-  function isTargetUser(me){
-    if(!me) return false;
-    var uname = norm(me.username || me.user || me.name || '');
-    var role = norm(me.role || '');
-    return TARGET_USERNAMES.indexOf(uname) >= 0 || role === 'admin';
+  function kzSplitInfo(infoText){
+    const raw = String(infoText || "Username : xy\nPassword : xy").split(/\n+/).map(v => v.trim()).filter(Boolean);
+    let username = "xy";
+    let password = "xy";
+    raw.forEach(line => {
+      const clean = line.replace(/^[-•\s]+/, "");
+      if(/^username\s*:/i.test(clean)) username = clean.split(/:\s*/).slice(1).join(": ").trim() || username;
+      if(/^password\s*:/i.test(clean)) password = clean.split(/:\s*/).slice(1).join(": ").trim() || password;
+    });
+    return { username, password };
   }
-  function getBuyerUserId(o){
+
+  window.kzHideApkInfoPopup = function(){
+    const popup = document.getElementById("apkInfoPopup");
+    if(popup) popup.classList.remove("show");
+    document.body.classList.remove("popup-lock");
+  };
+
+  window.kzConfirmApkInfoPopup = function(){
+    const url = String(kzApkPopupState.url || "#");
+    window.kzHideApkInfoPopup();
     try{
-      if(o && o.buyer && o.buyer.userId != null) return String(o.buyer.userId);
-      if(o && o.buyerId != null) return String(o.buyerId);
-      if(o && o.userId != null) return String(o.userId);
-    }catch(e){}
-    return '';
-  }
-  function getBuyerWA(o){
-    try{ return txt((o && o.buyer && o.buyer.wa) ? o.buyer.wa : (o && o.buyerWA) ? o.buyerWA : ''); }catch(e){ return ''; }
-  }
-  function makeWaSet(me){
-    var s = new Set();
+      window.open(url, "_blank", "noopener,noreferrer");
+    }catch(_){
+      try{ window.location.href = url; }catch(__){}
+    }
+  };
+
+  window.kzOpenApkWithNotice = function(e, url, appName, infoText){
     try{
-      var base = txt(me && me.wa || '');
-      if(base) s.add(base.replace(/\D+/g,''));
-      var hist = (me && Array.isArray(me.waHistory)) ? me.waHistory : [];
-      hist.forEach(function(v){
-        var n = txt(v).replace(/\D+/g,'');
-        if(n) s.add(n);
-      });
-    }catch(e){}
-    return s;
-  }
-  function isMine(o, me, waSet){
-    if(!o || !me) return false;
-    var myId = txt(me.id || '');
-    var buyerId = getBuyerUserId(o);
-    if(myId && buyerId && myId === buyerId) return true;
-    var wa = txt(getBuyerWA(o)).replace(/\D+/g,'');
-    return !!(wa && waSet && waSet.size && waSet.has(wa));
-  }
-  function ensureFailedOrdersForTarget(){
-    try{
-      var me = getMe();
-      if(!isTargetUser(me)) return false;
-      if(typeof authLoadDB !== 'function' || typeof authSaveDB !== 'function') return false;
-      var db = authLoadDB();
-      if(!db || !Array.isArray(db.orders)) return false;
-      var waSet = makeWaSet(me);
-      var changed = false;
-      db.orders.forEach(function(o){
-        if(!isMine(o, me, waSet)) return;
-        var cur = txt(o.status || 'proof_submitted');
-        if(cur === FAILED_STATUS) {
-          if(!txt(o.adminNote)) { o.adminNote = TEST_NOTE; changed = true; }
-          return;
-        }
-        if(!Object.prototype.hasOwnProperty.call(o, '_kzTempOriginalStatus')){
-          o._kzTempOriginalStatus = cur || 'proof_submitted';
-        }
-        o.status = FAILED_STATUS;
-        o.adminNote = TEST_NOTE;
-        o.updatedAt = (typeof authNow === 'function') ? authNow() : Date.now();
-        changed = true;
-      });
-      if(changed) authSaveDB(db);
-      return changed;
-    }catch(e){
-      console.warn('temp refund test force failed', e);
+      if(e && typeof e.preventDefault === "function") e.preventDefault();
+      if(e && typeof e.stopPropagation === "function") e.stopPropagation();
+    }catch(_){}
+    const popup = document.getElementById("apkInfoPopup");
+    if(!popup){
+      try{
+        window.open(String(url || "#"), "_blank", "noopener,noreferrer");
+      }catch(_){
+        try{ window.location.href = String(url || "#"); }catch(__){}
+      }
       return false;
     }
-  }
-  function decorateNotes(){
+
+    let trigger = null;
     try{
-      var me = getMe();
-      if(!isTargetUser(me)) return;
-      var list = document.getElementById('authMyOrdersList');
-      if(!list) return;
-      list.querySelectorAll('.admin-carditem').forEach(function(card){
-        if(card.querySelector('.kz-refund-test-note')) return;
-        var note = document.createElement('div');
-        note.className = 'kz-refund-test-note';
-        note.innerHTML = '<b>Mode tes refund aktif.</b> Pesanan akun ini sementara dipaksa gagal agar tombol Pengajuan Refund Gmail ke kzrizusmorefund@gmail.com bisa diuji.';
-        card.appendChild(note);
-      });
-    }catch(e){}
-  }
-  function boot(){
-    ensureFailedOrdersForTarget();
-    setTimeout(function(){ try{ decorateNotes(); }catch(e){} }, 60);
-  }
+      trigger = e && (e.currentTarget || (e.target && e.target.closest ? e.target.closest("a") : null));
+    }catch(_){}
+    let imageSrc = kzApkPopupState.fallbackImg;
+    try{
+      const img = trigger && trigger.querySelector ? trigger.querySelector("img") : null;
+      if(img && img.src) imageSrc = img.src;
+    }catch(_){}
 
-  if(typeof window.renderMyOrders === 'function'){
-    var oldRenderMyOrders = window.renderMyOrders;
-    window.renderMyOrders = function(){
-      ensureFailedOrdersForTarget();
-      var res = oldRenderMyOrders.apply(this, arguments);
-      setTimeout(decorateNotes, 30);
-      return res;
-    };
-  }
-  if(typeof window.renderOrdersPremium === 'function'){
-    var oldRenderOrdersPremium = window.renderOrdersPremium;
-    window.renderOrdersPremium = function(){
-      ensureFailedOrdersForTarget();
-      var res = oldRenderOrdersPremium.apply(this, arguments);
-      setTimeout(decorateNotes, 30);
-      return res;
-    };
-  }
-  if(typeof window.openMyOrdersFromAuth === 'function'){
-    var oldOpenMyOrdersFromAuth = window.openMyOrdersFromAuth;
-    window.openMyOrdersFromAuth = function(){
-      ensureFailedOrdersForTarget();
-      return oldOpenMyOrdersFromAuth.apply(this, arguments);
-    };
-  }
+    const creds = kzSplitInfo(infoText);
+    kzApkPopupState.url = String(url || "#");
 
-  document.addEventListener('DOMContentLoaded', boot, {once:true});
-  setTimeout(boot, 400);
+    const imgEl = document.getElementById("apkInfoPopupImg");
+    if(imgEl) imgEl.src = imageSrc || kzApkPopupState.fallbackImg;
+    kzSetText("apkInfoPopupTitle", appName || "Informasi Login");
+    kzSetText("apkInfoPopupUsername", creds.username);
+    kzSetText("apkInfoPopupPassword", creds.password);
+
+    popup.classList.add("show");
+    document.body.classList.add("popup-lock");
+    return false;
+  };
+
+  document.addEventListener("keydown", function(ev){
+    if(ev.key === "Escape"){
+      const popup = document.getElementById("apkInfoPopup");
+      if(popup && popup.classList.contains("show")) window.kzHideApkInfoPopup();
+    }
+  });
 })();
 </script>
+
+
+
+<div id="apkInfoPopup" onclick="if(event.target===this) kzHideApkInfoPopup()">
+  <div class="apk-popup-card">
+    <button class="apk-popup-close" onclick="kzHideApkInfoPopup()" type="button">×</button>
+    <img id="apkInfoPopupImg" class="apk-popup-img" alt="Informasi Login" src="https://files.catbox.moe/y9zvv8.jpg"/>
+    <div class="apk-popup-body">
+      <div class="apk-popup-badge"><i class="fas fa-circle-info"></i><span>Informasi Login</span></div>
+      <div id="apkInfoPopupTitle" class="apk-popup-title">Kzrizusmo Tools</div>
+      <div class="apk-popup-desc">Berikut adalah key login Kzrizusmo Tools</div>
+      <div class="apk-popup-kv">
+        <div class="apk-popup-row">
+          <span class="apk-popup-label">Username</span>
+          <span id="apkInfoPopupUsername" class="apk-popup-value">xy</span>
+        </div>
+        <div class="apk-popup-row">
+          <span class="apk-popup-label">Password</span>
+          <span id="apkInfoPopupPassword" class="apk-popup-value">xy</span>
+        </div>
+      </div>
+    </div>
+    <div class="apk-popup-actions">
+      <button class="apk-popup-btn apk-popup-btn-left" onclick="kzHideApkInfoPopup()" type="button">Nanti</button>
+      <button class="apk-popup-btn apk-popup-btn-right" onclick="kzConfirmApkInfoPopup()" type="button">Lanjut</button>
+    </div>
+  </div>
+</div>
 
 </body></html>
