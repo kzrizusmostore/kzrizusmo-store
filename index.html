@@ -2354,6 +2354,23 @@ header{border-bottom:0!important}
 .header-right .header-tier-badge{flex:0 0 auto} 
 .header-logo{border:0!important;box-shadow:none!important;background:transparent!important} 
 </style>
+
+<style id="kz-home-cacat-fix-v1">
+#page-home .kz-hs-grid{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:10px !important}
+#page-home .kz-hs-item{border-radius:16px !important}
+#page-home .kz-hs-thumb{max-width:72px !important;max-height:72px !important;border-radius:16px !important}
+#page-home .kz-hs-item img{max-width:56px !important;max-height:56px !important}
+#page-home .kz-hs-item.more .kz-hs-thumb{background:rgba(255,0,0,.08) !important;border:1px solid rgba(255,0,0,.14) !important;box-shadow:none !important}
+#page-home .kz-hs-item.more .kz-hs-thumb i{font-size:22px !important;color:#ff0000 !important;opacity:1 !important}
+body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb{background:rgba(255,0,0,.06) !important;border-color:rgba(255,0,0,.12) !important}
+body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb i{color:#d40000 !important}
+@media (max-width:640px){
+  #page-home .kz-hs-grid{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:9px !important}
+  #page-home .kz-hs-thumb{max-width:66px !important;max-height:66px !important;border-radius:14px !important}
+  #page-home .kz-hs-item img{max-width:50px !important;max-height:50px !important}
+}
+</style>
+
 </head><body class="kz-sidebar-home"><div class="statusbar-space"></div><div class="app-wrapper"><div id="welcomePopup"><div aria-label="Informasi proses order" aria-modal="true" class="popup-card" onclick="event.stopPropagation()" role="dialog"><button aria-label="Close" class="popup-close" onclick="playClick(); closeWelcomePopup()">×</button><img alt="Promo group dan saluran KZRIZUSMO STORE" class="popup-img" src="https://cdn.yupra.my.id/yp/zyws30dk.jpg"/><div class="popup-actions"><a class="popup-btn popup-btn-left" href="https://chat.whatsapp.com/KJZKkryktvsKbs8SCgkWCJ" onclick="playClick()" rel="noopener" target="_blank">Join Group</a><a class="popup-btn popup-btn-right" href="https://whatsapp.com/channel/0029VbDOVUJIHphDqJoiNH1L" onclick="playClick()" rel="noopener" target="_blank">Join Saluran</a></div></div></div><div id="payOverlay" onclick="onPayOverlayClick(event)"><div aria-label="Payment" aria-modal="true" class="pay-modal" onclick="event.stopPropagation()" role="dialog"><div class="pay-head"><div><h3>Payment</h3><div class="pay-sub">Produk: <b id="payProductName">-</b><span class="pay-server-badge" id="payServerBadge" style="display:none;">S1</span></div></div><div class="pay-row"><div class="pay-badge" id="payTimerBadge"><span class="pay-dot" id="payTimerDot"></span><span id="payTimerText">Timer: belum mulai</span></div><button aria-label="Close" class="pay-close" onclick="playClick(); closePaymentFlow()">×</button></div></div><div aria-live="polite" class="pay-toast" id="payToast"></div><div class="pay-body"><div id="payMainView"><div style="font-weight:900">Metode Pembayaran</div><div class="pay-grid" id="payMethodGrid"><div class="pay-method" data-method="qris" onclick="selectPaymentMethod('qris')">QRIS</div><div class="pay-method" data-method="dana" onclick="selectPaymentMethod('dana')">DANA</div><div class="pay-method" data-method="gopay" onclick="selectPaymentMethod('gopay')">GOPAY</div><div class="pay-method" data-method="ovo" onclick="selectPaymentMethod('ovo')">OVO</div></div><div class="pay-panel" id="payDetailPanel" style="display:none;"><div class="pay-row" style="justify-content:space-between"><div style="font-weight:900">Detail Pembayaran</div><div class="pay-sub" id="payDeadlineText">Batas: -</div></div><div id="payQRISWrap" style="display:none; margin-top:10px;"><img alt="QRIS" class="pay-qr" id="payQrisImg"/><button class="pay-btn secondary" id="payBtnDownloadQRIS" onclick="downloadQris()" type="button">DOWNLOAD QRIS</button></div><div id="payNumberWrap" style="display:none; margin-top:10px;"><div class="pay-number"><code id="payNumberText">-</code><button class="pay-btn secondary" onclick="copyPaymentNumber()" style="width:auto; padding:10px 12px; margin-top:0;" type="button">SALIN</button></div></div><div class="pay-info" id="payMethodInfo" style="display:block; margin-top:10px;"></div><div class="pay-upload" id="payUploadSection"><div id="payUploadTitle" style="font-weight:900">Upload Bukti Pembayaran</div><form enctype="multipart/form-data" id="payProofForm" method="post"><input name="to_email" type="hidden" value="kzrizusmostore@gmail.com"/><input id="payFormOrderId" name="order_id" type="hidden" value=""/><input id="payFormProduct" name="product_name" type="hidden" value=""/><input id="payFormUnitPrice" name="unit_price" type="hidden" value=""/><input id="payFormTotal" name="total_price" type="hidden" value=""/><input id="payFormMethod" name="payment_method" type="hidden" value=""/><input id="payFormValue" name="payment_value" type="hidden" value=""/><input id="payFormDeadline" name="payment_deadline" type="hidden" value=""/><input id="payFormSubject" name="subject" type="hidden" value=""/><input id="payFormMessage" name="message" type="hidden" value=""/><input id="payFormFromName" name="from_name" type="hidden" value=""/><input id="payFormSenderName" name="sender_name" type="hidden" value=""/><input id="payFormWA" name="whatsapp" type="hidden" value=""/><textarea id="payFormDetail" name="order_detail" style="display:none"></textarea><div class="pay-summary"><div class="pay-srow"><span>Produk</span><b id="paySumProduct">-</b></div><div class="pay-srow"><span>Harga Satuan</span><b id="paySumUnit">-</b></div><div class="pay-srow"><span>Jumlah</span><div class="pay-qty-wrap"><button class="qty-btn" id="payQtyMinus" onclick="qtyMinus()" type="button">−</button><input class="pay-input pay-qty" id="payQtyInput" inputmode="numeric" min="1" name="qty" required="" type="number" value="1"/><button class="qty-btn" id="payQtyPlus" onclick="qtyPlus()" type="button">+</button></div></div><div class="pay-srow"><span>Subtotal</span><b id="paySumSubtotal">-</b></div><div class="pay-srow" id="payRowDiscount" style="display:none;"><span>Diskon Member</span><b id="paySumDiscount">-</b></div><div class="pay-srow" id="payRowPromo" style="display:none;"><span>Diskon Promo</span><b id="paySumPromo">-</b></div><div class="pay-srow" id="payRowUnique" style="display:none;"><span>Diskon Unik</span><b id="paySumUnique">-</b></div><div class="pay-srow"><span>Total Bayar</span><b id="paySumTotal">-</b></div><div class="pay-srow" id="payRowPromoCode" style="display:none;"><span>Kode Promo</span><b id="paySumPromoCode">-</b></div><div class="pay-srow" id="payRowSender" style="display:none;"><span>Username</span><b id="paySumSender">-</b></div><div class="pay-srow" id="payRowWA" style="display:none;"><span>Nomor WhatsApp</span><b id="paySumWA">-</b></div></div><div class="pay-field" id="payPromoField"><label class="pay-label" for="payPromoInput">Kode Promo (opsional)</label><div class="pay-inline"><input autocomplete="off" class="pay-input" id="payPromoInput" placeholder="contoh: PROMO123" type="text"/><button class="pay-btn secondary" id="payPromoApplyBtn" onclick="applyPromoCode()" style="width:auto; padding:10px 12px; margin-top:0;" type="button">PAKAI</button><button class="pay-btn secondary" id="payPromoClearBtn" onclick="clearPromoCode()" style="width:auto; padding:10px 12px; margin-top:0; opacity:.85;" type="button">HAPUS</button></div><div class="pay-sub" id="payPromoHint" style="margin-top:6px;"></div></div><div class="pay-field" id="payZusmoUidField" style="display:none;"><label class="pay-label" for="payZusmoUidInput">UID :</label><input autocomplete="off" class="pay-input" id="payZusmoUidInput" inputmode="numeric" name="zusmo_uid" pattern="[0-9]*" placeholder="Masukkan UID" type="text"/></div><div class="pay-field" id="payWhatsappFieldDefault"><label class="pay-label" for="payWhatsappInput">Nomor WhatsApp :</label><input autocomplete="tel" class="pay-input" id="payWhatsappInput" inputmode="tel" name="buyer_whatsapp" placeholder="08" required="" type="tel"/></div><div id="payZusmoFields" style="display:none;"><div class="pay-field"><label class="pay-label">Pilih Game :</label><div class="pay-choice-grid two" id="payZusmoGameChoices"><button class="pay-choice-btn" data-group="game" data-value="Free Fire" type="button">FREE FIRE</button><button class="pay-choice-btn" data-group="game" data-value="FF Max" type="button">FF MAX</button></div><input id="payZusmoGameInput" name="zusmo_game" type="hidden" value=""/></div><div class="pay-field"><label class="pay-label">Pilih Device :</label><div class="pay-choice-grid two" id="payZusmoPlatformChoices"><button class="pay-choice-btn" data-group="platform" data-value="Android" type="button">ANDROID</button><button class="pay-choice-btn" data-group="platform" data-value="iOS" type="button">IOS</button></div><input id="payZusmoPlatformInput" name="zusmo_platform" type="hidden" value=""/></div></div><input accept="image/*,.pdf,application/pdf" class="kz-file-input-native" id="payFileInput" type="file"/><input id="payFormProofInfo" name="proof_info" type="hidden" value=""/></form><button class="pay-btn secondary" id="payBtnUpload" onclick="triggerPayUpload()" type="button">UPLOAD BUKTI</button><div class="pay-preview" id="payPreview"><img alt="Preview" id="payPreviewImg"/><div><div id="payPreviewName" style="font-weight:900">-</div><div class="pay-sub">Jika sudah benar, klik tombol kirim.</div></div></div><button class="pay-btn" id="payBtnSend" onclick="sendPaymentProof()" type="button">KONFIRMASI &amp; KIRIM</button><div class="pay-status" id="payStatus"></div></div><div class="pay-info">Pastikan seluruh data diisi dengan benar dan nomor WhatsApp dalam keadaan aktif.
 
 </div></div><div data-state="success" id="paySuccessView" style="display:none;"><div class="pay-success-wrap"><div class="pay-success-card"><div aria-hidden="true" class="pay-success-check"><svg aria-label="Sukses" role="img" viewbox="0 0 100 100"><circle class="ring" cx="50" cy="50" r="45"></circle><path class="tick" d="M30 52 L45 67 L72 38"></path></svg></div><div class="pay-success-title" id="paySuccessTitle">Bukti Pembayaran Terkirim</div><div class="pay-success-sub" id="paySuccessSub">Harap menunggu. Sedang diproses...</div><div class="rc-prod pay-success-prod"><img alt="Produk" id="paySuccessProductImg"/><div><div class="rc-prod-name" id="paySuccessProductName2">-</div></div></div><div class="pay-success-meta"><div class="pay-srow"><span>Order ID</span><b id="paySuccessOrderId">-</b></div><div class="pay-srow"><span>Waktu Order</span><b id="paySuccessOrderTime">-</b></div><div class="pay-srow"><span>Username</span><b id="paySuccessSenderName">-</b></div><div class="pay-srow"><span>WhatsApp</span><b id="paySuccessBuyerWA">-</b></div><div class="pay-srow"><span>Produk</span><b id="paySuccessProduct">-</b></div><div class="pay-srow"><span>Total Bayar</span><b id="paySuccessTotal">-</b></div><div class="pay-srow"><span>Metode</span><b id="paySuccessMethod">-</b></div><div class="pay-srow"><span>Tujuan</span><b id="paySuccessTarget">-</b></div></div><div class="pay-success-steps" id="paySuccessSteps"><div class="pay-step done"><i class="fas fa-check"></i> Bukti pembayaran berhasil dikirim</div><div class="pay-step"><i class="fas fa-clock"></i> Menunggu verifikasi admin</div><div class="pay-step"><i class="fab fa-whatsapp"></i> Proses kirim data akun ke WhatsApp</div></div><div class="pay-success-actions" id="paySuccessActions"><button class="pay-btn secondary" id="payBtnStruk" onclick="kzOpenReceiptFromSuccess()" type="button">STRUK</button><button class="pay-btn" id="payBtnFinish" onclick="kzTryFinishPayment()" type="button">SELESAI</button></div><div class="pay-success-note">
@@ -22660,34 +22677,7 @@ document.addEventListener('DOMContentLoaded', () => {
       out = out.replace(/[\s\S]*?/g, "");
     }catch(e){}
     const lower = out.toLowerCase();
-    let idx = lower.indexOf("
-<div id="apkInfoPopup" onclick="if(event.target===this) kzHideApkInfoPopup()">
-  <div class="apk-popup-card">
-    <button class="apk-popup-close" onclick="kzHideApkInfoPopup()" type="button">×</button>
-    <img id="apkInfoPopupImg" class="apk-popup-img" alt="Informasi APK" src="https://files.catbox.moe/y9zvv8.jpg"/>
-    <div class="apk-popup-body">
-      <div class="apk-popup-badge"><i class="fas fa-circle-info"></i><span>Informasi APK</span></div>
-      <div id="apkInfoPopupTitle" class="apk-popup-title">Kzrizusmo Tools</div>
-      <div class="apk-popup-desc">Gunakan akun berikut sebelum Tuan melanjutkan ke link download.</div>
-      <div class="apk-popup-kv">
-        <div class="apk-popup-row">
-          <span class="apk-popup-label">Username</span>
-          <span id="apkInfoPopupUsername" class="apk-popup-value">xy</span>
-        </div>
-        <div class="apk-popup-row">
-          <span class="apk-popup-label">Password</span>
-          <span id="apkInfoPopupPassword" class="apk-popup-value">xy</span>
-        </div>
-      </div>
-    </div>
-    <div class="apk-popup-actions">
-      <button class="apk-popup-btn apk-popup-btn-left" onclick="kzHideApkInfoPopup()" type="button">Nanti</button>
-      <button class="apk-popup-btn apk-popup-btn-right" onclick="kzConfirmApkInfoPopup()" type="button">Lanjut</button>
-    </div>
-  </div>
-</div>
-
-</body>");
+    let idx = lower.indexOf("</body>");
     if (idx < 0) idx = out.length;
     out = out.slice(0, idx) + "\n" + block + "\n" + out.slice(idx);
 
@@ -24431,6 +24421,7 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
 @keyframes kzMarq2{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
 </style>
 <script id="kz-global-daily-claim-script">
+
 (function(){
   if(window.__kzGlobalDailyClaimApplied) return;
   window.__kzGlobalDailyClaimApplied = true;
@@ -24487,8 +24478,14 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
     if(state.finished){
       return '<button class="kz-balance-chip kz-daily-claim is-finished" type="button" disabled><i class="fas fa-flag-checkered"></i><span class="kz-daily-claim-text"><b>200/200 selesai</b><small>Semua jatah harian sudah lewat</small></span></button>';
     }
-
-    
+    var extraClass = state.claimedToday ? ' is-done' : '';
+    var icon = state.claimedToday ? 'fa-check-circle' : 'fa-gift';
+    var title = state.claimedToday ? 'Poin Harian' : 'Claim Poin Harian';
+    var sub = state.claimedToday
+      ? ('Hari ke-' + state.dayNumber + ' sudah diklaim')
+      : ('Hari ke-' + state.dayNumber + ' • Claim +1 poin');
+    return '<button class="kz-balance-chip kz-daily-claim'+extraClass+'" type="button" onclick="window.kzOpenDailyClaimOverlay&&window.kzOpenDailyClaimOverlay()"><i class="fas '+icon+'"></i><span class="kz-daily-claim-text"><b>'+title+'</b><small>'+sub+'</small></span></button>';
+  }
 
   window.dailyClaimMarkup = function(user){
     return buildClaimHtml(user || getMeSafe() || {});
@@ -26513,15 +26510,32 @@ body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb i{color:rgba(17,17,17,.
   function tabIndex(tab){ var idx = TABS.map(function(t){return t.key;}).indexOf(String(tab||'')); return idx < 0 ? 0 : idx; }
   function tabMeta(tab){ return TABS[tabIndex(tab)]; }
   function previewItems(tab){
-    var list = cleanList(sourceByTab(tab));
-    if(tab === 'apk' && list.length){
+    var sourceList = cleanList(sourceByTab(tab));
+    var list = sourceList.slice();
+    var hasMore = sourceList.length > 7;
+    if(tab === 'apk' && sourceList.length){
       var wanted = ['netflix','capcut','canva','alightmotion','loklok','chatgpt','wink'];
       var byId = {};
-      list.forEach(function(it){
+      var used = {};
+      var picked = [];
+      sourceList.forEach(function(it){
         var id = String((it && it.id) || '');
         if(id && !byId[id]) byId[id] = it;
       });
-      list = wanted.map(function(id){ return byId[id] || null; }).filter(Boolean);
+      wanted.forEach(function(id){
+        if(byId[id] && !used[id] && picked.length < 7){
+          picked.push(byId[id]);
+          used[id] = true;
+        }
+      });
+      sourceList.forEach(function(it){
+        var id = String((it && it.id) || '');
+        if(picked.length >= 7) return;
+        if(id && used[id]) return;
+        picked.push(it);
+        if(id) used[id] = true;
+      });
+      list = picked;
     }
     if(tab === 'digital' && list.length){
       var bulkIdx = list.findIndex(function(it){ return String((it && it.id) || '') === 'paket-bulk-apk'; });
@@ -26530,12 +26544,11 @@ body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb i{color:rgba(17,17,17,.
         list.unshift(bulkItem);
       }
     }
-    if(list.length > 7){
-      var items = list.slice(0,7);
-      items.push({__more:true, id:'', name:'Selengkapnya'});
-      return items;
+    list = list.slice(0,7);
+    if(hasMore){
+      list.push({__more:true, id:'', name:'Selengkapnya'});
     }
-    return list.slice(0,7);
+    return list;
   }
   function productAction(id, tab){
     id = String(id||'');
@@ -26604,11 +26617,23 @@ body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb i{color:rgba(17,17,17,.
   }
   function homeTestimonialsMarkup(){
     return ''
-      + '<div class="kz-home-socials">'
-      + '  <a class="kz-home-social-btn" href="https://instagram.com/kzrizusmostore" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a>'
-      + '  <a class="kz-home-social-btn" href="https://www.tiktok.com/@kzrizusmo_store" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i><span>TikTok</span></a>'
-      + '  <a class="kz-home-social-btn" href="https://whatsapp.com/channel/0029VbDOVUJIHphDqJoiNH1L" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>'
-      + '  <a class="kz-home-social-btn" href="https://t.me/testikzrizusmostore" target="_blank" rel="noopener" aria-label="Testimoni" title="Testimoni"><i class="fas fa-paper-plane"></i><span>Testimoni</span></a>'
+      + '<div class="kz-home-testi">'
+      + '  <div class="kz-home-testi-head">'
+      + '    <div>'
+      + '      <h3>Testimoni Pelanggan</h3>'
+      + '      <p>Bukti pengalaman customer terbaru dari KZRIZUSMO STORE.</p>'
+      + '    </div>'
+      + '  </div>'
+      + '  <div class="kz-home-testi-grid"></div>'
+      + '  <div class="kz-home-proof-actions">'
+      + '    <button class="kz-home-proof-btn" type="button" onclick="window.openAllTestimonialProofs&&window.openAllTestimonialProofs()"><i class="fas fa-images"></i><span>Lihat Semua Bukti</span></button>'
+      + '  </div>'
+      + '  <div class="kz-home-socials">'
+      + '    <a class="kz-home-social-btn" href="https://instagram.com/kzrizusmostore" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a>'
+      + '    <a class="kz-home-social-btn" href="https://www.tiktok.com/@kzrizusmo_store" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i><span>TikTok</span></a>'
+      + '    <a class="kz-home-social-btn" href="https://whatsapp.com/channel/0029VbDOVUJIHphDqJoiNH1L" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>'
+      + '    <a class="kz-home-social-btn" href="https://t.me/testikzrizusmostore" target="_blank" rel="noopener" aria-label="Testimoni" title="Testimoni"><i class="fas fa-paper-plane"></i><span>Testimoni</span></a>'
+      + '  </div>'
       + '</div>';
   }
 
@@ -26649,6 +26674,7 @@ body.light-mode #page-home .kz-hs-item.more .kz-hs-thumb i{color:rgba(17,17,17,.
       + homeTestimonialsMarkup()
       + '</div>';
     bindHome();
+    setTimeout(function(){ try{ window.kzRefreshTestimonialsUi && window.kzRefreshTestimonialsUi(); }catch(e){} }, 0);
     setTimeout(function(){ syncToTab(tab, false, true); }, 0);
     setTimeout(initHomeHeroFinal, 0);
     return false;
@@ -38674,6 +38700,102 @@ header{
     };
     window.__kzHeaderCleanupV11AuthWrapped = true;
   }
+})();
+</script>
+
+
+<style id="kz-live-press-v1">
+.item-card,.list-item,.kz-preview-item,.kz-shortcut{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  transform-origin:center center;
+}
+.item-card::before,.list-item::before,.kz-preview-item::before,.kz-shortcut::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  opacity:0;
+  pointer-events:none;
+  z-index:0;
+  background:radial-gradient(circle at var(--kz-ripple-x,50%) var(--kz-ripple-y,50%), rgba(255,255,255,.38) 0%, rgba(255,255,255,.18) 20%, rgba(255,64,64,.10) 36%, rgba(255,255,255,0) 58%);
+}
+.item-card > *,.list-item > *,.kz-preview-item > *,.kz-shortcut > *{
+  position:relative;
+  z-index:1;
+}
+.item-card.kz-press-live,.list-item.kz-press-live,.kz-preview-item.kz-press-live,.kz-shortcut.kz-press-live{
+  transform:translateY(3px) scale(.955) !important;
+  filter:brightness(1.06) saturate(1.05) !important;
+  box-shadow:inset 0 2px 14px rgba(255,255,255,.06), inset 0 10px 18px rgba(0,0,0,.16), 0 8px 18px rgba(255,0,0,.16), 0 6px 14px rgba(0,0,0,.20) !important;
+  transition:transform .12s ease, box-shadow .16s ease, filter .16s ease !important;
+}
+.item-card.kz-press-live::before,.list-item.kz-press-live::before,.kz-preview-item.kz-press-live::before,.kz-shortcut.kz-press-live::before{
+  opacity:1 !important;
+  animation:kzPressRipple .42s ease-out 1;
+}
+@keyframes kzPressRipple{
+  0%{opacity:.10;transform:scale(.72)}
+  35%{opacity:.28;transform:scale(1)}
+  100%{opacity:0;transform:scale(1.22)}
+}
+</style>
+<script id="kz-live-press-v1-script">
+(function(){
+  if(window.__kzLivePressV1) return;
+  window.__kzLivePressV1 = true;
+  var selector = '.item-card,.list-item,.kz-preview-item,.kz-shortcut';
+  function findCard(target){
+    return target && target.closest ? target.closest(selector) : null;
+  }
+  function setRipplePoint(el, ev){
+    if(!el) return;
+    var rect = el.getBoundingClientRect();
+    var clientX = rect.left + (rect.width / 2);
+    var clientY = rect.top + (rect.height / 2);
+    if(ev){
+      if(typeof ev.clientX === 'number') clientX = ev.clientX;
+      else if(ev.touches && ev.touches[0]) clientX = ev.touches[0].clientX;
+      if(typeof ev.clientY === 'number') clientY = ev.clientY;
+      else if(ev.touches && ev.touches[0]) clientY = ev.touches[0].clientY;
+    }
+    el.style.setProperty('--kz-ripple-x', (clientX - rect.left) + 'px');
+    el.style.setProperty('--kz-ripple-y', (clientY - rect.top) + 'px');
+  }
+  function press(el, ev){
+    if(!el) return;
+    setRipplePoint(el, ev);
+    el.classList.remove('kz-press-live');
+    void el.offsetWidth;
+    el.classList.add('kz-press-live');
+  }
+  function release(el){
+    if(!el) return;
+    setTimeout(function(){
+      el.classList.remove('kz-press-live');
+    }, 210);
+  }
+  document.addEventListener('pointerdown', function(ev){
+    var el = findCard(ev.target);
+    if(!el) return;
+    press(el, ev);
+  }, true);
+  document.addEventListener('pointerup', function(ev){
+    var el = findCard(ev.target);
+    if(!el) return;
+    release(el);
+  }, true);
+  document.addEventListener('pointercancel', function(ev){
+    var el = findCard(ev.target);
+    if(!el) return;
+    el.classList.remove('kz-press-live');
+  }, true);
+  document.addEventListener('click', function(ev){
+    var el = findCard(ev.target);
+    if(!el) return;
+    press(el, ev);
+    release(el);
+  }, true);
 })();
 </script>
 
