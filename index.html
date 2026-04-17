@@ -2413,10 +2413,10 @@ Mohon menunggu dengan sabar. Terima kasih.
               Setelah diganti, password default tidak berlaku lagi.
             </div></div><div class="admin-carditem"><div class="top"><div class="title">Tools Data</div><span class="mini-chip"><i class="fas fa-triangle-exclamation"></i> hati-hati</span></div><div class="admin-actions"><button class="btn-ghost" onclick="adminExportDB()" type="button"><i class="fas fa-file-export" style="margin-right:8px;"></i> Export JSON</button><button class="btn-ghost" onclick="adminImportDB()" type="button"><i class="fas fa-file-import" style="margin-right:8px;"></i> Import JSON</button><button class="btn-ghost" onclick="adminWipeDB()" type="button"><i class="fas fa-trash-can" style="margin-right:8px;"></i> Reset DB</button></div><div style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.5">
               Export/Import berguna kalau pindah device. Import akan menimpa data lokal sekarang.
-            </div></div><div class="admin-carditem"><div class="top"><div class="title">Export / Import HTML</div><span class="mini-chip"><i class="fas fa-file-code"></i> backup</span></div><div class="admin-actions"><button class="btn-solid" onclick="(window.kzOpenBackupModal?window.kzOpenBackupModal():null)" type="button"><i class="fas fa-box-archive" style="margin-right:8px;"></i> Buka Panel Export/Import</button><button class="btn-ghost" onclick="(window.kzExportBaseHTML?window.kzExportBaseHTML():null)" type="button"><i class="fas fa-file-export" style="margin-right:8px;"></i> Export HTML (Produk Inline)</button></div><div style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.5">Import bisa pakai <b>file</b> (JSON/HTML) tanpa copy-paste. Panel ini juga punya Backup HTML (Full) + Export/Import JSON.</div></div><div class="admin-carditem"><div class="top"><div class="title">Audit Log Admin</div><span class="mini-chip"><i class="fas fa-clipboard-check"></i> riwayat</span></div><div class="admin-row"><div class="admin-field" style="flex:1;"><label style="font-size:12px;color:var(--text-sec)">Cari</label><input id="adminAuditSearch" oninput="renderAdminAudit()" placeholder="aksi / user / order / info"/></div><div class="admin-field" style="max-width:180px;"><label style="font-size:12px;color:var(--text-sec)">Limit</label><select id="adminAuditLimit" onchange="renderAdminAudit()"><option value="50">50</option><option selected="" value="100">100</option><option value="200">200</option></select></div></div><div class="admin-actions"><button class="btn-ghost" onclick="adminExportAudit()" type="button"><i class="fas fa-file-export" style="margin-right:8px;"></i> Export</button><button class="btn-ghost" onclick="adminClearAudit()" style="border-color: rgba(255,0,0,.18);" type="button"><i class="fas fa-trash-can" style="margin-right:8px;"></i> Clear</button></div><div style="height:10px"></div><div class="admin-cardlist" id="adminAuditList"></div><div id="adminAuditHint" style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.5">Audit log mencatat aksi admin penting (update order, poin, info, export). Disimpan lokal (device ini).</div></div></div></section></div></div></div><div class="acc-overlay" id="accountOverlay" onclick="closeAccountSettings()"><div aria-label="Profil &amp; Pengaturan Akun" aria-modal="true" class="acc-card" onclick="event.stopPropagation()" role="dialog"><div class="acc-head"><div><div class="acc-title"><i class="fas fa-user-gear" id="accTitleIcon" style="margin-right:8px;color:var(--primary)"></i><span id="accPanelTitle">Akun Saya</span></div></div><button class="acc-close" onclick="closeAccountSettings()" type="button">×</button></div><div class="acc-body"><form onsubmit="accountSave(event)"><div class="acc-profile"><div class="acc-avatar kz-profile-hero"><div class="kz-avatar-stack" id="accAvatarStack"><img alt="Foto profil" id="accAvatarPreview" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg"/><button aria-label="Ganti foto profil" class="kz-avatar-edit-fab" onclick="document.getElementById('accAvatarInput').click()" title="Ganti foto profil" type="button"><i class="fas fa-pencil"></i></button></div><div class="acc-avatar-tier" id="accAvatarTierBadge">BASIC</div><input accept="image/*" id="accAvatarInput" onchange="accountAvatarPick(event)" style="display:none" type="file"/><div style="margin-top:8px; font-size:12px; color: var(--text-sec); line-height:1.4;"></div></div></div><div class="acc-account-sidebar"><div class="kz-profile-columns"><div class="acc-kv"><span>ID</span><b id="accUserId">-</b></div><div class="acc-kv"><span>Tanggal Bergabung</span><b id="accJoinedAt">-</b></div><div class="acc-kv kz-ref-kv"><span>Kode Referal</span><div class="kz-ref-wrap"><div class="kz-ref-top"><b id="accReferralCode">-</b><button class="acc-copy-btn" onclick="copyReferralCode()" title="Copy kode referal" type="button"><i class="fas fa-copy"></i></button></div><button class="acc-invite-btn" onclick="shareReferralLink()" title="Undang teman" type="button"><i class="fas fa-share-nodes"></i><span>Undang</span></button></div></div><div class="acc-kv"><span>Poin</span><b id="accPointsText">0</b></div><div class="acc-kv kz-status-akun-kv"><span>Status Akun</span><b class="status-active" id="accActiveText">AKTIF</b></div><div class="kz-install-kv"><button class="btn-solid kz-install-column-btn" id="accInstallAppBtn" onclick="kzSetSidebarMenuMode('nonhome');kzHandleInstallClick()" type="button"><i class="fas fa-download" style="margin-right:8px;"></i><span id="accInstallAppLabel">Install Aplikasi</span></button></div></div><div class="acc-tier-panel"><div class="acc-tier-head"><div class="acc-tier-title">Tier</div><div class="acc-tier-current">Tier kamu: <b id="accTierActiveInline">BASIC</b></div></div><div class="acc-tier-list" id="accTierList"><span class="member-badge tier-basic">BASIC</span><span class="member-badge tier-elite">ELITE</span><span class="member-badge tier-ultimate">ULTIMATE</span><span class="member-badge tier-business">BUSINESS</span></div></div></div><div class="kz-profile-bio-fields"><div class="auth-field"><label>Nama Lengkap</label><input id="accDisplayName" placeholder="Nama yang tampil"/></div><div class="auth-field"><label>Nomor WhatsApp</label><input id="accWA" inputmode="numeric" placeholder="contoh: 08"/></div><div class="auth-field kz-hidden-account-field"><label>Email</label><input id="accEmail" placeholder="Masukkan email" type="email"/><div id="accEmailHint" style="margin-top:6px;font-size:12px;color:var(--text-sec);line-height:1.4;"></div></div><div class="auth-field"><label>Username</label><input id="accUsername" readonly=""/></div><div class="auth-field"><label>Tanggal Lahir</label><input id="accBirthDate" type="date"/></div><div class="auth-field"><label>Jenis Kelamin</label><input id="accGender" type="hidden" value=""/><div aria-label="Jenis Kelamin" class="gender-pills" id="accGenderPills" role="group"><button class="gpill" data-v="Laki-laki" onclick="setAccGender('Laki-laki', this)" type="button">Laki-laki</button><button class="gpill" data-v="Perempuan" onclick="setAccGender('Perempuan', this)" type="button">Perempuan</button></div><div style="margin-top:6px;font-size:12px;color:var(--text-sec);line-height:1.4;"></div></div></div><div class="kz-profile-security"><div class="auth-field"><label>Password Baru</label><div class="pw-wrap"><input autocomplete="new-password" id="accNewPass" placeholder="Kosongkan jika tidak ingin ganti" type="password"/><button aria-label="Tampilkan password" class="pw-toggle" onclick="togglePasswordVisibility('accNewPass', this)" type="button"><i class="fas fa-eye"></i></button></div></div><div class="auth-field"><label>Konfirmasi Password Baru</label><div class="pw-wrap"><input autocomplete="new-password" id="accNewPass2" placeholder="Ulangi password baru" type="password"/><button aria-label="Tampilkan password" class="pw-toggle" onclick="togglePasswordVisibility('accNewPass2', this)" type="button"><i class="fas fa-eye"></i></button></div></div></div><div class="kz-profile-save-section"><div class="auth-actions" style="margin-top:12px;"><button class="btn-ghost" onclick="closeAccountSettings()" type="button">Tutup</button><button class="btn-solid" type="submit"><i class="fas fa-check" style="margin-right:8px;"></i> Simpan Perubahan</button></div></div><div class="auth-actions" style="margin-top:10px;"><button class="btn-ghost btn-ghost-danger" onclick="logoutUser()" style="width:100%;" type="button"><i class="fas fa-right-from-bracket" style="margin-right:8px;"></i> Keluar</button></div><div class="auth-actions" style="margin-top:10px;"><button class="btn-ghost btn-ghost-danger" onclick="deleteMyAccount()" style="width:100%;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.12);" type="button"><i class="fas fa-trash" style="margin-right:8px;"></i> Hapus Akun Saya</button></div></form></div></div></div><div aria-live="polite" class="pay-toast" id="sysToast"></div><div class="sidebar-overlay" onclick="toggleSidebar()"></div><div class="sidebar" id="sidebar"><div class="sidebar-header"><div class="sidebar-header-left"><div class="sidebar-userbox" id="sidebarUserBox"><img alt="Profile" class="sidebar-profile-img" id="sidebarProfileImg" onclick="event.stopPropagation(); openMyAccountPanel();" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); openMyAccountPanel();}" role="button" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg" tabindex="0" title="Buka profil"/><div class="sidebar-usertext"><div class="sidebar-greeting" id="sidebarGreeting">Selamat Malam <span id="sidebarGreetingIcon">🌙</span></div><div class="sidebar-title" id="sidebarDynamicTitle">Kzrizusmo</div></div></div><div class="sidebar-title sidebar-guest-title" id="sidebarGuestTitle" style="display:none;">MENU</div></div><div class="sidebar-header-actions"><div class="sidebar-close" onclick="toggleSidebar()"><i class="fas fa-times"></i></div></div></div><div class="sidebar-menu"><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('home');navTo('home')"><i class="fas fa-house"></i><span>Home</span></div><div class="sidebar-item shiny-effect" id="profileUserMenuItem" onclick="openProfileUser()" style="display:none;"><i class="fas fa-user-gear"></i><span class="sidebar-label">Profile User</span></div><div class="sidebar-item shiny-effect" id="authMenuItem" onclick="openMyAccountPanel()"><i class="fas fa-user"></i><span class="sidebar-label" id="sidebarAuthLabel">Daftar / Masuk</span><span class="member-badge tier-basic sidebar-right" id="sidebarAuthTier" style="display:none;">BASIC</span></div><div class="sidebar-item shiny-effect" id="upgradeMembershipMenuItem" onclick="navTo(\'membership-upgrade\')"><i class="fas fa-crown"></i> Upgrade Membership</div><div class="sidebar-item shiny-effect" id="adminMenuItem" onclick="openAdminPanel()" style="display:none;"><i class="fas fa-user-shield"></i> Admin Panel</div><div class="sidebar-divider"></div><div class="sidebar-cat sidebar-cat-btn" onclick="toggleSidebarGroup('sidebarGroupNewOrders', this)">PESANAN BARU <i class="fas fa-chevron-down"></i></div><div class="sidebar-group" id="sidebarGroupNewOrders"><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');openPremiumApp()"><i class="fas fa-gem"></i> Aplikasi Premium</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');openProdukDigital()"><i class="fas fa-crown"></i> Produk Digital</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('sosmed-page')"><i class="fas fa-rocket"></i> Suntik Sosmed</div></div><div class="sidebar-cat">MENU LAIN</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');openMyOrdersFromMenu()"><i class="fas fa-receipt"></i> Pesanan Saya</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');kzOpenCartFromSidebar()"><i class="fas fa-shopping-cart"></i> Keranjang</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode(\'nonhome\');navTo(\'all-products\')"><i class="fas fa-search"></i> Semua Produk</div><div class="sidebar-item shiny-effect" id="installAppMenuItem" onclick="kzSetSidebarMenuMode('nonhome');kzHandleInstallClick()"><i class="fas fa-download"></i> <span id="installAppLabel">Install Aplikasi</span></div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('apk-download-page')"><i class="fas fa-file-arrow-down"></i> Free Apk JB</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('info-page')"><i class="fas fa-circle-info"></i> Informasi</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('faq-page')"><i class="fas fa-question-circle"></i> Pertanyaan Umum</div></div></div><header><div class="header-left"><div class="burger-btn shiny-effect" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div><div class="header-title"><h1>KZRIZUSMO <span>STORE</span></h1><span class="header-subtitle">DIGITAL MARKETPLACE</span></div></div><div class="header-right"><img class="header-logo shiny-effect" id="headerProfileImg" onclick="openProfileUser()" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg"/></div></header><div class="container" id="mainContainer"><div class="page-section" id="page-home"><div class="banner-container"><div class="banner-track"><div class="banner-item"><img class="banner-img" src="https://img1.pixhost.to/images/11283/677288053_ochobot.jpg"/></div><div class="banner-item"><img class="banner-img" src="https://files.catbox.moe/7j7q60.jpg"/></div><div class="banner-item"><img class="banner-img" src="https://img1.pixhost.to/images/11620/685027953_miwamikadono.jpg"/></div><div class="banner-item"><a href="https://wa.me/12369523530?text=Hallo%20min%20saya%20mau%20join%20reseller%20app%20premium%20nya%20bisa?" target="_blank"><img class="banner-img" src="https://img1.pixhost.to/images/11620/685027951_miwamikadono.jpg"/></a></div></div></div><div class="search-container" style="margin-top: 20px;"><input class="search-input" oninput="filterAppList(this.value)" placeholder="Cari nama aplikasi..." type="text"/></div><div class="filter-scroll" id="filterScrollStore"><div class="filter-btn shiny-effect" onclick="setFilter('all', this)">Semua</div><div class="filter-btn shiny-effect active" onclick="setFilter('populer', this)">Populer</div><div class="filter-btn shiny-effect" onclick="setFilter('editing', this)">Editing</div><div class="filter-btn shiny-effect" onclick="setFilter('streaming', this)">Streaming</div><div class="filter-btn shiny-effect" onclick="setFilter('music', this)">Music</div><div class="filter-btn shiny-effect" onclick="setFilter('ai', this)">AI</div><div class="filter-btn shiny-effect" onclick="setFilter('vpn', this)">VPN</div></div><div class="filter-scroll" id="filterScrollDigital" style="display:none"><div class="filter-btn shiny-effect active" data-cat="all" onclick="setFilter('all', this)">Semua</div><div class="filter-btn shiny-effect" data-cat="upgrade" onclick="setFilter('upgrade', this)">Upgrade</div><div class="filter-btn shiny-effect" data-cat="akun" onclick="setFilter('akun', this)">Akun</div><div class="filter-btn shiny-effect" data-cat="verified" onclick="setFilter('verified', this)">Verified</div><div class="filter-btn shiny-effect" data-cat="whatsapp" onclick="setFilter('whatsapp', this)">WhatsApp</div><div class="filter-btn shiny-effect" data-cat="apk" onclick="setFilter('apk', this)">APK</div><div class="filter-btn shiny-effect" data-cat="tutorial" onclick="setFilter('tutorial', this)">Tutorial</div><div class="filter-btn shiny-effect" data-cat="ml" onclick="setFilter('ml', this)">ML</div><div class="filter-btn shiny-effect" data-cat="lain" onclick="setFilter('lain', this)">Lain</div></div><div id="filterResults" style="margin-top: 15px;"></div><div id="appSection"><div class="section-header"><div class="section-title">Semua Aplikasi Premium</div></div><div class="app-grid" id="fullAppGrid"></div></div></div><div class="page-section" id="page-membership-upgrade" style="display:none;"><div style="padding: 18px 20px 6px; color: var(--text-sec); font-size: 12px; line-height: 1.55;"></div><div class="mem-upgrade-shell mem-upgrade-page" id="memberUpgradeSection"><div class="mem-upgrade-top"><div class="mem-upgrade-title"><i class="fas fa-crown" style="color:var(--accent-gold); margin-right:8px;"></i>Upgrade Membership</div></div><div class="mem-carousel-wrap"><div aria-label="Pilih tier membership (geser)" class="mem-carousel" id="memberTierCarousel"><div aria-label="Pilih ELITE" class="mem-tier-card tier-elite" data-tier="elite" role="button" tabindex="0"><div class="mem-tier-head"><div class="mem-tier-name">ELITE</div><div class="mem-tier-pill"><i class="fas fa-bolt" style="margin-right:6px;"></i>hemat Rp 2.000 / order</div></div><div class="mem-price-box"><div class="mem-price-old"><s>Rp 75.000</s></div><div class="mem-price-new"><b>Rp 40.000</b></div></div><div class="mem-tier-sample"><span class="mem-tier-sample-label">Contoh tier:</span><span class="member-badge tier-elite">ELITE</span></div><div class="mem-benefits-box"><div class="mem-benefits-title">Keuntungan</div><ul class="mem-benefits"><li>Potongan otomatis 𝗥𝗽 𝟮.𝟬𝟬𝟬 di setiap pesanan</li><li>Berlaku kelipatan sesuai jumlah order 〔semakin banyak order, semakin besar hematnya〕</li><li>Diskon aktif otomatis tanpa kode promo 〔langsung kepotong saat checkout〕</li><li>Member permanen: sekali bayar, aktif selamanya</li><li>Cocok untuk yang sering order dan ingin hemat stabil setiap transaksi</li><li>Pilihan tepat untuk pemakaian pribadi / order santai tapi rutin</li></ul></div><button aria-label="Upgrade tier ini" class="mem-upgrade-btn btn-ghost" data-tier="elite" onclick="event.stopPropagation(); openMembershipUpgradeTier(\'elite\')" type="button"><i class="fas fa-arrow-up" style="margin-right:8px;"></i>Upgrade Sekarang
+            </div></div><div class="admin-carditem"><div class="top"><div class="title">Export / Import HTML</div><span class="mini-chip"><i class="fas fa-file-code"></i> backup</span></div><div class="admin-actions"><button class="btn-solid" onclick="(window.kzOpenBackupModal?window.kzOpenBackupModal():null)" type="button"><i class="fas fa-box-archive" style="margin-right:8px;"></i> Buka Panel Export/Import</button><button class="btn-ghost" onclick="(window.kzExportBaseHTML?window.kzExportBaseHTML():null)" type="button"><i class="fas fa-file-export" style="margin-right:8px;"></i> Export HTML (Produk Inline)</button></div><div style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.5">Import bisa pakai <b>file</b> (JSON/HTML) tanpa copy-paste. Panel ini juga punya Backup HTML (Full) + Export/Import JSON.</div></div><div class="admin-carditem"><div class="top"><div class="title">Audit Log Admin</div><span class="mini-chip"><i class="fas fa-clipboard-check"></i> riwayat</span></div><div class="admin-row"><div class="admin-field" style="flex:1;"><label style="font-size:12px;color:var(--text-sec)">Cari</label><input id="adminAuditSearch" oninput="renderAdminAudit()" placeholder="aksi / user / order / info"/></div><div class="admin-field" style="max-width:180px;"><label style="font-size:12px;color:var(--text-sec)">Limit</label><select id="adminAuditLimit" onchange="renderAdminAudit()"><option value="50">50</option><option selected="" value="100">100</option><option value="200">200</option></select></div></div><div class="admin-actions"><button class="btn-ghost" onclick="adminExportAudit()" type="button"><i class="fas fa-file-export" style="margin-right:8px;"></i> Export</button><button class="btn-ghost" onclick="adminClearAudit()" style="border-color: rgba(255,0,0,.18);" type="button"><i class="fas fa-trash-can" style="margin-right:8px;"></i> Clear</button></div><div style="height:10px"></div><div class="admin-cardlist" id="adminAuditList"></div><div id="adminAuditHint" style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.5">Audit log mencatat aksi admin penting (update order, poin, info, export). Disimpan lokal (device ini).</div></div></div></section></div></div></div><div class="acc-overlay" id="accountOverlay" onclick="closeAccountSettings()"><div aria-label="Profil &amp; Pengaturan Akun" aria-modal="true" class="acc-card" onclick="event.stopPropagation()" role="dialog"><div class="acc-head"><div><div class="acc-title"><i class="fas fa-user-gear" id="accTitleIcon" style="margin-right:8px;color:var(--primary)"></i><span id="accPanelTitle">Akun Saya</span></div></div><button class="acc-close" onclick="closeAccountSettings()" type="button">×</button></div><div class="acc-body"><form onsubmit="accountSave(event)"><div class="acc-profile"><div class="acc-avatar kz-profile-hero"><div class="kz-avatar-stack" id="accAvatarStack"><img alt="Foto profil" id="accAvatarPreview" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg"/><button aria-label="Ganti foto profil" class="kz-avatar-edit-fab" onclick="document.getElementById('accAvatarInput').click()" title="Ganti foto profil" type="button"><i class="fas fa-pencil"></i></button></div><div class="acc-avatar-tier" id="accAvatarTierBadge">BASIC</div><input accept="image/*" id="accAvatarInput" onchange="accountAvatarPick(event)" style="display:none" type="file"/><div style="margin-top:8px; font-size:12px; color: var(--text-sec); line-height:1.4;"></div></div></div><div class="acc-account-sidebar"><div class="kz-profile-columns"><div class="acc-kv"><span>ID</span><b id="accUserId">-</b></div><div class="acc-kv"><span>Tanggal Bergabung</span><b id="accJoinedAt">-</b></div><div class="acc-kv kz-ref-kv"><span>Kode Referal</span><div class="kz-ref-wrap"><div class="kz-ref-top"><b id="accReferralCode">-</b><button class="acc-copy-btn" onclick="copyReferralCode()" title="Copy kode referal" type="button"><i class="fas fa-copy"></i></button></div><button class="acc-invite-btn" onclick="shareReferralLink()" title="Undang teman" type="button"><i class="fas fa-share-nodes"></i><span>Undang</span></button></div></div><div class="acc-kv"><span>Poin</span><b id="accPointsText">0</b></div><div class="acc-kv kz-status-akun-kv"><span>Status Akun</span><b class="status-active" id="accActiveText">AKTIF</b></div><div class="kz-install-kv"><button class="btn-solid kz-install-column-btn" id="accInstallAppBtn" onclick="kzSetSidebarMenuMode('nonhome');kzHandleInstallClick()" type="button"><i class="fas fa-download" style="margin-right:8px;"></i><span id="accInstallAppLabel">Install Aplikasi</span></button></div></div><div class="acc-tier-panel"><div class="acc-tier-head"><div class="acc-tier-title">Tier</div><div class="acc-tier-current">Tier kamu: <b id="accTierActiveInline">BASIC</b></div></div><div class="acc-tier-list" id="accTierList"><span class="member-badge tier-basic">BASIC</span><span class="member-badge tier-elite">ELITE</span><span class="member-badge tier-ultimate">ULTIMATE</span><span class="member-badge tier-business">BUSINESS</span></div></div></div><div class="kz-profile-bio-fields"><div class="auth-field"><label>Nama Lengkap</label><input id="accDisplayName" placeholder="Nama yang tampil"/></div><div class="auth-field"><label>Nomor WhatsApp</label><input id="accWA" inputmode="numeric" placeholder="contoh: 08"/></div><div class="auth-field kz-hidden-account-field"><label>Email</label><input id="accEmail" placeholder="Masukkan email" type="email"/><div id="accEmailHint" style="margin-top:6px;font-size:12px;color:var(--text-sec);line-height:1.4;"></div></div><div class="auth-field"><label>Username</label><input id="accUsername" readonly=""/></div><div class="auth-field"><label>Tanggal Lahir</label><input id="accBirthDate" type="date"/></div><div class="auth-field"><label>Jenis Kelamin</label><input id="accGender" type="hidden" value=""/><div aria-label="Jenis Kelamin" class="gender-pills" id="accGenderPills" role="group"><button class="gpill" data-v="Laki-laki" onclick="setAccGender('Laki-laki', this)" type="button">Laki-laki</button><button class="gpill" data-v="Perempuan" onclick="setAccGender('Perempuan', this)" type="button">Perempuan</button></div><div style="margin-top:6px;font-size:12px;color:var(--text-sec);line-height:1.4;"></div></div></div><div class="kz-profile-security"><div class="auth-field"><label>Password Baru</label><div class="pw-wrap"><input autocomplete="new-password" id="accNewPass" placeholder="Kosongkan jika tidak ingin ganti" type="password"/><button aria-label="Tampilkan password" class="pw-toggle" onclick="togglePasswordVisibility('accNewPass', this)" type="button"><i class="fas fa-eye"></i></button></div></div><div class="auth-field"><label>Konfirmasi Password Baru</label><div class="pw-wrap"><input autocomplete="new-password" id="accNewPass2" placeholder="Ulangi password baru" type="password"/><button aria-label="Tampilkan password" class="pw-toggle" onclick="togglePasswordVisibility('accNewPass2', this)" type="button"><i class="fas fa-eye"></i></button></div></div></div><div class="kz-profile-save-section"><div class="auth-actions" style="margin-top:12px;"><button class="btn-ghost" onclick="closeAccountSettings()" type="button">Tutup</button><button class="btn-solid" type="submit"><i class="fas fa-check" style="margin-right:8px;"></i> Simpan Perubahan</button></div></div><div class="auth-actions" style="margin-top:10px;"><button class="btn-ghost btn-ghost-danger" onclick="logoutUser()" style="width:100%;" type="button"><i class="fas fa-right-from-bracket" style="margin-right:8px;"></i> Keluar</button></div><div class="auth-actions" style="margin-top:10px;"><button class="btn-ghost btn-ghost-danger" onclick="deleteMyAccount()" style="width:100%;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.12);" type="button"><i class="fas fa-trash" style="margin-right:8px;"></i> Hapus Akun Saya</button></div></form></div></div></div><div aria-live="polite" class="pay-toast" id="sysToast"></div><div class="sidebar-overlay" onclick="toggleSidebar()"></div><div class="sidebar" id="sidebar"><div class="sidebar-header"><div class="sidebar-header-left"><div class="sidebar-userbox" id="sidebarUserBox"><img alt="Profile" class="sidebar-profile-img" id="sidebarProfileImg" onclick="event.stopPropagation(); openMyAccountPanel();" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); openMyAccountPanel();}" role="button" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg" tabindex="0" title="Buka profil"/><div class="sidebar-usertext"><div class="sidebar-greeting" id="sidebarGreeting">Selamat Malam <span id="sidebarGreetingIcon">🌙</span></div><div class="sidebar-title" id="sidebarDynamicTitle">Kzrizusmo</div></div></div><div class="sidebar-title sidebar-guest-title" id="sidebarGuestTitle" style="display:none;">MENU</div></div><div class="sidebar-header-actions"><div class="sidebar-close" onclick="toggleSidebar()"><i class="fas fa-times"></i></div></div></div><div class="sidebar-menu"><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('home');navTo('home')"><i class="fas fa-house"></i><span>Home</span></div><div class="sidebar-item shiny-effect" id="profileUserMenuItem" onclick="openProfileUser()" style="display:none;"><i class="fas fa-user-gear"></i><span class="sidebar-label">Profile User</span></div><div class="sidebar-item shiny-effect" id="authMenuItem" onclick="openMyAccountPanel()"><i class="fas fa-user"></i><span class="sidebar-label" id="sidebarAuthLabel">Daftar / Masuk</span><span class="member-badge tier-basic sidebar-right" id="sidebarAuthTier" style="display:none;">BASIC</span></div><div class="sidebar-item shiny-effect" id="upgradeMembershipMenuItem" onclick="navTo(\'membership-upgrade\')"><i class="fas fa-crown"></i> Upgrade Membership</div><div class="sidebar-item shiny-effect" id="adminMenuItem" onclick="openAdminPanel()" style="display:none;"><i class="fas fa-user-shield"></i> Admin Panel</div><div class="sidebar-divider"></div><div class="sidebar-cat sidebar-cat-btn" onclick="toggleSidebarGroup('sidebarGroupNewOrders', this)">PESANAN BARU <i class="fas fa-chevron-down"></i></div><div class="sidebar-group" id="sidebarGroupNewOrders"><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');openPremiumApp()"><i class="fas fa-gem"></i> Aplikasi Premium</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');openProdukDigital()"><i class="fas fa-crown"></i> Produk Digital</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('sosmed-page')"><i class="fas fa-rocket"></i> Suntik Sosmed</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('pbob-page')"><i class="fas fa-wallet"></i> PBOB</div></div><div class="sidebar-cat">MENU LAIN</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');openMyOrdersFromMenu()"><i class="fas fa-receipt"></i> Pesanan Saya</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');kzOpenCartFromSidebar()"><i class="fas fa-shopping-cart"></i> Keranjang</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode(\'nonhome\');navTo(\'all-products\')"><i class="fas fa-search"></i> Semua Produk</div><div class="sidebar-item shiny-effect" id="installAppMenuItem" onclick="kzSetSidebarMenuMode('nonhome');kzHandleInstallClick()"><i class="fas fa-download"></i> <span id="installAppLabel">Install Aplikasi</span></div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('apk-download-page')"><i class="fas fa-file-arrow-down"></i> Free Apk JB</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('info-page')"><i class="fas fa-circle-info"></i> Informasi</div><div class="sidebar-item shiny-effect" onclick="kzSetSidebarMenuMode('nonhome');navTo('faq-page')"><i class="fas fa-question-circle"></i> Pertanyaan Umum</div></div></div><header><div class="header-left"><div class="burger-btn shiny-effect" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div><div class="header-title"><h1>KZRIZUSMO <span>STORE</span></h1><span class="header-subtitle">DIGITAL MARKETPLACE</span></div></div><div class="header-right"><img class="header-logo shiny-effect" id="headerProfileImg" onclick="openProfileUser()" src="https://img1.pixhost.to/images/11283/677288085_miwamikadono.jpg"/></div></header><div class="container" id="mainContainer"><div class="page-section" id="page-home"><div class="banner-container"><div class="banner-track"><div class="banner-item"><img class="banner-img" src="https://img1.pixhost.to/images/11283/677288053_ochobot.jpg"/></div><div class="banner-item"><img class="banner-img" src="https://files.catbox.moe/7j7q60.jpg"/></div><div class="banner-item"><img class="banner-img" src="https://img1.pixhost.to/images/11620/685027953_miwamikadono.jpg"/></div><div class="banner-item"><a href="https://wa.me/12369523530?text=Hallo%20min%20saya%20mau%20join%20reseller%20app%20premium%20nya%20bisa?" target="_blank"><img class="banner-img" src="https://img1.pixhost.to/images/11620/685027951_miwamikadono.jpg"/></a></div></div></div><div class="search-container" style="margin-top: 20px;"><input class="search-input" oninput="filterAppList(this.value)" placeholder="Cari nama aplikasi..." type="text"/></div><div class="filter-scroll" id="filterScrollStore"><div class="filter-btn shiny-effect" onclick="setFilter('all', this)">Semua</div><div class="filter-btn shiny-effect active" onclick="setFilter('populer', this)">Populer</div><div class="filter-btn shiny-effect" onclick="setFilter('editing', this)">Editing</div><div class="filter-btn shiny-effect" onclick="setFilter('streaming', this)">Streaming</div><div class="filter-btn shiny-effect" onclick="setFilter('music', this)">Music</div><div class="filter-btn shiny-effect" onclick="setFilter('ai', this)">AI</div><div class="filter-btn shiny-effect" onclick="setFilter('vpn', this)">VPN</div></div><div class="filter-scroll" id="filterScrollDigital" style="display:none"><div class="filter-btn shiny-effect active" data-cat="all" onclick="setFilter('all', this)">Semua</div><div class="filter-btn shiny-effect" data-cat="upgrade" onclick="setFilter('upgrade', this)">Upgrade</div><div class="filter-btn shiny-effect" data-cat="akun" onclick="setFilter('akun', this)">Akun</div><div class="filter-btn shiny-effect" data-cat="verified" onclick="setFilter('verified', this)">Verified</div><div class="filter-btn shiny-effect" data-cat="whatsapp" onclick="setFilter('whatsapp', this)">WhatsApp</div><div class="filter-btn shiny-effect" data-cat="apk" onclick="setFilter('apk', this)">APK</div><div class="filter-btn shiny-effect" data-cat="tutorial" onclick="setFilter('tutorial', this)">Tutorial</div><div class="filter-btn shiny-effect" data-cat="ml" onclick="setFilter('ml', this)">ML</div><div class="filter-btn shiny-effect" data-cat="lain" onclick="setFilter('lain', this)">Lain</div></div><div id="filterResults" style="margin-top: 15px;"></div><div id="appSection"><div class="section-header"><div class="section-title">Semua Aplikasi Premium</div></div><div class="app-grid" id="fullAppGrid"></div></div></div><div class="page-section" id="page-membership-upgrade" style="display:none;"><div style="padding: 18px 20px 6px; color: var(--text-sec); font-size: 12px; line-height: 1.55;"></div><div class="mem-upgrade-shell mem-upgrade-page" id="memberUpgradeSection"><div class="mem-upgrade-top"><div class="mem-upgrade-title"><i class="fas fa-crown" style="color:var(--accent-gold); margin-right:8px;"></i>Upgrade Membership</div></div><div class="mem-carousel-wrap"><div aria-label="Pilih tier membership (geser)" class="mem-carousel" id="memberTierCarousel"><div aria-label="Pilih ELITE" class="mem-tier-card tier-elite" data-tier="elite" role="button" tabindex="0"><div class="mem-tier-head"><div class="mem-tier-name">ELITE</div><div class="mem-tier-pill"><i class="fas fa-bolt" style="margin-right:6px;"></i>hemat Rp 2.000 / order</div></div><div class="mem-price-box"><div class="mem-price-old"><s>Rp 75.000</s></div><div class="mem-price-new"><b>Rp 40.000</b></div></div><div class="mem-tier-sample"><span class="mem-tier-sample-label">Contoh tier:</span><span class="member-badge tier-elite">ELITE</span></div><div class="mem-benefits-box"><div class="mem-benefits-title">Keuntungan</div><ul class="mem-benefits"><li>Potongan otomatis 𝗥𝗽 𝟮.𝟬𝟬𝟬 di setiap pesanan</li><li>Berlaku kelipatan sesuai jumlah order 〔semakin banyak order, semakin besar hematnya〕</li><li>Diskon aktif otomatis tanpa kode promo 〔langsung kepotong saat checkout〕</li><li>Member permanen: sekali bayar, aktif selamanya</li><li>Cocok untuk yang sering order dan ingin hemat stabil setiap transaksi</li><li>Pilihan tepat untuk pemakaian pribadi / order santai tapi rutin</li></ul></div><button aria-label="Upgrade tier ini" class="mem-upgrade-btn btn-ghost" data-tier="elite" onclick="event.stopPropagation(); openMembershipUpgradeTier(\'elite\')" type="button"><i class="fas fa-arrow-up" style="margin-right:8px;"></i>Upgrade Sekarang
       </button></div><div aria-label="Pilih ULTIMATE" class="mem-tier-card tier-ultimate" data-tier="ultimate" role="button" tabindex="0"><div class="mem-tier-head"><div class="mem-tier-name">ULTIMATE</div><div class="mem-tier-pill"><i class="fas fa-fire" style="margin-right:6px;"></i>hemat Rp 4.000 / order</div></div><div class="mem-price-box"><div class="mem-price-old"><s>Rp 150.000</s></div><div class="mem-price-new"><b>Rp 80.000</b></div></div><div class="mem-tier-sample"><span class="mem-tier-sample-label">Contoh tier:</span><span class="member-badge tier-ultimate">ULTIMATE</span></div><div class="mem-benefits-box"><div class="mem-benefits-title">Keuntungan</div><ul class="mem-benefits"><li>Potongan otomatis 𝗥𝗽 𝟰.𝟬𝟬𝟬 di setiap pesanan</li><li>Berlaku kelipatan sesuai jumlah order 〔semakin banyak order, semakin besar hematnya〕</li><li>Diskon aktif otomatis tanpa kode promo 〔langsung kepotong saat checkout〕</li><li>Member permanen: sekali bayar, aktif selamanya</li><li>Cocok untuk yang rutin order dan ingin potongan lebih besar tiap transaksi</li><li>Lebih hemat untuk pengguna aktif dengan frekuensi pembelian tinggi</li></ul></div><button aria-label="Upgrade tier ini" class="mem-upgrade-btn btn-ghost" data-tier="ultimate" onclick="event.stopPropagation(); openMembershipUpgradeTier(\'ultimate\')" type="button"><i class="fas fa-arrow-up" style="margin-right:8px;"></i>Upgrade Sekarang
       </button></div><div aria-label="Pilih BUSINESS" class="mem-tier-card tier-business" data-tier="business" role="button" tabindex="0"><div class="mem-tier-head"><div class="mem-tier-name">BUSINESS</div><div class="mem-tier-pill"><i class="fas fa-briefcase" style="margin-right:6px;"></i>hemat 𝗥𝗽 𝟲.𝟬𝟬𝟬 / order</div></div><div class="mem-price-box"><div class="mem-price-old"><s>Rp 210.000</s></div><div class="mem-price-new"><b>Rp 120.000</b></div></div><div class="mem-tier-sample"><span class="mem-tier-sample-label">Contoh tier:</span><span class="member-badge tier-business">BUSINESS</span></div><div class="mem-benefits-box"><div class="mem-benefits-title">Keuntungan</div><ul class="mem-benefits"><li>Potongan otomatis Rp 6.000 di setiap pesanan</li><li>Berlaku kelipatan sesuai jumlah order 〔semakin banyak order, semakin besar hematnya〕</li><li>Diskon aktif otomatis tanpa kode promo 〔langsung kepotong saat checkout〕</li><li>Member permanen: sekali bayar, aktif selamanya</li><li>Cocok untuk reseller / pemilik bisnis / kebutuhan order volume tinggi</li><li>Paling ideal untuk yang mengejar efisiensi biaya dan margin lebih aman</li></ul></div><button aria-label="Upgrade tier ini" class="mem-upgrade-btn btn-ghost" data-tier="business" onclick="event.stopPropagation(); openMembershipUpgradeTier(\'business\')" type="button"><i class="fas fa-arrow-up" style="margin-right:8px;"></i>Upgrade Sekarang
-      </button></div></div></div><div class="mem-upgrade-note"></div></div></div><div class="page-section" id="page-app" style="display:none;"><div class="section-header"><div class="section-title">Semua Aplikasi Premium</div></div><div class="app-grid" id="pageAppGrid"></div></div><div class="page-section" id="page-sosmed" style="display:none;"><div class="section-header"><div class="section-title">Suntik Sosmed</div></div><div class="filter-scroll" id="sosmedTabs" style="padding-bottom:12px;"><div class="filter-btn shiny-effect sosmed-cat-btn active" data-filter="instagram" onclick="setSosmedPlatform('instagram', this)"><i class="fab fa-instagram"></i> Instagram</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="tiktok" onclick="setSosmedPlatform('tiktok', this)"><i class="fab fa-tiktok"></i> TikTok</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="youtube" onclick="setSosmedPlatform('youtube', this)"><i class="fab fa-youtube"></i> YouTube</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="whatsapp" onclick="setSosmedPlatform('whatsapp', this)"><i class="fab fa-whatsapp"></i> WhatsApp</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="shopee" onclick="setSosmedPlatform('shopee', this)"><i class="fas fa-shopping-bag"></i> Shopee</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="twitter" onclick="setSosmedPlatform('twitter', this)"><i class="fab fa-twitter"></i> Twitter/X</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="threads" onclick="setSosmedPlatform('threads', this)"><i class="fas fa-at"></i> Threads</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="spotify" onclick="setSosmedPlatform('spotify', this)"><i class="fab fa-spotify"></i> Spotify</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="discord" onclick="setSosmedPlatform('discord', this)"><i class="fab fa-discord"></i> Discord</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="pinterest" onclick="setSosmedPlatform('pinterest', this)"><i class="fab fa-pinterest"></i> Pinterest</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="linkedin" onclick="setSosmedPlatform('linkedin', this)"><i class="fab fa-linkedin"></i> LinkedIn</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="snackvideo" onclick="setSosmedPlatform('snackvideo', this)"><i class="fas fa-video"></i> Snack Video</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="webtraffic" onclick="setSosmedPlatform('webtraffic', this)"><i class="fas fa-chart-line"></i> Website Traffic</div></div><div class="search-container" style="padding-top:6px;"><input class="search-input" id="sosmedSearchInput" oninput="renderSosmedProducts(this.value)" placeholder="Cari paket di kategori ini..." type="text"/></div><div class="app-grid" id="sosmedProductList"></div></div><div class="page-section" id="page-all-products" style="display:none;"><div class="search-container"><input class="search-input" id="searchInput" oninput="renderAllProductsDebounced(this.value)" placeholder="Ketik nama paket..." type="text"/></div><div class="controls-row" style="padding:0 20px 14px 20px;"><div style="flex:1; position:relative;"><div class="control-btn shiny-effect" onclick="toggleSortMenu()"><i class="fas fa-sort-amount-down"></i> Urutkan
+      </button></div></div></div><div class="mem-upgrade-note"></div></div></div><div class="page-section" id="page-app" style="display:none;"><div class="section-header"><div class="section-title">Semua Aplikasi Premium</div></div><div class="app-grid" id="pageAppGrid"></div></div><div class="page-section" id="page-sosmed" style="display:none;"><div class="section-header"><div class="section-title">Suntik Sosmed</div></div><div class="filter-scroll" id="sosmedTabs" style="padding-bottom:12px;"><div class="filter-btn shiny-effect sosmed-cat-btn active" data-filter="instagram" onclick="setSosmedPlatform('instagram', this)"><i class="fab fa-instagram"></i> Instagram</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="tiktok" onclick="setSosmedPlatform('tiktok', this)"><i class="fab fa-tiktok"></i> TikTok</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="youtube" onclick="setSosmedPlatform('youtube', this)"><i class="fab fa-youtube"></i> YouTube</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="whatsapp" onclick="setSosmedPlatform('whatsapp', this)"><i class="fab fa-whatsapp"></i> WhatsApp</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="shopee" onclick="setSosmedPlatform('shopee', this)"><i class="fas fa-shopping-bag"></i> Shopee</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="twitter" onclick="setSosmedPlatform('twitter', this)"><i class="fab fa-twitter"></i> Twitter/X</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="threads" onclick="setSosmedPlatform('threads', this)"><i class="fas fa-at"></i> Threads</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="spotify" onclick="setSosmedPlatform('spotify', this)"><i class="fab fa-spotify"></i> Spotify</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="discord" onclick="setSosmedPlatform('discord', this)"><i class="fab fa-discord"></i> Discord</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="pinterest" onclick="setSosmedPlatform('pinterest', this)"><i class="fab fa-pinterest"></i> Pinterest</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="linkedin" onclick="setSosmedPlatform('linkedin', this)"><i class="fab fa-linkedin"></i> LinkedIn</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="snackvideo" onclick="setSosmedPlatform('snackvideo', this)"><i class="fas fa-video"></i> Snack Video</div><div class="filter-btn shiny-effect sosmed-cat-btn" data-filter="webtraffic" onclick="setSosmedPlatform('webtraffic', this)"><i class="fas fa-chart-line"></i> Website Traffic</div></div><div class="search-container" style="padding-top:6px;"><input class="search-input" id="sosmedSearchInput" oninput="renderSosmedProducts(this.value)" placeholder="Cari paket di kategori ini..." type="text"/></div><div class="app-grid" id="sosmedProductList"></div></div><div class="page-section" id="page-pbob" style="display:none;"><div class="filter-scroll" id="pbobTabs" style="padding-bottom:12px;"><div class="filter-btn shiny-effect pbob-cat-btn active" data-filter="pulsa-nasional" onclick="setPbobCategory('pulsa-nasional', this)"><i class="fas fa-signal"></i> Pulsa Nasional</div><div class="filter-btn shiny-effect pbob-cat-btn" data-filter="sms-telp" onclick="setPbobCategory('sms-telp', this)"><i class="fas fa-phone"></i> Sms &amp; Telp</div><div class="filter-btn shiny-effect pbob-cat-btn" data-filter="e-wallet" onclick="setPbobCategory('e-wallet', this)"><i class="fas fa-wallet"></i> e-Wallet</div><div class="filter-btn shiny-effect pbob-cat-btn" data-filter="token-pln" onclick="setPbobCategory('token-pln', this)"><i class="fas fa-bolt"></i> Token PLN</div><div class="filter-btn shiny-effect pbob-cat-btn" data-filter="e-toll" onclick="setPbobCategory('e-toll', this)"><i class="fas fa-road"></i> Topup Saldo E-toll</div><div class="filter-btn shiny-effect pbob-cat-btn" data-filter="travel-va" onclick="setPbobCategory('travel-va', this)"><i class="fas fa-plane"></i> Travel dan Bayar VA</div><div class="filter-btn shiny-effect pbob-cat-btn" data-filter="tagihan" onclick="setPbobCategory('tagihan', this)"><i class="fas fa-file-invoice-dollar"></i> Bayar Tagihan</div><div class="filter-btn shiny-effect pbob-cat-btn" data-filter="edc-mini-atm" onclick="setPbobCategory('edc-mini-atm', this)"><i class="fas fa-credit-card"></i> EDC Mini Atm</div></div><div id="pbobProductList"></div></div><div class="page-section" id="page-all-products" style="display:none;"><div class="search-container"><input class="search-input" id="searchInput" oninput="renderAllProductsDebounced(this.value)" placeholder="Ketik nama paket..." type="text"/></div><div class="controls-row" style="padding:0 20px 14px 20px;"><div style="flex:1; position:relative;"><div class="control-btn shiny-effect" onclick="toggleSortMenu()"><i class="fas fa-sort-amount-down"></i> Urutkan
                     </div><div class="sort-dropdown" id="sortMenu"><div class="sort-option" onclick="setSort('abjad')">Abjad (A-Z)</div><div class="sort-option" onclick="setSort('murah')">Termurah</div><div class="sort-option" onclick="setSort('mahal')">Termahal</div></div></div><div class="control-btn shiny-effect" onclick="toggleFilterDrawer()"><i class="fas fa-filter"></i> Filter
                 </div><div class="filter-drawer" id="filterDrawer"><p style="color:var(--text-sec); font-size:0.8rem; margin-bottom:5px;">Kategori</p><div class="chip-container"><div class="filter-chip active" onclick="toggleFilter(this, 'cat', 'all')">Semua</div><div class="filter-chip" onclick="toggleFilter(this, 'cat', 'app')">App Premium</div><div class="filter-chip" onclick="toggleFilter(this, 'cat', 'digital')">Produk Digital</div><div class="filter-chip" onclick="toggleFilter(this, 'cat', 'apk')">APK</div></div><p style="color:var(--text-sec); font-size:0.8rem; margin-bottom:5px; margin-top:10px;">Range Harga</p><div class="chip-container"><div class="filter-chip" onclick="toggleFilter(this, 'price', 'low')">&lt; 10Rb</div><div class="filter-chip" onclick="toggleFilter(this, 'price', 'mid')">10Rb - 25Rb</div><div class="filter-chip" onclick="toggleFilter(this, 'price', 'high')">&gt; 25Rb</div></div></div></div><div id="allProductList"></div></div></div><div class="page-section" id="page-apk-download" style="display:none;"><div class="section-header"><div class="section-title">Free Apk JB</div></div><div class="apk-download-intro"></div><div class="app-grid apk-download-grid"><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/0974x2pd5qdy8a1/Kzrizusmo_Tools.apk/file" onclick="return kzOpenApkWithNotice(event, 'https://www.mediafire.com/file/0974x2pd5qdy8a1/Kzrizusmo_Tools.apk/file', 'Kzrizusmo Tools', 'Username : xy\nPassword : xy');"><img alt="Kzrizusmo Tools" src="https://files.catbox.moe/y9zvv8.jpg"/><div class="item-title">Kzrizusmo Tools</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/xjpct43aatjyxm9/SpamOtp-kzrizusmo.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Auto Spam Otp" src="https://files.catbox.moe/ncs8wr.jpg"/><div class="item-title">Auto Spam Otp</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/vr4sv2r5msus5bd/AutoSave-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Auto Save Kontak" src="https://files.catbox.moe/4gd9s6.png"/><div class="item-title">Auto Save Kontak</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/f52v9p89nzdlz4v/Banned-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Banned 1" src="https://files.catbox.moe/hszt8x.png"/><div class="item-title">Banned 1</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/top80vlnu5hwtri/BannedKzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Banned 2" src="https://files.catbox.moe/6mgxsq.png"/><div class="item-title">Banned 2</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/zh9rl3yk7kv0m9h/BannedUnbanned-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Banned 3" src="https://files.catbox.moe/lkjn7k.png"/><div class="item-title">Banned 3</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/si2rkiqhleygd35/BekuPayment-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Beku Payment" src="https://files.catbox.moe/95w08o.jpg"/><div class="item-title">Beku Payment</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/v24au5y6b862vo5/Jpm-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Jpm" src="https://files.catbox.moe/twiseh.png"/><div class="item-title">Jpm</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/vpgi9b5cgplaff5/Kenon-KzrizusmoStore.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Banned 4" src="https://files.catbox.moe/vzwn7r.png"/><div class="item-title">Banned 4</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/zye539dtbl0qq41/Unbanned.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Unbanned" src="https://cdn.yupra.my.id/yp/ge3zywgi.jpg"/><div class="item-title">Unbanned</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/z3scm6l6kok58x7/Autoresbot.apk/file" rel="noopener noreferrer" target="_blank"><img alt="AutoResBot" src="https://files.catbox.moe/kk4mmg.png"/><div class="item-title">AutoResBot</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/ss3q87xvkence35/PixelLab-Kzrizusmo.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Pixellab Mod" src="https://files.catbox.moe/cai4fl.png"/><div class="item-title">Pixellab Mod</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/c3x5lct6t9djc7e/Jadibot.apk/file" rel="noopener noreferrer" target="_blank"><img alt="JadiBot" src="https://cdn.yupra.my.id/yp/eux9ng7g.jpg"/><div class="item-title">JadiBot</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/54yibjw5bdlrvaz/Zusmo_Shadow.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Zusmo Shadow" src="https://files.catbox.moe/qq5zjk.png"/><div class="item-title">Zusmo Shadow</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/u6nncpvat6dv1p1/ZusmoEmote-V2.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Zusmo EmoteFF" src="https://files.catbox.moe/ylr3da.png"/><div class="item-title">Zusmo EmoteFF</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://sfile.co/UQthc0ylwY7?utm_source=e33b140fb91ce1ebc79f66931ff2eea9" rel="noopener noreferrer" target="_blank"><img alt="Fake Notif BCA" src="https://files.catbox.moe/fv4qmj.jpg"/><div class="item-title">Fake Notif BCA</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/rmb1tjs870mz2wk/Notif_Fake_Ovo.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Fake Notif OVO" src="https://cdn.yupra.my.id/yp/ewdjl8ot.jpg"/><div class="item-title">Fake Notif OVO</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/lkh3dxx5a1os3fv/notifikasi_gopay_%2528SFILE.MOBI%2529.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Fake Notif GOPAY" src="https://files.catbox.moe/ldc500.jpg"/><div class="item-title">Fake Notif GOPAY</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/6l1k6qfkwzk9s1b/Notif_Fake_Dana.zip/file" rel="noopener noreferrer" target="_blank"><img alt="Fake Notif DANA" src="https://files.catbox.moe/unyswp.jpg"/><div class="item-title">Fake Notif DANA</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/0f8srdmpcs7azcm/ranstoreee.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Kzrizusmo Ransomware" src="https://files.catbox.moe/h8yvwn.jpg"/><div class="item-title">Kzrizusmo Ransomware</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a></div><div class="section-header apk-download-subsection"><div class="section-title">Game's By Kzrizusmo</div></div><div class="apk-download-intro apk-download-subintro"></div><div class="app-grid apk-download-grid"><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/txcgfdkyeuobbm6/Sky_Hopper.apk/file" rel="noopener noreferrer" target="_blank" onclick="return kzOpenMaintenancePopup(event, 'Sky Hopper', 'APK Sky Hopper sedang maintenance. Silakan cek kembali nanti.');"><img alt="Sky Hopper" src="https://files.catbox.moe/e04ful.jpg"/><div class="item-title">Sky Hopper</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/j12pkr2ztokormw/Steel_Rush.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Steel Rush" src="https://files.catbox.moe/riuh19.jpg"/><div class="item-title">Steel Rush</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a><a class="item-card apk-download-card shiny-effect" href="https://www.mediafire.com/file/60rx74hhf18agud/Shark.apk/file" rel="noopener noreferrer" target="_blank"><img alt="Shark Simulator" src="https://files.catbox.moe/w1j74m.jpg"/><div class="item-title">Shark Simulator</div><div class="apk-download-btn"><i class="fas fa-download"></i><span>Install</span></div></a></div></div><div class="page-section" id="page-info" style="display:none;"><div class="search-container" style="padding: 0 20px 12px 20px;"><input class="search-input" id="infoSearchInput" oninput="infoOnSearch(this.value)" placeholder="Cari Informasi" type="text"/></div><div style="padding: 0 20px 12px 20px;"><div class="info-filter-grid"><div class="filter-chip active" onclick="infoSetFilter('all', this)"><i class="fas fa-border-all"></i> Semua</div><div class="filter-chip" onclick="infoSetFilter('penting', this)"><i class="fas fa-thumbtack"></i> Penting</div><div class="filter-chip" onclick="infoSetFilter('tutorial', this)"><i class="fas fa-lightbulb"></i> Tutorial</div><div class="filter-chip" onclick="infoSetFilter('promo', this)"><i class="fas fa-tags"></i> Promo</div><div class="filter-chip" onclick="infoSetFilter('pembaruan', this)"><i class="fas fa-bell"></i> Pembaruan</div><div class="filter-chip" onclick="infoSetFilter('peringatan', this)"><i class="fas fa-triangle-exclamation"></i> Peringatan</div></div></div><div class="section-header" style="margin-top: 10px;"><div class="section-title"></div></div><div class="admin-cardlist" id="infoPageList"></div><div id="infoPageHint" style="margin-top:10px;font-size:12px;color:var(--text-sec);line-height:1.6;">
     Informasi terbaru dari admin akan tampil di sini.
@@ -6463,7 +6463,8 @@ function playClick() { return; }
         "desc": []
       }
     ]
-  }
+  }, 
+
 ];
 
 /* ===== SUNTIK SOSMED DATA (DARI indexsosmed.html) ===== */
@@ -13391,6 +13392,28 @@ ___________________________________________
 upgrade level reseller dapat dilakukan tanpa dikenakan biaya dengan syarat melakukan target penjualan.`,
     createdAt: Date.now(),
     updatedAt: Date.now()
+  },
+  {
+    id: "promo-viu-gratis",
+    title: "100 AKUN VIU PRO GRATIS",
+    category: "promo",
+    type: "promo",
+    pinned: false,
+    active: true,
+    link: "",
+    content:
+`Tersedia program berbagi 100 akun VIU Pro gratis untuk customer KZRIZUSMO Store.
+
+CATATAN PENTING
+- Ini bukan scam.
+- Stok terbatas, hanya selama persediaan masih ada.
+- Data login tidak ditampilkan di website demi keamanan akun.
+- Klaim akun dilakukan melalui admin/CS sesuai ketentuan yang berlaku.
+- Akun dibagikan untuk penggunaan wajar, jangan ubah data akun.
+
+Silakan hubungi admin/CS untuk cek ketersediaan dan proses klaim.`,
+    createdAt: Date.now(),
+    updatedAt: Date.now()
   }
 ];
 
@@ -13671,6 +13694,9 @@ function navTo(page) {
     } else if (page === 'sosmed-page') {
         document.getElementById('page-sosmed').style.display = 'block';
         try { initSosmedPage(); } catch(e) {}
+    } else if (page === 'pbob-page') {
+        document.getElementById('page-pbob').style.display = 'block';
+        try { initPbobPage(); } catch(e) {}
     } else if (page === 'all-products') {
         document.getElementById('page-all-products').style.display = 'block';
         try {
@@ -15841,6 +15867,10 @@ header{border-bottom:0!important}
   </div>
 </div>
 
+
+
+
+
 </body>
 </html>`;
   downloadBlob('struk-' + oid + '.html', htmlDoc, 'text/html;charset=utf-8');
@@ -17106,7 +17136,7 @@ function kzGetEliteOverrideInfo(u) {
     if (!u || u.role === "admin") return null;
     const uname = String(u.username || u.userName || u.handle || "").trim().toLowerCase();
     if (!uname) return null;
-    const eliteUsers = { anxelliaa: true, vigo: true, din: true, "ilyas 123": true, pasepstecu: true, bimzstr: true };
+    const eliteUsers = { anxelliaa: true, vigo: true, din: true, "ilyas 123": true, pasepstecu: true, bimzstr: true, "harun ahmada hsb": true, vannstecu: true, salzxx980: true, xyy: true, ripki: true, azka: true, garz: true, gaa: true, leo: true, "wafik nak tidor": true, "123": true, yafiq: true, "luis fernando": true, draaxybo: true, pinz: true, sya: true, acuyy: true };
     if (!eliteUsers[uname]) return null;
 
     const now = new Date();
@@ -28250,6 +28280,10 @@ header{border-bottom:0!important}
   </div>
 </div>
 
+
+
+
+
 </body>
 </html>`;
   }
@@ -28800,25 +28834,11 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,.container::-webkit-scrollbar,.s
     if(base > 0) return base;
     return now();
   }
-  function requiresResendProofGate(order){
-    if(!order || !isProductOrder(order)) return false;
-    var kind = String(order.kind || '').toLowerCase();
-    var src = String(order.source || '').toLowerCase();
-    if(kind === 'redeem' || src === 'redeem') return false;
-    var method = order.method || {};
-    var mk = String(method.key || order.methodKey || order.lastMethodKey || '').toLowerCase();
-    if(mk === 'poin' || mk === 'points' || mk === 'redeem') return false;
-    return Number(order.totalVal || 0) > 0 || !!String(method.label || method.value || mk || '').trim();
-  }
-  function hasResendProofStarted(order){
-    return !!Number(order && (order.kzResendProofClickedAt || order.resendProofClickedAt || order.kirimUlangBuktiTfAt || 0));
-  }
   function desiredStatus(order){
     if(!isProductOrder(order)) return '';
     var st = String(order.status || 'proof_submitted');
     if(st === 'rejected') return '';
     if(st === 'verified') return 'verified';
-    if(requiresResendProofGate(order) && !hasResendProofStarted(order)) return 'proof_submitted';
     var elapsed = now() - getFlowStart(order);
     if(elapsed >= STEP_MS * 2) return 'delivered';
     if(elapsed >= STEP_MS) return 'processing';
@@ -28849,13 +28869,6 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,.container::-webkit-scrollbar,.s
         order.autoFlowStartedAt = now();
         if(!order.status || order.status === 'submitted') order.status = 'proof_submitted';
         changed = true;
-      }
-      if(requiresResendProofGate(order) && !hasResendProofStarted(order)){
-        if(String(order.status || '') !== 'proof_submitted'){
-          order.status = 'proof_submitted';
-          order.updatedAt = now();
-          changed = true;
-        }
       }
       var next = desiredStatus(order);
       if(next && String(order.status || '') !== next){
@@ -37883,13 +37896,14 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
       'Alasan Refund: Order gagal / tidak lanjut.',
       '',
       'Catatan Penting:',
-      '- Untuk melampirkan bukti transfer, klik ikon penjepit di pojok kanan atas lalu pilih foto.',
+      '- Upload ulang bukti transfer pada ikon peniti di pojok kanan atas Gmail.',
       '- Mohon jangan kirim email refund tanpa melampirkan bukti transfer ulang.',
       '',
       'Mohon bantu proses refund untuk order tersebut.',
       '',
       'Terima kasih.'
     ];
+    if(order.proofInfo) lines.splice(11, 0, 'Info Bukti Transfer: ' + txt(order.proofInfo));
     return lines.join('\n');
   }
   function openRefundCompose(order){
@@ -37916,7 +37930,7 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
     var att = order.proofAttachment || {};
     if(!att || !att.dataUrl) {
       try{
-        authToast('Template refund dibuka. Klik ikon penjepit di pojok kanan atas lalu pilih foto untuk melampirkan bukti transfer.');
+        authToast(att && (att.name || order.proofInfo) ? 'Template refund dibuka. Upload ulang bukti transfer lewat ikon peniti di pojok kanan atas Gmail ya.' : 'Template refund dibuka. Upload ulang bukti transfer lewat ikon peniti di pojok kanan atas Gmail ya.');
       }catch(e){}
       return false;
     }
@@ -37933,11 +37947,11 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
         try{ URL.revokeObjectURL(url); }catch(e){}
         try{ a.remove(); }catch(e){}
       }, 1800);
-      try{ authToast('Template refund dibuka. Klik ikon penjepit di pojok kanan atas lalu pilih foto untuk melampirkan bukti transfer.'); }catch(e){}
+      try{ authToast('Template refund dibuka. File bukti transfer lama juga disiapkan. Tetap upload ulang lewat ikon peniti di pojok kanan atas Gmail ya.'); }catch(e){}
       return true;
     }catch(e){
       console.warn('refund proof prepare', e);
-      try{ authToast('Template refund dibuka. Klik ikon penjepit di pojok kanan atas lalu pilih foto untuk melampirkan bukti transfer.'); }catch(_e){}
+      try{ authToast('Template refund dibuka. Upload ulang bukti transfer lewat ikon peniti di pojok kanan atas Gmail ya.'); }catch(_e){}
       return false;
     }
   }
@@ -38943,15 +38957,16 @@ header{
       'Waktu Order: ' + fmtDate(order.orderedAt),
       'Target / Data Pesanan: ' + txt(order.target || order.targetValue || order.receiver || order.username || '-'),
       '',
-      'Catatan:',
-      '- Sistem baru, karena ada kendala data order sering tidak masuk disistem, harap lakukan kirim bukti transfer ulang.',
-      '- Saya akan melampirkan bukti transfer pada email ini. Jika tidak dilampirkan, mohon jangan diproses.',
-      '- Untuk melampirkan bukti transfer, klik ikon penjepit di pojok kanan atas lalu pilih foto.',
+      'Catatan Penting:',
+      '- Saya akan melampirkan bukti transfer pada email ini.',
+      '- Jika bukti transfer tidak dilampirkan, mohon jangan diproses.',
+      '- Pengiriman ulang ini saya lakukan karena data order atau bukti transfer sebelumnya kemungkinan belum masuk.',
       '',
-      'Mohon bantu cek order saya.',
+      'Mohon bantu cek dan proses ulang order saya.',
       '',
       'Terima kasih.'
     ];
+    if(order.proofInfo) lines.splice(12, 0, 'Info Bukti Transfer: ' + txt(order.proofInfo));
     return lines.join('\n');
   }
   function buildComplaintSubject(order){
@@ -38981,10 +38996,11 @@ header{
       '',
       'Keluhan:',
       '- Pesanan saya belum masuk, tetapi status sudah selesai.',
-      '- Mohon bantu cek ulang order saya.',
+      '- Mohon bantu cek ulang dan proses kembali order ini jika memang ada kendala sistem, pending, atau partial.',
       '',
       'Terima kasih.'
     ];
+    if(order.proofInfo) lines.splice(14, 0, 'Info Bukti Transfer: ' + txt(order.proofInfo));
     return lines.join('\n');
   }
   function openCompose(toEmail, subjectText, bodyText){
@@ -39101,7 +39117,7 @@ header{
           resendBtn = buildButton('<i class="fas fa-paperclip" style="margin-right:8px;"></i> Kirim Ulang Bukti Transfer', 'btn-solid kz-store-mail-btn', {'data-kz-store-action':'resend-proof','data-kz-order':code});
           actionBox.appendChild(resendBtn);
         }
-        msgs.push('Sistem baru, karena ada kendala data order sering tidak masuk disistem, harap lakukan kirim bukti transfer ulang. Di Gmail, lampirkan bukti transfer lewat ikon penjepit di pojok kanan atas lalu pilih foto. Jika tidak dilampirkan, order tidak diproses.');
+        msgs.push('Untuk kendala data order atau bukti transfer belum masuk, gunakan tombol <b>Kirim Ulang Bukti Transfer</b> lalu <b>wajib lampirkan bukti transfer</b> di Gmail. Jika tidak dilampirkan, order tidak diproses.');
       }else if(resendBtn){
         resendBtn.remove();
       }
@@ -39116,13 +39132,13 @@ header{
         complaintBtn.disabled = !gate.enabled;
         complaintBtn.classList.toggle('is-disabled', !gate.enabled);
         if(gate.sosmed && !gate.enabled){
-          msgs.push('Tombol <b>Komplain Layanan Belum Masuk</b> aktif setelah <b>12 jam</b> sejak status selesai. Sisa waktu: <b>' + escHtml(humanRemain(gate.remainMs)) + '</b>.');
+          msgs.push('Tombol <b>Komplain Layanan Belum Masuk</b> untuk suntik sosmed aktif setelah <b>12 jam</b> sejak status selesai. Sisa waktu: <b>' + escHtml(humanRemain(gate.remainMs)) + '</b>.');
           note.classList.add('warn');
         }else if(gate.sosmed){
-          msgs.push('Jika layanan belum masuk, klik <b>Komplain Layanan Belum Masuk</b>.');
+          msgs.push('Pesanan suntik sosmed sudah melewati batas 12 jam sejak status selesai. Jika layanan belum masuk, gunakan tombol <b>Komplain Layanan Belum Masuk</b>.');
           note.classList.add('success');
         }else{
-          msgs.push('Jika layanan belum masuk, klik <b>Komplain Layanan Belum Masuk</b>.');
+          msgs.push('Jika status pesanan sudah selesai tetapi layanan belum masuk, gunakan tombol <b>Komplain Layanan Belum Masuk</b> agar order dicek ulang admin.');
         }
       }else if(complaintBtn){
         complaintBtn.remove();
@@ -39167,46 +39183,10 @@ header{
     }
     box.innerHTML = html;
   }
-  function markResendProofClicked(order){
-    if(!order) return;
-    try{
-      var db = (typeof authLoadDB === 'function') ? (authLoadDB() || {}) : null;
-      if(!db || !Array.isArray(db.orders)) return;
-      var code = txt(order.orderId || order.id || '');
-      if(!code) return;
-      var changed = false;
-      db.orders.forEach(function(item){
-        if(!item) return;
-        var itemCode = txt(item.orderId || item.id || '');
-        if(itemCode !== code && txt(item.id || '') !== ('o_' + code)) return;
-        var stamp = now();
-        if(!Number(item.kzResendProofClickedAt || 0)){
-          item.kzResendProofClickedAt = stamp;
-          changed = true;
-        }
-        item.resendProofRequired = false;
-        if(!item.autoFlowStartedAt || Number(item.autoFlowStartedAt || 0) < Number(item.kzResendProofClickedAt || 0)){
-          item.autoFlowStartedAt = Number(item.kzResendProofClickedAt || stamp);
-          changed = true;
-        }
-        if(!item.status || String(item.status) === 'submitted'){
-          item.status = 'proof_submitted';
-          changed = true;
-        }
-        item.updatedAt = stamp;
-      });
-      if(changed){
-        authSaveDB(db);
-        try{ renderMyOrders(); }catch(e){}
-        try{ renderOrdersPremium(); }catch(e){}
-        try{ renderAdminAll(); }catch(e){}
-      }
-    }catch(e){ console.warn('mark resend proof clicked', e); }
-  }
   function openResendProof(order){
-    markResendProofClicked(order);
+    var prepared = prepareExistingProof(order);
     openCompose(STORE_EMAIL, buildResendSubject(order), buildResendBody(order));
-    authToastSafe('Template Gmail dibuka. Klik ikon penjepit di pojok kanan atas lalu pilih foto untuk melampirkan bukti transfer. Jika tidak dilampirkan, order tidak diproses.');
+    authToastSafe(prepared ? 'Template Gmail dibuka. File bukti transfer lama juga sudah disiapkan. Tetap lampirkan bukti transfer pada email, jika tidak maka tidak diproses.' : 'Template Gmail dibuka. Wajib lampirkan bukti transfer pada email, jika tidak maka tidak diproses.');
   }
   function openComplaint(order){
     var gate = getComplaintGate(order);
@@ -39275,6 +39255,1178 @@ header{
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, {once:true});
   else boot();
   setInterval(function(){ decorateOrderCards(); decorateReceiptActions(); }, 1200);
+})();
+</script>
+
+
+<script id="kz-apr17-ig-followers-cleanup">
+(function(){
+  if(window.__kzApr17IgFollowersCleanupApplied) return;
+  window.__kzApr17IgFollowersCleanupApplied = true;
+
+  var REMOVE_ID = 'sosmed-ig-followers-indo';
+  var KEEP_ID = 'sosmed-ig-followers-random';
+  var KEEP_NAME = 'Followers';
+
+  function safeArr(v){ return Array.isArray(v) ? v : []; }
+
+  function sanitizeList(list){
+    if(!Array.isArray(list)) return false;
+    var changed = false;
+    for(var i=list.length-1; i>=0; i--){
+      var item = list[i];
+      if(item && String(item.id || '') === REMOVE_ID){
+        list.splice(i, 1);
+        changed = true;
+      }
+    }
+    list.forEach(function(item){
+      if(!item) return;
+      if(String(item.id || '') === KEEP_ID && String(item.name || '') !== KEEP_NAME){
+        item.name = KEEP_NAME;
+        changed = true;
+      }
+    });
+    return changed;
+  }
+
+  function rerender(){
+    try{
+      if(typeof window.kzHomeSetTab === 'function') window.kzHomeSetTab(window.__kzHomeTab || 'apk');
+      else if(typeof window.kzHomeRenderStable === 'function') window.kzHomeRenderStable(window.__kzHomeTab || 'apk');
+    }catch(e){}
+    try{
+      if(typeof window.renderFullAppGrid === 'function') window.renderFullAppGrid(window.__kzPageAppSearch || '');
+    }catch(e){}
+    try{
+      if(typeof window.renderAllProducts === 'function'){
+        var input = document.getElementById('searchInput');
+        window.renderAllProducts(input ? input.value : '');
+      }
+    }catch(e){}
+    try{
+      if(typeof window.renderSosmedPage === 'function') window.renderSosmedPage();
+    }catch(e){}
+  }
+
+  function apply(){
+    var changed = false;
+    try{ if(sanitizeList(window.sosmedData)) changed = true; }catch(e){}
+    try{ if(sanitizeList(window.__kzSosmedState)) changed = true; }catch(e){}
+    if(changed) rerender();
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', function(){
+      apply();
+      setTimeout(apply, 120);
+      setTimeout(apply, 480);
+      setTimeout(apply, 1100);
+    }, {once:true});
+  }else{
+    apply();
+    setTimeout(apply, 120);
+    setTimeout(apply, 480);
+    setTimeout(apply, 1100);
+  }
+
+  window.addEventListener('load', function(){
+    setTimeout(apply, 180);
+    setTimeout(apply, 700);
+  }, {once:true});
+})();
+</script>
+
+
+<style id="kz-pbob-styles">
+#page-pbob{padding-bottom:32px}
+#pbobTabs{touch-action:pan-x pan-y}
+#page-pbob .pbob-coming-wrap,
+#page-pbob .pbob-live-wrap{padding:0 20px 20px}
+#page-pbob .pbob-coming-card,
+#page-pbob .pbob-live-card,
+#page-pbob .pbob-provider-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.12)}
+#page-pbob .pbob-coming-card,
+#page-pbob .pbob-live-card{padding:18px}
+#page-pbob .pbob-coming-head,
+#page-pbob .pbob-live-head,
+#page-pbob .pbob-provider-head{display:flex;align-items:center;gap:14px}
+#page-pbob .pbob-coming-head,
+#page-pbob .pbob-live-head{margin-bottom:12px}
+#page-pbob .pbob-coming-ico,
+#page-pbob .pbob-live-ico{width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--primary);flex:0 0 56px}
+#page-pbob .pbob-coming-title,
+#page-pbob .pbob-live-title{font-size:1rem;font-weight:800;line-height:1.3}
+#page-pbob .pbob-coming-sub,
+#page-pbob .pbob-live-sub{font-size:.82rem;color:var(--text-sec);margin-top:4px}
+#page-pbob .pbob-coming-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,0,0,.10);border:1px solid rgba(255,0,0,.20);color:#ffb3b3;font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+#page-pbob .pbob-live-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(0,255,127,.10);border:1px solid rgba(0,255,127,.22);color:var(--accent-green);font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+#page-pbob .pbob-coming-desc,
+#page-pbob .pbob-live-desc{margin-top:14px;color:var(--text-sec);font-size:.92rem;line-height:1.6}
+#page-pbob .pbob-coming-list,
+#page-pbob .pbob-live-list{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+#page-pbob .pbob-mini{padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:.84rem;font-weight:700;color:var(--text-main)}
+#page-pbob .pbob-mini span{display:block;margin-top:5px;font-size:.75rem;color:var(--text-sec);font-weight:600}
+#page-pbob .pbob-provider-grid{display:grid;grid-template-columns:1fr;gap:14px;padding:0 20px 20px}
+#page-pbob .pbob-provider-card{padding:16px}
+#page-pbob .pbob-provider-logo{width:62px;height:62px;border-radius:16px;object-fit:cover;border:1px solid var(--border);background:rgba(255,255,255,.05);flex:0 0 62px}
+#page-pbob .pbob-provider-name{font-size:1rem;font-weight:900;line-height:1.2}
+#page-pbob .pbob-provider-meta{font-size:.8rem;color:var(--text-sec);margin-top:4px}
+#page-pbob .pbob-provider-topline{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex:1;min-width:0}
+#page-pbob .pbob-provider-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+#page-pbob .pbob-price-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:rgba(255,0,0,.10);border:1px solid rgba(255,0,0,.18);color:#ffbcbc;font-size:.72rem;font-weight:800;white-space:nowrap}
+#page-pbob .pbob-status-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:rgba(0,255,127,.10);border:1px solid rgba(0,255,127,.22);color:var(--accent-green);font-size:.72rem;font-weight:800;white-space:nowrap}
+#page-pbob .pbob-price-list{margin-top:14px;border-top:1px dashed var(--border);padding-top:12px;display:grid;grid-template-columns:1fr;gap:8px}
+#page-pbob .pbob-price-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 12px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--border)}
+#page-pbob .pbob-price-name{font-size:.86rem;font-weight:800;color:var(--text-main)}
+#page-pbob .pbob-price-value{font-size:.86rem;font-weight:900;color:var(--primary);white-space:nowrap}
+@media(min-width:900px){#page-pbob .pbob-provider-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){
+#page-pbob .pbob-provider-head{align-items:flex-start}
+#page-pbob .pbob-provider-topline{flex-direction:column}
+#page-pbob .pbob-provider-right{flex-wrap:wrap}
+#page-pbob .pbob-price-row{align-items:flex-start;flex-direction:column}
+#page-pbob .pbob-price-value{white-space:normal}
+}
+body.light-mode #page-pbob .pbob-coming-card,
+body.light-mode #page-pbob .pbob-live-card,
+body.light-mode #page-pbob .pbob-provider-card{box-shadow:0 10px 24px rgba(0,0,0,.08)}
+</style>
+<script id="kz-pbob-script">
+(function(){
+  window.pbobCategories = [
+    { key:'pulsa-nasional', name:'Pulsa Nasional', icon:'fas fa-signal', hint:'Isi ulang semua operator nasional sudah aktif dan siap dipakai.', released:true },
+    { key:'sms-telp', name:'Sms & Telp', icon:'fas fa-phone', hint:'Paket SMS dan telepon sedang disiapkan.', released:false },
+    { key:'e-wallet', name:'e-Wallet', icon:'fas fa-wallet', hint:'Top up dompet digital akan hadir di kategori ini.', released:false },
+    { key:'token-pln', name:'Token PLN', icon:'fas fa-bolt', hint:'Pembelian token listrik akan segera tersedia.', released:false },
+    { key:'e-toll', name:'Topup Saldo E-toll', icon:'fas fa-road', hint:'Isi saldo e-toll sedang dipersiapkan.', released:false },
+    { key:'travel-va', name:'Travel dan Bayar VA', icon:'fas fa-plane', hint:'Pembayaran travel dan virtual account coming soon.', released:false },
+    { key:'tagihan', name:'Bayar Tagihan', icon:'fas fa-file-invoice-dollar', hint:'Pembayaran tagihan bulanan akan ditambahkan segera.', released:false },
+    { key:'edc-mini-atm', name:'EDC Mini Atm', icon:'fas fa-credit-card', hint:'Layanan EDC dan mini ATM masih dalam tahap persiapan.', released:false }
+  ];
+
+  window.pbobPulsaProducts = [{"name": "TRI", "image": "https://files.catbox.moe/8c2qh1.jpg", "items": [["5.000", 5172], ["10.000", 10136], ["15.000", 14785], ["20.000", 19807], ["25.000", 24769], ["30.000", 29715], ["40.000", 39695], ["50.000", 48580], ["60.000", 58230], ["70.000", 67980], ["75.000", 73750], ["80.000", 77880], ["90.000", 88150], ["100.000", 98050], ["125.000", 119968], ["150.000", 143843], ["200.000", 192393]]}, {"name": "AXIS", "image": "https://files.catbox.moe/gdnqjj.jpg", "items": [["5.000", 5852], ["10.000", 10845], ["15.000", 15045], ["20.000", 20657], ["25.000", 25100], ["30.000", 30070], ["40.000", 40124], ["50.000", 50005], ["60.000", 60095], ["70.000", 70078], ["80.000", 80060], ["90.000", 90043], ["100.000", 99834], ["150.000", 149770], ["200.000", 199293]]}, {"name": "INDOSAT", "image": "https://files.catbox.moe/z9sr05.jpg", "items": [["5.000", 6608], ["10.000", 11458], ["12.000", 12887], ["15.000", 15750], ["20.000", 20603], ["25.000", 25380], ["30.000", 30455], ["40.000", 39695], ["50.000", 48075], ["60.000", 57714], ["70.000", 67434], ["80.000", 77263], ["90.000", 89590], ["100.000", 94144], ["115.000", 114269], ["125.000", 118704], ["150.000", 143509], ["175.000", 174375], ["200.000", 191294], ["225.000", 223119], ["250.000", 248359], ["300.000", 297609], ["400.000", 396109], ["500.000", 482879]]}, {"name": "SMARTFREN", "image": "https://files.catbox.moe/i8o1l3.jpg", "items": [["5.000", 5025], ["10.000", 10018], ["12.000", 12121], ["15.000", 15298], ["20.000", 20278], ["25.000", 25008], ["30.000", 30210], ["35.000", 35300], ["40.000", 40253], ["45.000", 45270], ["50.000", 50218], ["55.000", 55240], ["60.000", 60150], ["65.000", 65308], ["70.000", 70293], ["75.000", 75208], ["80.000", 80163], ["85.000", 85248], ["90.000", 90283], ["95.000", 95418], ["100.000", 100035], ["125.000", 124535], ["150.000", 149710], ["200.000", 199710]]}, {"name": "TELKOMSEL", "image": "https://files.catbox.moe/f18xfy.jpg", "items": [["2.000", 2515], ["3.000", 3735], ["4.000", 4755], ["5.000", 5229], ["6.000", 6945], ["10.000", 10214], ["Promo 10.000", 10214], ["15.000", 14978], ["20.000", 19999], ["25.000", 24824], ["30.000", 29715], ["35.000", 34755], ["40.000", 39368], ["45.000", 44620], ["50.000", 49470], ["55.000", 54480], ["60.000", 59460], ["65.000", 64340], ["70.000", 69326], ["75.000", 73178], ["80.000", 79175], ["85.000", 84100], ["90.000", 88975], ["95.000", 92933], ["100.000", 97433], ["150.000", 149245], ["200.000", 194120]]}, {"name": "XL", "image": "https://files.catbox.moe/wlbf7m.jpg", "items": [["5.000", 5852], ["10.000", 10845], ["15.000", 15045], ["Transfer 20.000", 20663], ["25.000", 25100], ["30.000", 30070], ["40.000", 40124], ["50.000", 50005], ["60.000", 60095], ["70.000", 70078], ["80.000", 80060], ["90.000", 90043], ["100.000", 99834], ["150.000", 149770], ["200.000", 199293]]}, {"name": "BY.U", "image": "https://files.catbox.moe/eemvlj.jpg", "items": [["5.000", 5852], ["10.000", 10845], ["15.000", 15045], ["Transfer 20.000", 20663], ["25.000", 25100], ["30.000", 30070], ["40.000", 40124], ["50.000", 50005], ["60.000", 60095], ["70.000", 70078], ["80.000", 80060], ["90.000", 90043], ["100.000", 99834], ["150.000", 149770], ["200.000", 199293]]}];
+
+  function pbobGetActive(){
+    return window.__kzPbobActiveCat || 'pulsa-nasional';
+  }
+
+  function pbobFind(key){
+    var list = Array.isArray(window.pbobCategories) ? window.pbobCategories : [];
+    for(var i=0;i<list.length;i++){ if(String(list[i].key) === String(key)) return list[i]; }
+    return list[0] || null;
+  }
+
+  function pbobEscape(value){
+    return String(value == null ? '' : value)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
+  }
+
+  function pbobFormatRp(value){
+    var num = Number(value || 0);
+    if(!isFinite(num)) num = 0;
+    return 'Rp ' + Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+  }
+
+  function renderPbobComingSoon(item){
+    return ''
+      + '<div class="pbob-coming-wrap">'
+      + '  <div class="pbob-coming-card">'
+      + '    <div class="pbob-coming-head">'
+      + '      <div class="pbob-coming-ico"><i class="' + pbobEscape(item.icon) + '"></i></div>'
+      + '      <div>'
+      + '        <div class="pbob-coming-title">' + pbobEscape(item.name) + '</div>'
+      + '        <div class="pbob-coming-sub">Kategori PBOB siap dipakai. Produk menyusul.</div>'
+      + '      </div>'
+      + '    </div>'
+      + '    <div class="pbob-coming-badge"><i class="fas fa-clock"></i> Coming Soon</div>'
+      + '    <div class="pbob-coming-desc">' + pbobEscape(item.hint) + ' Untuk saat ini kategori sudah dibuat dulu sesuai request, dan daftar produknya bisa ditambahkan belakangan.</div>'
+      + '    <div class="pbob-coming-list">'
+      + '      <div class="pbob-mini">Status kategori<span>Sudah aktif di halaman PBOB</span></div>'
+      + '      <div class="pbob-mini">Status produk<span>Masih placeholder / coming soon</span></div>'
+      + '      <div class="pbob-mini">Next step<span>Tinggal isi produk per kategori</span></div>'
+      + '    </div>'
+      + '  </div>'
+      + '</div>';
+  }
+
+  function renderPbobPulsaNasional(){
+    var products = Array.isArray(window.pbobPulsaProducts) ? window.pbobPulsaProducts : [];
+    var totalPackages = 0;
+    products.forEach(function(item){ totalPackages += Array.isArray(item.items) ? item.items.length : 0; });
+    var summary = ''
+      + '<div class="pbob-live-wrap">'
+      + '  <div class="pbob-live-card">'
+      + '    <div class="pbob-live-head">'
+      + '      <div class="pbob-live-ico"><i class="fas fa-signal"></i></div>'
+      + '      <div>'
+      + '        <div class="pbob-live-title">Pulsa Nasional</div>'
+      + '        <div class="pbob-live-sub">Kategori sudah rilis dan siap dipakai.</div>'
+      + '      </div>'
+      + '    </div>'
+      + '    <div class="pbob-live-badge"><i class="fas fa-circle-check"></i> Live</div>'
+      + '    <div class="pbob-live-desc">Semua harga di bawah sudah disesuaikan dengan tambahan <b>Rp 1.000</b> dari pricelist yang kamu kirim.</div>'
+      + '    <div class="pbob-live-list">'
+      + '      <div class="pbob-mini">Operator aktif<span>' + products.length + ' provider tersedia</span></div>'
+      + '      <div class="pbob-mini">Total produk<span>' + totalPackages + ' nominal siap order</span></div>'
+      + '      <div class="pbob-mini">Penyesuaian harga<span>Semua daftar harga + Rp 1.000</span></div>'
+      + '    </div>'
+      + '  </div>'
+      + '</div>';
+
+    var cards = products.map(function(provider){
+      var items = Array.isArray(provider.items) ? provider.items : [];
+      var rows = items.map(function(entry){
+        var label = Array.isArray(entry) ? entry[0] : '';
+        var basePrice = Array.isArray(entry) ? Number(entry[1] || 0) : 0;
+        var finalPrice = basePrice + 1000;
+        return ''
+          + '<div class="pbob-price-row">'
+          + '  <div class="pbob-price-name">' + pbobEscape(label) + '</div>'
+          + '  <div class="pbob-price-value">' + pbobFormatRp(finalPrice) + '</div>'
+          + '</div>';
+      }).join('');
+
+      return ''
+        + '<div class="pbob-provider-card">'
+        + '  <div class="pbob-provider-head">'
+        + '    <img class="pbob-provider-logo" src="' + pbobEscape(provider.image) + '" alt="' + pbobEscape(provider.name) + '"/>'
+        + '    <div class="pbob-provider-topline">'
+        + '      <div>'
+        + '        <div class="pbob-provider-name">' + pbobEscape(provider.name) + '</div>'
+        + '        <div class="pbob-provider-meta">' + items.length + ' nominal tersedia</div>'
+        + '      </div>'
+        + '      <div class="pbob-provider-right">'
+        + '        <div class="pbob-status-badge"><i class="fas fa-circle-check"></i> Aktif</div>'
+        + '        <div class="pbob-price-badge"><i class="fas fa-plus"></i> + Rp 1.000</div>'
+        + '      </div>'
+        + '    </div>'
+        + '  </div>'
+        + '  <div class="pbob-price-list">' + rows + '</div>'
+        + '</div>';
+    }).join('');
+
+    return summary + '<div class="pbob-provider-grid">' + cards + '</div>';
+  }
+
+  window.setPbobCategory = function(key, el){
+    window.__kzPbobActiveCat = key;
+    try{
+      document.querySelectorAll('#pbobTabs .pbob-cat-btn').forEach(function(node){ node.classList.remove('active'); });
+      if(el) el.classList.add('active');
+      else {
+        var btn = document.querySelector('#pbobTabs .pbob-cat-btn[data-filter="' + key + '"]');
+        if(btn) btn.classList.add('active');
+      }
+    }catch(e){}
+    window.renderPbobProducts();
+  };
+
+  window.renderPbobProducts = function(){
+    var wrap = document.getElementById('pbobProductList');
+    var item = pbobFind(pbobGetActive());
+    if(!wrap || !item) return;
+    if(item.key === 'pulsa-nasional' && item.released){
+      wrap.innerHTML = renderPbobPulsaNasional();
+      return;
+    }
+    wrap.innerHTML = renderPbobComingSoon(item);
+  };
+
+  window.initPbobPage = function(){
+    var active = pbobGetActive();
+    var btn = document.querySelector('#pbobTabs .pbob-cat-btn[data-filter="' + active + '"]') || document.querySelector('#pbobTabs .pbob-cat-btn');
+    if(btn){
+      active = btn.getAttribute('data-filter') || active;
+      window.__kzPbobActiveCat = active;
+      document.querySelectorAll('#pbobTabs .pbob-cat-btn').forEach(function(node){ node.classList.remove('active'); });
+      btn.classList.add('active');
+    }
+    window.renderPbobProducts();
+  };
+})();
+</script>
+
+
+<style id="kz-pbob-ui-same-as-products">
+#page-pbob #pbobProductList .app-grid{padding-top:6px}
+#page-pbob #pbobProductList .item-card img{object-fit:cover}
+#page-pbob .pbob-coming-wrap{padding-top:6px}
+#page-pbob .pbob-coming-card{padding:18px}
+</style>
+<script id="kz-pbob-ui-same-as-products-script">
+(function(){
+  if(window.__kzPbobUiSameProducts) return;
+  window.__kzPbobUiSameProducts = true;
+
+  function esc(v){
+    return String(v == null ? '' : v)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+  function fmtRp(n){
+    var num = Number(n || 0) || 0;
+    try{ return 'Rp ' + num.toLocaleString('id-ID'); }catch(e){ return 'Rp ' + String(num); }
+  }
+  function safeArr(v){ return Array.isArray(v) ? v : []; }
+
+  function makePbobApps(){
+    var src = safeArr(window.pbobPulsaProducts);
+    return src.map(function(op){
+      var rawName = String(op && op.name || '').trim();
+      var id = 'pbob-' + rawName.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      var pkgs = safeArr(op && op.items).map(function(it){
+        var label = String(it && it[0] || '').trim();
+        var base = Number(it && it[1] || 0) || 0;
+        var finalVal = base + 1000;
+        return {
+          name: label,
+          priceVal: finalVal,
+          price: fmtRp(finalVal),
+          desc: []
+        };
+      });
+      return {
+        id: id,
+        name: rawName,
+        image: String(op && op.image || ''),
+        cat: ['pbob','pulsa-nasional'],
+        noServer: true,
+        packages: pkgs
+      };
+    });
+  }
+
+  function getPbobApps(){
+    if(Array.isArray(window.pbobProductApps) && window.pbobProductApps.length){
+      return window.pbobProductApps;
+    }
+    var apps = makePbobApps();
+    var map = {};
+    apps.forEach(function(app){ map[String(app.id)] = app; });
+    window.pbobProductApps = apps;
+    window.pbobProductAppMap = map;
+    return apps;
+  }
+
+  function findPbobApp(id){
+    id = String(id || '');
+    if(window.pbobProductAppMap && window.pbobProductAppMap[id]) return window.pbobProductAppMap[id];
+    var apps = getPbobApps();
+    for(var i=0;i<apps.length;i++){
+      if(String(apps[i].id) === id) return apps[i];
+    }
+    return null;
+  }
+
+  function renderComingSoon(cat){
+    var root = document.getElementById('pbobProductList');
+    if(!root) return;
+    var title = String(cat && cat.name || 'Kategori');
+    var hint = String(cat && cat.hint || 'Produk untuk kategori ini sedang disiapkan.');
+    root.innerHTML = ''
+      + '<div class="pbob-coming-wrap">'
+      +   '<div class="pbob-coming-card">'
+      +     '<div class="pbob-coming-head">'
+      +       '<div class="pbob-coming-ico"><i class="' + esc(cat && cat.icon || 'fas fa-clock') + '"></i></div>'
+      +       '<div>'
+      +         '<div class="pbob-coming-title">' + esc(title) + '</div>'
+      +         '<div class="pbob-coming-sub">Kategori ini belum aktif untuk checkout.</div>'
+      +       '</div>'
+      +     '</div>'
+      +     '<div class="pbob-coming-badge"><i class="fas fa-clock"></i> Coming Soon</div>'
+      +     '<div class="pbob-coming-desc">' + esc(hint) + '</div>'
+      +   '</div>'
+      + '</div>';
+  }
+
+  function renderPulsaNasional(){
+    var root = document.getElementById('pbobProductList');
+    if(!root) return;
+    var apps = getPbobApps().slice().sort(function(a,b){ return String(a.name||'').localeCompare(String(b.name||'')); });
+    var cards = apps.map(function(app){
+      return ''
+        + '<div class="item-card shiny-effect" onclick="openPbobDetail(' + JSON.stringify(app.id).replace(/"/g,'&quot;') + ')">'
+        +   '<img src="' + esc(app.image) + '" alt="' + esc(app.name) + '" loading="lazy" decoding="async">'
+        +   '<div class="item-title">' + esc(app.name) + '</div>'
+        + '</div>';
+    }).join('');
+    root.innerHTML = '<div class="app-grid">' + cards + '</div>';
+  }
+
+  function buildPkgCard(pkg, app){
+    var priceValNum = Number(pkg && pkg.priceVal || 0) || 0;
+    var pkgName = String(pkg && pkg.name || '');
+    var appName = String(app && app.name || '');
+    var appImage = String(app && app.image || '');
+    var priceText = String(pkg && pkg.price || '');
+    var orderClick = 'orderNow(' + JSON.stringify(pkgName) + ', ' + JSON.stringify(appName) + ', ' + JSON.stringify(priceValNum) + ', ' + JSON.stringify(priceText) + ', ' + JSON.stringify(appImage) + ', "", true)';
+    var cartClick = 'kzCartAddFromPackage(' + JSON.stringify(pkgName) + ', ' + JSON.stringify(appName) + ', ' + JSON.stringify(priceValNum) + ', ' + JSON.stringify(appImage) + ', "", true)';
+    return ''
+      + '<div class="package-card shiny-effect">'
+      +   '<div class="pkg-head" onclick="togglePkg(this)">'
+      +     '<div class="pkg-left">'
+      +       '<div class="pkg-name">' + esc(pkgName) + '</div>'
+      +       '<span class="pkg-price">' + esc(priceText) + '</span>'
+      +     '</div>'
+      +     '<div class="kz-pkg-actions">'
+      +       '<button class="kz-pkg-cart-btn" type="button" onclick="event.stopPropagation(); ' + cartClick.replace(/"/g,'&quot;') + '" title="Masukkan ke keranjang" aria-label="Masukkan ke keranjang">'
+      +         '<i class="fas fa-cart-plus"></i>'
+      +       '</button>'
+      +       '<i class="fas fa-chevron-down kz-pkg-chevron"></i>'
+      +     '</div>'
+      +   '</div>'
+      +   '<div class="pkg-body">'
+      +     '<div style="padding:10px 0; display:flex; gap:8px;">'
+      +       '<button class="btn-animated" style="flex:2; margin-top:0;" onclick="' + orderClick.replace(/"/g,'&quot;') + '">ORDER <i class="fas fa-paper-plane"></i></button>'
+      +     '</div>'
+      +   '</div>'
+      + '</div>';
+  }
+
+  window.openPbobDetail = function(id){
+    try{ if(typeof playClick === 'function') playClick(); }catch(e){}
+    var app = findPbobApp(id);
+    if(!app) return false;
+
+    var title = document.getElementById('modalTitle');
+    var body = document.getElementById('modalBody');
+    var modal = document.getElementById('detailModal');
+    if(!title || !body || !modal) return false;
+
+    title.innerText = app.name;
+
+    var headerHtml = ''
+      + '<div style="text-align:center; margin-bottom:20px;">'
+      +   '<img src="' + esc(app.image) + '" style="width:80px; height:80px; border-radius:15px; border:2px solid var(--primary); object-fit:cover;" loading="eager" decoding="async">'
+      +   '<h3 style="margin-top:10px;">' + esc(app.name) + '</h3>'
+      + '</div>';
+
+    var packageHtml = safeArr(app.packages).map(function(pkg){
+      return buildPkgCard(pkg, app);
+    }).join('');
+
+    body.innerHTML = headerHtml + packageHtml;
+    modal.style.display = 'block';
+    return true;
+  };
+
+  window.renderPbobProducts = function(key){
+    var catKey = String(key || window.__pbobActiveCat || 'pulsa-nasional');
+    window.__pbobActiveCat = catKey;
+    var found = safeArr(window.pbobCategories).find(function(it){ return String(it && it.key || '') === catKey; }) || null;
+    if(catKey === 'pulsa-nasional') renderPulsaNasional();
+    else renderComingSoon(found || {name:'Kategori',icon:'fas fa-clock',hint:'Produk untuk kategori ini sedang disiapkan.'});
+  };
+
+  window.setPbobCategory = function(key, el){
+    try{ if(typeof playClick === 'function') playClick(); }catch(e){}
+    var catKey = String(key || 'pulsa-nasional');
+    try{
+      document.querySelectorAll('#pbobTabs .pbob-cat-btn').forEach(function(btn){ btn.classList.remove('active'); });
+      if(el) el.classList.add('active');
+      else {
+        var target = document.querySelector('#pbobTabs .pbob-cat-btn[data-filter="' + catKey.replace(/"/g,'\"') + '"]');
+        if(target) target.classList.add('active');
+      }
+    }catch(e){}
+    window.renderPbobProducts(catKey);
+  };
+
+  window.initPbobPage = function(){
+    var key = String(window.__pbobActiveCat || 'pulsa-nasional');
+    try{
+      document.querySelectorAll('#pbobTabs .pbob-cat-btn').forEach(function(btn){
+        btn.classList.toggle('active', String(btn.getAttribute('data-filter') || '') === key);
+      });
+    }catch(e){}
+    window.renderPbobProducts(key);
+  };
+})();
+</script>
+
+
+<style id="kz-pbob-superfast-style">
+#page-pbob .pbob-lite-card{overflow:hidden}
+#page-pbob .pbob-lite-card::after{display:none !important}
+#page-pbob .pbob-lite-head{cursor:pointer}
+#page-pbob .pbob-lite-body{padding-top:0}
+#page-pbob .pbob-lite-note{font-size:12px;color:var(--text-sec);margin:6px 0 0}
+#page-pbob .pbob-lite-loading{padding:12px 0 4px;color:var(--text-sec);font-size:12px;text-align:center}
+</style>
+<script id="kz-pbob-superfast-script">
+(function(){
+  if(window.__kzPbobSuperfastModal) return;
+  window.__kzPbobSuperfastModal = true;
+
+  function esc(v){
+    return String(v == null ? '' : v)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
+  }
+
+  function fmtRp(n){
+    var num = Number(n || 0) || 0;
+    try { return 'Rp ' + num.toLocaleString('id-ID'); }
+    catch(e){ return 'Rp ' + String(num); }
+  }
+
+  function safeArr(v){ return Array.isArray(v) ? v : []; }
+
+  function ensureApps(){
+    if(Array.isArray(window.pbobProductApps) && window.pbobProductApps.length){
+      return window.pbobProductApps;
+    }
+    var src = safeArr(window.pbobPulsaProducts);
+    var apps = src.map(function(op){
+      var rawName = String(op && op.name || '').trim();
+      var id = 'pbob-' + rawName.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      var pkgs = safeArr(op && op.items).map(function(it){
+        var label = String(it && it[0] || '').trim();
+        var base = Number(it && it[1] || 0) || 0;
+        var finalVal = base + 1000;
+        return {
+          name: label,
+          priceVal: finalVal,
+          price: fmtRp(finalVal),
+          desc: []
+        };
+      });
+      return {
+        id: id,
+        name: rawName,
+        image: String(op && op.image || ''),
+        cat: ['pbob','pulsa-nasional'],
+        noServer: true,
+        packages: pkgs
+      };
+    });
+    var map = {};
+    apps.forEach(function(app){ map[String(app.id)] = app; });
+    window.pbobProductApps = apps;
+    window.pbobProductAppMap = map;
+    return apps;
+  }
+
+  function findApp(id){
+    id = String(id || '');
+    if(window.pbobProductAppMap && window.pbobProductAppMap[id]) return window.pbobProductAppMap[id];
+    var apps = ensureApps();
+    for(var i=0;i<apps.length;i++){
+      if(String(apps[i].id) === id) return apps[i];
+    }
+    return null;
+  }
+
+  function runCart(card){
+    var pkgName = card.getAttribute('data-pkg-name') || '';
+    var appName = card.getAttribute('data-app-name') || '';
+    var priceVal = Number(card.getAttribute('data-price-val') || 0) || 0;
+    var img = card.getAttribute('data-app-image') || '';
+    try{
+      if(typeof kzCartAddFromPackage === 'function'){
+        kzCartAddFromPackage(pkgName, appName, priceVal, img, "", true);
+      }
+    }catch(e){}
+  }
+
+  function runOrder(card){
+    var pkgName = card.getAttribute('data-pkg-name') || '';
+    var appName = card.getAttribute('data-app-name') || '';
+    var priceVal = Number(card.getAttribute('data-price-val') || 0) || 0;
+    var priceText = card.getAttribute('data-price-text') || '';
+    var img = card.getAttribute('data-app-image') || '';
+    try{
+      if(typeof orderNow === 'function'){
+        orderNow(pkgName, appName, priceVal, priceText, img, "", true);
+      }
+    }catch(e){}
+  }
+
+  function ensureBodyActions(card){
+    if(card.getAttribute('data-actions-ready') === '1') return;
+    var body = card.querySelector('.pkg-body');
+    if(!body) return;
+    var wrap = document.createElement('div');
+    wrap.style.padding = '10px 0';
+    wrap.style.display = 'flex';
+    wrap.style.gap = '8px';
+
+    var btn = document.createElement('button');
+    btn.className = 'btn-animated';
+    btn.type = 'button';
+    btn.style.flex = '2';
+    btn.style.marginTop = '0';
+    btn.innerHTML = 'ORDER <i class="fas fa-paper-plane"></i>';
+    btn.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      runOrder(card);
+    }, false);
+
+    wrap.appendChild(btn);
+    body.appendChild(wrap);
+    card.setAttribute('data-actions-ready', '1');
+  }
+
+  function toggleCard(card){
+    if(!card) return;
+    var body = card.querySelector('.pkg-body');
+    var chev = card.querySelector('.kz-pkg-chevron');
+    if(!body) return;
+    ensureBodyActions(card);
+    body.classList.toggle('show');
+    if(chev) chev.style.transform = body.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+  }
+
+  function createCard(pkg, app){
+    var card = document.createElement('div');
+    card.className = 'package-card pbob-lite-card';
+    card.setAttribute('data-pkg-name', String(pkg && pkg.name || ''));
+    card.setAttribute('data-app-name', String(app && app.name || ''));
+    card.setAttribute('data-price-val', String(Number(pkg && pkg.priceVal || 0) || 0));
+    card.setAttribute('data-price-text', String(pkg && pkg.price || ''));
+    card.setAttribute('data-app-image', String(app && app.image || ''));
+
+    var head = document.createElement('div');
+    head.className = 'pkg-head pbob-lite-head';
+    head.setAttribute('role', 'button');
+    head.setAttribute('tabindex', '0');
+
+    var left = document.createElement('div');
+    left.className = 'pkg-left';
+
+    var name = document.createElement('div');
+    name.className = 'pkg-name';
+    name.textContent = String(pkg && pkg.name || '');
+
+    var price = document.createElement('span');
+    price.className = 'pkg-price';
+    price.textContent = String(pkg && pkg.price || '');
+
+    left.appendChild(name);
+    left.appendChild(price);
+
+    var actions = document.createElement('div');
+    actions.className = 'kz-pkg-actions';
+
+    var cartBtn = document.createElement('button');
+    cartBtn.className = 'kz-pkg-cart-btn';
+    cartBtn.type = 'button';
+    cartBtn.title = 'Masukkan ke keranjang';
+    cartBtn.setAttribute('aria-label', 'Masukkan ke keranjang');
+    cartBtn.innerHTML = '<i class="fas fa-cart-plus"></i>';
+    cartBtn.addEventListener('click', function(ev){
+      ev.stopPropagation();
+      runCart(card);
+    }, false);
+
+    var chev = document.createElement('i');
+    chev.className = 'fas fa-chevron-down kz-pkg-chevron';
+
+    actions.appendChild(cartBtn);
+    actions.appendChild(chev);
+
+    head.appendChild(left);
+    head.appendChild(actions);
+
+    head.addEventListener('click', function(){ toggleCard(card); }, false);
+    head.addEventListener('keydown', function(ev){
+      if(ev.key === 'Enter' || ev.key === ' '){
+        ev.preventDefault();
+        toggleCard(card);
+      }
+    }, false);
+
+    var body = document.createElement('div');
+    body.className = 'pkg-body pbob-lite-body';
+
+    card.appendChild(head);
+    card.appendChild(body);
+    return card;
+  }
+
+  function renderPackagesChunked(app, body){
+    var pkgs = safeArr(app && app.packages);
+    var listWrap = document.createElement('div');
+    body.appendChild(listWrap);
+
+    if(!pkgs.length){
+      var empty = document.createElement('div');
+      empty.className = 'pbob-lite-loading';
+      empty.textContent = 'Pricelist belum tersedia.';
+      listWrap.appendChild(empty);
+      return;
+    }
+
+    var loading = document.createElement('div');
+    loading.className = 'pbob-lite-loading';
+    loading.textContent = 'Menyiapkan daftar harga...';
+    listWrap.appendChild(loading);
+
+    var index = 0;
+    var firstBatch = 6;
+    var nextBatch = 8;
+
+    function renderBatch(size){
+      var frag = document.createDocumentFragment();
+      var end = Math.min(index + size, pkgs.length);
+      for(; index < end; index++){
+        frag.appendChild(createCard(pkgs[index], app));
+      }
+      listWrap.appendChild(frag);
+      if(index >= pkgs.length && loading.parentNode){
+        loading.parentNode.removeChild(loading);
+      }
+    }
+
+    renderBatch(firstBatch);
+
+    function step(){
+      if(index >= pkgs.length) return;
+      renderBatch(nextBatch);
+      if(index < pkgs.length){
+        requestAnimationFrame(step);
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  window.openPbobDetail = function(id){
+    try{ if(typeof playClick === 'function') playClick(); }catch(e){}
+    var app = findApp(id);
+    if(!app) return false;
+
+    var title = document.getElementById('modalTitle');
+    var body = document.getElementById('modalBody');
+    var modal = document.getElementById('detailModal');
+    if(!title || !body || !modal) return false;
+
+    title.innerText = app.name;
+    body.innerHTML = '';
+
+    var header = document.createElement('div');
+    header.style.textAlign = 'center';
+    header.style.marginBottom = '20px';
+
+    var img = document.createElement('img');
+    img.src = String(app.image || '');
+    img.alt = String(app.name || '');
+    img.loading = 'eager';
+    img.decoding = 'async';
+    img.style.width = '80px';
+    img.style.height = '80px';
+    img.style.borderRadius = '15px';
+    img.style.border = '2px solid var(--primary)';
+    img.style.objectFit = 'cover';
+
+    var h3 = document.createElement('h3');
+    h3.style.marginTop = '10px';
+    h3.textContent = String(app.name || '');
+
+    var note = document.createElement('div');
+    note.className = 'pbob-lite-note';
+    note.textContent = 'Klik nominal untuk buka tombol order.';
+
+    header.appendChild(img);
+    header.appendChild(h3);
+    header.appendChild(note);
+    body.appendChild(header);
+
+    modal.style.display = 'block';
+    try{ body.scrollTop = 0; }catch(e){}
+
+    renderPackagesChunked(app, body);
+    return true;
+  };
+})();
+</script>
+
+
+<style id="kz-pbob-ultralight-style">
+#detailModal .pbob-fast-head{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+#detailModal .pbob-fast-kicker{display:inline-flex;align-items:center;gap:8px;width:max-content;padding:6px 10px;border-radius:999px;background:rgba(255,0,0,.10);border:1px solid rgba(255,0,0,.20);font-size:12px;font-weight:900}
+#detailModal .pbob-fast-sub{font-size:12px;color:var(--text-sec);line-height:1.45}
+#detailModal .pbob-fast-search{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text-main);margin:4px 0 12px}
+#detailModal .pbob-fast-list{display:flex;flex-direction:column;gap:10px}
+#detailModal .pbob-fast-row{padding:12px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.03)}
+#detailModal .pbob-fast-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+#detailModal .pbob-fast-name{font-size:14px;font-weight:900;line-height:1.25}
+#detailModal .pbob-fast-price{font-size:14px;font-weight:1000;color:var(--primary);white-space:nowrap}
+#detailModal .pbob-fast-actions{display:flex;gap:8px;margin-top:10px}
+#detailModal .pbob-fast-actions button{flex:1}
+#detailModal .pbob-fast-cart{border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text-main);border-radius:12px;padding:11px 12px;font-weight:800}
+#detailModal .pbob-fast-order{border:0;background:var(--primary);color:#fff;border-radius:12px;padding:11px 12px;font-weight:900}
+#detailModal .pbob-fast-more{width:100%;margin-top:4px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text-main);border-radius:12px;padding:12px 14px;font-weight:800}
+#detailModal .pbob-fast-empty{padding:18px 14px;border:1px dashed var(--border);border-radius:14px;text-align:center;color:var(--text-sec);font-size:13px}
+</style>
+<script id="kz-pbob-ultralight-script">
+(function(){
+  if(window.__kzPbobUltralightApplied) return;
+  window.__kzPbobUltralightApplied = true;
+
+  function safeArr(v){ return Array.isArray(v) ? v : []; }
+  function esc(v){
+    return String(v == null ? '' : v)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
+  }
+  function fmtRp(n){
+    var num = Number(n || 0) || 0;
+    try{ return 'Rp ' + num.toLocaleString('id-ID'); }
+    catch(e){ return 'Rp ' + String(num); }
+  }
+  function getApps(){
+    if(Array.isArray(window.pbobProductApps) && window.pbobProductApps.length){
+      return window.pbobProductApps;
+    }
+    var src = safeArr(window.pbobPulsaProducts);
+    var apps = src.map(function(op){
+      var rawName = String(op && op.name || '').trim();
+      var id = 'pbob-' + rawName.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+      return {
+        id:id,
+        name:rawName,
+        image:String(op && op.image || ''),
+        packages: safeArr(op && op.items).map(function(it){
+          var label = String(it && it[0] || '').trim();
+          var base = Number(it && it[1] || 0) || 0;
+          var finalVal = base + 1000;
+          return {
+            name: label,
+            priceVal: finalVal,
+            price: fmtRp(finalVal)
+          };
+        })
+      };
+    });
+    window.pbobProductApps = apps;
+    var map = {};
+    apps.forEach(function(app){ map[String(app.id)] = app; });
+    window.pbobProductAppMap = map;
+    return apps;
+  }
+  function getApp(id){
+    id = String(id || '');
+    if(window.pbobProductAppMap && window.pbobProductAppMap[id]) return window.pbobProductAppMap[id];
+    var apps = getApps();
+    for(var i=0;i<apps.length;i++){
+      if(String(apps[i].id) === id) return apps[i];
+    }
+    return null;
+  }
+
+  window.__pbobFastState = { appId:'', limit:8, query:'' };
+
+  function buildRow(pkg, app){
+    return ''
+      + '<div class="pbob-fast-row" data-pbob-name="' + esc(pkg.name) + '" data-pbob-price-val="' + esc(pkg.priceVal) + '" data-pbob-price="' + esc(pkg.price) + '" data-pbob-app="' + esc(app.name) + '" data-pbob-image="' + esc(app.image) + '">'
+      +   '<div class="pbob-fast-top">'
+      +     '<div class="pbob-fast-name">' + esc(pkg.name) + '</div>'
+      +     '<div class="pbob-fast-price">' + esc(pkg.price) + '</div>'
+      +   '</div>'
+      +   '<div class="pbob-fast-actions">'
+      +     '<button type="button" class="pbob-fast-cart" data-pbob-act="cart"><i class="fas fa-cart-plus" style="margin-right:8px;"></i>Keranjang</button>'
+      +     '<button type="button" class="pbob-fast-order" data-pbob-act="order"><i class="fas fa-paper-plane" style="margin-right:8px;"></i>Order</button>'
+      +   '</div>'
+      + '</div>';
+  }
+
+  function renderFastList(){
+    var state = window.__pbobFastState || {};
+    var body = document.getElementById('modalBody');
+    var list = document.getElementById('pbobFastList');
+    var moreWrap = document.getElementById('pbobFastMoreWrap');
+    if(!body || !list || !moreWrap) return;
+    var app = getApp(state.appId);
+    if(!app){
+      list.innerHTML = '<div class="pbob-fast-empty">Produk tidak ditemukan.</div>';
+      moreWrap.innerHTML = '';
+      return;
+    }
+    var query = String(state.query || '').trim().toLowerCase();
+    var packages = safeArr(app.packages).filter(function(pkg){
+      return !query || String(pkg && pkg.name || '').toLowerCase().indexOf(query) >= 0;
+    });
+
+    if(!packages.length){
+      list.innerHTML = '<div class="pbob-fast-empty">Nominal tidak ditemukan.</div>';
+      moreWrap.innerHTML = '';
+      return;
+    }
+
+    var limit = Number(state.limit || 8) || 8;
+    var visible = packages.slice(0, limit);
+    list.innerHTML = visible.map(function(pkg){ return buildRow(pkg, app); }).join('');
+
+    if(visible.length < packages.length){
+      moreWrap.innerHTML = '<button type="button" id="pbobFastMoreBtn" class="pbob-fast-more">Muat lagi (' + (packages.length - visible.length) + ' sisa)</button>';
+    }else{
+      moreWrap.innerHTML = '';
+    }
+  }
+
+  function runCart(row){
+    try{
+      if(typeof kzCartAddFromPackage === 'function'){
+        kzCartAddFromPackage(
+          row.getAttribute('data-pbob-name') || '',
+          row.getAttribute('data-pbob-app') || '',
+          Number(row.getAttribute('data-pbob-price-val') || 0) || 0,
+          row.getAttribute('data-pbob-image') || '',
+          '',
+          true
+        );
+      }
+    }catch(e){}
+  }
+
+  function runOrder(row){
+    try{
+      if(typeof orderNow === 'function'){
+        orderNow(
+          row.getAttribute('data-pbob-name') || '',
+          row.getAttribute('data-pbob-app') || '',
+          Number(row.getAttribute('data-pbob-price-val') || 0) || 0,
+          row.getAttribute('data-pbob-price') || '',
+          row.getAttribute('data-pbob-image') || '',
+          '',
+          true
+        );
+      }
+    }catch(e){}
+  }
+
+  var searchTimer = null;
+
+  window.openPbobDetail = function(id){
+    var app = getApp(id);
+    var title = document.getElementById('modalTitle');
+    var body = document.getElementById('modalBody');
+    var modal = document.getElementById('detailModal');
+    if(!app || !title || !body || !modal) return false;
+
+    window.__pbobFastState = { appId:String(id || ''), limit:8, query:'' };
+
+    title.innerText = app.name;
+    body.innerHTML = ''
+      + '<div class="pbob-fast-head">'
+      +   '<div class="pbob-fast-kicker"><i class="fas fa-signal"></i> Pulsa Nasional</div>'
+      +   '<div class="pbob-fast-sub">Pilih nominal di bawah. Daftar dibuka ringan dulu, lalu bisa dimuat bertahap supaya tidak lag.</div>'
+      + '</div>'
+      + '<input id="pbobFastSearch" class="pbob-fast-search" type="text" placeholder="Cari nominal, contoh: 10.000 atau 100.000">'
+      + '<div id="pbobFastList" class="pbob-fast-list"><div class="pbob-fast-empty">Menyiapkan daftar harga...</div></div>'
+      + '<div id="pbobFastMoreWrap"></div>';
+
+    modal.style.display = 'block';
+
+    setTimeout(function(){
+      var inp = document.getElementById('pbobFastSearch');
+      if(inp && !inp.__pbobBound){
+        inp.__pbobBound = true;
+        inp.addEventListener('input', function(){
+          clearTimeout(searchTimer);
+          searchTimer = setTimeout(function(){
+            window.__pbobFastState.query = inp.value || '';
+            window.__pbobFastState.limit = 8;
+            renderFastList();
+          }, 60);
+        }, false);
+      }
+      renderFastList();
+    }, 0);
+
+    return true;
+  };
+
+  document.addEventListener('click', function(ev){
+    var more = ev.target.closest('#pbobFastMoreBtn');
+    if(more){
+      window.__pbobFastState.limit = Number(window.__pbobFastState.limit || 8) + 8;
+      renderFastList();
+      return;
+    }
+    var act = ev.target.closest('[data-pbob-act]');
+    if(!act) return;
+    var row = act.closest('.pbob-fast-row');
+    if(!row) return;
+    var kind = act.getAttribute('data-pbob-act');
+    if(kind === 'cart'){
+      ev.preventDefault();
+      ev.stopPropagation();
+      runCart(row);
+      return;
+    }
+    if(kind === 'order'){
+      ev.preventDefault();
+      ev.stopPropagation();
+      runOrder(row);
+      return;
+    }
+  }, true);
+})();
+</script>
+
+
+<style id="kz-pbob-detail-page-fix">
+#page-pbob-detail-page .pbob-detail-wrap{padding:0 20px 24px}
+#page-pbob-detail-page .pbob-detail-head{display:flex;align-items:center;gap:12px;margin:4px 0 14px}
+#page-pbob-detail-page .pbob-detail-head img{width:56px;height:56px;border-radius:14px;object-fit:cover;border:1px solid var(--border);background:var(--bg-card)}
+#page-pbob-detail-page .pbob-detail-title{font-size:1.05rem;font-weight:900}
+#page-pbob-detail-page .pbob-detail-sub{font-size:.82rem;color:var(--text-sec);margin-top:4px}
+#page-pbob-detail-page .pbob-detail-search{margin-bottom:12px}
+#page-pbob-detail-page .pbob-list{display:flex;flex-direction:column;gap:10px}
+#page-pbob-detail-page .pbob-row{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:12px}
+#page-pbob-detail-page .pbob-row-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+#page-pbob-detail-page .pbob-row-name{font-weight:800;font-size:.92rem;line-height:1.3}
+#page-pbob-detail-page .pbob-row-price{font-size:1rem;font-weight:900;color:var(--primary);white-space:nowrap}
+#page-pbob-detail-page .pbob-row-actions{display:flex;gap:8px;margin-top:10px}
+#page-pbob-detail-page .pbob-row-actions .btn-ghost,
+#page-pbob-detail-page .pbob-row-actions .btn-solid{flex:1;margin-top:0}
+#page-pbob-detail-page .pbob-empty{padding:20px;border:1px dashed var(--border);border-radius:14px;text-align:center;color:var(--text-sec);background:rgba(255,255,255,.03)}
+</style>
+<script id="kz-pbob-detail-page-fix-script">
+(function(){
+  function ensurePage(){
+    if(document.getElementById('page-pbob-detail-page')) return;
+    var container = document.getElementById('mainContainer');
+    if(!container) return;
+    var section = document.createElement('div');
+    section.className = 'page-section';
+    section.id = 'page-pbob-detail-page';
+    section.style.display = 'none';
+    section.innerHTML = ''
+      + '<div class="modal-header">'
+      + '  <div class="back-icon" onclick="closePbobDetailPage()"><i class="fas fa-arrow-left"></i></div>'
+      + '  <h2 id="pbobDetailPageTitle" style="font-size:1.1rem;">Detail Produk</h2>'
+      + '</div>'
+      + '<div class="pbob-detail-wrap">'
+      + '  <div class="pbob-detail-head">'
+      + '    <img id="pbobDetailPageImg" src="" alt="">'
+      + '    <div>'
+      + '      <div class="pbob-detail-title" id="pbobDetailPageName">Produk</div>'
+      + '      <div class="pbob-detail-sub" id="pbobDetailPageSub">Pilih nominal lalu Order atau masukkan ke keranjang.</div>'
+      + '    </div>'
+      + '  </div>'
+      + '  <div class="pbob-detail-search search-container" style="padding:0 0 12px 0;">'
+      + '    <input class="search-input" id="pbobDetailSearchInput" type="text" placeholder="Cari nominal..." oninput="renderPbobDetailList(this.value)">'
+      + '  </div>'
+      + '  <div id="pbobDetailPageList" class="pbob-list"></div>'
+      + '</div>';
+    container.appendChild(section);
+  }
+
+  function esc(v){
+    return String(v == null ? '' : v)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
+  }
+
+  function formatRp(value){
+    var num = Number(value || 0);
+    if(!isFinite(num)) num = 0;
+    return 'Rp ' + Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+  }
+
+  window.__pbobCurrentDetailId = null;
+
+  window.renderPbobDetailList = function(keyword){
+    ensurePage();
+    var listEl = document.getElementById('pbobDetailPageList');
+    if(!listEl) return;
+    var app = (typeof findPbobApp === 'function') ? findPbobApp(window.__pbobCurrentDetailId) : null;
+    if(!app){
+      listEl.innerHTML = '<div class="pbob-empty">Produk tidak ditemukan.</div>';
+      return;
+    }
+    var q = String(keyword || '').trim().toLowerCase();
+    var items = Array.isArray(app.packages) ? app.packages.slice() : [];
+    if(q){
+      items = items.filter(function(pkg){
+        return String(pkg && pkg.name || '').toLowerCase().indexOf(q) !== -1
+          || String(pkg && pkg.price || '').toLowerCase().indexOf(q) !== -1;
+      });
+    }
+    if(!items.length){
+      listEl.innerHTML = '<div class="pbob-empty">Nominal yang kamu cari tidak ada.</div>';
+      return;
+    }
+    listEl.innerHTML = items.map(function(pkg){
+      var pkgName = String(pkg && pkg.name || '');
+      var priceText = String(pkg && pkg.price || '');
+      var priceVal = Number(pkg && pkg.priceVal || 0) || 0;
+      var appName = String(app && app.name || '');
+      var appImage = String(app && app.image || '');
+      var orderArgs = [pkgName, appName, priceVal, priceText, appImage, "", true].map(function(v){ return JSON.stringify(v); }).join(', ');
+      var cartArgs = [pkgName, appName, priceVal, appImage, "", true].map(function(v){ return JSON.stringify(v); }).join(', ');
+      return ''
+        + '<div class="pbob-row">'
+        + '  <div class="pbob-row-top">'
+        + '    <div class="pbob-row-name">' + esc(pkgName) + '</div>'
+        + '    <div class="pbob-row-price">' + esc(priceText) + '</div>'
+        + '  </div>'
+        + '  <div class="pbob-row-actions">'
+        + '    <button class="btn-ghost" type="button" onclick="kzCartAddFromPackage(' + cartArgs + ')"><i class="fas fa-cart-plus"></i> Keranjang</button>'
+        + '    <button class="btn-solid" type="button" onclick="orderNow(' + orderArgs + ')">Order</button>'
+        + '  </div>'
+        + '</div>';
+    }).join('');
+  };
+
+  window.openPbobDetail = function(id){
+    try{ if(typeof playClick === 'function') playClick(); }catch(e){}
+    ensurePage();
+    var app = (typeof findPbobApp === 'function') ? findPbobApp(id) : null;
+    if(!app) return false;
+    window.__pbobCurrentDetailId = id;
+    var title = document.getElementById('pbobDetailPageTitle');
+    var name = document.getElementById('pbobDetailPageName');
+    var img = document.getElementById('pbobDetailPageImg');
+    var input = document.getElementById('pbobDetailSearchInput');
+    if(title) title.textContent = app.name;
+    if(name) name.textContent = app.name;
+    if(img){ img.src = app.image || ''; img.alt = app.name || 'Produk'; }
+    if(input) input.value = '';
+    window.renderPbobDetailList('');
+    if(typeof navTo === 'function') navTo('pbob-detail-page');
+    else {
+      var pb = document.getElementById('page-pbob');
+      var pd = document.getElementById('page-pbob-detail-page');
+      if(pb) pb.style.display = 'none';
+      if(pd) pd.style.display = 'block';
+      window.scrollTo(0,0);
+    }
+    return false;
+  };
+
+  window.closePbobDetailPage = function(){
+    try{ if(typeof playClick === 'function') playClick(); }catch(e){}
+    if(typeof navTo === 'function') navTo('pbob-page');
+    else {
+      var pb = document.getElementById('page-pbob');
+      var pd = document.getElementById('page-pbob-detail-page');
+      if(pd) pd.style.display = 'none';
+      if(pb) pb.style.display = 'block';
+      window.scrollTo(0,0);
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', ensurePage);
+  if(document.readyState !== 'loading') ensurePage();
 })();
 </script>
 
