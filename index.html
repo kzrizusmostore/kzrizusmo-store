@@ -3122,33 +3122,33 @@ function playClick() { return; }
     "packages": [
       {
         "name": "S1 • 1 Profil 1 User • 1 Bulan",
-        "price": "Rp 36.000",
-        "priceVal": 36000
+        "price": "Rp 40.000",
+        "priceVal": 40000
       },
       {
         "name": "S1 • 1 Profil 1 User • 2 Bulan",
-        "price": "Rp 64.000",
-        "priceVal": 64000
+        "price": "Rp 80.000",
+        "priceVal": 80000
       },
       {
         "name": "S1 • 1 Profil 1 User • 3 Bulan",
-        "price": "Rp 95.000",
-        "priceVal": 95000
+        "price": "Rp 120.000",
+        "priceVal": 120000
       },
       {
         "name": "S1 • 1 Profil 2 User • 1 Bulan",
-        "price": "Rp 21.000",
-        "priceVal": 21000
+        "price": "Rp 24.000",
+        "priceVal": 24000
       },
       {
         "name": "S1 • 1 Profil 2 User • 2 Bulan",
-        "price": "Rp 38.000",
-        "priceVal": 38000
+        "price": "Rp 48.000",
+        "priceVal": 48000
       },
       {
         "name": "S1 • 1 Profil 2 User • 3 Bulan",
-        "price": "Rp 52.000",
-        "priceVal": 52000
+        "price": "Rp 70.000",
+        "priceVal": 70000
       },
       {
         "name": "S1 • 1 Akun 5 Profil • 1 Bulan",
@@ -12863,11 +12863,11 @@ const digitalAppsData = [
   cat: ["whatsapp"],
   note: "Saat sewa grup aktif, akun pembayar otomatis dapat Premium sesuai masa sewa.",
   packages: [
-    { name: "1 Minggu",   days: 7,  price: "Rp 3.000",  priceVal: 3000 },
-    { name: "2 Minggu",   days: 14, price: "Rp 5.000",  priceVal: 5000 },
-    { name: "1 Bulan",    days: 30, price: "Rp 8.000",  priceVal: 8000 },
-    { name: "2 Bulan",    days: 60, price: "Rp 15.000", priceVal: 15000 },
-    { name: "Permanen",  days: null, price: "Rp 20.000", priceVal: 20000 }
+    { name: "1 Minggu",   days: 7,  price: "Rp 4.000",  priceVal: 4000 },
+    { name: "2 Minggu",   days: 14, price: "Rp 6.000",  priceVal: 6000 },
+    { name: "1 Bulan",    days: 30, price: "Rp 10.000",  priceVal: 10000 },
+    { name: "2 Bulan",    days: 60, price: "Rp 17.000", priceVal: 17000 },
+    { name: "Permanen",  days: null, price: "Rp 30.000", priceVal: 30000 }
   ]
 },
 {
@@ -12898,11 +12898,11 @@ const digitalAppsData = [
   image: "https://files.catbox.moe/q78i8t.jpg",
   cat: ["whatsapp"],
   packages: [
-    { name: "1 Hari",     days: 1,  price: "Rp 1.000",  priceVal: 1000 },
-    { name: "7 Hari",     days: 7,  price: "Rp 3.000",  priceVal: 3000 },
-    { name: "14 Hari",    days: 14, price: "Rp 4.000",  priceVal: 4000 },
-    { name: "30 Hari",    days: 30, price: "Rp 5.000",  priceVal: 5000 },
-    { name: "Permanen",  days: null, price: "Rp 15.000", priceVal: 15000 }
+    { name: "1 Hari",     days: 1,  price: "Rp 2.000",  priceVal: 2000 },
+    { name: "7 Hari",     days: 7,  price: "Rp 4.000",  priceVal: 4000 },
+    { name: "14 Hari",    days: 14, price: "Rp 5.000",  priceVal: 5000 },
+    { name: "30 Hari",    days: 30, price: "Rp 7.000",  priceVal: 7000 },
+    { name: "Permanen",  days: null, price: "Rp 20.000", priceVal: 20000 }
   ]
 },
 {
@@ -28800,11 +28800,25 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,.container::-webkit-scrollbar,.s
     if(base > 0) return base;
     return now();
   }
+  function requiresResendProofGate(order){
+    if(!order || !isProductOrder(order)) return false;
+    var kind = String(order.kind || '').toLowerCase();
+    var src = String(order.source || '').toLowerCase();
+    if(kind === 'redeem' || src === 'redeem') return false;
+    var method = order.method || {};
+    var mk = String(method.key || order.methodKey || order.lastMethodKey || '').toLowerCase();
+    if(mk === 'poin' || mk === 'points' || mk === 'redeem') return false;
+    return Number(order.totalVal || 0) > 0 || !!String(method.label || method.value || mk || '').trim();
+  }
+  function hasResendProofStarted(order){
+    return !!Number(order && (order.kzResendProofClickedAt || order.resendProofClickedAt || order.kirimUlangBuktiTfAt || 0));
+  }
   function desiredStatus(order){
     if(!isProductOrder(order)) return '';
     var st = String(order.status || 'proof_submitted');
     if(st === 'rejected') return '';
     if(st === 'verified') return 'verified';
+    if(requiresResendProofGate(order) && !hasResendProofStarted(order)) return 'proof_submitted';
     var elapsed = now() - getFlowStart(order);
     if(elapsed >= STEP_MS * 2) return 'delivered';
     if(elapsed >= STEP_MS) return 'processing';
@@ -28835,6 +28849,13 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,.container::-webkit-scrollbar,.s
         order.autoFlowStartedAt = now();
         if(!order.status || order.status === 'submitted') order.status = 'proof_submitted';
         changed = true;
+      }
+      if(requiresResendProofGate(order) && !hasResendProofStarted(order)){
+        if(String(order.status || '') !== 'proof_submitted'){
+          order.status = 'proof_submitted';
+          order.updatedAt = now();
+          changed = true;
+        }
       }
       var next = desiredStatus(order);
       if(next && String(order.status || '') !== next){
@@ -37862,14 +37883,13 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
       'Alasan Refund: Order gagal / tidak lanjut.',
       '',
       'Catatan Penting:',
-      '- Upload ulang bukti transfer pada ikon peniti di pojok kanan atas Gmail.',
+      '- Untuk melampirkan bukti transfer, klik ikon penjepit di pojok kanan atas lalu pilih foto.',
       '- Mohon jangan kirim email refund tanpa melampirkan bukti transfer ulang.',
       '',
       'Mohon bantu proses refund untuk order tersebut.',
       '',
       'Terima kasih.'
     ];
-    if(order.proofInfo) lines.splice(11, 0, 'Info Bukti Transfer: ' + txt(order.proofInfo));
     return lines.join('\n');
   }
   function openRefundCompose(order){
@@ -37896,7 +37916,7 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
     var att = order.proofAttachment || {};
     if(!att || !att.dataUrl) {
       try{
-        authToast(att && (att.name || order.proofInfo) ? 'Template refund dibuka. Upload ulang bukti transfer lewat ikon peniti di pojok kanan atas Gmail ya.' : 'Template refund dibuka. Upload ulang bukti transfer lewat ikon peniti di pojok kanan atas Gmail ya.');
+        authToast('Template refund dibuka. Klik ikon penjepit di pojok kanan atas lalu pilih foto untuk melampirkan bukti transfer.');
       }catch(e){}
       return false;
     }
@@ -37913,11 +37933,11 @@ body.light-mode #kzSosmedReadPage .kz-sosmed-read-check{background:rgba(0,0,0,.0
         try{ URL.revokeObjectURL(url); }catch(e){}
         try{ a.remove(); }catch(e){}
       }, 1800);
-      try{ authToast('Template refund dibuka. File bukti transfer lama juga disiapkan. Tetap upload ulang lewat ikon peniti di pojok kanan atas Gmail ya.'); }catch(e){}
+      try{ authToast('Template refund dibuka. Klik ikon penjepit di pojok kanan atas lalu pilih foto untuk melampirkan bukti transfer.'); }catch(e){}
       return true;
     }catch(e){
       console.warn('refund proof prepare', e);
-      try{ authToast('Template refund dibuka. Upload ulang bukti transfer lewat ikon peniti di pojok kanan atas Gmail ya.'); }catch(_e){}
+      try{ authToast('Template refund dibuka. Klik ikon penjepit di pojok kanan atas lalu pilih foto untuk melampirkan bukti transfer.'); }catch(_e){}
       return false;
     }
   }
@@ -38796,6 +38816,465 @@ header{
     press(el, ev);
     release(el);
   }, true);
+})();
+</script>
+
+
+<style id="kz-store-gmail-actions-style">
+.kz-store-mail-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.kz-store-mail-actions .kz-store-mail-btn{flex:1 1 220px}
+.kz-store-mail-btn[disabled],
+.kz-store-mail-btn.is-disabled{opacity:.58;cursor:not-allowed;filter:saturate(.75)}
+.kz-store-mail-note{margin-top:10px;padding:10px 12px;border-radius:12px;border:1px dashed rgba(255,255,255,.12);background:rgba(255,255,255,.03);font-size:12px;line-height:1.55;color:var(--text-sec)}
+.kz-store-mail-note b{color:var(--text-main)}
+.kz-store-mail-note.warn{border-color:rgba(255,190,60,.28);background:rgba(255,190,60,.08)}
+.kz-store-mail-note.danger{border-color:rgba(255,90,90,.28);background:rgba(255,0,0,.08)}
+.kz-store-mail-note.success{border-color:rgba(0,255,127,.22);background:rgba(0,255,127,.07)}
+#kzStoreReceiptActions{margin-top:10px}
+#kzStoreReceiptActions .ps-btn[disabled]{opacity:.58;cursor:not-allowed}
+</style>
+<script id="kz-store-gmail-actions-script">
+(function(){
+  if(window.__kzStoreGmailPatchApplied) return;
+  window.__kzStoreGmailPatchApplied = true;
+
+  var STORE_EMAIL = 'kzrizusmostore@gmail.com';
+  var SOSMED_WAIT_MS = 12 * 60 * 60 * 1000;
+
+  function byId(id){ return document.getElementById(id); }
+  function txt(v){ return String(v == null ? '' : v).trim(); }
+  function nowMs(){ return Date.now ? Date.now() : +(new Date()); }
+  function escHtml(v){ return String(v == null ? '' : v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function fmtRp(n){
+    try{ if(typeof formatRupiah === 'function') return formatRupiah(Number(n || 0) || 0); }catch(e){}
+    try{ return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n || 0) || 0); }catch(e){}
+    return 'Rp ' + String(Number(n || 0) || 0);
+  }
+  function fmtDate(ts){
+    var n = Number(ts || 0) || 0;
+    if(!n) return '-';
+    try{ return new Date(n).toLocaleString('id-ID'); }catch(e){ return '-'; }
+  }
+  function authToastSafe(msg){
+    try{ if(typeof authToast === 'function') return authToast(msg); }catch(e){}
+  }
+  function getOrderByCode(code){
+    code = txt(code);
+    if(!code) return null;
+    try{
+      if(typeof authFindOrderByAnyId === 'function'){
+        var found = authFindOrderByAnyId(code);
+        if(found) return found;
+      }
+    }catch(e){}
+    try{
+      var db = (typeof authLoadDB === 'function') ? (authLoadDB() || {}) : {};
+      var arr = Array.isArray(db.orders) ? db.orders : [];
+      for(var i=0;i<arr.length;i++){
+        var o = arr[i];
+        if(!o) continue;
+        if(txt(o.orderId || o.id) === code || txt(o.id) === ('o_' + code)) return o;
+      }
+    }catch(e){}
+    return null;
+  }
+  function isDoneStatus(status){
+    return /delivered|completed|done|success/i.test(txt(status));
+  }
+  function isPaidOrder(order){
+    if(!order) return false;
+    if(order.kind === 'redeem' || order.source === 'redeem') return false;
+    var method = order.method || {};
+    var mk = txt(method.key || order.methodKey || order.lastMethodKey).toLowerCase();
+    if(mk === 'poin' || mk === 'points' || mk === 'redeem') return false;
+    return Number(order.totalVal || 0) > 0 || !!txt(method.label || method.value || mk);
+  }
+  function productLooksSosmed(name){
+    var s = txt(name).toLowerCase();
+    return /(suntik\s*sosmed|followers?|likes?|views?|subscriber|subscribers|reaction|retweet|tweet|threads|twitter|instagram|tiktok|channel members|channel reaction|poll votes|shopee followers|konten|audit)/.test(s);
+  }
+  function looksSosmedOrder(order){
+    if(!order) return false;
+    try{
+      if(order.isSosmed || order.sosmedInfoRequired) return true;
+      if(order.receipt && (order.receipt.isSosmed || order.receipt.sosmedInfoRequired)) return true;
+    }catch(e){}
+    return productLooksSosmed(order.product || order.productName || (order.receipt && order.receipt.product) || '');
+  }
+  function completedRefTs(order){
+    return Number(order && (order.completedAt || order.deliveredAt || order.doneAt || order.successAt || order.updatedAt || order.orderedAt) || 0) || 0;
+  }
+  function getComplaintGate(order){
+    if(!order || !isDoneStatus(order.status)) return {show:false, enabled:false, remainMs:0, sosmed:false};
+    var sosmed = looksSosmedOrder(order);
+    if(!sosmed) return {show:true, enabled:true, remainMs:0, sosmed:false};
+    var refTs = completedRefTs(order);
+    var remain = Math.max(0, (refTs + SOSMED_WAIT_MS) - nowMs());
+    return {show:true, enabled:remain <= 0, remainMs:remain, sosmed:true, refTs:refTs};
+  }
+  function humanRemain(ms){
+    var totalMin = Math.ceil((Number(ms || 0) || 0) / 60000);
+    if(totalMin <= 0) return '0 menit';
+    var h = Math.floor(totalMin / 60);
+    var m = totalMin % 60;
+    if(h && m) return h + ' jam ' + m + ' menit';
+    if(h) return h + ' jam';
+    return m + ' menit';
+  }
+  function buildResendSubject(order){
+    order = order || {};
+    return 'Kirim Ulang Bukti Transfer - ' + txt(order.orderId || order.id || '-') + ' - ' + txt(order.product || 'Produk');
+  }
+  function buildResendBody(order){
+    order = order || {};
+    var buyer = order.buyer || {};
+    var method = order.method || {};
+    var lines = [
+      'Halo Admin Kzrizusmo Store,',
+      '',
+      'Saya ingin kirim ulang bukti transfer untuk order berikut:',
+      'Kode Order: ' + txt(order.orderId || order.id || '-'),
+      'Produk: ' + txt(order.product || '-'),
+      'Status Order: ' + txt(order.status || '-'),
+      'Total Pembayaran: ' + fmtRp(order.totalVal || 0),
+      'Metode Pembayaran: ' + txt(method.label || method.value || method.key || '-'),
+      'Username: ' + txt(buyer.name || order.senderName || order.buyerName || '-'),
+      'WhatsApp: ' + txt(buyer.wa || order.buyerWA || order.wa || '-'),
+      'Waktu Order: ' + fmtDate(order.orderedAt),
+      'Target / Data Pesanan: ' + txt(order.target || order.targetValue || order.receiver || order.username || '-'),
+      '',
+      'Catatan:',
+      '- Sistem baru, karena ada kendala data order sering tidak masuk disistem, harap lakukan kirim bukti transfer ulang.',
+      '- Saya akan melampirkan bukti transfer pada email ini. Jika tidak dilampirkan, mohon jangan diproses.',
+      '- Untuk melampirkan bukti transfer, klik ikon penjepit di pojok kanan atas lalu pilih foto.',
+      '',
+      'Mohon bantu cek order saya.',
+      '',
+      'Terima kasih.'
+    ];
+    return lines.join('\n');
+  }
+  function buildComplaintSubject(order){
+    order = order || {};
+    return 'Komplain Layanan Belum Masuk - ' + txt(order.orderId || order.id || '-') + ' - ' + txt(order.product || 'Produk');
+  }
+  function buildComplaintBody(order){
+    order = order || {};
+    var buyer = order.buyer || {};
+    var method = order.method || {};
+    var gate = getComplaintGate(order);
+    var lines = [
+      'Halo Admin Kzrizusmo Store,',
+      '',
+      'Saya ingin mengajukan komplain layanan belum masuk untuk order berikut:',
+      'Kode Order: ' + txt(order.orderId || order.id || '-'),
+      'Produk: ' + txt(order.product || '-'),
+      'Jenis Layanan: ' + (gate.sosmed ? 'Suntik Sosmed' : 'Produk / Layanan Digital'),
+      'Status Order Saat Ini: ' + txt(order.status || '-'),
+      'Total Pembayaran: ' + fmtRp(order.totalVal || 0),
+      'Metode Pembayaran: ' + txt(method.label || method.value || method.key || '-'),
+      'Username: ' + txt(buyer.name || order.senderName || order.buyerName || '-'),
+      'WhatsApp: ' + txt(buyer.wa || order.buyerWA || order.wa || '-'),
+      'Waktu Order: ' + fmtDate(order.orderedAt),
+      'Waktu Status Selesai: ' + fmtDate(completedRefTs(order)),
+      'Target / Data Pesanan: ' + txt(order.target || order.targetValue || order.receiver || order.username || '-'),
+      '',
+      'Keluhan:',
+      '- Pesanan saya belum masuk, tetapi status sudah selesai.',
+      '- Mohon bantu cek ulang order saya.',
+      '',
+      'Terima kasih.'
+    ];
+    return lines.join('\n');
+  }
+  function openCompose(toEmail, subjectText, bodyText){
+    var to = encodeURIComponent(txt(toEmail || STORE_EMAIL));
+    var subject = encodeURIComponent(txt(subjectText));
+    var body = encodeURIComponent(String(bodyText || ''));
+    var mailto = 'mailto:' + txt(toEmail || STORE_EMAIL) + '?subject=' + subject + '&body=' + body;
+    var gmailWeb = 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=' + to + '&su=' + subject + '&body=' + body;
+    try{
+      var ua = String(navigator.userAgent || '').toLowerCase();
+      var mobile = /android|iphone|ipad|ipod/.test(ua);
+      if(mobile){
+        window.location.href = mailto;
+        setTimeout(function(){ try{ window.open(gmailWeb, '_blank', 'noopener'); }catch(e){} }, 650);
+      }else{
+        window.open(gmailWeb, '_blank', 'noopener');
+      }
+    }catch(e){
+      try{ window.location.href = mailto; }catch(_e){}
+    }
+  }
+  function dataUrlToBlob(dataUrl){
+    var parts = String(dataUrl || '').split(',');
+    if(parts.length < 2) throw new Error('invalid data url');
+    var meta = parts[0] || '';
+    var mimeMatch = meta.match(/data:([^;]+)/i);
+    var mime = mimeMatch ? mimeMatch[1] : 'application/octet-stream';
+    var bin = atob(parts[1]);
+    var len = bin.length;
+    var arr = new Uint8Array(len);
+    for(var i=0;i<len;i++) arr[i] = bin.charCodeAt(i);
+    return new Blob([arr], {type:mime});
+  }
+  function filenameFromOrder(order, att){
+    var name = txt(att && att.name || 'bukti-transfer');
+    name = name.replace(/[\\/:*?"<>|]+/g,'-').replace(/\s+/g,' ').trim() || 'bukti-transfer';
+    if(/\.[a-z0-9]{2,6}$/i.test(name)) return name;
+    var type = txt(att && att.type).toLowerCase();
+    var ext = type.indexOf('png') >= 0 ? '.png' : (type.indexOf('jpeg') >= 0 || type.indexOf('jpg') >= 0 ? '.jpg' : (type.indexOf('webp') >= 0 ? '.webp' : (type.indexOf('gif') >= 0 ? '.gif' : (type.indexOf('pdf') >= 0 ? '.pdf' : ''))));
+    return name + '-' + txt(order && (order.orderId || order.id) || 'ORDER') + ext;
+  }
+  function prepareExistingProof(order){
+    order = order || {};
+    var att = order.proofAttachment || {};
+    if(!att || !att.dataUrl) return false;
+    try{
+      var blob = dataUrlToBlob(att.dataUrl);
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = filenameFromOrder(order, att);
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function(){
+        try{ URL.revokeObjectURL(url); }catch(e){}
+        try{ a.remove(); }catch(e){}
+      }, 1800);
+      return true;
+    }catch(e){
+      console.warn('prepare existing proof', e);
+      return false;
+    }
+  }
+  function cardActionBox(actions){
+    var box = actions.querySelector('.kz-store-mail-actions');
+    if(!box){
+      box = document.createElement('div');
+      box.className = 'kz-store-mail-actions';
+      actions.appendChild(box);
+    }
+    return box;
+  }
+  function noteBox(card){
+    var box = card.querySelector('.kz-store-mail-note');
+    if(!box){
+      box = document.createElement('div');
+      box.className = 'kz-store-mail-note';
+      card.appendChild(box);
+    }
+    return box;
+  }
+  function buildButton(label, cls, attrs){
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = cls;
+    btn.innerHTML = label;
+    Object.keys(attrs || {}).forEach(function(k){
+      if(attrs[k] == null) return;
+      btn.setAttribute(k, String(attrs[k]));
+    });
+    return btn;
+  }
+  function decorateOrderCards(){
+    var wrap = byId('authMyOrdersList');
+    if(!wrap) return;
+    var cards = wrap.querySelectorAll('.admin-carditem');
+    cards.forEach(function(card){
+      var codeEl = card.querySelector('.kz-hotfix-order-code, .kz-order-code');
+      var actions = card.querySelector('.kz-hotfix-order-actions, .kz-order-actions');
+      if(!codeEl || !actions) return;
+      var code = txt(codeEl.textContent);
+      if(!code) return;
+      var order = getOrderByCode(code);
+      if(!order) return;
+      var actionBox = cardActionBox(actions);
+      var note = noteBox(card);
+      var msgs = [];
+      note.className = 'kz-store-mail-note';
+
+      var resendBtn = actionBox.querySelector('[data-kz-store-action="resend-proof"]');
+      if(isPaidOrder(order)){
+        if(!resendBtn){
+          resendBtn = buildButton('<i class="fas fa-paperclip" style="margin-right:8px;"></i> Kirim Ulang Bukti Transfer', 'btn-solid kz-store-mail-btn', {'data-kz-store-action':'resend-proof','data-kz-order':code});
+          actionBox.appendChild(resendBtn);
+        }
+        msgs.push('Sistem baru, karena ada kendala data order sering tidak masuk disistem, harap lakukan kirim bukti transfer ulang. Di Gmail, lampirkan bukti transfer lewat ikon penjepit di pojok kanan atas lalu pilih foto. Jika tidak dilampirkan, order tidak diproses.');
+      }else if(resendBtn){
+        resendBtn.remove();
+      }
+
+      var gate = getComplaintGate(order);
+      var complaintBtn = actionBox.querySelector('[data-kz-store-action="complaint"]');
+      if(gate.show){
+        if(!complaintBtn){
+          complaintBtn = buildButton('<i class="fas fa-triangle-exclamation" style="margin-right:8px;"></i> Komplain Layanan Belum Masuk', 'btn-ghost kz-store-mail-btn', {'data-kz-store-action':'complaint','data-kz-order':code});
+          actionBox.appendChild(complaintBtn);
+        }
+        complaintBtn.disabled = !gate.enabled;
+        complaintBtn.classList.toggle('is-disabled', !gate.enabled);
+        if(gate.sosmed && !gate.enabled){
+          msgs.push('Tombol <b>Komplain Layanan Belum Masuk</b> aktif setelah <b>12 jam</b> sejak status selesai. Sisa waktu: <b>' + escHtml(humanRemain(gate.remainMs)) + '</b>.');
+          note.classList.add('warn');
+        }else if(gate.sosmed){
+          msgs.push('Jika layanan belum masuk, klik <b>Komplain Layanan Belum Masuk</b>.');
+          note.classList.add('success');
+        }else{
+          msgs.push('Jika layanan belum masuk, klik <b>Komplain Layanan Belum Masuk</b>.');
+        }
+      }else if(complaintBtn){
+        complaintBtn.remove();
+      }
+
+      if(actionBox.children.length === 0){
+        actionBox.remove();
+      }
+      if(msgs.length){
+        note.innerHTML = msgs.join('<br><br>');
+      }else{
+        note.remove();
+      }
+    });
+  }
+  function decorateReceiptActions(){
+    var modal = byId('receiptModal');
+    if(!modal) return;
+    var orderId = txt(byId('receiptOrderId') && byId('receiptOrderId').textContent);
+    var order = getOrderByCode(orderId);
+    var anchor = modal.querySelector('.rc-actions[style*="margin-top:10px"], .rc-actions:last-of-type');
+    if(!anchor) return;
+    var box = byId('kzStoreReceiptActions');
+    if(!order){ if(box) box.remove(); return; }
+    if(!box){
+      box = document.createElement('div');
+      box.id = 'kzStoreReceiptActions';
+      box.className = 'rc-actions';
+      anchor.parentNode.insertBefore(box, anchor);
+    }
+    var html = '';
+    if(isPaidOrder(order)){
+      html += '<button class="ps-btn secondary" type="button" data-kz-store-action="resend-proof" data-kz-order="' + escHtml(orderId) + '">Kirim Ulang Bukti Transfer</button>';
+    }
+    var gate = getComplaintGate(order);
+    if(gate.show){
+      html += '<button class="ps-btn' + (gate.enabled ? '' : ' secondary') + '" type="button" data-kz-store-action="complaint" data-kz-order="' + escHtml(orderId) + '"' + (gate.enabled ? '' : ' disabled') + '>Komplain Layanan Belum Masuk</button>';
+    }
+    if(!html){
+      box.remove();
+      return;
+    }
+    box.innerHTML = html;
+  }
+  function markResendProofClicked(order){
+    if(!order) return;
+    try{
+      var db = (typeof authLoadDB === 'function') ? (authLoadDB() || {}) : null;
+      if(!db || !Array.isArray(db.orders)) return;
+      var code = txt(order.orderId || order.id || '');
+      if(!code) return;
+      var changed = false;
+      db.orders.forEach(function(item){
+        if(!item) return;
+        var itemCode = txt(item.orderId || item.id || '');
+        if(itemCode !== code && txt(item.id || '') !== ('o_' + code)) return;
+        var stamp = now();
+        if(!Number(item.kzResendProofClickedAt || 0)){
+          item.kzResendProofClickedAt = stamp;
+          changed = true;
+        }
+        item.resendProofRequired = false;
+        if(!item.autoFlowStartedAt || Number(item.autoFlowStartedAt || 0) < Number(item.kzResendProofClickedAt || 0)){
+          item.autoFlowStartedAt = Number(item.kzResendProofClickedAt || stamp);
+          changed = true;
+        }
+        if(!item.status || String(item.status) === 'submitted'){
+          item.status = 'proof_submitted';
+          changed = true;
+        }
+        item.updatedAt = stamp;
+      });
+      if(changed){
+        authSaveDB(db);
+        try{ renderMyOrders(); }catch(e){}
+        try{ renderOrdersPremium(); }catch(e){}
+        try{ renderAdminAll(); }catch(e){}
+      }
+    }catch(e){ console.warn('mark resend proof clicked', e); }
+  }
+  function openResendProof(order){
+    markResendProofClicked(order);
+    openCompose(STORE_EMAIL, buildResendSubject(order), buildResendBody(order));
+    authToastSafe('Template Gmail dibuka. Klik ikon penjepit di pojok kanan atas lalu pilih foto untuk melampirkan bukti transfer. Jika tidak dilampirkan, order tidak diproses.');
+  }
+  function openComplaint(order){
+    var gate = getComplaintGate(order);
+    if(!gate.enabled){
+      authToastSafe('Untuk suntik sosmed, komplain layanan belum masuk baru aktif setelah 12 jam sejak status selesai.');
+      return;
+    }
+    openCompose(STORE_EMAIL, buildComplaintSubject(order), buildComplaintBody(order));
+    authToastSafe('Template komplain dibuka ke Gmail Kzrizusmo Store.');
+  }
+  document.addEventListener('click', function(ev){
+    var btn = ev.target && ev.target.closest ? ev.target.closest('[data-kz-store-action]') : null;
+    if(!btn) return;
+    var action = txt(btn.getAttribute('data-kz-store-action'));
+    if(!action) return;
+    if(btn.disabled || btn.classList.contains('is-disabled')){
+      ev.preventDefault();
+      ev.stopPropagation();
+      return;
+    }
+    var code = txt(btn.getAttribute('data-kz-order'));
+    var order = getOrderByCode(code);
+    if(!order) return;
+    ev.preventDefault();
+    ev.stopPropagation();
+    if(action === 'resend-proof') openResendProof(order);
+    if(action === 'complaint') openComplaint(order);
+  }, true);
+
+  function boot(){
+    decorateOrderCards();
+    decorateReceiptActions();
+  }
+  var oldRenderMyOrders = window.renderMyOrders;
+  if(typeof oldRenderMyOrders === 'function'){
+    window.renderMyOrders = function(){
+      var res = oldRenderMyOrders.apply(this, arguments);
+      setTimeout(boot, 40);
+      return res;
+    };
+  }
+  var oldRenderOrdersPremium = window.renderOrdersPremium;
+  if(typeof oldRenderOrdersPremium === 'function'){
+    window.renderOrdersPremium = function(){
+      var res = oldRenderOrdersPremium.apply(this, arguments);
+      setTimeout(boot, 40);
+      return res;
+    };
+  }
+  var oldOpenReceipt = window.kzOpenOrderReceipt;
+  if(typeof oldOpenReceipt === 'function'){
+    window.kzOpenOrderReceipt = function(){
+      var res = oldOpenReceipt.apply(this, arguments);
+      setTimeout(decorateReceiptActions, 40);
+      return res;
+    };
+  }
+  var oldOpenReceiptSuccess = window.kzOpenReceiptFromSuccess;
+  if(typeof oldOpenReceiptSuccess === 'function'){
+    window.kzOpenReceiptFromSuccess = function(){
+      var res = oldOpenReceiptSuccess.apply(this, arguments);
+      setTimeout(decorateReceiptActions, 40);
+      return res;
+    };
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, {once:true});
+  else boot();
+  setInterval(function(){ decorateOrderCards(); decorateReceiptActions(); }, 1200);
 })();
 </script>
 
