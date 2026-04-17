@@ -25824,6 +25824,17 @@ body.light-mode #page-home .kz-protection-card{background:#fff}
     }catch(e){}
   }
 
+  if(!window.__kzPbobTabDelegate){
+    window.__kzPbobTabDelegate = true;
+    document.addEventListener('click', function(ev){
+      var btn = ev.target.closest('#pbobTabs .pbob-cat-btn');
+      if(!btn) return;
+      ev.preventDefault();
+      var key = btn.getAttribute('data-filter') || 'pulsa-nasional';
+      if(typeof window.setPbobCategory === 'function') window.setPbobCategory(key, btn);
+    }, true);
+  }
+
   if(document.readyState === 'loading'){
     document.addEventListener('DOMContentLoaded', function(){ bindFixes(); cleanLeakedText(); hideSpinners(); });
   }else{
@@ -39338,62 +39349,43 @@ header{
 </script>
 
 
-<style id="kz-pbob-styles">
-#page-pbob{padding-bottom:32px}
-#pbobTabs{touch-action:pan-x pan-y}
-#page-pbob .pbob-coming-wrap,
-#page-pbob .pbob-live-wrap{padding:0 20px 20px}
-#page-pbob .pbob-coming-card,
-#page-pbob .pbob-live-card,
-#page-pbob .pbob-provider-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.12)}
-#page-pbob .pbob-coming-card,
-#page-pbob .pbob-live-card{padding:18px}
-#page-pbob .pbob-coming-head,
-#page-pbob .pbob-live-head,
-#page-pbob .pbob-provider-head{display:flex;align-items:center;gap:14px}
-#page-pbob .pbob-coming-head,
-#page-pbob .pbob-live-head{margin-bottom:12px}
-#page-pbob .pbob-coming-ico,
-#page-pbob .pbob-live-ico{width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--primary);flex:0 0 56px}
-#page-pbob .pbob-coming-title,
-#page-pbob .pbob-live-title{font-size:1rem;font-weight:800;line-height:1.3}
-#page-pbob .pbob-coming-sub,
-#page-pbob .pbob-live-sub{font-size:.82rem;color:var(--text-sec);margin-top:4px}
-#page-pbob .pbob-coming-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,0,0,.10);border:1px solid rgba(255,0,0,.20);color:#ffb3b3;font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-#page-pbob .pbob-live-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(0,255,127,.10);border:1px solid rgba(0,255,127,.22);color:var(--accent-green);font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-#page-pbob .pbob-coming-desc,
-#page-pbob .pbob-live-desc{margin-top:14px;color:var(--text-sec);font-size:.92rem;line-height:1.6}
-#page-pbob .pbob-coming-list,
-#page-pbob .pbob-live-list{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
-#page-pbob .pbob-mini{padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:.84rem;font-weight:700;color:var(--text-main)}
-#page-pbob .pbob-mini span{display:block;margin-top:5px;font-size:.75rem;color:var(--text-sec);font-weight:600}
-#page-pbob .pbob-provider-grid{display:grid;grid-template-columns:1fr;gap:14px;padding:0 20px 20px}
-#page-pbob .pbob-provider-card{padding:16px}
-#page-pbob .pbob-provider-logo{width:62px;height:62px;border-radius:16px;object-fit:cover;border:1px solid var(--border);background:rgba(255,255,255,.05);flex:0 0 62px}
-#page-pbob .pbob-provider-name{font-size:1rem;font-weight:900;line-height:1.2}
-#page-pbob .pbob-provider-meta{font-size:.8rem;color:var(--text-sec);margin-top:4px}
-#page-pbob .pbob-provider-topline{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex:1;min-width:0}
-#page-pbob .pbob-provider-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
-#page-pbob .pbob-price-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:rgba(255,0,0,.10);border:1px solid rgba(255,0,0,.18);color:#ffbcbc;font-size:.72rem;font-weight:800;white-space:nowrap}
-#page-pbob .pbob-status-badge{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:rgba(0,255,127,.10);border:1px solid rgba(0,255,127,.22);color:var(--accent-green);font-size:.72rem;font-weight:800;white-space:nowrap}
-#page-pbob .pbob-price-list{margin-top:14px;border-top:1px dashed var(--border);padding-top:12px;display:grid;grid-template-columns:1fr;gap:8px}
-#page-pbob .pbob-price-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 12px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--border)}
-#page-pbob .pbob-price-name{font-size:.86rem;font-weight:800;color:var(--text-main)}
-#page-pbob .pbob-price-value{font-size:.86rem;font-weight:900;color:var(--primary);white-space:nowrap}
-@media(min-width:900px){#page-pbob .pbob-provider-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){
-#page-pbob .pbob-provider-head{align-items:flex-start}
-#page-pbob .pbob-provider-topline{flex-direction:column}
-#page-pbob .pbob-provider-right{flex-wrap:wrap}
-#page-pbob .pbob-price-row{align-items:flex-start;flex-direction:column}
-#page-pbob .pbob-price-value{white-space:normal}
-}
-body.light-mode #page-pbob .pbob-coming-card,
-body.light-mode #page-pbob .pbob-live-card,
-body.light-mode #page-pbob .pbob-provider-card{box-shadow:0 10px 24px rgba(0,0,0,.08)}
+
+
+
+
+
+
+
+
+
+
+
+
+<style id="kz-pbob-clean-style">
+#page-pbob{padding-bottom:28px}
+#page-pbob #pbobProductList .app-grid{padding-top:8px}
+#page-pbob #pbobProductList .item-card img{object-fit:cover}
+#detailModal .pbob-clean-head{text-align:center;margin-bottom:14px}
+#detailModal .pbob-clean-head img{width:76px;height:76px;border-radius:20px;border:2px solid var(--primary);object-fit:cover;display:block;margin:0 auto 10px}
+#detailModal .pbob-clean-head h3{margin:0;font-size:1.38rem;font-weight:900;line-height:1.2}
+#detailModal .pbob-clean-list{display:flex;flex-direction:column;gap:10px}
+#detailModal .pbob-clean-card{overflow:hidden;margin-bottom:0}
+#detailModal .pbob-clean-card::after{display:none !important}
+#detailModal .pbob-clean-card .pkg-head{cursor:pointer;padding:13px 14px}
+#detailModal .pbob-clean-card .pkg-name{font-size:.92rem;font-weight:800;line-height:1.35}
+#detailModal .pbob-clean-card .pkg-price{font-size:.98rem;margin-top:4px}
+#detailModal .pbob-clean-card .pkg-body{padding-top:0}
+#detailModal .pbob-clean-actions{display:flex;gap:8px;padding:10px 0 0}
+#detailModal .pbob-clean-actions .btn-animated{flex:1;margin-top:0}
+#detailModal .pbob-clean-cart{width:42px;height:42px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--text-main);display:flex;align-items:center;justify-content:center;cursor:pointer}
+#detailModal .pbob-clean-more{width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text-main);font-weight:900;margin-top:8px}
+#detailModal .pbob-clean-empty{padding:18px 14px;border:1px dashed var(--border);border-radius:14px;text-align:center;color:var(--text-sec);font-size:13px}
 </style>
-<script id="kz-pbob-script">
+<script id="kz-pbob-clean-script">
 (function(){
+  if(window.__kzPbobCleanApplied) return;
+  window.__kzPbobCleanApplied = true;
+
   window.pbobCategories = [
     { key:'pulsa-nasional', name:'Pulsa Nasional', icon:'fas fa-signal', hint:'Isi ulang semua operator nasional sudah aktif dan siap dipakai.', released:true },
     { key:'sms-telp', name:'Sms & Telp', icon:'fas fa-phone', hint:'Paket SMS dan telepon sedang disiapkan.', released:false },
@@ -39404,366 +39396,7 @@ body.light-mode #page-pbob .pbob-provider-card{box-shadow:0 10px 24px rgba(0,0,0
     { key:'tagihan', name:'Bayar Tagihan', icon:'fas fa-file-invoice-dollar', hint:'Pembayaran tagihan bulanan akan ditambahkan segera.', released:false },
     { key:'edc-mini-atm', name:'EDC Mini Atm', icon:'fas fa-credit-card', hint:'Layanan EDC dan mini ATM masih dalam tahap persiapan.', released:false }
   ];
-
   window.pbobPulsaProducts = [{"name": "TRI", "image": "https://files.catbox.moe/8c2qh1.jpg", "items": [["5.000", 5172], ["10.000", 10136], ["15.000", 14785], ["20.000", 19807], ["25.000", 24769], ["30.000", 29715], ["40.000", 39695], ["50.000", 48580], ["60.000", 58230], ["70.000", 67980], ["75.000", 73750], ["80.000", 77880], ["90.000", 88150], ["100.000", 98050], ["125.000", 119968], ["150.000", 143843], ["200.000", 192393]]}, {"name": "AXIS", "image": "https://files.catbox.moe/gdnqjj.jpg", "items": [["5.000", 5852], ["10.000", 10845], ["15.000", 15045], ["20.000", 20657], ["25.000", 25100], ["30.000", 30070], ["40.000", 40124], ["50.000", 50005], ["60.000", 60095], ["70.000", 70078], ["80.000", 80060], ["90.000", 90043], ["100.000", 99834], ["150.000", 149770], ["200.000", 199293]]}, {"name": "INDOSAT", "image": "https://files.catbox.moe/z9sr05.jpg", "items": [["5.000", 6608], ["10.000", 11458], ["12.000", 12887], ["15.000", 15750], ["20.000", 20603], ["25.000", 25380], ["30.000", 30455], ["40.000", 39695], ["50.000", 48075], ["60.000", 57714], ["70.000", 67434], ["80.000", 77263], ["90.000", 89590], ["100.000", 94144], ["115.000", 114269], ["125.000", 118704], ["150.000", 143509], ["175.000", 174375], ["200.000", 191294], ["225.000", 223119], ["250.000", 248359], ["300.000", 297609], ["400.000", 396109], ["500.000", 482879]]}, {"name": "SMARTFREN", "image": "https://files.catbox.moe/i8o1l3.jpg", "items": [["5.000", 5025], ["10.000", 10018], ["12.000", 12121], ["15.000", 15298], ["20.000", 20278], ["25.000", 25008], ["30.000", 30210], ["35.000", 35300], ["40.000", 40253], ["45.000", 45270], ["50.000", 50218], ["55.000", 55240], ["60.000", 60150], ["65.000", 65308], ["70.000", 70293], ["75.000", 75208], ["80.000", 80163], ["85.000", 85248], ["90.000", 90283], ["95.000", 95418], ["100.000", 100035], ["125.000", 124535], ["150.000", 149710], ["200.000", 199710]]}, {"name": "TELKOMSEL", "image": "https://files.catbox.moe/f18xfy.jpg", "items": [["2.000", 2515], ["3.000", 3735], ["4.000", 4755], ["5.000", 5229], ["6.000", 6945], ["10.000", 10214], ["Promo 10.000", 10214], ["15.000", 14978], ["20.000", 19999], ["25.000", 24824], ["30.000", 29715], ["35.000", 34755], ["40.000", 39368], ["45.000", 44620], ["50.000", 49470], ["55.000", 54480], ["60.000", 59460], ["65.000", 64340], ["70.000", 69326], ["75.000", 73178], ["80.000", 79175], ["85.000", 84100], ["90.000", 88975], ["95.000", 92933], ["100.000", 97433], ["150.000", 149245], ["200.000", 194120]]}, {"name": "XL", "image": "https://files.catbox.moe/wlbf7m.jpg", "items": [["5.000", 5852], ["10.000", 10845], ["15.000", 15045], ["Transfer 20.000", 20663], ["25.000", 25100], ["30.000", 30070], ["40.000", 40124], ["50.000", 50005], ["60.000", 60095], ["70.000", 70078], ["80.000", 80060], ["90.000", 90043], ["100.000", 99834], ["150.000", 149770], ["200.000", 199293]]}, {"name": "BY.U", "image": "https://files.catbox.moe/eemvlj.jpg", "items": [["5.000", 5852], ["10.000", 10845], ["15.000", 15045], ["Transfer 20.000", 20663], ["25.000", 25100], ["30.000", 30070], ["40.000", 40124], ["50.000", 50005], ["60.000", 60095], ["70.000", 70078], ["80.000", 80060], ["90.000", 90043], ["100.000", 99834], ["150.000", 149770], ["200.000", 199293]]}];
-
-  function pbobGetActive(){
-    return window.__kzPbobActiveCat || 'pulsa-nasional';
-  }
-
-  function pbobFind(key){
-    var list = Array.isArray(window.pbobCategories) ? window.pbobCategories : [];
-    for(var i=0;i<list.length;i++){ if(String(list[i].key) === String(key)) return list[i]; }
-    return list[0] || null;
-  }
-
-  function pbobEscape(value){
-    return String(value == null ? '' : value)
-      .replace(/&/g,'&amp;')
-      .replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;')
-      .replace(/"/g,'&quot;')
-      .replace(/'/g,'&#39;');
-  }
-
-  function pbobFormatRp(value){
-    var num = Number(value || 0);
-    if(!isFinite(num)) num = 0;
-    return 'Rp ' + Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.');
-  }
-
-  function renderPbobComingSoon(item){
-    return ''
-      + '<div class="pbob-coming-wrap">'
-      + '  <div class="pbob-coming-card">'
-      + '    <div class="pbob-coming-head">'
-      + '      <div class="pbob-coming-ico"><i class="' + pbobEscape(item.icon) + '"></i></div>'
-      + '      <div>'
-      + '        <div class="pbob-coming-title">' + pbobEscape(item.name) + '</div>'
-      + '        <div class="pbob-coming-sub">Kategori PBOB siap dipakai. Produk menyusul.</div>'
-      + '      </div>'
-      + '    </div>'
-      + '    <div class="pbob-coming-badge"><i class="fas fa-clock"></i> Coming Soon</div>'
-      + '    <div class="pbob-coming-desc">' + pbobEscape(item.hint) + ' Untuk saat ini kategori sudah dibuat dulu sesuai request, dan daftar produknya bisa ditambahkan belakangan.</div>'
-      + '    <div class="pbob-coming-list">'
-      + '      <div class="pbob-mini">Status kategori<span>Sudah aktif di halaman PBOB</span></div>'
-      + '      <div class="pbob-mini">Status produk<span>Masih placeholder / coming soon</span></div>'
-      + '      <div class="pbob-mini">Next step<span>Tinggal isi produk per kategori</span></div>'
-      + '    </div>'
-      + '  </div>'
-      + '</div>';
-  }
-
-  function renderPbobPulsaNasional(){
-    var products = Array.isArray(window.pbobPulsaProducts) ? window.pbobPulsaProducts : [];
-    var totalPackages = 0;
-    products.forEach(function(item){ totalPackages += Array.isArray(item.items) ? item.items.length : 0; });
-    var summary = ''
-      + '<div class="pbob-live-wrap">'
-      + '  <div class="pbob-live-card">'
-      + '    <div class="pbob-live-head">'
-      + '      <div class="pbob-live-ico"><i class="fas fa-signal"></i></div>'
-      + '      <div>'
-      + '        <div class="pbob-live-title">Pulsa Nasional</div>'
-      + '        <div class="pbob-live-sub">Kategori sudah rilis dan siap dipakai.</div>'
-      + '      </div>'
-      + '    </div>'
-      + '    <div class="pbob-live-badge"><i class="fas fa-circle-check"></i> Live</div>'
-      + '    <div class="pbob-live-desc">Semua harga di bawah sudah disesuaikan dengan tambahan <b>Rp 1.000</b> dari pricelist yang kamu kirim.</div>'
-      + '    <div class="pbob-live-list">'
-      + '      <div class="pbob-mini">Operator aktif<span>' + products.length + ' provider tersedia</span></div>'
-      + '      <div class="pbob-mini">Total produk<span>' + totalPackages + ' nominal siap order</span></div>'
-      + '      <div class="pbob-mini">Penyesuaian harga<span>Semua daftar harga + Rp 1.000</span></div>'
-      + '    </div>'
-      + '  </div>'
-      + '</div>';
-
-    var cards = products.map(function(provider){
-      var items = Array.isArray(provider.items) ? provider.items : [];
-      var rows = items.map(function(entry){
-        var label = Array.isArray(entry) ? entry[0] : '';
-        var basePrice = Array.isArray(entry) ? Number(entry[1] || 0) : 0;
-        var finalPrice = basePrice + 1000;
-        return ''
-          + '<div class="pbob-price-row">'
-          + '  <div class="pbob-price-name">' + pbobEscape(label) + '</div>'
-          + '  <div class="pbob-price-value">' + pbobFormatRp(finalPrice) + '</div>'
-          + '</div>';
-      }).join('');
-
-      return ''
-        + '<div class="pbob-provider-card">'
-        + '  <div class="pbob-provider-head">'
-        + '    <img class="pbob-provider-logo" src="' + pbobEscape(provider.image) + '" alt="' + pbobEscape(provider.name) + '"/>'
-        + '    <div class="pbob-provider-topline">'
-        + '      <div>'
-        + '        <div class="pbob-provider-name">' + pbobEscape(provider.name) + '</div>'
-        + '        <div class="pbob-provider-meta">' + items.length + ' nominal tersedia</div>'
-        + '      </div>'
-        + '      <div class="pbob-provider-right">'
-        + '        <div class="pbob-status-badge"><i class="fas fa-circle-check"></i> Aktif</div>'
-        + '        <div class="pbob-price-badge"><i class="fas fa-plus"></i> + Rp 1.000</div>'
-        + '      </div>'
-        + '    </div>'
-        + '  </div>'
-        + '  <div class="pbob-price-list">' + rows + '</div>'
-        + '</div>';
-    }).join('');
-
-    return summary + '<div class="pbob-provider-grid">' + cards + '</div>';
-  }
-
-  window.setPbobCategory = function(key, el){
-    window.__kzPbobActiveCat = key;
-    try{
-      document.querySelectorAll('#pbobTabs .pbob-cat-btn').forEach(function(node){ node.classList.remove('active'); });
-      if(el) el.classList.add('active');
-      else {
-        var btn = document.querySelector('#pbobTabs .pbob-cat-btn[data-filter="' + key + '"]');
-        if(btn) btn.classList.add('active');
-      }
-    }catch(e){}
-    window.renderPbobProducts();
-  };
-
-  window.renderPbobProducts = function(){
-    var wrap = document.getElementById('pbobProductList');
-    var item = pbobFind(pbobGetActive());
-    if(!wrap || !item) return;
-    if(item.key === 'pulsa-nasional' && item.released){
-      wrap.innerHTML = renderPbobPulsaNasional();
-      return;
-    }
-    wrap.innerHTML = renderPbobComingSoon(item);
-  };
-
-  window.initPbobPage = function(){
-    var active = pbobGetActive();
-    var btn = document.querySelector('#pbobTabs .pbob-cat-btn[data-filter="' + active + '"]') || document.querySelector('#pbobTabs .pbob-cat-btn');
-    if(btn){
-      active = btn.getAttribute('data-filter') || active;
-      window.__kzPbobActiveCat = active;
-      document.querySelectorAll('#pbobTabs .pbob-cat-btn').forEach(function(node){ node.classList.remove('active'); });
-      btn.classList.add('active');
-    }
-    window.renderPbobProducts();
-  };
-})();
-</script>
-
-
-<style id="kz-pbob-ui-same-as-products">
-#page-pbob #pbobProductList .app-grid{padding-top:6px}
-#page-pbob #pbobProductList .item-card img{object-fit:cover}
-#page-pbob .pbob-coming-wrap{padding-top:6px}
-#page-pbob .pbob-coming-card{padding:18px}
-</style>
-<script id="kz-pbob-ui-same-as-products-script">
-(function(){
-  if(window.__kzPbobUiSameProducts) return;
-  window.__kzPbobUiSameProducts = true;
-
-  function esc(v){
-    return String(v == null ? '' : v)
-      .replace(/&/g,'&amp;')
-      .replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;')
-      .replace(/"/g,'&quot;');
-  }
-  function fmtRp(n){
-    var num = Number(n || 0) || 0;
-    try{ return 'Rp ' + num.toLocaleString('id-ID'); }catch(e){ return 'Rp ' + String(num); }
-  }
-  function safeArr(v){ return Array.isArray(v) ? v : []; }
-
-  function makePbobApps(){
-    var src = safeArr(window.pbobPulsaProducts);
-    return src.map(function(op){
-      var rawName = String(op && op.name || '').trim();
-      var id = 'pbob-' + rawName.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
-      var pkgs = safeArr(op && op.items).map(function(it){
-        var label = String(it && it[0] || '').trim();
-        var base = Number(it && it[1] || 0) || 0;
-        var finalVal = base + 1000;
-        return {
-          name: label,
-          priceVal: finalVal,
-          price: fmtRp(finalVal),
-          desc: []
-        };
-      });
-      return {
-        id: id,
-        name: rawName,
-        image: String(op && op.image || ''),
-        cat: ['pbob','pulsa-nasional'],
-        noServer: true,
-        packages: pkgs
-      };
-    });
-  }
-
-  function getPbobApps(){
-    if(Array.isArray(window.pbobProductApps) && window.pbobProductApps.length){
-      return window.pbobProductApps;
-    }
-    var apps = makePbobApps();
-    var map = {};
-    apps.forEach(function(app){ map[String(app.id)] = app; });
-    window.pbobProductApps = apps;
-    window.pbobProductAppMap = map;
-    return apps;
-  }
-
-  function findPbobApp(id){
-    id = String(id || '');
-    if(window.pbobProductAppMap && window.pbobProductAppMap[id]) return window.pbobProductAppMap[id];
-    var apps = getPbobApps();
-    for(var i=0;i<apps.length;i++){
-      if(String(apps[i].id) === id) return apps[i];
-    }
-    return null;
-  }
-
-  function renderComingSoon(cat){
-    var root = document.getElementById('pbobProductList');
-    if(!root) return;
-    var title = String(cat && cat.name || 'Kategori');
-    var hint = String(cat && cat.hint || 'Produk untuk kategori ini sedang disiapkan.');
-    root.innerHTML = ''
-      + '<div class="pbob-coming-wrap">'
-      +   '<div class="pbob-coming-card">'
-      +     '<div class="pbob-coming-head">'
-      +       '<div class="pbob-coming-ico"><i class="' + esc(cat && cat.icon || 'fas fa-clock') + '"></i></div>'
-      +       '<div>'
-      +         '<div class="pbob-coming-title">' + esc(title) + '</div>'
-      +         '<div class="pbob-coming-sub">Kategori ini belum aktif untuk checkout.</div>'
-      +       '</div>'
-      +     '</div>'
-      +     '<div class="pbob-coming-badge"><i class="fas fa-clock"></i> Coming Soon</div>'
-      +     '<div class="pbob-coming-desc">' + esc(hint) + '</div>'
-      +   '</div>'
-      + '</div>';
-  }
-
-  function renderPulsaNasional(){
-    var root = document.getElementById('pbobProductList');
-    if(!root) return;
-    var apps = getPbobApps().slice().sort(function(a,b){ return String(a.name||'').localeCompare(String(b.name||'')); });
-    var cards = apps.map(function(app){
-      return ''
-        + '<div class="item-card shiny-effect" onclick="openPbobDetail(' + JSON.stringify(app.id).replace(/"/g,'&quot;') + ')">'
-        +   '<img src="' + esc(app.image) + '" alt="' + esc(app.name) + '" loading="lazy" decoding="async">'
-        +   '<div class="item-title">' + esc(app.name) + '</div>'
-        + '</div>';
-    }).join('');
-    root.innerHTML = '<div class="app-grid">' + cards + '</div>';
-  }
-
-  function buildPkgCard(pkg, app){
-    var priceValNum = Number(pkg && pkg.priceVal || 0) || 0;
-    var pkgName = String(pkg && pkg.name || '');
-    var appName = String(app && app.name || '');
-    var appImage = String(app && app.image || '');
-    var priceText = String(pkg && pkg.price || '');
-    var orderClick = 'orderNow(' + JSON.stringify(pkgName) + ', ' + JSON.stringify(appName) + ', ' + JSON.stringify(priceValNum) + ', ' + JSON.stringify(priceText) + ', ' + JSON.stringify(appImage) + ', "", true)';
-    var cartClick = 'kzCartAddFromPackage(' + JSON.stringify(pkgName) + ', ' + JSON.stringify(appName) + ', ' + JSON.stringify(priceValNum) + ', ' + JSON.stringify(appImage) + ', "", true)';
-    return ''
-      + '<div class="package-card shiny-effect">'
-      +   '<div class="pkg-head" onclick="togglePkg(this)">'
-      +     '<div class="pkg-left">'
-      +       '<div class="pkg-name">' + esc(pkgName) + '</div>'
-      +       '<span class="pkg-price">' + esc(priceText) + '</span>'
-      +     '</div>'
-      +     '<div class="kz-pkg-actions">'
-      +       '<button class="kz-pkg-cart-btn" type="button" onclick="event.stopPropagation(); ' + cartClick.replace(/"/g,'&quot;') + '" title="Masukkan ke keranjang" aria-label="Masukkan ke keranjang">'
-      +         '<i class="fas fa-cart-plus"></i>'
-      +       '</button>'
-      +       '<i class="fas fa-chevron-down kz-pkg-chevron"></i>'
-      +     '</div>'
-      +   '</div>'
-      +   '<div class="pkg-body">'
-      +     '<div style="padding:10px 0; display:flex; gap:8px;">'
-      +       '<button class="btn-animated" style="flex:2; margin-top:0;" onclick="' + orderClick.replace(/"/g,'&quot;') + '">ORDER <i class="fas fa-paper-plane"></i></button>'
-      +     '</div>'
-      +   '</div>'
-      + '</div>';
-  }
-
-  window.openPbobDetail = function(id){
-    try{ if(typeof playClick === 'function') playClick(); }catch(e){}
-    var app = findPbobApp(id);
-    if(!app) return false;
-
-    var title = document.getElementById('modalTitle');
-    var body = document.getElementById('modalBody');
-    var modal = document.getElementById('detailModal');
-    if(!title || !body || !modal) return false;
-
-    title.innerText = app.name;
-
-    var headerHtml = ''
-      + '<div style="text-align:center; margin-bottom:20px;">'
-      +   '<img src="' + esc(app.image) + '" style="width:80px; height:80px; border-radius:15px; border:2px solid var(--primary); object-fit:cover;" loading="eager" decoding="async">'
-      +   '<h3 style="margin-top:10px;">' + esc(app.name) + '</h3>'
-      + '</div>';
-
-    var packageHtml = safeArr(app.packages).map(function(pkg){
-      return buildPkgCard(pkg, app);
-    }).join('');
-
-    body.innerHTML = headerHtml + packageHtml;
-    modal.style.display = 'block';
-    return true;
-  };
-
-  window.renderPbobProducts = function(key){
-    var catKey = String(key || window.__pbobActiveCat || 'pulsa-nasional');
-    window.__pbobActiveCat = catKey;
-    var found = safeArr(window.pbobCategories).find(function(it){ return String(it && it.key || '') === catKey; }) || null;
-    if(catKey === 'pulsa-nasional') renderPulsaNasional();
-    else renderComingSoon(found || {name:'Kategori',icon:'fas fa-clock',hint:'Produk untuk kategori ini sedang disiapkan.'});
-  };
-
-  window.setPbobCategory = function(key, el){
-    try{ if(typeof playClick === 'function') playClick(); }catch(e){}
-    var catKey = String(key || 'pulsa-nasional');
-    try{
-      document.querySelectorAll('#pbobTabs .pbob-cat-btn').forEach(function(btn){ btn.classList.remove('active'); });
-      if(el) el.classList.add('active');
-      else {
-        var target = document.querySelector('#pbobTabs .pbob-cat-btn[data-filter="' + catKey.replace(/"/g,'\"') + '"]');
-        if(target) target.classList.add('active');
-      }
-    }catch(e){}
-    window.renderPbobProducts(catKey);
-  };
-
-  window.initPbobPage = function(){
-    var key = String(window.__pbobActiveCat || 'pulsa-nasional');
-    try{
-      document.querySelectorAll('#pbobTabs .pbob-cat-btn').forEach(function(btn){
-        btn.classList.toggle('active', String(btn.getAttribute('data-filter') || '') === key);
-      });
-    }catch(e){}
-    window.renderPbobProducts(key);
-  };
-})();
-</script>
-
-
-<style id="kz-pbob-superfast-style">
-#page-pbob .pbob-lite-card{overflow:hidden}
-#page-pbob .pbob-lite-card::after{display:none !important}
-#page-pbob .pbob-lite-head{cursor:pointer}
-#page-pbob .pbob-lite-body{padding-top:0}
-#page-pbob .pbob-lite-note{font-size:12px;color:var(--text-sec);margin:6px 0 0}
-#page-pbob .pbob-lite-loading{padding:12px 0 4px;color:var(--text-sec);font-size:12px;text-align:center}
-</style>
-<script id="kz-pbob-superfast-script">
-(function(){
-  if(window.__kzPbobSuperfastModal) return;
-  window.__kzPbobSuperfastModal = true;
 
   function esc(v){
     return String(v == null ? '' : v)
@@ -39782,550 +39415,412 @@ body.light-mode #page-pbob .pbob-provider-card{box-shadow:0 10px 24px rgba(0,0,0
 
   function safeArr(v){ return Array.isArray(v) ? v : []; }
 
-  function ensureApps(){
-    if(Array.isArray(window.pbobProductApps) && window.pbobProductApps.length){
-      return window.pbobProductApps;
-    }
-    var src = safeArr(window.pbobPulsaProducts);
-    var apps = src.map(function(op){
-      var rawName = String(op && op.name || '').trim();
-      var id = 'pbob-' + rawName.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
-      var pkgs = safeArr(op && op.items).map(function(it){
-        var label = String(it && it[0] || '').trim();
-        var base = Number(it && it[1] || 0) || 0;
-        var finalVal = base + 1000;
-        return {
-          name: label,
-          priceVal: finalVal,
-          price: fmtRp(finalVal),
-          desc: []
-        };
-      });
-      return {
-        id: id,
-        name: rawName,
-        image: String(op && op.image || ''),
-        cat: ['pbob','pulsa-nasional'],
-        noServer: true,
-        packages: pkgs
-      };
-    });
-    var map = {};
-    apps.forEach(function(app){ map[String(app.id)] = app; });
-    window.pbobProductApps = apps;
-    window.pbobProductAppMap = map;
-    return apps;
-  }
-
-  function findApp(id){
-    id = String(id || '');
-    if(window.pbobProductAppMap && window.pbobProductAppMap[id]) return window.pbobProductAppMap[id];
-    var apps = ensureApps();
-    for(var i=0;i<apps.length;i++){
-      if(String(apps[i].id) === id) return apps[i];
-    }
-    return null;
-  }
-
-  function runCart(card){
-    var pkgName = card.getAttribute('data-pkg-name') || '';
-    var appName = card.getAttribute('data-app-name') || '';
-    var priceVal = Number(card.getAttribute('data-price-val') || 0) || 0;
-    var img = card.getAttribute('data-app-image') || '';
-    try{
-      if(typeof kzCartAddFromPackage === 'function'){
-        kzCartAddFromPackage(pkgName, appName, priceVal, img, "", true);
-      }
-    }catch(e){}
-  }
-
-  function runOrder(card){
-    var pkgName = card.getAttribute('data-pkg-name') || '';
-    var appName = card.getAttribute('data-app-name') || '';
-    var priceVal = Number(card.getAttribute('data-price-val') || 0) || 0;
-    var priceText = card.getAttribute('data-price-text') || '';
-    var img = card.getAttribute('data-app-image') || '';
-    try{
-      if(typeof orderNow === 'function'){
-        orderNow(pkgName, appName, priceVal, priceText, img, "", true);
-      }
-    }catch(e){}
-  }
-
-  function ensureBodyActions(card){
-    if(card.getAttribute('data-actions-ready') === '1') return;
-    var body = card.querySelector('.pkg-body');
-    if(!body) return;
-    var wrap = document.createElement('div');
-    wrap.style.padding = '10px 0';
-    wrap.style.display = 'flex';
-    wrap.style.gap = '8px';
-
-    var btn = document.createElement('button');
-    btn.className = 'btn-animated';
-    btn.type = 'button';
-    btn.style.flex = '2';
-    btn.style.marginTop = '0';
-    btn.innerHTML = 'ORDER <i class="fas fa-paper-plane"></i>';
-    btn.addEventListener('click', function(ev){
-      ev.stopPropagation();
-      runOrder(card);
-    }, false);
-
-    wrap.appendChild(btn);
-    body.appendChild(wrap);
-    card.setAttribute('data-actions-ready', '1');
-  }
-
-  function toggleCard(card){
-    if(!card) return;
-    var body = card.querySelector('.pkg-body');
-    var chev = card.querySelector('.kz-pkg-chevron');
-    if(!body) return;
-    ensureBodyActions(card);
-    body.classList.toggle('show');
-    if(chev) chev.style.transform = body.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
-  }
-
-  function createCard(pkg, app){
-    var card = document.createElement('div');
-    card.className = 'package-card pbob-lite-card';
-    card.setAttribute('data-pkg-name', String(pkg && pkg.name || ''));
-    card.setAttribute('data-app-name', String(app && app.name || ''));
-    card.setAttribute('data-price-val', String(Number(pkg && pkg.priceVal || 0) || 0));
-    card.setAttribute('data-price-text', String(pkg && pkg.price || ''));
-    card.setAttribute('data-app-image', String(app && app.image || ''));
-
-    var head = document.createElement('div');
-    head.className = 'pkg-head pbob-lite-head';
-    head.setAttribute('role', 'button');
-    head.setAttribute('tabindex', '0');
-
-    var left = document.createElement('div');
-    left.className = 'pkg-left';
-
-    var name = document.createElement('div');
-    name.className = 'pkg-name';
-    name.textContent = String(pkg && pkg.name || '');
-
-    var price = document.createElement('span');
-    price.className = 'pkg-price';
-    price.textContent = String(pkg && pkg.price || '');
-
-    left.appendChild(name);
-    left.appendChild(price);
-
-    var actions = document.createElement('div');
-    actions.className = 'kz-pkg-actions';
-
-    var cartBtn = document.createElement('button');
-    cartBtn.className = 'kz-pkg-cart-btn';
-    cartBtn.type = 'button';
-    cartBtn.title = 'Masukkan ke keranjang';
-    cartBtn.setAttribute('aria-label', 'Masukkan ke keranjang');
-    cartBtn.innerHTML = '<i class="fas fa-cart-plus"></i>';
-    cartBtn.addEventListener('click', function(ev){
-      ev.stopPropagation();
-      runCart(card);
-    }, false);
-
-    var chev = document.createElement('i');
-    chev.className = 'fas fa-chevron-down kz-pkg-chevron';
-
-    actions.appendChild(cartBtn);
-    actions.appendChild(chev);
-
-    head.appendChild(left);
-    head.appendChild(actions);
-
-    head.addEventListener('click', function(){ toggleCard(card); }, false);
-    head.addEventListener('keydown', function(ev){
-      if(ev.key === 'Enter' || ev.key === ' '){
-        ev.preventDefault();
-        toggleCard(card);
-      }
-    }, false);
-
-    var body = document.createElement('div');
-    body.className = 'pkg-body pbob-lite-body';
-
-    card.appendChild(head);
-    card.appendChild(body);
-    return card;
-  }
-
-  function renderPackagesChunked(app, body){
-    var pkgs = safeArr(app && app.packages);
-    var listWrap = document.createElement('div');
-    body.appendChild(listWrap);
-
-    if(!pkgs.length){
-      var empty = document.createElement('div');
-      empty.className = 'pbob-lite-loading';
-      empty.textContent = 'Pricelist belum tersedia.';
-      listWrap.appendChild(empty);
-      return;
-    }
-
-    var loading = document.createElement('div');
-    loading.className = 'pbob-lite-loading';
-    loading.textContent = 'Menyiapkan daftar harga...';
-    listWrap.appendChild(loading);
-
-    var index = 0;
-    var firstBatch = 6;
-    var nextBatch = 8;
-
-    function renderBatch(size){
-      var frag = document.createDocumentFragment();
-      var end = Math.min(index + size, pkgs.length);
-      for(; index < end; index++){
-        frag.appendChild(createCard(pkgs[index], app));
-      }
-      listWrap.appendChild(frag);
-      if(index >= pkgs.length && loading.parentNode){
-        loading.parentNode.removeChild(loading);
-      }
-    }
-
-    renderBatch(firstBatch);
-
-    function step(){
-      if(index >= pkgs.length) return;
-      renderBatch(nextBatch);
-      if(index < pkgs.length){
-        requestAnimationFrame(step);
-      }
-    }
-    requestAnimationFrame(step);
-  }
-
-  window.openPbobDetail = function(id){
-    try{ if(typeof playClick === 'function') playClick(); }catch(e){}
-    var app = findApp(id);
-    if(!app) return false;
-
-    var title = document.getElementById('modalTitle');
-    var body = document.getElementById('modalBody');
-    var modal = document.getElementById('detailModal');
-    if(!title || !body || !modal) return false;
-
-    title.innerText = app.name;
-    body.innerHTML = '';
-
-    var header = document.createElement('div');
-    header.style.textAlign = 'center';
-    header.style.marginBottom = '20px';
-
-    var img = document.createElement('img');
-    img.src = String(app.image || '');
-    img.alt = String(app.name || '');
-    img.loading = 'eager';
-    img.decoding = 'async';
-    img.style.width = '80px';
-    img.style.height = '80px';
-    img.style.borderRadius = '15px';
-    img.style.border = '2px solid var(--primary)';
-    img.style.objectFit = 'cover';
-
-    var h3 = document.createElement('h3');
-    h3.style.marginTop = '10px';
-    h3.textContent = String(app.name || '');
-
-    var note = document.createElement('div');
-    note.className = 'pbob-lite-note';
-    note.textContent = 'Klik nominal untuk buka tombol order.';
-
-    header.appendChild(img);
-    header.appendChild(h3);
-    header.appendChild(note);
-    body.appendChild(header);
-
-    modal.style.display = 'block';
-    try{ body.scrollTop = 0; }catch(e){}
-
-    renderPackagesChunked(app, body);
-    return true;
-  };
-})();
-</script>
-
-
-<style id="kz-pbob-ultralight-style">
-#detailModal .pbob-fast-head{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
-#detailModal .pbob-fast-kicker{display:inline-flex;align-items:center;gap:8px;width:max-content;padding:6px 10px;border-radius:999px;background:rgba(255,0,0,.10);border:1px solid rgba(255,0,0,.20);font-size:12px;font-weight:900}
-#detailModal .pbob-fast-sub{font-size:12px;color:var(--text-sec);line-height:1.45}
-#detailModal .pbob-fast-search{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text-main);margin:4px 0 12px}
-#detailModal .pbob-fast-list{display:flex;flex-direction:column;gap:10px}
-#detailModal .pbob-fast-row{padding:12px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.03)}
-#detailModal .pbob-fast-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-#detailModal .pbob-fast-name{font-size:14px;font-weight:900;line-height:1.25}
-#detailModal .pbob-fast-price{font-size:14px;font-weight:1000;color:var(--primary);white-space:nowrap}
-#detailModal .pbob-fast-actions{display:flex;gap:8px;margin-top:10px}
-#detailModal .pbob-fast-actions button{flex:1}
-#detailModal .pbob-fast-cart{border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text-main);border-radius:12px;padding:11px 12px;font-weight:800}
-#detailModal .pbob-fast-order{border:0;background:var(--primary);color:#fff;border-radius:12px;padding:11px 12px;font-weight:900}
-#detailModal .pbob-fast-more{width:100%;margin-top:4px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text-main);border-radius:12px;padding:12px 14px;font-weight:800}
-#detailModal .pbob-fast-empty{padding:18px 14px;border:1px dashed var(--border);border-radius:14px;text-align:center;color:var(--text-sec);font-size:13px}
-</style>
-<script id="kz-pbob-ultralight-script">
-(function(){
-  if(window.__kzPbobUltralightApplied) return;
-  window.__kzPbobUltralightApplied = true;
-
-  function safeArr(v){ return Array.isArray(v) ? v : []; }
-  function esc(v){
-    return String(v == null ? '' : v)
-      .replace(/&/g,'&amp;')
-      .replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;')
-      .replace(/"/g,'&quot;')
-      .replace(/'/g,'&#39;');
-  }
-  function fmtRp(n){
-    var num = Number(n || 0) || 0;
-    try{ return 'Rp ' + num.toLocaleString('id-ID'); }
-    catch(e){ return 'Rp ' + String(num); }
-  }
-  function getApps(){
-    if(Array.isArray(window.pbobProductApps) && window.pbobProductApps.length){
-      return window.pbobProductApps;
-    }
-    var src = safeArr(window.pbobPulsaProducts);
-    var apps = src.map(function(op){
+  function buildApps(){
+    if(Array.isArray(window.pbobProductApps) && window.pbobProductApps.length) return window.pbobProductApps;
+    var apps = safeArr(window.pbobPulsaProducts).map(function(op){
       var rawName = String(op && op.name || '').trim();
       var id = 'pbob-' + rawName.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
       return {
         id:id,
         name:rawName,
         image:String(op && op.image || ''),
-        packages: safeArr(op && op.items).map(function(it){
+        packages:safeArr(op && op.items).map(function(it){
           var label = String(it && it[0] || '').trim();
           var base = Number(it && it[1] || 0) || 0;
-          var finalVal = base + 1000;
-          return {
-            name: label,
-            priceVal: finalVal,
-            price: fmtRp(finalVal)
-          };
+          var priceVal = base + 1000;
+          return { name:label, priceVal:priceVal, price:fmtRp(priceVal) };
         })
       };
     });
     window.pbobProductApps = apps;
-    var map = {};
-    apps.forEach(function(app){ map[String(app.id)] = app; });
-    window.pbobProductAppMap = map;
+    window.pbobProductAppMap = {};
+    apps.forEach(function(app){ window.pbobProductAppMap[String(app.id)] = app; });
     return apps;
   }
-  function getApp(id){
+
+  window.findPbobApp = function(id){
     id = String(id || '');
     if(window.pbobProductAppMap && window.pbobProductAppMap[id]) return window.pbobProductAppMap[id];
-    var apps = getApps();
-    for(var i=0;i<apps.length;i++){
-      if(String(apps[i].id) === id) return apps[i];
-    }
+    var apps = buildApps();
+    for(var i=0;i<apps.length;i++){ if(String(apps[i].id) === id) return apps[i]; }
     return null;
-  }
+  };
 
-  window.__pbobFastState = { appId:'', limit:8, query:'' };
-
-  function buildRow(pkg, app){
-    return ''
-      + '<div class="pbob-fast-row" data-pbob-name="' + esc(pkg.name) + '" data-pbob-price-val="' + esc(pkg.priceVal) + '" data-pbob-price="' + esc(pkg.price) + '" data-pbob-app="' + esc(app.name) + '" data-pbob-image="' + esc(app.image) + '">'
-      +   '<div class="pbob-fast-top">'
-      +     '<div class="pbob-fast-name">' + esc(pkg.name) + '</div>'
-      +     '<div class="pbob-fast-price">' + esc(pkg.price) + '</div>'
-      +   '</div>'
-      +   '<div class="pbob-fast-actions">'
-      +     '<button type="button" class="pbob-fast-cart" data-pbob-act="cart"><i class="fas fa-cart-plus" style="margin-right:8px;"></i>Keranjang</button>'
-      +     '<button type="button" class="pbob-fast-order" data-pbob-act="order"><i class="fas fa-paper-plane" style="margin-right:8px;"></i>Order</button>'
+  function renderComingSoon(cat){
+    var root = document.getElementById('pbobProductList');
+    if(!root) return;
+    root.innerHTML = ''
+      + '<div class="pbob-coming-wrap">'
+      +   '<div class="pbob-coming-card">'
+      +     '<div class="pbob-coming-head">'
+      +       '<div class="pbob-coming-ico"><i class="' + esc(cat && cat.icon || 'fas fa-clock') + '"></i></div>'
+      +       '<div>'
+      +         '<div class="pbob-coming-title">' + esc(cat && cat.name || 'Kategori') + '</div>'
+      +         '<div class="pbob-coming-sub">Kategori ini belum aktif untuk checkout.</div>'
+      +       '</div>'
+      +     '</div>'
+      +     '<div class="pbob-coming-badge"><i class="fas fa-clock"></i> Coming Soon</div>'
+      +     '<div class="pbob-coming-desc">' + esc(cat && cat.hint || 'Produk untuk kategori ini sedang disiapkan.') + '</div>'
       +   '</div>'
       + '</div>';
   }
 
-  function renderFastList(){
-    var state = window.__pbobFastState || {};
+  function renderPulsaNasional(){
+    var root = document.getElementById('pbobProductList');
+    if(!root) return;
+    var apps = buildApps().slice().sort(function(a,b){ return String(a.name||'').localeCompare(String(b.name||'')); });
+    var html = apps.map(function(app){
+      return ''
+        + '<div class="item-card shiny-effect" data-pbob-open="' + esc(app.id) + '">'
+        +   '<img src="' + esc(app.image) + '" alt="' + esc(app.name) + '" loading="lazy" decoding="async">'
+        +   '<div class="item-title">' + esc(app.name) + '</div>'
+        + '</div>';
+    }).join('');
+    root.innerHTML = '<div class="app-grid">' + html + '</div>';
+  }
+
+  window.renderPbobProducts = function(key){
+    var catKey = String(key || window.__kzPbobActiveCat || 'pulsa-nasional');
+    window.__kzPbobActiveCat = catKey;
+    if(catKey === 'pulsa-nasional'){
+      renderPulsaNasional();
+      return;
+    }
+    var cat = safeArr(window.pbobCategories).find(function(it){ return String(it && it.key || '') === catKey; }) || null;
+    renderComingSoon(cat || {name:'Kategori', icon:'fas fa-clock', hint:'Produk untuk kategori ini sedang disiapkan.'});
+  };
+
+  window.setPbobCategory = function(key, el){
+    try{ if(typeof playClick === 'function') playClick(); }catch(e){}
+    var catKey = String(key || 'pulsa-nasional');
+    window.__kzPbobActiveCat = catKey;
+    try{
+      document.querySelectorAll('#pbobTabs .pbob-cat-btn').forEach(function(btn){
+        btn.classList.toggle('active', btn === el || String(btn.getAttribute('data-filter') || '') === catKey && !el);
+      });
+    }catch(e){}
+    window.renderPbobProducts(catKey);
+  };
+
+  window.initPbobPage = function(){
+    var key = String(window.__kzPbobActiveCat || 'pulsa-nasional');
+    try{
+      document.querySelectorAll('#pbobTabs .pbob-cat-btn').forEach(function(btn){
+        btn.classList.toggle('active', String(btn.getAttribute('data-filter') || '') === key);
+      });
+    }catch(e){}
+    window.renderPbobProducts(key);
+  };
+
+  window.__pbobCleanState = { appId:'', offset:0, step:6 };
+
+  function formatPkgName(name){
+    var clean = String(name || '').trim();
+    if(!clean) return 'Pulsa';
+    if(/^pulsa\b/i.test(clean)) return clean;
+    return 'Pulsa ' + clean;
+  }
+
+  function buildPkgCard(pkg, app){
+    var displayName = formatPkgName(pkg && pkg.name);
+    return ''
+      + '<div class="package-card shiny-effect pbob-clean-card" data-pkg-name="' + esc(displayName) + '" data-price-val="' + esc(pkg.priceVal) + '" data-price-text="' + esc(pkg.price) + '" data-app-name="' + esc(app.name) + '" data-app-image="' + esc(app.image) + '">'
+      +   '<div class="pkg-head pbob-clean-toggle">'
+      +     '<div class="pkg-left">'
+      +       '<div class="pkg-name">' + esc(displayName) + '</div>'
+      +       '<span class="pkg-price">' + esc(pkg.price) + '</span>'
+      +     '</div>'
+      +     '<div class="kz-pkg-actions">'
+      +       '<button class="kz-pkg-cart-btn pbob-clean-cart" type="button" title="Masukkan ke keranjang" aria-label="Masukkan ke keranjang"><i class="fas fa-cart-plus"></i></button>'
+      +       '<i class="fas fa-chevron-down kz-pkg-chevron"></i>'
+      +     '</div>'
+      +   '</div>'
+      +   '<div class="pkg-body">'
+      +     '<div class="pbob-clean-actions">'
+      +       '<button class="btn-animated pbob-clean-order" type="button">ORDER <i class="fas fa-paper-plane"></i></button>'
+      +     '</div>'
+      +   '</div>'
+      + '</div>';
+  }
+
+  function renderPbobModalBatch(){
     var body = document.getElementById('modalBody');
-    var list = document.getElementById('pbobFastList');
-    var moreWrap = document.getElementById('pbobFastMoreWrap');
-    if(!body || !list || !moreWrap) return;
-    var app = getApp(state.appId);
-    if(!app){
-      list.innerHTML = '<div class="pbob-fast-empty">Produk tidak ditemukan.</div>';
-      moreWrap.innerHTML = '';
+    if(!body) return;
+    var list = body.querySelector('.pbob-clean-list');
+    var more = body.querySelector('.pbob-clean-more-wrap');
+    var app = window.findPbobApp(window.__pbobCleanState.appId);
+    if(!list || !more || !app) return;
+    var items = safeArr(app.packages);
+    if(!items.length && !list.children.length){
+      list.innerHTML = '<div class="pbob-clean-empty">Pricelist belum tersedia.</div>';
+      more.innerHTML = '';
       return;
     }
-    var query = String(state.query || '').trim().toLowerCase();
-    var packages = safeArr(app.packages).filter(function(pkg){
-      return !query || String(pkg && pkg.name || '').toLowerCase().indexOf(query) >= 0;
-    });
-
-    if(!packages.length){
-      list.innerHTML = '<div class="pbob-fast-empty">Nominal tidak ditemukan.</div>';
-      moreWrap.innerHTML = '';
-      return;
-    }
-
-    var limit = Number(state.limit || 8) || 8;
-    var visible = packages.slice(0, limit);
-    list.innerHTML = visible.map(function(pkg){ return buildRow(pkg, app); }).join('');
-
-    if(visible.length < packages.length){
-      moreWrap.innerHTML = '<button type="button" id="pbobFastMoreBtn" class="pbob-fast-more">Muat lagi (' + (packages.length - visible.length) + ' sisa)</button>';
-    }else{
-      moreWrap.innerHTML = '';
+    var start = window.__pbobCleanState.offset;
+    var end = Math.min(start + window.__pbobCleanState.step, items.length);
+    var chunk = '';
+    for(var i=start;i<end;i++) chunk += buildPkgCard(items[i], app);
+    list.insertAdjacentHTML('beforeend', chunk);
+    window.__pbobCleanState.offset = end;
+    if(end >= items.length){
+      more.innerHTML = '';
+    } else {
+      more.innerHTML = '<button type="button" class="pbob-clean-more">Muat lagi (' + (items.length - end) + ' sisa)</button>';
     }
   }
-
-  function runCart(row){
-    try{
-      if(typeof kzCartAddFromPackage === 'function'){
-        kzCartAddFromPackage(
-          row.getAttribute('data-pbob-name') || '',
-          row.getAttribute('data-pbob-app') || '',
-          Number(row.getAttribute('data-pbob-price-val') || 0) || 0,
-          row.getAttribute('data-pbob-image') || '',
-          '',
-          true
-        );
-      }
-    }catch(e){}
-  }
-
-  function runOrder(row){
-    try{
-      if(typeof orderNow === 'function'){
-        orderNow(
-          row.getAttribute('data-pbob-name') || '',
-          row.getAttribute('data-pbob-app') || '',
-          Number(row.getAttribute('data-pbob-price-val') || 0) || 0,
-          row.getAttribute('data-pbob-price') || '',
-          row.getAttribute('data-pbob-image') || '',
-          '',
-          true
-        );
-      }
-    }catch(e){}
-  }
-
-  var searchTimer = null;
 
   window.openPbobDetail = function(id){
-    var app = getApp(id);
+    try{ if(typeof playClick === 'function') playClick(); }catch(e){}
+    var app = window.findPbobApp(id);
     var title = document.getElementById('modalTitle');
     var body = document.getElementById('modalBody');
     var modal = document.getElementById('detailModal');
     if(!app || !title || !body || !modal) return false;
-
-    window.__pbobFastState = { appId:String(id || ''), limit:8, query:'' };
-
+    window.__pbobCleanState = { appId:String(app.id), offset:0, step:6 };
     title.innerText = app.name;
     body.innerHTML = ''
-      + '<div class="pbob-fast-head">'
-      +   '<div class="pbob-fast-kicker"><i class="fas fa-signal"></i> Pulsa Nasional</div>'
-      +   '<div class="pbob-fast-sub">Pilih nominal di bawah. Daftar dibuka ringan dulu, lalu bisa dimuat bertahap supaya tidak lag.</div>'
+      + '<div class="pbob-clean-head">'
+      +   '<img src="' + esc(app.image) + '" alt="' + esc(app.name) + '" loading="eager" decoding="async">'
+      +   '<h3>' + esc(app.name) + '</h3>'
       + '</div>'
-      + '<input id="pbobFastSearch" class="pbob-fast-search" type="text" placeholder="Cari nominal, contoh: 10.000 atau 100.000">'
-      + '<div id="pbobFastList" class="pbob-fast-list"><div class="pbob-fast-empty">Menyiapkan daftar harga...</div></div>'
-      + '<div id="pbobFastMoreWrap"></div>';
-
+      + '<div class="pbob-clean-list"></div>'
+      + '<div class="pbob-clean-more-wrap"></div>';
     modal.style.display = 'block';
-
-    setTimeout(function(){
-      var inp = document.getElementById('pbobFastSearch');
-      if(inp && !inp.__pbobBound){
-        inp.__pbobBound = true;
-        inp.addEventListener('input', function(){
-          clearTimeout(searchTimer);
-          searchTimer = setTimeout(function(){
-            window.__pbobFastState.query = inp.value || '';
-            window.__pbobFastState.limit = 8;
-            renderFastList();
-          }, 60);
-        }, false);
-      }
-      renderFastList();
-    }, 0);
-
-    return true;
+    try{ modal.classList.add('kz-open'); }catch(e){}
+    try{ body.scrollTop = 0; }catch(e){}
+    setTimeout(renderPbobModalBatch, 0);
+    return false;
   };
 
   document.addEventListener('click', function(ev){
-    var more = ev.target.closest('#pbobFastMoreBtn');
-    if(more){
-      window.__pbobFastState.limit = Number(window.__pbobFastState.limit || 8) + 8;
-      renderFastList();
-      return;
-    }
-    var act = ev.target.closest('[data-pbob-act]');
-    if(!act) return;
-    var row = act.closest('.pbob-fast-row');
-    if(!row) return;
-    var kind = act.getAttribute('data-pbob-act');
-    if(kind === 'cart'){
+    var opener = ev.target.closest('#pbobProductList [data-pbob-open]');
+    if(opener){
       ev.preventDefault();
-      ev.stopPropagation();
-      runCart(row);
+      window.openPbobDetail(opener.getAttribute('data-pbob-open') || '');
       return;
     }
-    if(kind === 'order'){
+
+    var moreBtn = ev.target.closest('#detailModal .pbob-clean-more');
+    if(moreBtn){
       ev.preventDefault();
-      ev.stopPropagation();
-      runOrder(row);
+      renderPbobModalBatch();
       return;
     }
-  }, true);
+
+    var toggle = ev.target.closest('#detailModal .pbob-clean-toggle');
+    if(toggle){
+      if(ev.target.closest('.pbob-clean-cart')) return;
+      var card = toggle.closest('.pbob-clean-card');
+      var body = card ? card.querySelector('.pkg-body') : null;
+      if(body) body.classList.toggle('show');
+      return;
+    }
+
+    var card = ev.target.closest('#detailModal .pbob-clean-card');
+    if(!card) return;
+
+    if(ev.target.closest('.pbob-clean-cart')){
+      ev.preventDefault();
+      try{
+        if(typeof kzCartAddFromPackage === 'function'){
+          kzCartAddFromPackage(
+            card.getAttribute('data-pkg-name') || '',
+            card.getAttribute('data-app-name') || '',
+            Number(card.getAttribute('data-price-val') || 0) || 0,
+            card.getAttribute('data-app-image') || '',
+            '',
+            true
+          );
+        }
+      }catch(e){ console.warn(e); }
+      return;
+    }
+
+    if(ev.target.closest('.pbob-clean-order')){
+      ev.preventDefault();
+      try{
+        if(typeof orderNow === 'function'){
+          orderNow(
+            card.getAttribute('data-pkg-name') || '',
+            card.getAttribute('data-app-name') || '',
+            Number(card.getAttribute('data-price-val') || 0) || 0,
+            card.getAttribute('data-price-text') || '',
+            card.getAttribute('data-app-image') || '',
+            '',
+            true
+          );
+        }
+      }catch(e){ console.warn(e); }
+    }
+  }, false);
+
+  function boot(){
+    buildApps();
+    var detailPage = document.getElementById('page-pbob-detail-page');
+    if(detailPage) detailPage.remove();
+    if(document.getElementById('page-pbob')) window.initPbobPage();
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, {once:true});
+  else boot();
 })();
 </script>
 
 
-<style id="kz-pbob-detail-page-fix">
-#page-pbob-detail-page .pbob-detail-wrap{padding:0 20px 24px}
-#page-pbob-detail-page .pbob-detail-head{display:flex;align-items:center;gap:12px;margin:4px 0 14px}
-#page-pbob-detail-page .pbob-detail-head img{width:56px;height:56px;border-radius:14px;object-fit:cover;border:1px solid var(--border);background:var(--bg-card)}
-#page-pbob-detail-page .pbob-detail-title{font-size:1.05rem;font-weight:900}
-#page-pbob-detail-page .pbob-detail-sub{font-size:.82rem;color:var(--text-sec);margin-top:4px}
-#page-pbob-detail-page .pbob-detail-search{margin-bottom:12px}
-#page-pbob-detail-page .pbob-list{display:flex;flex-direction:column;gap:10px}
-#page-pbob-detail-page .pbob-row{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:12px}
-#page-pbob-detail-page .pbob-row-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-#page-pbob-detail-page .pbob-row-name{font-weight:800;font-size:.92rem;line-height:1.3}
-#page-pbob-detail-page .pbob-row-price{font-size:1rem;font-weight:900;color:var(--primary);white-space:nowrap}
-#page-pbob-detail-page .pbob-row-actions{display:flex;gap:8px;margin-top:10px}
-#page-pbob-detail-page .pbob-row-actions .btn-ghost,
-#page-pbob-detail-page .pbob-row-actions .btn-solid{flex:1;margin-top:0}
-#page-pbob-detail-page .pbob-empty{padding:20px;border:1px dashed var(--border);border-radius:14px;text-align:center;color:var(--text-sec);background:rgba(255,255,255,.03)}
+<style id="kz-pbob-v9-tune-style">
+#detailModal .pbob-clean-head{margin-bottom:12px}
+#detailModal .pbob-clean-head h3{font-size:1.16rem;font-weight:900;line-height:1.18}
+#detailModal .pbob-clean-list{gap:8px}
+#detailModal .pbob-clean-card{margin-bottom:0;padding:12px}
+#detailModal .pbob-clean-card .pkg-head{padding:10px 12px}
+#detailModal .pbob-clean-card .pkg-name{font-size:.86rem;line-height:1.28}
+#detailModal .pbob-clean-card .pkg-price{font-size:.94rem;margin-top:3px}
+#detailModal .pbob-clean-card .pkg-body{margin-top:8px;padding-top:8px}
+#detailModal .pbob-clean-actions{padding-top:8px}
+#detailModal .pbob-clean-actions .btn-animated{padding:10px 12px;border-radius:10px}
+#detailModal .pbob-clean-cart{width:38px;height:38px;border-radius:10px}
+#detailModal .pbob-clean-more{margin-top:6px}
 </style>
-<script id="kz-pbob-detail-page-fix-script">
+<script id="kz-pbob-v9-tune-script">
 (function(){
-  function ensurePage(){
-    if(document.getElementById('page-pbob-detail-page')) return;
-    var container = document.getElementById('mainContainer');
-    if(!container) return;
-    var section = document.createElement('div');
-    section.className = 'page-section';
-    section.id = 'page-pbob-detail-page';
-    section.style.display = 'none';
-    section.innerHTML = ''
-      + '<div class="modal-header">'
-      + '  <div class="back-icon" onclick="closePbobDetailPage()"><i class="fas fa-arrow-left"></i></div>'
-      + '  <h2 id="pbobDetailPageTitle" style="font-size:1.1rem;">Detail Produk</h2>'
-      + '</div>'
-      + '<div class="pbob-detail-wrap">'
-      + '  <div class="pbob-detail-head">'
-      + '    <img id="pbobDetailPageImg" src="" alt="">'
-      + '    <div>'
-      + '      <div class="pbob-detail-title" id="pbobDetailPageName">Produk</div>'
-      + '      <div class="pbob-detail-sub" id="pbobDetailPageSub">Pilih nominal lalu Order atau masukkan ke keranjang.</div>'
-      + '    </div>'
-      + '  </div>'
-      + '  <div class="pbob-detail-search search-container" style="padding:0 0 12px 0;">'
-      + '    <input class="search-input" id="pbobDetailSearchInput" type="text" placeholder="Cari nominal..." oninput="renderPbobDetailList(this.value)">'
-      + '  </div>'
-      + '  <div id="pbobDetailPageList" class="pbob-list"></div>'
-      + '</div>';
-    container.appendChild(section);
+  if(window.__kzPbobV9TuneApplied) return;
+  window.__kzPbobV9TuneApplied = true;
+
+  function norm(v){
+    return String(v == null ? '' : v).trim().toLowerCase();
   }
+
+  function getPbobNames(){
+    try{
+      return (Array.isArray(window.pbobProductApps) ? window.pbobProductApps : []).map(function(app){ return norm(app && app.name); }).filter(Boolean);
+    }catch(e){ return []; }
+  }
+
+  function isPbobArgs(args){
+    var pkgName = norm(args && args.length > 0 ? args[0] : '');
+    var appName = norm(args && args.length > 1 ? args[1] : '');
+    if(/^pulsa\b/.test(pkgName)) return true;
+    var names = getPbobNames();
+    return !!(appName && names.indexOf(appName) !== -1);
+  }
+
+  function hidePbobPublicField(){
+    var field = document.getElementById('paySosmedPublicField');
+    var check = document.getElementById('paySosmedPublicCheck');
+    var hidden = document.getElementById('payFormSosmedPublic');
+    var wrap = document.getElementById('paySosmedPublicWrap');
+    if(!field || !window.__kzPbobOrderActive) return;
+    field.style.display = 'none';
+    if(check) check.checked = false;
+    if(hidden) hidden.value = '';
+    if(wrap) wrap.classList.remove('kz-warn');
+    try{
+      if(window.payState) payState.sosmedPublicConfirmed = false;
+      if(typeof savePayStorage === 'function') savePayStorage();
+    }catch(e){}
+    try{ if(typeof window.validatePaySendButton === 'function') window.validatePaySendButton(); }catch(e){}
+  }
+
+  var oldOrderNow = window.orderNow;
+  if(typeof oldOrderNow === 'function' && !oldOrderNow.__kzPbobV9Wrapped){
+    var wrapped = function(){
+      window.__kzPbobOrderActive = isPbobArgs(arguments);
+      var res = oldOrderNow.apply(this, arguments);
+      setTimeout(hidePbobPublicField, 0);
+      setTimeout(hidePbobPublicField, 80);
+      return res;
+    };
+    wrapped.__kzPbobV9Wrapped = true;
+    window.orderNow = wrapped;
+  }
+
+  var oldOpenPaymentFlow = window.openPaymentFlow;
+  if(typeof oldOpenPaymentFlow === 'function' && !oldOpenPaymentFlow.__kzPbobV9Wrapped){
+    var wrappedOpen = function(){
+      var res = oldOpenPaymentFlow.apply(this, arguments);
+      setTimeout(hidePbobPublicField, 0);
+      setTimeout(hidePbobPublicField, 80);
+      return res;
+    };
+    wrappedOpen.__kzPbobV9Wrapped = true;
+    window.openPaymentFlow = wrappedOpen;
+  }
+
+  var oldStartNewOrder = window.startNewOrder;
+  if(typeof oldStartNewOrder === 'function' && !oldStartNewOrder.__kzPbobV9Wrapped){
+    var wrappedStart = function(){
+      window.__kzPbobOrderActive = false;
+      return oldStartNewOrder.apply(this, arguments);
+    };
+    wrappedStart.__kzPbobV9Wrapped = true;
+    window.startNewOrder = wrappedStart;
+  }
+
+  try{
+    var payOverlay = document.getElementById('payOverlay');
+    var payName = document.getElementById('payProductName');
+    var observer = new MutationObserver(function(){
+      hidePbobPublicField();
+      if(payOverlay && payOverlay.style.display === 'none') window.__kzPbobOrderActive = false;
+      if(payName && /^pulsa\b/i.test(String(payName.textContent || '').trim())) window.__kzPbobOrderActive = true;
+    });
+    if(payOverlay) observer.observe(payOverlay, { attributes:true, attributeFilter:['style','class'] });
+    if(payName) observer.observe(payName, { childList:true, characterData:true, subtree:true });
+  }catch(e){}
+})();
+</script>
+
+
+<style id="kz-pbob-v10-polish-style">
+#detailModal .pbob-clean-head{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin:0 0 12px;padding:4px 0 6px;text-align:center}
+#detailModal .pbob-clean-head img{width:72px;height:72px;border-radius:20px;border:2px solid var(--primary);object-fit:cover;display:block;margin:0 auto}
+#detailModal .pbob-clean-head h3{margin:0;font-size:1.14rem;font-weight:900;line-height:1.18;max-width:100%}
+#detailModal .pbob-clean-list{display:flex;flex-direction:column;gap:6px;margin:0;padding:0}
+#detailModal .pbob-clean-card{margin:0 !important;padding:0 !important;border-radius:12px !important;overflow:hidden !important}
+#detailModal .pbob-clean-card .pkg-head{padding:12px 13px !important;align-items:center;gap:10px}
+#detailModal .pbob-clean-card .pkg-left{min-width:0}
+#detailModal .pbob-clean-card .pkg-name{font-size:.92rem !important;font-weight:800;line-height:1.24;display:block}
+#detailModal .pbob-clean-card .pkg-price{font-size:1rem !important;margin-top:3px !important;display:block}
+#detailModal .pbob-clean-card .kz-pkg-actions{gap:8px !important;align-items:center}
+#detailModal .pbob-clean-card .pbob-clean-cart{width:38px !important;height:38px !important;border-radius:10px !important}
+#detailModal .pbob-clean-card .kz-pkg-chevron{font-size:.95rem}
+#detailModal .pbob-clean-card .pkg-body{margin-top:0 !important;padding:0 13px 13px !important;border-top:1px dashed var(--border)}
+#detailModal .pbob-clean-actions{padding-top:10px !important}
+#detailModal .pbob-clean-actions .btn-animated{width:100%;margin-top:0;padding:11px 12px;border-radius:10px;font-size:.9rem}
+#detailModal .pbob-clean-more-wrap{margin-top:6px}
+#detailModal .pbob-clean-more{margin-top:0 !important;padding:11px 12px;border-radius:12px;font-size:.88rem}
+@media (max-width:480px){
+  #detailModal .pbob-clean-head{margin-bottom:10px;padding-bottom:3px}
+  #detailModal .pbob-clean-head img{width:68px;height:68px;border-radius:18px}
+  #detailModal .pbob-clean-head h3{font-size:1.08rem}
+  #detailModal .pbob-clean-list{gap:5px}
+  #detailModal .pbob-clean-card .pkg-head{padding:11px 12px !important}
+  #detailModal .pbob-clean-card .pkg-name{font-size:.88rem !important}
+  #detailModal .pbob-clean-card .pkg-price{font-size:.98rem !important}
+  #detailModal .pbob-clean-card .pkg-body{padding:0 12px 12px !important}
+}
+</style>
+
+
+<style id="kz-pbob-v12-tabs-style">
+#detailModal .pbob-clean-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:6px 0 12px}
+#detailModal .pbob-clean-tab{appearance:none;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text-main);padding:9px 14px;border-radius:999px;font-size:.82rem;font-weight:900;line-height:1.2;cursor:pointer;transition:background-color .2s ease,border-color .2s ease,color .2s ease,transform .12s ease,box-shadow .2s ease}
+#detailModal .pbob-clean-tab.active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 10px 24px rgba(255,0,0,.18)}
+#detailModal .pbob-clean-tab:active{transform:scale(.98)}
+#detailModal .pbob-tab-more{width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text-main);font-weight:900;font-size:.88rem;margin-top:6px;cursor:pointer}
+@media (max-width:480px){
+  #detailModal .pbob-clean-tabs{gap:6px;margin:6px 0 10px}
+  #detailModal .pbob-clean-tab{font-size:.78rem;padding:8px 12px}
+}
+</style>
+<script id="kz-pbob-v12-tabs-script">
+(function(){
+  if(window.__kzPbobV12TabsApplied) return;
+  window.__kzPbobV12TabsApplied = true;
+
+  var oldFindPbobApp = (typeof window.findPbobApp === 'function')
+    ? function(id){ return window.findPbobApp(id); }
+    : function(){ return null; };
 
   function esc(v){
     return String(v == null ? '' : v)
@@ -40336,97 +39831,554 @@ body.light-mode #page-pbob .pbob-provider-card{box-shadow:0 10px 24px rgba(0,0,0
       .replace(/'/g,'&#39;');
   }
 
-  function formatRp(value){
-    var num = Number(value || 0);
-    if(!isFinite(num)) num = 0;
-    return 'Rp ' + Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+  function fmtRp(n){
+    var num = Number(n || 0) || 0;
+    try { return 'Rp ' + num.toLocaleString('id-ID'); }
+    catch(e){ return 'Rp ' + String(num); }
   }
 
-  window.__pbobCurrentDetailId = null;
+  function safeArr(v){ return Array.isArray(v) ? v : []; }
 
-  window.renderPbobDetailList = function(keyword){
-    ensurePage();
-    var listEl = document.getElementById('pbobDetailPageList');
-    if(!listEl) return;
-    var app = (typeof findPbobApp === 'function') ? findPbobApp(window.__pbobCurrentDetailId) : null;
-    if(!app){
-      listEl.innerHTML = '<div class="pbob-empty">Produk tidak ditemukan.</div>';
-      return;
-    }
-    var q = String(keyword || '').trim().toLowerCase();
-    var items = Array.isArray(app.packages) ? app.packages.slice() : [];
-    if(q){
-      items = items.filter(function(pkg){
-        return String(pkg && pkg.name || '').toLowerCase().indexOf(q) !== -1
-          || String(pkg && pkg.price || '').toLowerCase().indexOf(q) !== -1;
+  function normOperator(name){
+    var s = String(name || '').trim().toLowerCase();
+    if(s === '3') return 'tri';
+    if(s.indexOf('tri') !== -1) return 'tri';
+    if(s.indexOf('axis') !== -1) return 'axis';
+    if(s.indexOf('indosat') !== -1 || s.indexOf('im3') !== -1) return 'indosat';
+    if(s.indexOf('telkomsel') !== -1) return 'telkomsel';
+    if(s === 'xl' || s.indexOf(' xl') !== -1 || s.indexOf('xl ') === 0) return 'xl';
+    return s;
+  }
+
+  function formatRegularLabel(name){
+    var clean = String(name || '').trim();
+    if(!clean) return 'Pulsa';
+    if(/^pulsa\b/i.test(clean)) return clean;
+    return 'Pulsa ' + clean;
+  }
+
+  var masaAktifMap = {
+    tri: [
+      { name:'Masa Aktif Kartu Tri + 4 Bulan', priceVal:4147 }
+    ],
+    axis: [
+      { name:'Masa Aktif Kartu Axis + 30 Hari', priceVal:6100 }
+    ],
+    indosat: [
+      { name:'Masa Aktif Kartu Indosat 15 Hari', priceVal:6635 },
+      { name:'Masa Aktif Kartu Indosat 30 Hari', priceVal:15148 },
+      { name:'Masa Aktif Kartu Indosat 90 Hari', priceVal:34068 },
+      { name:'Masa Aktif Kartu Indosat 180 Hari', priceVal:57348 },
+      { name:'Masa Aktif Kartu Indosat 360 Hari', priceVal:107409 }
+    ],
+    telkomsel: [
+      { name:'Masa Aktif Kartu Telkomsel 5 Hari', priceVal:3600 },
+      { name:'Masa Aktif Kartu Telkomsel 10 Hari', priceVal:4950 },
+      { name:'Masa Aktif Kartu Telkomsel 15 Hari', priceVal:7100 },
+      { name:'Masa Aktif Kartu Telkomsel 30 Hari', priceVal:14350 },
+      { name:'Masa Aktif Kartu Telkomsel 90 Hari', priceVal:33000 },
+      { name:'Masa Aktif Kartu Telkomsel 180 Hari', priceVal:58765 },
+      { name:'Masa Aktif Kartu Telkomsel 360 Hari', priceVal:110385 }
+    ],
+    xl: [
+      { name:'Masa Aktif Kartu XL 30 Hari', priceVal:6350 }
+    ]
+  };
+
+  Object.keys(masaAktifMap).forEach(function(key){
+    masaAktifMap[key] = safeArr(masaAktifMap[key]).map(function(item){
+      var priceVal = Number(item && item.priceVal || 0) || 0;
+      return {
+        name: String(item && item.name || ''),
+        priceVal: priceVal,
+        price: fmtRp(priceVal)
+      };
+    });
+  });
+
+  window.__pbobTabState = window.__pbobTabState || { appId:'', tab:'regular', offset:0, step:6 };
+
+  function getBaseApp(id){
+    try { return oldFindPbobApp(id); }
+    catch(e){ return null; }
+  }
+
+  function getTabsForApp(app){
+    if(!app) return [];
+    var tabs = [{
+      key:'regular',
+      label:'Pulsa',
+      kind:'regular',
+      packages:safeArr(app.packages).slice()
+    }];
+    var masa = masaAktifMap[normOperator(app.name)];
+    if(safeArr(masa).length){
+      tabs.push({
+        key:'masa-aktif',
+        label:'Masa Aktif',
+        kind:'masa-aktif',
+        packages:safeArr(masa).slice()
       });
     }
-    if(!items.length){
-      listEl.innerHTML = '<div class="pbob-empty">Nominal yang kamu cari tidak ada.</div>';
+    return tabs;
+  }
+
+  function getCurrentTab(app){
+    var tabs = getTabsForApp(app);
+    if(!tabs.length) return null;
+    for(var i=0;i<tabs.length;i++){
+      if(String(tabs[i].key) === String(window.__pbobTabState.tab || 'regular')) return tabs[i];
+    }
+    return tabs[0];
+  }
+
+  function buildCardHtml(pkg, app, kind){
+    var rawName = String(pkg && pkg.name || '').trim();
+    var displayName = kind === 'masa-aktif' ? rawName : formatRegularLabel(rawName);
+    var priceVal = Number(pkg && pkg.priceVal || 0) || 0;
+    var priceText = String(pkg && pkg.price || fmtRp(priceVal));
+    return ''
+      + '<div class="package-card shiny-effect pbob-clean-card" data-pkg-name="' + esc(displayName) + '" data-price-val="' + esc(priceVal) + '" data-price-text="' + esc(priceText) + '" data-app-name="' + esc(app.name) + '" data-app-image="' + esc(app.image) + '">'
+      +   '<div class="pkg-head pbob-clean-toggle">'
+      +     '<div class="pkg-left">'
+      +       '<div class="pkg-name">' + esc(displayName) + '</div>'
+      +       '<span class="pkg-price">' + esc(priceText) + '</span>'
+      +     '</div>'
+      +     '<div class="kz-pkg-actions">'
+      +       '<button class="kz-pkg-cart-btn pbob-clean-cart" type="button" title="Masukkan ke keranjang" aria-label="Masukkan ke keranjang"><i class="fas fa-cart-plus"></i></button>'
+      +       '<i class="fas fa-chevron-down kz-pkg-chevron"></i>'
+      +     '</div>'
+      +   '</div>'
+      +   '<div class="pkg-body">'
+      +     '<div class="pbob-clean-actions">'
+      +       '<button class="btn-animated pbob-clean-order" type="button">ORDER <i class="fas fa-paper-plane"></i></button>'
+      +     '</div>'
+      +   '</div>'
+      + '</div>';
+  }
+
+  function renderTabsHtml(app){
+    var tabs = getTabsForApp(app);
+    if(tabs.length < 2) return '';
+    return '<div class="pbob-clean-tabs">' + tabs.map(function(tab){
+      var active = String(tab.key) === String(window.__pbobTabState.tab || 'regular');
+      return '<button type="button" class="pbob-clean-tab' + (active ? ' active' : '') + '" data-pbob-tab="' + esc(tab.key) + '">' + esc(tab.label) + '</button>';
+    }).join('') + '</div>';
+  }
+
+  function renderCurrentTab(reset){
+    var body = document.getElementById('modalBody');
+    if(!body) return;
+    var list = body.querySelector('.pbob-clean-list');
+    var moreWrap = body.querySelector('.pbob-clean-more-wrap');
+    if(!list || !moreWrap) return;
+
+    var app = getBaseApp(window.__pbobTabState.appId);
+    var tab = getCurrentTab(app);
+    if(!app || !tab){
+      list.innerHTML = '<div class="pbob-clean-empty">Pricelist belum tersedia.</div>';
+      moreWrap.innerHTML = '';
       return;
     }
-    listEl.innerHTML = items.map(function(pkg){
-      var pkgName = String(pkg && pkg.name || '');
-      var priceText = String(pkg && pkg.price || '');
-      var priceVal = Number(pkg && pkg.priceVal || 0) || 0;
-      var appName = String(app && app.name || '');
-      var appImage = String(app && app.image || '');
-      var orderArgs = [pkgName, appName, priceVal, priceText, appImage, "", true].map(function(v){ return JSON.stringify(v); }).join(', ');
-      var cartArgs = [pkgName, appName, priceVal, appImage, "", true].map(function(v){ return JSON.stringify(v); }).join(', ');
-      return ''
-        + '<div class="pbob-row">'
-        + '  <div class="pbob-row-top">'
-        + '    <div class="pbob-row-name">' + esc(pkgName) + '</div>'
-        + '    <div class="pbob-row-price">' + esc(priceText) + '</div>'
-        + '  </div>'
-        + '  <div class="pbob-row-actions">'
-        + '    <button class="btn-ghost" type="button" onclick="kzCartAddFromPackage(' + cartArgs + ')"><i class="fas fa-cart-plus"></i> Keranjang</button>'
-        + '    <button class="btn-solid" type="button" onclick="orderNow(' + orderArgs + ')">Order</button>'
-        + '  </div>'
-        + '</div>';
-    }).join('');
-  };
+
+    var items = safeArr(tab.packages);
+    if(reset){
+      window.__pbobTabState.offset = 0;
+      list.innerHTML = '';
+      moreWrap.innerHTML = '';
+    }
+
+    if(!items.length){
+      list.innerHTML = '<div class="pbob-clean-empty">Pricelist belum tersedia.</div>';
+      moreWrap.innerHTML = '';
+      return;
+    }
+
+    var step = Number(window.__pbobTabState.step || 6) || 6;
+    var start = Number(window.__pbobTabState.offset || 0) || 0;
+    var end = Math.min(start + step, items.length);
+    var html = '';
+    for(var i=start;i<end;i++) html += buildCardHtml(items[i], app, tab.kind);
+    if(start === 0) list.innerHTML = html;
+    else list.insertAdjacentHTML('beforeend', html);
+    window.__pbobTabState.offset = end;
+
+    if(end < items.length){
+      moreWrap.innerHTML = '<button type="button" class="pbob-tab-more">Muat lagi (' + (items.length - end) + ' sisa)</button>';
+    } else {
+      moreWrap.innerHTML = '';
+    }
+  }
 
   window.openPbobDetail = function(id){
     try{ if(typeof playClick === 'function') playClick(); }catch(e){}
-    ensurePage();
-    var app = (typeof findPbobApp === 'function') ? findPbobApp(id) : null;
-    if(!app) return false;
-    window.__pbobCurrentDetailId = id;
-    var title = document.getElementById('pbobDetailPageTitle');
-    var name = document.getElementById('pbobDetailPageName');
-    var img = document.getElementById('pbobDetailPageImg');
-    var input = document.getElementById('pbobDetailSearchInput');
-    if(title) title.textContent = app.name;
-    if(name) name.textContent = app.name;
-    if(img){ img.src = app.image || ''; img.alt = app.name || 'Produk'; }
-    if(input) input.value = '';
-    window.renderPbobDetailList('');
-    if(typeof navTo === 'function') navTo('pbob-detail-page');
-    else {
-      var pb = document.getElementById('page-pbob');
-      var pd = document.getElementById('page-pbob-detail-page');
-      if(pb) pb.style.display = 'none';
-      if(pd) pd.style.display = 'block';
-      window.scrollTo(0,0);
-    }
+    var app = getBaseApp(id);
+    var title = document.getElementById('modalTitle');
+    var body = document.getElementById('modalBody');
+    var modal = document.getElementById('detailModal');
+    if(!app || !title || !body || !modal) return false;
+
+    window.__pbobTabState = { appId:String(app.id || id || ''), tab:'regular', offset:0, step:6 };
+    title.innerText = app.name;
+    body.innerHTML = ''
+      + '<div class="pbob-clean-head">'
+      +   '<img src="' + esc(app.image) + '" alt="' + esc(app.name) + '" loading="eager" decoding="async">'
+      +   '<h3>' + esc(app.name) + '</h3>'
+      +   renderTabsHtml(app)
+      + '</div>'
+      + '<div class="pbob-clean-list"></div>'
+      + '<div class="pbob-clean-more-wrap"></div>';
+
+    modal.style.display = 'block';
+    try{ modal.classList.add('kz-open'); }catch(e){}
+    try{ body.scrollTop = 0; }catch(e){}
+    renderCurrentTab(true);
     return false;
   };
 
-  window.closePbobDetailPage = function(){
-    try{ if(typeof playClick === 'function') playClick(); }catch(e){}
-    if(typeof navTo === 'function') navTo('pbob-page');
-    else {
-      var pb = document.getElementById('page-pbob');
-      var pd = document.getElementById('page-pbob-detail-page');
-      if(pd) pd.style.display = 'none';
-      if(pb) pb.style.display = 'block';
-      window.scrollTo(0,0);
+  document.addEventListener('click', function(ev){
+    var tabBtn = ev.target.closest('#detailModal .pbob-clean-tab[data-pbob-tab]');
+    if(tabBtn){
+      ev.preventDefault();
+      var app = getBaseApp(window.__pbobTabState.appId);
+      if(!app) return;
+      window.__pbobTabState.tab = String(tabBtn.getAttribute('data-pbob-tab') || 'regular');
+      try{
+        document.querySelectorAll('#detailModal .pbob-clean-tab').forEach(function(btn){
+          btn.classList.toggle('active', btn === tabBtn);
+        });
+      }catch(e){}
+      renderCurrentTab(true);
+      return;
     }
-  };
 
-  document.addEventListener('DOMContentLoaded', ensurePage);
-  if(document.readyState !== 'loading') ensurePage();
+    var moreBtn = ev.target.closest('#detailModal .pbob-tab-more');
+    if(moreBtn){
+      ev.preventDefault();
+      renderCurrentTab(false);
+    }
+  }, false);
+})();
+</script>
+
+
+<style id="kz-pbob-v13-roomy-style">
+#detailModal #modalBody{padding:22px 18px 24px !important;max-width:920px !important}
+#detailModal .pbob-clean-head{gap:12px !important;margin:0 0 16px !important;padding:6px 0 8px !important}
+#detailModal .pbob-clean-head img{width:84px !important;height:84px !important;border-radius:22px !important}
+#detailModal .pbob-clean-head h3{font-size:1.32rem !important;line-height:1.16 !important}
+#detailModal .pbob-clean-tabs{gap:10px !important;margin:8px 0 14px !important}
+#detailModal .pbob-clean-tab{font-size:.92rem !important;padding:11px 16px !important;min-height:44px !important}
+#detailModal .pbob-clean-list{gap:9px !important}
+#detailModal .pbob-clean-card{border-radius:14px !important}
+#detailModal .pbob-clean-card .pkg-head{padding:14px 15px !important;gap:12px !important}
+#detailModal .pbob-clean-card .pkg-name{font-size:1rem !important;line-height:1.28 !important}
+#detailModal .pbob-clean-card .pkg-price{font-size:1.08rem !important;margin-top:4px !important}
+#detailModal .pbob-clean-card .pbob-clean-cart{width:42px !important;height:42px !important;border-radius:12px !important}
+#detailModal .pbob-clean-card .kz-pkg-chevron{font-size:1rem !important}
+#detailModal .pbob-clean-card .pkg-body{padding:0 15px 15px !important}
+#detailModal .pbob-clean-actions{padding-top:12px !important}
+#detailModal .pbob-clean-actions .btn-animated{padding:12px 14px !important;border-radius:12px !important;font-size:.95rem !important}
+#detailModal .pbob-clean-more-wrap{margin-top:8px !important}
+#detailModal .pbob-clean-more,
+#detailModal .pbob-tab-more{padding:12px 14px !important;border-radius:14px !important;font-size:.93rem !important;min-height:46px !important}
+@media (max-width:480px){
+  #detailModal #modalBody{padding:20px 16px 22px !important}
+  #detailModal .pbob-clean-head{gap:11px !important;margin-bottom:14px !important}
+  #detailModal .pbob-clean-head img{width:80px !important;height:80px !important;border-radius:20px !important}
+  #detailModal .pbob-clean-head h3{font-size:1.24rem !important}
+  #detailModal .pbob-clean-tabs{gap:8px !important;margin:8px 0 12px !important}
+  #detailModal .pbob-clean-tab{font-size:.88rem !important;padding:10px 14px !important}
+  #detailModal .pbob-clean-list{gap:8px !important}
+  #detailModal .pbob-clean-card .pkg-head{padding:13px 14px !important}
+  #detailModal .pbob-clean-card .pkg-name{font-size:.98rem !important}
+  #detailModal .pbob-clean-card .pkg-price{font-size:1.04rem !important}
+  #detailModal .pbob-clean-card .pkg-body{padding:0 14px 14px !important}
+}
+</style>
+
+
+<style id="kz-pbob-v14-tabs-balance-style">
+#detailModal .pbob-clean-tabs{
+  width:min(100%, 480px) !important;
+  margin:8px auto 14px !important;
+  display:flex !important;
+  flex-wrap:nowrap !important;
+  justify-content:center !important;
+  align-items:stretch !important;
+  gap:8px !important;
+}
+#detailModal .pbob-clean-tab{
+  flex:1 1 0 !important;
+  width:0 !important;
+  min-width:0 !important;
+  max-width:236px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  white-space:normal !important;
+}
+@media (max-width:480px){
+  #detailModal .pbob-clean-tabs{
+    width:min(100%, 420px) !important;
+    margin:8px auto 12px !important;
+    flex-wrap:nowrap !important;
+    gap:7px !important;
+  }
+  #detailModal .pbob-clean-tab{
+    flex:1 1 0 !important;
+    width:0 !important;
+    min-width:0 !important;
+    max-width:none !important;
+  }
+}
+</style>
+
+
+<style id="kz-pbob-v16-tabs-shrink-fix">
+#detailModal .pbob-clean-tabs{
+  width:fit-content !important;
+  max-width:min(100%, 376px) !important;
+  margin:8px auto 14px !important;
+  display:flex !important;
+  flex-wrap:nowrap !important;
+  justify-content:center !important;
+  align-items:stretch !important;
+  gap:8px !important;
+}
+#detailModal .pbob-clean-tab{
+  flex:0 1 182px !important;
+  width:auto !important;
+  min-width:148px !important;
+  max-width:182px !important;
+  padding:8px 14px !important;
+  font-size:.84rem !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+  border-radius:16px !important;
+}
+@media (max-width:480px){
+  #detailModal .pbob-clean-tabs{
+    max-width:min(100%, 338px) !important;
+    gap:6px !important;
+    margin:8px auto 12px !important;
+  }
+  #detailModal .pbob-clean-tab{
+    flex:1 1 0 !important;
+    min-width:0 !important;
+    max-width:none !important;
+    padding:8px 12px !important;
+    font-size:.80rem !important;
+    white-space:nowrap !important;
+    border-radius:15px !important;
+  }
+}
+</style>
+
+
+<style id="kz-pbob-v20-tabs-width-height-fix">
+#detailModal .pbob-clean-tabs{
+  max-width:min(100%, 396px) !important;
+  gap:7px !important;
+}
+#detailModal .pbob-clean-tab{
+  flex:0 1 192px !important;
+  min-width:160px !important;
+  max-width:192px !important;
+  padding:7px 18px !important;
+  min-height:38px !important;
+  line-height:1.1 !important;
+  border-radius:15px !important;
+}
+@media (max-width:480px){
+  #detailModal .pbob-clean-tabs{
+    max-width:min(100%, 352px) !important;
+    gap:6px !important;
+  }
+  #detailModal .pbob-clean-tab{
+    padding:7px 16px !important;
+    min-height:36px !important;
+    font-size:.80rem !important;
+    border-radius:14px !important;
+  }
+}
+</style>
+
+
+<style id="kz-comingsoon-ui-v22">
+.coming-soon:not(.kz-coming-upgraded){visibility:hidden}
+#page-pbob .coming-soon{display:none !important}
+#page-pbob .kz-coming-shell{margin:0;padding:0 20px 20px}
+.kz-coming-shell{margin:0 20px 18px}
+.kz-coming-card,
+.coming-soon.kz-coming-upgraded{
+  position:relative;
+  overflow:hidden;
+  text-align:left;
+  padding:18px;
+  border-radius:18px;
+  border:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02));
+  box-shadow:0 14px 36px rgba(0,0,0,.18);
+}
+.kz-coming-top{display:flex;align-items:flex-start;gap:14px}
+.kz-coming-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;flex:0 0 56px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--primary);font-size:22px}
+.kz-coming-copy{min-width:0;flex:1}
+.kz-coming-title{font-size:1.04rem;font-weight:900;line-height:1.25;color:var(--text-main)}
+.kz-coming-sub{margin-top:4px;font-size:.84rem;line-height:1.5;color:var(--text-sec)}
+.kz-coming-status{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:7px 12px;border-radius:999px;font-size:.74rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,0,0,.10);border:1px solid rgba(255,0,0,.20);color:#ffb7b7}
+.kz-coming-desc{margin-top:14px;font-size:.92rem;line-height:1.6;color:var(--text-main)}
+body.light-mode .kz-coming-card,
+body.light-mode .coming-soon.kz-coming-upgraded{background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(246,246,243,.94));box-shadow:0 14px 32px rgba(0,0,0,.09)}
+body.light-mode .kz-coming-icon{background:rgba(255,255,255,.78);border-color:rgba(0,0,0,.08)}
+body.light-mode .kz-coming-status{color:#b00000;background:rgba(255,0,0,.08);border-color:rgba(255,0,0,.16)}
+@media (max-width:480px){
+  .kz-coming-shell{margin:0 16px 16px}
+  #page-pbob .kz-coming-shell{padding:0 16px 16px}
+  .kz-coming-card,.coming-soon.kz-coming-upgraded{padding:16px;border-radius:16px}
+  .kz-coming-top{gap:12px}
+  .kz-coming-icon{width:52px;height:52px;flex-basis:52px;border-radius:15px;font-size:20px}
+  .kz-coming-title{font-size:1rem}
+  .kz-coming-sub{font-size:.82rem}
+  .kz-coming-desc{font-size:.88rem}
+}
+</style>
+<script id="kz-comingsoon-ui-v22-script">
+(function(){
+  function esc(v){
+    return String(v == null ? '' : v)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;')
+      .replace(/'/g,'&#39;');
+  }
+
+  function findPbobCat(key){
+    var list = Array.isArray(window.pbobCategories) ? window.pbobCategories : [];
+    key = String(key || window.__kzPbobActiveCat || 'pulsa-nasional');
+    for(var i=0;i<list.length;i++){
+      if(String(list[i] && list[i].key || '') === key) return list[i];
+    }
+    return null;
+  }
+
+  function buildCard(opts){
+    return ''
+      + '<div class="kz-coming-card">'
+      +   '<div class="kz-coming-top">'
+      +     '<div class="kz-coming-icon"><i class="' + esc(opts.icon || 'fas fa-clock') + '"></i></div>'
+      +     '<div class="kz-coming-copy">'
+      +       '<div class="kz-coming-title">' + esc(opts.title || 'Segera Hadir') + '</div>'
+      +       '<div class="kz-coming-sub">' + esc(opts.subtitle || 'Fitur ini belum tersedia.') + '</div>'
+      +       '<div class="kz-coming-status"><i class="fas fa-clock"></i> ' + esc(opts.status || 'Coming Soon') + '</div>'
+      +     '</div>'
+      +   '</div>'
+      +   '<div class="kz-coming-desc">' + esc(opts.desc || 'Silakan pilih kategori lain dulu.') + '</div>'
+      + '</div>';
+  }
+
+  function renderPbobComing(key){
+    var catKey = String(key || window.__kzPbobActiveCat || 'pulsa-nasional');
+    if(catKey === 'pulsa-nasional') return false;
+    var root = document.getElementById('pbobProductList');
+    if(!root) return false;
+    var cat = findPbobCat(catKey) || {};
+    root.innerHTML = '<div class="kz-coming-shell">' + buildCard({
+      title: cat.name || 'Kategori PBOB',
+      subtitle: 'Belum tersedia untuk order.',
+      desc: cat.hint || 'Kategori ini masih disiapkan.',
+      icon: cat.icon || 'fas fa-clock',
+      status: 'Segera Hadir'
+    }) + '</div>';
+    return true;
+  }
+
+  function wrapPbobRender(){
+    if(typeof window.renderPbobProducts !== 'function' || window.renderPbobProducts.__kzComingV22Wrapped) return;
+    var old = window.renderPbobProducts;
+    var wrapped = function(key){
+      var out = old.apply(this, arguments);
+      renderPbobComing(key);
+      return out;
+    };
+    wrapped.__kzComingV22Wrapped = true;
+    window.renderPbobProducts = wrapped;
+  }
+
+  function upgradeGenericComingSoon(scope){
+    var root = scope || document;
+    var blocks = root.querySelectorAll('.coming-soon:not(.kz-coming-upgraded)');
+    blocks.forEach(function(el){
+      if(el.closest('#page-pbob')) return;
+      var text = String(el.textContent || '').trim().replace(/\s+/g,' ');
+      el.classList.add('kz-coming-upgraded');
+      el.style.visibility = 'visible';
+      el.innerHTML = buildCard({
+        title: 'Segera Hadir',
+        subtitle: 'Belum tersedia untuk dibuka.',
+        desc: text || 'Bagian ini masih disiapkan.',
+        icon: 'fas fa-clock',
+        status: 'Segera Hadir'
+      });
+    });
+  }
+
+  function getPbobNames(){
+    try{
+      var apps = Array.isArray(window.pbobProductApps) ? window.pbobProductApps : [];
+      return apps.map(function(app){ return String(app && app.name || '').trim().toLowerCase(); }).filter(Boolean);
+    }catch(e){ return []; }
+  }
+
+  function isPbobProductName(name){
+    var raw = String(name || '').trim().toLowerCase();
+    if(!raw) return false;
+    if(/^pulsa/.test(raw)) return true;
+    var names = getPbobNames();
+    return names.indexOf(raw) !== -1;
+  }
+
+  function removePbobPublicCheck(){
+    var field = document.getElementById('paySosmedPublicField');
+    if(!field) return;
+    var check = document.getElementById('paySosmedPublicCheck');
+    var hidden = document.getElementById('payFormSosmedPublic');
+    var wrap = document.getElementById('paySosmedPublicWrap');
+    var payName = document.getElementById('payProductName');
+    var productName = payName ? String(payName.textContent || '').trim() : '';
+    var active = !!window.__kzPbobOrderActive || isPbobProductName(productName);
+    if(!active) return;
+    if(check) check.checked = false;
+    if(hidden) hidden.value = '';
+    if(wrap) wrap.classList.remove('kz-warn');
+    try{
+      if(window.payState) payState.sosmedPublicConfirmed = false;
+      if(typeof savePayStorage === 'function') savePayStorage();
+    }catch(e){}
+    field.remove();
+  }
+
+  function boot(){
+    wrapPbobRender();
+    upgradeGenericComingSoon(document);
+    removePbobPublicCheck();
+    if(String(window.__kzPbobActiveCat || 'pulsa-nasional') !== 'pulsa-nasional'){
+      renderPbobComing();
+    }
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', boot, {once:true});
+  }else{
+    boot();
+  }
+
+  window.addEventListener('load', function(){ setTimeout(boot, 0); }, {once:true});
 })();
 </script>
 
