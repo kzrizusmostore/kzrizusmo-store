@@ -452,7 +452,7 @@ function resetHome(){try{kzSetCatalogMode("store")}catch(e){}try{navTo("home")}c
     var shell=document.createElement('div'); shell.className='auth-entry-shell';
     var hero=document.createElement('div');
     hero.className='auth-entry-hero';
-    hero.innerHTML='
+    hero.innerHTML=`
       <div>
         <div class="auth-entry-badge"><i class="fa-solid fa-shield-halved"></i><span>AKUN KZRIZUSMO</span></div>
         <h3 id="authHeroTitle">Masuk lebih cepat ke akun kamu</h3>
@@ -463,7 +463,7 @@ function resetHome(){try{kzSetCatalogMode("store")}catch(e){}try{navTo("home")}c
         <div class="auth-entry-point login-only"><i class="fa-solid fa-box-open"></i><span>Lihat akun dan riwayat pesanan dalam satu panel.</span></div>
         <div class="auth-entry-point register-only"><i class="fa-solid fa-user-plus"></i><span>Buat akun baru dengan form yang lebih rapi dan jelas.</span></div>
         <div class="auth-entry-point register-only"><i class="fa-solid fa-lock"></i><span>Simpan data akun untuk akses lebih gampang berikutnya.</span></div>
-      </div>';
+      </div>`;
     var panel=document.createElement('div');
     panel.className='auth-entry-panel';
     shell.appendChild(hero);
