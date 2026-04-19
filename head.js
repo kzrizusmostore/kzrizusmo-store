@@ -1,22 +1,22 @@
-/* ==== head script #1 id="kz-skip-intro-script" ==== */
+/* ==== head script 1 id=kz-skip-intro-script ==== */
 (function(){try{if(sessionStorage.getItem("kzSkipIntroOnce")==="1"){document.documentElement.classList.add("kz-skip-intro")}}catch(e){}})();
 
 
-/* ==== head script #2 id="kz-fix10-tier-script" ==== */
+/* ==== head script 2 id=kz-fix10-tier-script ==== */
 (function(){function ensureHeaderTierBadge(){var host=document.querySelector("header .header-right");if(!host)return null;var badge=document.getElementById("headerTierBadge");if(!badge){badge=document.createElement("span");badge.id="headerTierBadge";badge.className="member-badge header-tier-badge tier-basic";badge.textContent="BASIC";var img=document.getElementById("headerProfileImg");if(img&&img.parentNode===host)host.insertBefore(badge,img);else host.appendChild(badge)}return badge}function getTierMeta(me){var tier="basic";try{if(me&&typeof getMemberTier==="function")tier=getMemberTier(me)||"basic";else if(me&&me.memberTier)tier=String(me.memberTier||"basic").toLowerCase()}catch(e){}var label="BASIC";var cls="tier-basic";try{if(typeof memberTierLabel==="function")label=memberTierLabel(tier)||label;if(typeof memberTierClass==="function")cls=memberTierClass(tier)||cls}catch(e){}return{tier:tier,label:String(label||"BASIC").toUpperCase(),cls:cls||"tier-basic"}}function renderHeaderTier(){var badge=ensureHeaderTierBadge();if(!badge)return;var me=null;try{if(typeof authGetMe==="function")me=authGetMe()}catch(e){}var meta=getTierMeta(me);badge.className="member-badge header-tier-badge "+meta.cls;badge.textContent=meta.label}document.addEventListener("DOMContentLoaded",function(){setTimeout(renderHeaderTier,0);setTimeout(renderHeaderTier,500);setTimeout(renderHeaderTier,1500)});window.addEventListener("load",function(){setTimeout(renderHeaderTier,0)})})();
 
 
-/* ==== head script #3 id="kz-intro-enter-accessibility" ==== */
+/* ==== head script 3 id=kz-intro-enter-accessibility ==== */
 document.addEventListener("keydown",function(e){try{if((e.key==="Enter"||e.key===" ")&&document.getElementById("introOverlay")&&!document.getElementById("introOverlay").classList.contains("intro-hidden")){e.preventDefault();openApp()}}catch(err){}});
 
 
-/* ==== head script #4 id="kz-sidebar-menu-mode-script" ==== */
+/* ==== head script 4 id=kz-sidebar-menu-mode-script ==== */
 window.kzSetSidebarMenuMode=function(mode){try{var nonhome=String(mode)==="nonhome";document.body.classList.toggle("kz-sidebar-nonhome",nonhome);document.body.classList.toggle("kz-sidebar-home",!nonhome)}catch(e){}};
 
 
-/* ==== head script #5 id="kz-storage-cache-bridge" ==== */
+/* ==== head script 5 id=kz-storage-cache-bridge ==== */
 (function(){try{var LOCAL_ALIAS={KZRIZUSMO_PRODUCTS_V1:"kz:db:products:v1",KZRIZUSMO_INFOS_V1:"kz:db:infos:v1",KZRIZUSMO_ADMIN_AUDIT_V1:"kz:admin:audit:v1",kz_cart_items_v1:"kz:cart:items:v1"};var SESSION_ALIAS={kz_sidebar_active_menu:"kz:ui:sidebar-active:v1"};var nativeGet=Storage.prototype.getItem;var nativeSet=Storage.prototype.setItem;var nativeRemove=Storage.prototype.removeItem;function getAliasInfo(storageObj,key){var k=String(key||"");if(storageObj===localStorage){if(Object.prototype.hasOwnProperty.call(SESSION_ALIAS,k)){return{backend:sessionStorage,alias:SESSION_ALIAS[k],mirrorOld:false}}if(Object.prototype.hasOwnProperty.call(LOCAL_ALIAS,k)){return{backend:localStorage,alias:LOCAL_ALIAS[k],mirrorOld:true}}}return null}function migrateAlias(oldKey,backend,aliasKey,removeOld){try{var aliasVal=nativeGet.call(backend,aliasKey);if(aliasVal!==null&&aliasVal!==undefined)return}catch(e){}try{var oldVal=nativeGet.call(localStorage,oldKey);if(oldVal!==null&&oldVal!==undefined){nativeSet.call(backend,aliasKey,oldVal);if(removeOld){try{nativeRemove.call(localStorage,oldKey)}catch(_e){}}}}catch(e){}}Object.keys(LOCAL_ALIAS).forEach(function(oldKey){migrateAlias(oldKey,localStorage,LOCAL_ALIAS[oldKey],false)});Object.keys(SESSION_ALIAS).forEach(function(oldKey){migrateAlias(oldKey,sessionStorage,SESSION_ALIAS[oldKey],true)});Storage.prototype.getItem=function(key){var info=null;try{info=getAliasInfo(this,key)}catch(e){}if(info){try{var v=nativeGet.call(info.backend,info.alias);if(v!==null&&v!==undefined)return v}catch(e){}try{return nativeGet.call(this,key)}catch(e){}return null}return nativeGet.call(this,key)};Storage.prototype.setItem=function(key,value){var info=null;try{info=getAliasInfo(this,key)}catch(e){}if(info){nativeSet.call(info.backend,info.alias,String(value));if(info.mirrorOld){try{nativeSet.call(this,key,String(value))}catch(e){}}return}return nativeSet.call(this,key,value)};Storage.prototype.removeItem=function(key){var info=null;try{info=getAliasInfo(this,key)}catch(e){}if(info){try{nativeRemove.call(info.backend,info.alias)}catch(e){}try{return nativeRemove.call(this,key)}catch(e){}return}return nativeRemove.call(this,key)};window.KZ_STORAGE_PLAN={local:LOCAL_ALIAS,session:SESSION_ALIAS,cache:{static:"kz-static-v1",content:"kz-content-v1"}};if("serviceWorker"in navigator){window.addEventListener("load",function(){try{navigator.serviceWorker.register("./sw.js",{scope:"./"}).catch(function(){})}catch(e){}})}}catch(e){}})();
 
 
-/* ==== head script #6 id="kz-global-anti-flicker-script" ==== */
+/* ==== head script 6 id=kz-global-anti-flicker-script ==== */
 (function(){try{document.documentElement.classList.remove("theme-fade")}catch(e){}try{document.body&&document.body.classList.remove("theme-fade")}catch(e){}})();
