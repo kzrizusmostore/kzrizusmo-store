@@ -5802,7 +5802,7 @@ if(typeof oldSyncPaySummaryUI==='function'){window.syncPaySummaryUI=function(){v
 var oldValidatePaySendButton=window.validatePaySendButton;
 if(typeof oldValidatePaySendButton==='function'){window.validatePaySendButton=function(){var out=oldValidatePaySendButton.apply(this,arguments);renderSummary();return out}}
 var oldSendPaymentProof=window.sendPaymentProof;
-if(typeof oldSendPaymentProof==='function'){window.sendPaymentProof=function(){boot();if(!isReady()){try{if(typeof setPayStatus==='function')setPayStatus('⚠️ Lengkapi format pembayaran PBOB terlebih dahulu.')}catch(e){}focusFirstMissing();return}syncHidden();return oldSendPaymentProof.apply(this,arguments)}}
+if(typeof oldSendPaymentProof==='function'){window.sendPaymentProof=function(){boot();syncHidden();return oldSendPaymentProof.apply(this,arguments)}}
 var oldZusmoLines=window.kzGetZusmoBetaDetailLines;
 if(typeof oldZusmoLines==='function'){
   window.kzGetZusmoBetaDetailLines=function(){var lines=[];try{lines=oldZusmoLines.apply(this,arguments)||[]}catch(e){lines=[]}return lines.concat(getDetailLines())}
