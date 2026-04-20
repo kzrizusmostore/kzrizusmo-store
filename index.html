@@ -4770,10 +4770,7 @@ header{
     var shell=document.createElement('div'); shell.className='auth-entry-shell';
     var hero=document.createElement('div');
     hero.className='auth-entry-hero';
-    hero.innerHTML=[
-      '<div>'
-      '</div>'
-    ].join('');
+    hero.innerHTML='';
     var panel=document.createElement('div');
     panel.className='auth-entry-panel';
     shell.appendChild(hero);
@@ -5578,284 +5575,119 @@ window.addEventListener('load',function(){setTimeout(boot,0);setTimeout(boot,200
 (function(){
   if(window.__kzSosmedLinkTargetPatchApplied) return;
   window.__kzSosmedLinkTargetPatchApplied = true;
-  function byId(id){ try{return document.getElementById(id);}catch(e){return null;} }
+  function byId(id){ try{return document.getElementById(id);}catch(e){ return null; } }
   function norm(v){ return String(v == null ? '' : v).trim(); }
   function lower(v){ return norm(v).toLowerCase(); }
-  function isVisible(el){
-    if(!el) return false;
-    try{
-      var st = window.getComputedStyle ? window.getComputedStyle(el) : null;
-      if(st && (st.display === 'none' || st.visibility === 'hidden')) return false;
-      return true;
-    }catch(e){ return !!el; }
-  }
-  function overlayOpen(){
-    var el = byId('payOverlay');
-    if(!el) return false;
-    try{ return isVisible(el) && (el.style.display === 'block' || el.style.display === '' || (window.getComputedStyle(el).display !== 'none')); }catch(e){ return false; }
-  }
   function looksSosmedText(v){
     var s = lower(v);
     if(!s) return false;
-    if(/(^|\b)suntik\b/.test(s)) return true;
-    if(/followers?|views?|likes?|subscribers?|subscriber|komentar|comment|reach|watch ?hours?|jam tayang/.test(s)) return true;
-    if(/instagram|tiktok|youtube|facebook|telegram|whatsapp|twitter|\bx\b/.test(s)) return true;
-    return false;
+    return /(^|\b)suntik\b|followers?|views?|likes?|subscribers?|subscriber|komentar|comment|reach|watch ?hours?|jam tayang|instagram|tiktok|youtube|facebook|telegram|whatsapp|twitter|\bx\b/.test(s);
   }
   function currentProductText(){
     var arr = [];
-    try{ if(window.payState){ arr.push(window.payState.product||''); arr.push(window.payState.appName||''); } }catch(e){}
-    try{ arr.push((byId('payProductName')||{}).textContent || ''); }catch(e){}
+    try{ if(window.payState){ arr.push(window.payState.product || ''); arr.push(window.payState.appName || ''); } }catch(e){}
+    try{ arr.push((byId('payProductName') || {}).textContent || ''); }catch(e){}
     return arr.join(' | ');
   }
   function isSosmedContext(){
     try{ if(lower(window.__kzLastSidebarSection) === 'sosmed') return true; }catch(e){}
     try{ if(window.payState && (window.payState.isSosmed || window.payState.sosmedInfoRequired)) return true; }catch(e){}
-    if(looksSosmedText(currentProductText())) return true;
-    try{
-      var page = byId('page-sosmed');
-      if(page && isVisible(page) && lower((document.body && document.body.className) || '').indexOf('kz-sidebar') > -1) return true;
-    }catch(e){}
-    return false;
-  }
-  function ensureField(){
-    var wrap = byId('paySosmedLinkTargetField');
-    var anchor = byId('payWhatsappFieldDefault');
-    if(!wrap && anchor){
-      wrap = document.createElement('div');
-      wrap.className = 'pay-field';
-      wrap.id = 'paySosmedLinkTargetField';
-      wrap.style.display = 'none';
-      wrap.innerHTML = '<label class="pay-label" for="payLinkTargetInput">Link target :</label><input autocomplete="url" class="pay-input" id="payLinkTargetInput" inputmode="url" name="buyer_link_target" placeholder="https://..." type="url"/><div class="pay-sub" id="payLinkTargetHint" style="margin-top:6px; display:none;">Masukkan link target yang ingin diproses.</div>';
-      anchor.insertAdjacentElement('afterend', wrap);
-    }
-    var input = byId('payLinkTargetInput');
-    if(input && !input.dataset.kzBound){
-      input.dataset.kzBound = '1';
-      ['input','change','blur'].forEach(function(evt){
-        input.addEventListener(evt, function(){
-          input.dataset.kzTouched = '1';
-          syncAll(true);
-        }, true);
-      });
-    }
-    return wrap;
-  }
-  function ensureHidden(){
-    var form = byId('payProofForm');
-    if(!form) return null;
-    var hidden = byId('payFormLinkTarget');
-    if(!hidden){
-      hidden = document.createElement('input');
-      hidden.type = 'hidden';
-      hidden.id = 'payFormLinkTarget';
-      hidden.name = 'link_target';
-      form.appendChild(hidden);
-    }
-    return hidden;
-  }
-  function ensureSummary(){
-    var row = byId('payRowLinkTarget');
-    var anchor = byId('payRowWA');
-    if(!row && anchor){
-      row = document.createElement('div');
-      row.className = 'pay-srow';
-      row.id = 'payRowLinkTarget';
-      row.style.display = 'none';
-      row.innerHTML = '<span>Link Target</span><b id="paySumLinkTarget">-</b>';
-      anchor.insertAdjacentElement('afterend', row);
-    }
-    return row;
-  }
-  function getValue(){
-    var input = byId('payLinkTargetInput');
-    return norm(input && input.value);
-  }
-  function getSaved(){
-    try{
-      if(window.payState){
-        if(norm(window.payState.linkTarget)) return norm(window.payState.linkTarget);
-        if(norm(window.payState.targetOverride)) return norm(window.payState.targetOverride);
-      }
-    }catch(e){}
-    return '';
-  }
-  function saveValue(v){
-    try{
-      if(!window.payState) return;
-      var clean = norm(v);
-      if(clean){
-        window.payState.linkTarget = clean;
-        window.payState.targetOverride = clean;
-        window.payState.isSosmed = true;
-        window.payState.sosmedInfoRequired = true;
-      }else{
-        delete window.payState.linkTarget;
-        delete window.payState.targetOverride;
-      }
-      if(typeof savePayStorage === 'function') savePayStorage();
-    }catch(e){}
+    return looksSosmedText(currentProductText());
   }
   function validLink(v){ return /^https?:\/\/\S+$/i.test(norm(v)); }
-  function renderHint(show, msg){
-    var hint = byId('payLinkTargetHint');
-    if(!hint) return;
-    hint.style.display = show ? 'block' : 'none';
-    hint.textContent = msg || 'Masukkan link target yang ingin diproses.';
-  }
-  function syncAll(save){
-    ensureField(); ensureHidden(); ensureSummary();
-    var show = isSosmedContext();
+  function sync(save){
     var wrap = byId('paySosmedLinkTargetField');
     var input = byId('payLinkTargetInput');
     var hidden = byId('payFormLinkTarget');
     var row = byId('payRowLinkTarget');
     var sum = byId('paySumLinkTarget');
+    var hint = byId('payLinkTargetHint');
     if(!wrap || !input) return;
-    if(show && !input.dataset.kzTouched){
-      var saved = getSaved();
-      if(saved && input.value !== saved) input.value = saved;
-    }
-    if(!show){
-      wrap.style.display = 'none';
-      input.required = false;
-      renderHint(false, '');
-      if(hidden) hidden.value = '';
-      if(row) row.style.display = 'none';
-      if(sum) sum.textContent = '-';
-      return;
-    }
-    wrap.style.display = '';
-    input.required = true;
-    var val = getValue();
-    if(hidden) hidden.value = val;
+    var show = isSosmedContext();
+    var val = norm(input.value);
+    wrap.style.display = show ? '' : 'none';
+    input.required = !!show;
+    if(hidden) hidden.value = show ? val : '';
     if(sum) sum.textContent = val || '-';
-    if(row) row.style.display = val ? 'flex' : 'none';
-    if(save) saveValue(val);
-    if(!val) renderHint(false, '');
-    else if(validLink(val)) renderHint(false, '');
-    else renderHint(true, 'Format harus diawali https:// atau http://');
+    if(row) row.style.display = show && val ? 'flex' : 'none';
+    if(hint){
+      var bad = show && val && !validLink(val);
+      hint.style.display = bad ? 'block' : 'none';
+      hint.textContent = bad ? 'Format harus diawali https:// atau http://' : 'Masukkan link target yang ingin diproses.';
+    }
+    try{
+      if(save && window.payState){
+        if(show && val){
+          window.payState.linkTarget = val;
+          window.payState.targetOverride = val;
+          window.payState.isSosmed = true;
+          window.payState.sosmedInfoRequired = true;
+        }else if(window.payState){
+          delete window.payState.linkTarget;
+          delete window.payState.targetOverride;
+        }
+        if(typeof savePayStorage === 'function') savePayStorage();
+      }
+    }catch(e){}
   }
-  function validateBeforeSend(){
-    syncAll(true);
+  function validate(){
+    sync(true);
     if(!isSosmedContext()) return true;
     var input = byId('payLinkTargetInput');
-    var val = getValue();
+    var val = norm(input && input.value);
     if(!input) return true;
     if(!val){
       try{ if(typeof setPayStatus === 'function') setPayStatus('⚠️ Isi Link target terlebih dulu.'); }catch(e){}
       try{ input.focus(); }catch(e){}
-      renderHint(true, 'Isi link target dulu.');
       return false;
     }
     if(!validLink(val)){
       try{ if(typeof setPayStatus === 'function') setPayStatus('⚠️ Format Link target harus diawali https:// atau http://'); }catch(e){}
       try{ input.focus(); }catch(e){}
-      renderHint(true, 'Format harus diawali https:// atau http://');
       return false;
     }
     return true;
   }
-  function extraLines(){
-    var val = getValue();
-    return val ? ['Link target: ' + val] : [];
-  }
-  function queueSync(){
-    setTimeout(function(){ syncAll(false); }, 0);
-    setTimeout(function(){ syncAll(false); }, 120);
-    setTimeout(function(){ syncAll(false); }, 500);
-  }
-  var oldOrderNow = window.orderNow;
-  if(typeof oldOrderNow === 'function' && !oldOrderNow.__kzLinkTargetWrapped){
-    var wrappedOrderNow = function(){
-      var noServer = arguments.length > 6 ? arguments[6] : false;
-      if(noServer === true || String(noServer).toLowerCase() === 'true'){
-        try{ window.__kzLastSidebarSection = 'sosmed'; }catch(e){}
-        try{ if(window.payState) window.payState.isSosmed = true; }catch(e){}
-      }
-      var out = oldOrderNow.apply(this, arguments);
-      queueSync();
-      return out;
-    };
-    wrappedOrderNow.__kzLinkTargetWrapped = true;
-    window.orderNow = wrappedOrderNow;
-  }
-  var oldOpenPaymentFlow = window.openPaymentFlow;
-  if(typeof oldOpenPaymentFlow === 'function' && !oldOpenPaymentFlow.__kzLinkTargetWrapped){
-    var wrappedOpen = function(){
-      var out = oldOpenPaymentFlow.apply(this, arguments);
-      queueSync();
-      return out;
-    };
-    wrappedOpen.__kzLinkTargetWrapped = true;
-    window.openPaymentFlow = wrappedOpen;
-  }
-  var oldStartNewOrder = window.startNewOrder;
-  if(typeof oldStartNewOrder === 'function' && !oldStartNewOrder.__kzLinkTargetWrapped){
-    var wrappedStart = function(){
-      var out = oldStartNewOrder.apply(this, arguments);
-      queueSync();
-      return out;
-    };
-    wrappedStart.__kzLinkTargetWrapped = true;
-    window.startNewOrder = wrappedStart;
-  }
-  var oldSyncPaySummaryUI = window.syncPaySummaryUI;
-  if(typeof oldSyncPaySummaryUI === 'function' && !oldSyncPaySummaryUI.__kzLinkTargetSummaryWrapped){
-    var wrappedSummary = function(){
-      var out = oldSyncPaySummaryUI.apply(this, arguments);
-      syncAll(false);
-      return out;
-    };
-    wrappedSummary.__kzLinkTargetSummaryWrapped = true;
-    window.syncPaySummaryUI = wrappedSummary;
-  }
-  var oldValidatePaySendButton = window.validatePaySendButton;
-  if(typeof oldValidatePaySendButton === 'function' && !oldValidatePaySendButton.__kzLinkTargetValidateWrapped){
-    var wrappedValidate = function(){
-      var out = oldValidatePaySendButton.apply(this, arguments);
-      syncAll(false);
-      return out;
-    };
-    wrappedValidate.__kzLinkTargetValidateWrapped = true;
-    window.validatePaySendButton = wrappedValidate;
-  }
-  var oldSendPaymentProof = window.sendPaymentProof;
-  if(typeof oldSendPaymentProof === 'function' && !oldSendPaymentProof.__kzLinkTargetWrapped){
-    var wrappedSend = function(){
-      if(!validateBeforeSend()) return;
-      syncAll(true);
-      return oldSendPaymentProof.apply(this, arguments);
-    };
-    wrappedSend.__kzLinkTargetWrapped = true;
-    window.sendPaymentProof = wrappedSend;
-  }
-  var oldZusmoLines = window.kzGetZusmoBetaDetailLines;
-  if(typeof oldZusmoLines === 'function' && !oldZusmoLines.__kzLinkTargetWrapped){
-    var wrappedLines = function(){
-      var lines = [];
-      try{ lines = oldZusmoLines.apply(this, arguments) || []; }catch(e){ lines = []; }
-      return lines.concat(extraLines());
-    };
-    wrappedLines.__kzLinkTargetWrapped = true;
-    window.kzGetZusmoBetaDetailLines = wrappedLines;
-  }else if(typeof oldZusmoLines !== 'function'){
-    window.kzGetZusmoBetaDetailLines = function(){ return extraLines(); };
-  }
   try{
-    var payOverlay = byId('payOverlay');
-    if(payOverlay && typeof MutationObserver !== 'undefined'){
-      var mo = new MutationObserver(function(){ if(overlayOpen()) queueSync(); });
-      mo.observe(payOverlay, {attributes:true, childList:true, subtree:true, attributeFilter:['style','class']});
+    var input = byId('payLinkTargetInput');
+    if(input && !input.dataset.kzLinkTargetBound){
+      input.dataset.kzLinkTargetBound = '1';
+      ['input','change','blur'].forEach(function(evt){ input.addEventListener(evt, function(){ sync(true); }, true); });
     }
   }catch(e){}
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', function(){ ensureField(); ensureHidden(); ensureSummary(); queueSync(); }, {once:true});
-  }else{
-    ensureField(); ensureHidden(); ensureSummary(); queueSync();
+  var oldSend = window.sendPaymentProof;
+  if(typeof oldSend === 'function' && !oldSend.__kzLinkTargetWrappedSafe){
+    var wrappedSend = async function(){ if(!validate()) return; sync(true); return oldSend.apply(this, arguments); };
+    wrappedSend.__kzLinkTargetWrappedSafe = true;
+    window.sendPaymentProof = wrappedSend;
   }
-  try{ window.addEventListener('pageshow', queueSync); }catch(e){}
-  try{ window.addEventListener('load', queueSync, {once:true}); }catch(e){}
+  ['openPaymentFlow','startNewOrder','selectPaymentMethod','syncPaySummaryUI','validatePaySendButton'].forEach(function(name){
+    try{
+      var fn = window[name];
+      if(typeof fn === 'function' && !fn.__kzLinkTargetSyncWrapped){
+        var wrapped = function(){ var out = fn.apply(this, arguments); setTimeout(function(){ sync(false); }, 0); setTimeout(function(){ sync(false); }, 180); return out; };
+        wrapped.__kzLinkTargetSyncWrapped = true;
+        window[name] = wrapped;
+      }
+    }catch(e){}
+  });
+  try{
+    if(typeof window.kzGetZusmoBetaDetailLines === 'function' && !window.kzGetZusmoBetaDetailLines.__kzLinkTargetWrappedSafe){
+      var oldLines = window.kzGetZusmoBetaDetailLines;
+      window.kzGetZusmoBetaDetailLines = function(){
+        var lines = [];
+        try{ lines = oldLines.apply(this, arguments) || []; }catch(e){ lines = []; }
+        var v = norm((byId('payLinkTargetInput') || {}).value || '');
+        if(v) lines = lines.concat(['Link target: ' + v]);
+        return lines;
+      };
+      window.kzGetZusmoBetaDetailLines.__kzLinkTargetWrappedSafe = true;
+    }
+  }catch(e){}
+  function boot(){ sync(false); }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot, {once:true});
+  else boot();
+  try{ window.addEventListener('load', boot, {once:true}); }catch(e){}
 })();
 </script>
 
