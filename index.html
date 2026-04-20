@@ -7327,3 +7327,141 @@ document.addEventListener('keyup',function(ev){
   });
 })();
 </script>
+
+<style id="kz-sosmed-link-target-format-style">
+#page-sosmed #kzSosmedLinkTargetHint{
+  display:block;
+  margin:0 20px 14px;
+  padding:14px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);
+  background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+#page-sosmed #kzSosmedLinkTargetHint .kz-sosmed-format-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.04em;
+  margin-bottom:10px;
+  color:var(--text-main);
+}
+#page-sosmed #kzSosmedLinkTargetHint .kz-sosmed-format-title i{
+  color:var(--primary);
+}
+#page-sosmed #kzSosmedLinkTargetHint .kz-sosmed-format-box{
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px dashed rgba(255,255,255,.14);
+  background:rgba(0,0,0,.18);
+  color:var(--text-main);
+  font-size:13px;
+  font-weight:800;
+  line-height:1.7;
+  white-space:pre-line;
+  word-break:break-word;
+}
+#page-sosmed #kzSosmedLinkTargetHint .kz-sosmed-format-sub{
+  margin-top:10px;
+  color:var(--text-sec);
+  font-size:11px;
+  line-height:1.5;
+}
+@media (max-width:640px){
+  #page-sosmed #kzSosmedLinkTargetHint{
+    margin:0 16px 12px;
+    padding:12px;
+  }
+  #page-sosmed #kzSosmedLinkTargetHint .kz-sosmed-format-box{
+    font-size:12px;
+    padding:11px 12px;
+  }
+}
+</style>
+<script id="kz-sosmed-link-target-format-script">
+(function(){
+  if(window.__kzSosmedLinkTargetFormatApplied) return;
+  window.__kzSosmedLinkTargetFormatApplied = true;
+
+  function q(sel, root){
+    try{return (root || document).querySelector(sel)}catch(e){return null}
+  }
+
+  function ensureHint(){
+    var page = q('#page-sosmed');
+    if(!page) return null;
+    var hint = q('#kzSosmedLinkTargetHint', page);
+    if(!hint){
+      hint = document.createElement('div');
+      hint.id = 'kzSosmedLinkTargetHint';
+      hint.innerHTML = ''
+        + '<div class="kz-sosmed-format-title"><i class="fas fa-link"></i> Format Link Target</div>'
+        + '<div class="kz-sosmed-format-box">Link target:\n(https://...)</div>'
+        + '<div class="kz-sosmed-format-sub">Gunakan format ini saat mengisi data order suntik sosmed yang butuh link target.</div>';
+    }
+
+    var search = q('.search-container', page);
+    var list = q('#sosmedProductList', page) || q('#kzSosmedStableList', page);
+    var stableTabs = q('[data-kz-sosmed-stable-root]', page);
+
+    if(search && hint.parentNode !== page){
+      search.insertAdjacentElement('afterend', hint);
+    }else if(search && hint.previousElementSibling !== search){
+      page.insertBefore(hint, search.nextSibling);
+    }else if(!search && stableTabs && hint.parentNode !== page){
+      stableTabs.insertAdjacentElement('afterend', hint);
+    }else if(!search && list && hint.parentNode !== page){
+      page.insertBefore(hint, list);
+    }else if(!hint.parentNode){
+      page.appendChild(hint);
+    }
+    return hint;
+  }
+
+  function schedule(){
+    setTimeout(ensureHint, 0);
+    setTimeout(ensureHint, 120);
+    setTimeout(ensureHint, 360);
+  }
+
+  var oldNavTo = window.navTo;
+  if(typeof oldNavTo === 'function' && !oldNavTo.__kzSosmedLinkTargetFormatWrapped){
+    var wrappedNav = function(){
+      var res = oldNavTo.apply(this, arguments);
+      if(String(arguments[0] || '') === 'sosmed-page') schedule();
+      return res;
+    };
+    wrappedNav.__kzSosmedLinkTargetFormatWrapped = true;
+    window.navTo = wrappedNav;
+  }
+
+  ['initSosmedPage','renderSosmedProducts','setSosmedPlatform'].forEach(function(name){
+    var fn = window[name];
+    if(typeof fn !== 'function' || fn.__kzSosmedLinkTargetFormatWrapped) return;
+    var wrapped = function(){
+      var res = fn.apply(this, arguments);
+      schedule();
+      return res;
+    };
+    wrapped.__kzSosmedLinkTargetFormatWrapped = true;
+    window[name] = wrapped;
+  });
+
+  try{
+    var page = q('#page-sosmed');
+    if(page && typeof MutationObserver !== 'undefined'){
+      var mo = new MutationObserver(function(){ schedule(); });
+      mo.observe(page, {childList:true, subtree:true, attributes:true, attributeFilter:['style','class']});
+    }
+  }catch(e){}
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', schedule, {once:true});
+  }else{
+    schedule();
+  }
+  window.addEventListener('load', schedule, {once:true});
+})();
+</script>
