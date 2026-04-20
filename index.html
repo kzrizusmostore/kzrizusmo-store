@@ -1945,7 +1945,7 @@ header{border-bottom:0!important}
   }
 }
 </style>
-<style id="kz-welcome-popup-disable-patch">#welcomePopup{display:none!important;visibility:hidden!important;pointer-events:none!important}</style><style id="kz-social-logo-instagram-style">.kz-footer-social-btn .kz-social-logo{width:22px;height:22px;display:block;object-fit:cover;border-radius:6px;margin:0;}.kz-footer-social-btn .kz-social-logo-instagram{box-shadow:0 4px 10px rgba(0,0,0,.18);}</style></head><body class="kz-sidebar-home"><div class="statusbar-space"></div><div class="app-wrapper"><div id="welcomePopup" style="display:none !important;"></div><div id="payOverlay" onclick="onPayOverlayClick(event)"><div aria-label="Payment" aria-modal="true" class="pay-modal" onclick="event.stopPropagation()" role="dialog"><div class="pay-head"><div><h3>Payment</h3><div class="pay-sub">Produk: <b id="payProductName">-</b><span class="pay-server-badge" id="payServerBadge" style="display:none;">S1</span></div></div><div class="pay-row"><div class="pay-badge" id="payTimerBadge"><span class="pay-dot" id="payTimerDot"></span><span id="payTimerText">Timer: belum mulai</span></div><button aria-label="Close" class="pay-close" onclick="closePaymentFlow()">×</button></div></div><div aria-live="polite" class="pay-toast" id="payToast"></div><div class="pay-body"><div id="payMainView"><div style="font-weight:900">Metode Pembayaran</div><div class="pay-grid" id="payMethodGrid"><div class="pay-method" data-method="qris" onclick="selectPaymentMethod('qris')">QRIS</div><div class="pay-method" data-method="dana" onclick="selectPaymentMethod('dana')">DANA</div><div class="pay-method" data-method="gopay" onclick="selectPaymentMethod('gopay')">GOPAY</div><div class="pay-method" data-method="ovo" onclick="selectPaymentMethod('ovo')">OVO</div></div><div class="pay-panel" id="payDetailPanel" style="display:none;"><div class="pay-row" style="justify-content:space-between"><div style="font-weight:900">Detail Pembayaran</div><div class="pay-sub" id="payDeadlineText">Batas: -</div></div><div id="payQRISWrap" style="display:none; margin-top:10px;"><img alt="QRIS" class="pay-qr" id="payQrisImg"/><button class="pay-btn secondary" id="payBtnDownloadQRIS" onclick="downloadQris()" type="button">DOWNLOAD QRIS</button></div><div id="payNumberWrap" style="display:none; margin-top:10px;"><div class="pay-number"><code id="payNumberText">-</code><button class="pay-btn secondary" onclick="copyPaymentNumber()" style="width:auto; padding:10px 12px; margin-top:0;" type="button">SALIN</button></div></div><div class="pay-info" id="payMethodInfo" style="display:block; margin-top:10px;"></div><div class="pay-upload" id="payUploadSection"><div id="payUploadTitle" style="font-weight:900">Upload Bukti Pembayaran</div><form enctype="multipart/form-data" id="payProofForm" method="post"><input name="to_email" type="hidden" value="kzrizusmostore@gmail.com"/><input id="payFormOrderId" name="order_id" type="hidden" value=""/><input id="payFormProduct" name="product_name" type="hidden" value=""/><input id="payFormUnitPrice" name="unit_price" type="hidden" value=""/><input id="payFormTotal" name="total_price" type="hidden" value=""/><input id="payFormMethod" name="payment_method" type="hidden" value=""/><input id="payFormValue" name="payment_value" type="hidden" value=""/><input id="payFormDeadline" name="payment_deadline" type="hidden" value=""/><input id="payFormSubject" name="subject" type="hidden" value=""/><input id="payFormMessage" name="message" type="hidden" value=""/><input id="payFormFromName" name="from_name" type="hidden" value=""/><input id="payFormSenderName" name="sender_name" type="hidden" value=""/><input id="payFormWA" name="whatsapp" type="hidden" value=""/><textarea id="payFormDetail" name="order_detail" style="display:none"></textarea><div class="pay-summary"><div class="pay-srow"><span>Produk</span><b id="paySumProduct">-</b></div><div class="pay-srow"><span>Harga Satuan</span><b id="paySumUnit">-</b></div><div class="pay-srow"><span>Jumlah</span><div class="pay-qty-wrap"><button class="qty-btn" id="payQtyMinus" type="button">−</button><input class="pay-input pay-qty" id="payQtyInput" inputmode="numeric" min="1" name="qty" required="" type="number" value="1"/><button class="qty-btn" id="payQtyPlus" type="button">+</button></div></div><div class="pay-srow"><span>Subtotal</span><b id="paySumSubtotal">-</b></div><div class="pay-srow" id="payRowDiscount" style="display:none;"><span>Diskon Member</span><b id="paySumDiscount">-</b></div><div class="pay-srow" id="payRowPromo" style="display:none;"><span>Diskon Promo</span><b id="paySumPromo">-</b></div><div class="pay-srow" id="payRowUnique" style="display:none;"><span>Diskon Unik</span><b id="paySumUnique">-</b></div><div class="pay-srow"><span>Total Bayar</span><b id="paySumTotal">-</b></div><div class="pay-srow" id="payRowPromoCode" style="display:none;"><span>Kode Promo</span><b id="paySumPromoCode">-</b></div><div class="pay-srow" id="payRowSender" style="display:none;"><span>Username</span><b id="paySumSender">-</b></div><div class="pay-srow" id="payRowWA" style="display:none;"><span>Nomor WhatsApp</span><b id="paySumWA">-</b></div></div><div class="pay-field" id="payPromoField"><label class="pay-label" for="payPromoInput">Kode Promo (opsional)</label><div class="pay-inline"><input autocomplete="off" class="pay-input" id="payPromoInput" placeholder="contoh: KZR019" type="text"/><button class="pay-btn secondary" id="payPromoApplyBtn" onclick="applyPromoCode()" style="width:auto; padding:10px 12px; margin-top:0;" type="button">PAKAI</button><button class="pay-btn secondary" id="payPromoClearBtn" onclick="clearPromoCode()" style="width:auto; padding:10px 12px; margin-top:0; opacity:.85;" type="button">HAPUS</button></div><div class="pay-sub" id="payPromoHint" style="margin-top:6px;">Kode aktif s/d 25 April: KZR019, KZR004, KZR026, KZR07K, KZR23K</div></div><div class="pay-field" id="payZusmoUidField" style="display:none;"><label class="pay-label" for="payZusmoUidInput">UID :</label><input autocomplete="off" class="pay-input" id="payZusmoUidInput" inputmode="numeric" name="zusmo_uid" pattern="[0-9]*" placeholder="Masukkan UID" type="text"/></div><div class="pay-field" id="payWhatsappFieldDefault"><label class="pay-label" for="payWhatsappInput">Nomor WhatsApp :</label><input autocomplete="tel" class="pay-input" id="payWhatsappInput" inputmode="tel" name="buyer_whatsapp" placeholder="08" required="" type="tel"/></div><div id="payZusmoFields" style="display:none;"><div class="pay-field"><label class="pay-label">Pilih Game :</label><div class="pay-choice-grid two" id="payZusmoGameChoices"><button class="pay-choice-btn" data-group="game" data-value="Free Fire" type="button">FREE FIRE</button><button class="pay-choice-btn" data-group="game" data-value="FF Max" type="button">FF MAX</button></div><input id="payZusmoGameInput" name="zusmo_game" type="hidden" value=""/></div><div class="pay-field"><label class="pay-label">Pilih Device :</label><div class="pay-choice-grid two" id="payZusmoPlatformChoices"><button class="pay-choice-btn" data-group="platform" data-value="Android" type="button">ANDROID</button><button class="pay-choice-btn" data-group="platform" data-value="iOS" type="button">IOS</button></div><input id="payZusmoPlatformInput" name="zusmo_platform" type="hidden" value=""/></div></div><input accept="image/*,.pdf,application/pdf" class="kz-file-input-native" id="payFileInput" type="file"/><input id="payFormProofInfo" name="proof_info" type="hidden" value=""/></form><button class="pay-btn secondary" id="payBtnUpload" onclick="triggerPayUpload()" type="button">UPLOAD BUKTI</button><div class="pay-preview" id="payPreview"><img alt="Preview" id="payPreviewImg"/><div><div id="payPreviewName" style="font-weight:900">-</div><div class="pay-sub">Jika sudah benar, klik tombol kirim.</div></div></div><button class="pay-btn" id="payBtnSend" onclick="sendPaymentProof()" type="button">KONFIRMASI &amp; KIRIM</button><div class="pay-status" id="payStatus"></div></div><div class="pay-info">Pastikan seluruh data diisi dengan benar dan nomor WhatsApp dalam keadaan aktif.
+<style id="kz-welcome-popup-disable-patch">#welcomePopup{display:none!important;visibility:hidden!important;pointer-events:none!important}</style><style id="kz-social-logo-instagram-style">.kz-footer-social-btn .kz-social-logo{width:22px;height:22px;display:block;object-fit:cover;border-radius:6px;margin:0;}.kz-footer-social-btn .kz-social-logo-instagram{box-shadow:0 4px 10px rgba(0,0,0,.18);}</style></head><body class="kz-sidebar-home"><div class="statusbar-space"></div><div class="app-wrapper"><div id="welcomePopup" style="display:none !important;"></div><div id="payOverlay" onclick="onPayOverlayClick(event)"><div aria-label="Payment" aria-modal="true" class="pay-modal" onclick="event.stopPropagation()" role="dialog"><div class="pay-head"><div><h3>Payment</h3><div class="pay-sub">Produk: <b id="payProductName">-</b><span class="pay-server-badge" id="payServerBadge" style="display:none;">S1</span></div></div><div class="pay-row"><div class="pay-badge" id="payTimerBadge"><span class="pay-dot" id="payTimerDot"></span><span id="payTimerText">Timer: belum mulai</span></div><button aria-label="Close" class="pay-close" onclick="closePaymentFlow()">×</button></div></div><div aria-live="polite" class="pay-toast" id="payToast"></div><div class="pay-body"><div id="payMainView"><div style="font-weight:900">Metode Pembayaran</div><div class="pay-grid" id="payMethodGrid"><div class="pay-method" data-method="qris" onclick="selectPaymentMethod('qris')">QRIS</div><div class="pay-method" data-method="dana" onclick="selectPaymentMethod('dana')">DANA</div><div class="pay-method" data-method="gopay" onclick="selectPaymentMethod('gopay')">GOPAY</div><div class="pay-method" data-method="ovo" onclick="selectPaymentMethod('ovo')">OVO</div></div><div class="pay-panel" id="payDetailPanel" style="display:none;"><div class="pay-row" style="justify-content:space-between"><div style="font-weight:900">Detail Pembayaran</div><div class="pay-sub" id="payDeadlineText">Batas: -</div></div><div id="payQRISWrap" style="display:none; margin-top:10px;"><img alt="QRIS" class="pay-qr" id="payQrisImg"/><button class="pay-btn secondary" id="payBtnDownloadQRIS" onclick="downloadQris()" type="button">DOWNLOAD QRIS</button></div><div id="payNumberWrap" style="display:none; margin-top:10px;"><div class="pay-number"><code id="payNumberText">-</code><button class="pay-btn secondary" onclick="copyPaymentNumber()" style="width:auto; padding:10px 12px; margin-top:0;" type="button">SALIN</button></div></div><div class="pay-info" id="payMethodInfo" style="display:block; margin-top:10px;"></div><div class="pay-upload" id="payUploadSection"><div id="payUploadTitle" style="font-weight:900">Upload Bukti Pembayaran</div><form enctype="multipart/form-data" id="payProofForm" method="post"><input name="to_email" type="hidden" value="kzrizusmostore@gmail.com"/><input id="payFormOrderId" name="order_id" type="hidden" value=""/><input id="payFormProduct" name="product_name" type="hidden" value=""/><input id="payFormUnitPrice" name="unit_price" type="hidden" value=""/><input id="payFormTotal" name="total_price" type="hidden" value=""/><input id="payFormMethod" name="payment_method" type="hidden" value=""/><input id="payFormValue" name="payment_value" type="hidden" value=""/><input id="payFormDeadline" name="payment_deadline" type="hidden" value=""/><input id="payFormSubject" name="subject" type="hidden" value=""/><input id="payFormMessage" name="message" type="hidden" value=""/><input id="payFormFromName" name="from_name" type="hidden" value=""/><input id="payFormSenderName" name="sender_name" type="hidden" value=""/><input id="payFormWA" name="whatsapp" type="hidden" value=""/><input id="payFormLinkTarget" name="link_target" type="hidden" value=""/><textarea id="payFormDetail" name="order_detail" style="display:none"></textarea><div class="pay-summary"><div class="pay-srow"><span>Produk</span><b id="paySumProduct">-</b></div><div class="pay-srow"><span>Harga Satuan</span><b id="paySumUnit">-</b></div><div class="pay-srow"><span>Jumlah</span><div class="pay-qty-wrap"><button class="qty-btn" id="payQtyMinus" type="button">−</button><input class="pay-input pay-qty" id="payQtyInput" inputmode="numeric" min="1" name="qty" required="" type="number" value="1"/><button class="qty-btn" id="payQtyPlus" type="button">+</button></div></div><div class="pay-srow"><span>Subtotal</span><b id="paySumSubtotal">-</b></div><div class="pay-srow" id="payRowDiscount" style="display:none;"><span>Diskon Member</span><b id="paySumDiscount">-</b></div><div class="pay-srow" id="payRowPromo" style="display:none;"><span>Diskon Promo</span><b id="paySumPromo">-</b></div><div class="pay-srow" id="payRowUnique" style="display:none;"><span>Diskon Unik</span><b id="paySumUnique">-</b></div><div class="pay-srow"><span>Total Bayar</span><b id="paySumTotal">-</b></div><div class="pay-srow" id="payRowPromoCode" style="display:none;"><span>Kode Promo</span><b id="paySumPromoCode">-</b></div><div class="pay-srow" id="payRowSender" style="display:none;"><span>Username</span><b id="paySumSender">-</b></div><div class="pay-srow" id="payRowWA" style="display:none;"><span>Nomor WhatsApp</span><b id="paySumWA">-</b></div><div class="pay-srow" id="payRowLinkTarget" style="display:none;"><span>Link Target</span><b id="paySumLinkTarget">-</b></div></div><div class="pay-field" id="payPromoField"><label class="pay-label" for="payPromoInput">Kode Promo (opsional)</label><div class="pay-inline"><input autocomplete="off" class="pay-input" id="payPromoInput" placeholder="contoh: KZR019" type="text"/><button class="pay-btn secondary" id="payPromoApplyBtn" onclick="applyPromoCode()" style="width:auto; padding:10px 12px; margin-top:0;" type="button">PAKAI</button><button class="pay-btn secondary" id="payPromoClearBtn" onclick="clearPromoCode()" style="width:auto; padding:10px 12px; margin-top:0; opacity:.85;" type="button">HAPUS</button></div><div class="pay-sub" id="payPromoHint" style="margin-top:6px;">Kode aktif s/d 25 April: KZR019, KZR004, KZR026, KZR07K, KZR23K</div></div><div class="pay-field" id="payZusmoUidField" style="display:none;"><label class="pay-label" for="payZusmoUidInput">UID :</label><input autocomplete="off" class="pay-input" id="payZusmoUidInput" inputmode="numeric" name="zusmo_uid" pattern="[0-9]*" placeholder="Masukkan UID" type="text"/></div><div class="pay-field" id="payWhatsappFieldDefault"><label class="pay-label" for="payWhatsappInput">Nomor WhatsApp :</label><input autocomplete="tel" class="pay-input" id="payWhatsappInput" inputmode="tel" name="buyer_whatsapp" placeholder="08" required="" type="tel"/></div><div class="pay-field" id="paySosmedLinkTargetField" style="display:none;"><label class="pay-label" for="payLinkTargetInput">Link target :</label><input autocomplete="url" class="pay-input" id="payLinkTargetInput" inputmode="url" name="buyer_link_target" placeholder="https://..." type="url"/><div class="pay-sub" id="payLinkTargetHint" style="margin-top:6px; display:none;">Masukkan link target yang ingin diproses.</div></div><div id="payZusmoFields" style="display:none;"><div class="pay-field"><label class="pay-label">Pilih Game :</label><div class="pay-choice-grid two" id="payZusmoGameChoices"><button class="pay-choice-btn" data-group="game" data-value="Free Fire" type="button">FREE FIRE</button><button class="pay-choice-btn" data-group="game" data-value="FF Max" type="button">FF MAX</button></div><input id="payZusmoGameInput" name="zusmo_game" type="hidden" value=""/></div><div class="pay-field"><label class="pay-label">Pilih Device :</label><div class="pay-choice-grid two" id="payZusmoPlatformChoices"><button class="pay-choice-btn" data-group="platform" data-value="Android" type="button">ANDROID</button><button class="pay-choice-btn" data-group="platform" data-value="iOS" type="button">IOS</button></div><input id="payZusmoPlatformInput" name="zusmo_platform" type="hidden" value=""/></div></div><input accept="image/*,.pdf,application/pdf" class="kz-file-input-native" id="payFileInput" type="file"/><input id="payFormProofInfo" name="proof_info" type="hidden" value=""/></form><button class="pay-btn secondary" id="payBtnUpload" onclick="triggerPayUpload()" type="button">UPLOAD BUKTI</button><div class="pay-preview" id="payPreview"><img alt="Preview" id="payPreviewImg"/><div><div id="payPreviewName" style="font-weight:900">-</div><div class="pay-sub">Jika sudah benar, klik tombol kirim.</div></div></div><button class="pay-btn" id="payBtnSend" onclick="sendPaymentProof()" type="button">KONFIRMASI &amp; KIRIM</button><div class="pay-status" id="payStatus"></div></div><div class="pay-info">Pastikan seluruh data diisi dengan benar dan nomor WhatsApp dalam keadaan aktif.
 
 </div></div><div data-state="success" id="paySuccessView" style="display:none;"><div class="pay-success-wrap"><div class="pay-success-card"><div aria-hidden="true" class="pay-success-check"><svg aria-label="Sukses" role="img" viewbox="0 0 100 100"><circle class="ring" cx="50" cy="50" r="45"></circle><path class="tick" d="M30 52 L45 67 L72 38"></path></svg></div><div class="pay-success-title" id="paySuccessTitle">Bukti Pembayaran Terkirim</div><div class="pay-success-sub" id="paySuccessSub">Harap menunggu. Sedang diproses...</div><div class="rc-prod pay-success-prod"><img alt="Produk" id="paySuccessProductImg"/><div><div class="rc-prod-name" id="paySuccessProductName2">-</div></div></div><div class="pay-success-meta"><div class="pay-srow"><span>Order ID</span><b id="paySuccessOrderId">-</b></div><div class="pay-srow"><span>Waktu Order</span><b id="paySuccessOrderTime">-</b></div><div class="pay-srow"><span>Username</span><b id="paySuccessSenderName">-</b></div><div class="pay-srow"><span>WhatsApp</span><b id="paySuccessBuyerWA">-</b></div><div class="pay-srow"><span>Produk</span><b id="paySuccessProduct">-</b></div><div class="pay-srow"><span>Total Bayar</span><b id="paySuccessTotal">-</b></div><div class="pay-srow"><span>Metode</span><b id="paySuccessMethod">-</b></div><div class="pay-srow"><span>Tujuan</span><b id="paySuccessTarget">-</b></div></div><div class="pay-success-steps" id="paySuccessSteps"><div class="pay-step done"><i class="fas fa-check"></i> Bukti pembayaran berhasil dikirim</div><div class="pay-step"><i class="fas fa-clock"></i> Menunggu verifikasi admin</div><div class="pay-step"><i class="fab fa-whatsapp"></i> Proses kirim data akun ke WhatsApp</div></div><div class="pay-success-actions" id="paySuccessActions"><button class="pay-btn secondary" id="payBtnStruk" onclick="kzOpenReceiptFromSuccess()" type="button">STRUK</button><button class="pay-btn" id="payBtnFinish" onclick="kzTryFinishPayment()" type="button">SELESAI</button></div><div class="pay-success-note">
         Admin akan segera memproses pesanan Anda.
@@ -5573,7 +5573,293 @@ window.addEventListener('load',function(){setTimeout(boot,0);setTimeout(boot,200
   else boot();
   window.addEventListener('load', function(){ setTimeout(boot, 60); setTimeout(boot, 240); });
 })();
-</script></body></html>
+</script>
+<script id="kz-sosmed-link-target-payment-patch">
+(function(){
+  if(window.__kzSosmedLinkTargetPatchApplied) return;
+  window.__kzSosmedLinkTargetPatchApplied = true;
+  function byId(id){ try{return document.getElementById(id);}catch(e){return null;} }
+  function norm(v){ return String(v == null ? '' : v).trim(); }
+  function lower(v){ return norm(v).toLowerCase(); }
+  function isVisible(el){
+    if(!el) return false;
+    try{
+      var st = window.getComputedStyle ? window.getComputedStyle(el) : null;
+      if(st && (st.display === 'none' || st.visibility === 'hidden')) return false;
+      return true;
+    }catch(e){ return !!el; }
+  }
+  function overlayOpen(){
+    var el = byId('payOverlay');
+    if(!el) return false;
+    try{ return isVisible(el) && (el.style.display === 'block' || el.style.display === '' || (window.getComputedStyle(el).display !== 'none')); }catch(e){ return false; }
+  }
+  function looksSosmedText(v){
+    var s = lower(v);
+    if(!s) return false;
+    if(/(^|\b)suntik\b/.test(s)) return true;
+    if(/followers?|views?|likes?|subscribers?|subscriber|komentar|comment|reach|watch ?hours?|jam tayang/.test(s)) return true;
+    if(/instagram|tiktok|youtube|facebook|telegram|whatsapp|twitter|\bx\b/.test(s)) return true;
+    return false;
+  }
+  function currentProductText(){
+    var arr = [];
+    try{ if(window.payState){ arr.push(window.payState.product||''); arr.push(window.payState.appName||''); } }catch(e){}
+    try{ arr.push((byId('payProductName')||{}).textContent || ''); }catch(e){}
+    return arr.join(' | ');
+  }
+  function isSosmedContext(){
+    try{ if(lower(window.__kzLastSidebarSection) === 'sosmed') return true; }catch(e){}
+    try{ if(window.payState && (window.payState.isSosmed || window.payState.sosmedInfoRequired)) return true; }catch(e){}
+    if(looksSosmedText(currentProductText())) return true;
+    try{
+      var page = byId('page-sosmed');
+      if(page && isVisible(page) && lower((document.body && document.body.className) || '').indexOf('kz-sidebar') > -1) return true;
+    }catch(e){}
+    return false;
+  }
+  function ensureField(){
+    var wrap = byId('paySosmedLinkTargetField');
+    var anchor = byId('payWhatsappFieldDefault');
+    if(!wrap && anchor){
+      wrap = document.createElement('div');
+      wrap.className = 'pay-field';
+      wrap.id = 'paySosmedLinkTargetField';
+      wrap.style.display = 'none';
+      wrap.innerHTML = '<label class="pay-label" for="payLinkTargetInput">Link target :</label><input autocomplete="url" class="pay-input" id="payLinkTargetInput" inputmode="url" name="buyer_link_target" placeholder="https://..." type="url"/><div class="pay-sub" id="payLinkTargetHint" style="margin-top:6px; display:none;">Masukkan link target yang ingin diproses.</div>';
+      anchor.insertAdjacentElement('afterend', wrap);
+    }
+    var input = byId('payLinkTargetInput');
+    if(input && !input.dataset.kzBound){
+      input.dataset.kzBound = '1';
+      ['input','change','blur'].forEach(function(evt){
+        input.addEventListener(evt, function(){
+          input.dataset.kzTouched = '1';
+          syncAll(true);
+        }, true);
+      });
+    }
+    return wrap;
+  }
+  function ensureHidden(){
+    var form = byId('payProofForm');
+    if(!form) return null;
+    var hidden = byId('payFormLinkTarget');
+    if(!hidden){
+      hidden = document.createElement('input');
+      hidden.type = 'hidden';
+      hidden.id = 'payFormLinkTarget';
+      hidden.name = 'link_target';
+      form.appendChild(hidden);
+    }
+    return hidden;
+  }
+  function ensureSummary(){
+    var row = byId('payRowLinkTarget');
+    var anchor = byId('payRowWA');
+    if(!row && anchor){
+      row = document.createElement('div');
+      row.className = 'pay-srow';
+      row.id = 'payRowLinkTarget';
+      row.style.display = 'none';
+      row.innerHTML = '<span>Link Target</span><b id="paySumLinkTarget">-</b>';
+      anchor.insertAdjacentElement('afterend', row);
+    }
+    return row;
+  }
+  function getValue(){
+    var input = byId('payLinkTargetInput');
+    return norm(input && input.value);
+  }
+  function getSaved(){
+    try{
+      if(window.payState){
+        if(norm(window.payState.linkTarget)) return norm(window.payState.linkTarget);
+        if(norm(window.payState.targetOverride)) return norm(window.payState.targetOverride);
+      }
+    }catch(e){}
+    return '';
+  }
+  function saveValue(v){
+    try{
+      if(!window.payState) return;
+      var clean = norm(v);
+      if(clean){
+        window.payState.linkTarget = clean;
+        window.payState.targetOverride = clean;
+        window.payState.isSosmed = true;
+        window.payState.sosmedInfoRequired = true;
+      }else{
+        delete window.payState.linkTarget;
+        delete window.payState.targetOverride;
+      }
+      if(typeof savePayStorage === 'function') savePayStorage();
+    }catch(e){}
+  }
+  function validLink(v){ return /^https?:\/\/\S+$/i.test(norm(v)); }
+  function renderHint(show, msg){
+    var hint = byId('payLinkTargetHint');
+    if(!hint) return;
+    hint.style.display = show ? 'block' : 'none';
+    hint.textContent = msg || 'Masukkan link target yang ingin diproses.';
+  }
+  function syncAll(save){
+    ensureField(); ensureHidden(); ensureSummary();
+    var show = isSosmedContext();
+    var wrap = byId('paySosmedLinkTargetField');
+    var input = byId('payLinkTargetInput');
+    var hidden = byId('payFormLinkTarget');
+    var row = byId('payRowLinkTarget');
+    var sum = byId('paySumLinkTarget');
+    if(!wrap || !input) return;
+    if(show && !input.dataset.kzTouched){
+      var saved = getSaved();
+      if(saved && input.value !== saved) input.value = saved;
+    }
+    if(!show){
+      wrap.style.display = 'none';
+      input.required = false;
+      renderHint(false, '');
+      if(hidden) hidden.value = '';
+      if(row) row.style.display = 'none';
+      if(sum) sum.textContent = '-';
+      return;
+    }
+    wrap.style.display = '';
+    input.required = true;
+    var val = getValue();
+    if(hidden) hidden.value = val;
+    if(sum) sum.textContent = val || '-';
+    if(row) row.style.display = val ? 'flex' : 'none';
+    if(save) saveValue(val);
+    if(!val) renderHint(false, '');
+    else if(validLink(val)) renderHint(false, '');
+    else renderHint(true, 'Format harus diawali https:// atau http://');
+  }
+  function validateBeforeSend(){
+    syncAll(true);
+    if(!isSosmedContext()) return true;
+    var input = byId('payLinkTargetInput');
+    var val = getValue();
+    if(!input) return true;
+    if(!val){
+      try{ if(typeof setPayStatus === 'function') setPayStatus('⚠️ Isi Link target terlebih dulu.'); }catch(e){}
+      try{ input.focus(); }catch(e){}
+      renderHint(true, 'Isi link target dulu.');
+      return false;
+    }
+    if(!validLink(val)){
+      try{ if(typeof setPayStatus === 'function') setPayStatus('⚠️ Format Link target harus diawali https:// atau http://'); }catch(e){}
+      try{ input.focus(); }catch(e){}
+      renderHint(true, 'Format harus diawali https:// atau http://');
+      return false;
+    }
+    return true;
+  }
+  function extraLines(){
+    var val = getValue();
+    return val ? ['Link target: ' + val] : [];
+  }
+  function queueSync(){
+    setTimeout(function(){ syncAll(false); }, 0);
+    setTimeout(function(){ syncAll(false); }, 120);
+    setTimeout(function(){ syncAll(false); }, 500);
+  }
+  var oldOrderNow = window.orderNow;
+  if(typeof oldOrderNow === 'function' && !oldOrderNow.__kzLinkTargetWrapped){
+    var wrappedOrderNow = function(){
+      var noServer = arguments.length > 6 ? arguments[6] : false;
+      if(noServer === true || String(noServer).toLowerCase() === 'true'){
+        try{ window.__kzLastSidebarSection = 'sosmed'; }catch(e){}
+        try{ if(window.payState) window.payState.isSosmed = true; }catch(e){}
+      }
+      var out = oldOrderNow.apply(this, arguments);
+      queueSync();
+      return out;
+    };
+    wrappedOrderNow.__kzLinkTargetWrapped = true;
+    window.orderNow = wrappedOrderNow;
+  }
+  var oldOpenPaymentFlow = window.openPaymentFlow;
+  if(typeof oldOpenPaymentFlow === 'function' && !oldOpenPaymentFlow.__kzLinkTargetWrapped){
+    var wrappedOpen = function(){
+      var out = oldOpenPaymentFlow.apply(this, arguments);
+      queueSync();
+      return out;
+    };
+    wrappedOpen.__kzLinkTargetWrapped = true;
+    window.openPaymentFlow = wrappedOpen;
+  }
+  var oldStartNewOrder = window.startNewOrder;
+  if(typeof oldStartNewOrder === 'function' && !oldStartNewOrder.__kzLinkTargetWrapped){
+    var wrappedStart = function(){
+      var out = oldStartNewOrder.apply(this, arguments);
+      queueSync();
+      return out;
+    };
+    wrappedStart.__kzLinkTargetWrapped = true;
+    window.startNewOrder = wrappedStart;
+  }
+  var oldSyncPaySummaryUI = window.syncPaySummaryUI;
+  if(typeof oldSyncPaySummaryUI === 'function' && !oldSyncPaySummaryUI.__kzLinkTargetSummaryWrapped){
+    var wrappedSummary = function(){
+      var out = oldSyncPaySummaryUI.apply(this, arguments);
+      syncAll(false);
+      return out;
+    };
+    wrappedSummary.__kzLinkTargetSummaryWrapped = true;
+    window.syncPaySummaryUI = wrappedSummary;
+  }
+  var oldValidatePaySendButton = window.validatePaySendButton;
+  if(typeof oldValidatePaySendButton === 'function' && !oldValidatePaySendButton.__kzLinkTargetValidateWrapped){
+    var wrappedValidate = function(){
+      var out = oldValidatePaySendButton.apply(this, arguments);
+      syncAll(false);
+      return out;
+    };
+    wrappedValidate.__kzLinkTargetValidateWrapped = true;
+    window.validatePaySendButton = wrappedValidate;
+  }
+  var oldSendPaymentProof = window.sendPaymentProof;
+  if(typeof oldSendPaymentProof === 'function' && !oldSendPaymentProof.__kzLinkTargetWrapped){
+    var wrappedSend = function(){
+      if(!validateBeforeSend()) return;
+      syncAll(true);
+      return oldSendPaymentProof.apply(this, arguments);
+    };
+    wrappedSend.__kzLinkTargetWrapped = true;
+    window.sendPaymentProof = wrappedSend;
+  }
+  var oldZusmoLines = window.kzGetZusmoBetaDetailLines;
+  if(typeof oldZusmoLines === 'function' && !oldZusmoLines.__kzLinkTargetWrapped){
+    var wrappedLines = function(){
+      var lines = [];
+      try{ lines = oldZusmoLines.apply(this, arguments) || []; }catch(e){ lines = []; }
+      return lines.concat(extraLines());
+    };
+    wrappedLines.__kzLinkTargetWrapped = true;
+    window.kzGetZusmoBetaDetailLines = wrappedLines;
+  }else if(typeof oldZusmoLines !== 'function'){
+    window.kzGetZusmoBetaDetailLines = function(){ return extraLines(); };
+  }
+  try{
+    var payOverlay = byId('payOverlay');
+    if(payOverlay && typeof MutationObserver !== 'undefined'){
+      var mo = new MutationObserver(function(){ if(overlayOpen()) queueSync(); });
+      mo.observe(payOverlay, {attributes:true, childList:true, subtree:true, attributeFilter:['style','class']});
+    }
+  }catch(e){}
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', function(){ ensureField(); ensureHidden(); ensureSummary(); queueSync(); }, {once:true});
+  }else{
+    ensureField(); ensureHidden(); ensureSummary(); queueSync();
+  }
+  try{ window.addEventListener('pageshow', queueSync); }catch(e){}
+  try{ window.addEventListener('load', queueSync, {once:true}); }catch(e){}
+})();
+</script>
+
+</body></html>
 <script id="kz-tagihan-tab-center-override">(function(){
   if(document.getElementById('kz-tagihan-tab-center-style')) return;
   var style = document.createElement('style');
@@ -7327,310 +7613,3 @@ document.addEventListener('keyup',function(ev){
   });
 })();
 </script>
-
-
-
-<style id="kz-sosmed-payment-link-target-style">
-#paySosmedLinkTargetField .pay-sub{
-  margin-top:6px;
-  line-height:1.45;
-}
-</style>
-<script id="kz-sosmed-payment-link-target-patch">
-(function(){
-  if(window.__kzSosmedPaymentLinkTargetPatchApplied) return;
-  window.__kzSosmedPaymentLinkTargetPatchApplied = true;
-
-  function byId(id){
-    try{return document.getElementById(id)}catch(e){return null}
-  }
-  function norm(v){
-    return String(v == null ? '' : v).trim();
-  }
-  function looksSosmedName(name){
-    var s = norm(name).toLowerCase();
-    return /(suntik\s*sosmed|followers?|likes?|views?|subscriber|subscribers|reaction|retweet|tweet|threads|twitter|instagram|tiktok|youtube|whatsapp|shopee|spotify|discord|pinterest|linkedin|snack\s*video|website\s*traffic|web\s*traffic|channel members|channel reaction|poll votes|konten|audit)/.test(s);
-  }
-  function isVisible(el){
-    if(!el) return false;
-    try{
-      if(el.offsetParent !== null) return true;
-      var cs = window.getComputedStyle ? getComputedStyle(el) : null;
-      return !!(cs && cs.display !== 'none' && cs.visibility !== 'hidden');
-    }catch(e){
-      return false;
-    }
-  }
-  function isSosmedContext(){
-    try{
-      if(String(window.__kzLastSidebarSection || '').toLowerCase() === 'sosmed') return true;
-    }catch(e){}
-    try{
-      if(window.payState && (window.payState.isSosmed || window.payState.sosmedInfoRequired)) return true;
-    }catch(e){}
-    try{
-      if(window.payState && looksSosmedName(window.payState.product || '')) return true;
-    }catch(e){}
-    try{
-      var page = byId('page-sosmed');
-      if(isVisible(page)) return true;
-    }catch(e){}
-    return false;
-  }
-  function ensureWrap(){
-    var anchor = byId('payWhatsappFieldDefault');
-    if(!anchor) return null;
-    var wrap = byId('paySosmedLinkTargetField');
-    if(!wrap){
-      wrap = document.createElement('div');
-      wrap.className = 'pay-field';
-      wrap.id = 'paySosmedLinkTargetField';
-      wrap.style.display = 'none';
-      wrap.innerHTML = ''
-        + '<label class="pay-label" for="payLinkTargetInput">Link target :</label>'
-        + '<input autocomplete="url" class="pay-input" id="payLinkTargetInput" inputmode="url" placeholder="https://..." type="url" />'
-        + '<div class="pay-sub">Isi link target dengan format lengkap, contoh: https://...</div>';
-      anchor.insertAdjacentElement('afterend', wrap);
-      var input = byId('payLinkTargetInput');
-      if(input && !input.__kzBound){
-        input.__kzBound = true;
-        input.addEventListener('input', function(){
-          this.__kzTouched = true;
-          syncState(true);
-        });
-        input.addEventListener('blur', function(){
-          syncState(true);
-        });
-      }
-    }
-    return wrap;
-  }
-  function ensureHidden(){
-    var form = byId('payProofForm');
-    if(!form) return null;
-    var input = byId('payFormLinkTarget');
-    if(!input){
-      input = document.createElement('input');
-      input.type = 'hidden';
-      input.id = 'payFormLinkTarget';
-      input.name = 'link_target';
-      form.appendChild(input);
-    }
-    return input;
-  }
-  function ensureSummaryRow(){
-    var anchor = byId('payRowWA');
-    if(!anchor) return null;
-    var row = byId('payRowLinkTarget');
-    if(!row){
-      row = document.createElement('div');
-      row.className = 'pay-srow';
-      row.id = 'payRowLinkTarget';
-      row.style.display = 'none';
-      row.innerHTML = '<span>Link Target</span><b id="paySumLinkTarget">-</b>';
-      anchor.insertAdjacentElement('afterend', row);
-    }
-    return row;
-  }
-  function getInput(){
-    return byId('payLinkTargetInput');
-  }
-  function getSavedValue(){
-    try{
-      if(window.payState){
-        if(window.payState.targetOverride) return norm(window.payState.targetOverride);
-        if(window.payState.linkTarget) return norm(window.payState.linkTarget);
-      }
-    }catch(e){}
-    return '';
-  }
-  function setSavedValue(val){
-    try{
-      if(!window.payState) return;
-      var clean = norm(val);
-      if(clean){
-        window.payState.targetOverride = clean;
-        window.payState.linkTarget = clean;
-        window.payState.isSosmed = true;
-        window.payState.sosmedInfoRequired = true;
-      }else{
-        try{ delete window.payState.targetOverride; }catch(e){ window.payState.targetOverride = ''; }
-        try{ delete window.payState.linkTarget; }catch(e){ window.payState.linkTarget = ''; }
-      }
-      if(typeof savePayStorage === 'function') savePayStorage();
-    }catch(e){}
-  }
-  function isValidLink(val){
-    return /^https?:\/\/\S+$/i.test(norm(val));
-  }
-  function syncState(saveToState){
-    var wrap = ensureWrap();
-    if(!wrap) return;
-    var hidden = ensureHidden();
-    var row = ensureSummaryRow();
-    var show = isSosmedContext();
-    wrap.style.display = show ? '' : 'none';
-
-    var input = getInput();
-    if(!input) return;
-
-    if(show && !input.__kzTouched){
-      var saved = getSavedValue();
-      if(saved && input.value !== saved) input.value = saved;
-    }
-
-    var val = norm(input.value);
-    if(!show){
-      val = '';
-      input.value = '';
-      input.__kzTouched = false;
-    }
-
-    input.required = !!show;
-    if(hidden) hidden.value = val;
-
-    if(row){
-      var sum = byId('paySumLinkTarget');
-      row.style.display = show && val ? '' : 'none';
-      if(sum) sum.textContent = val || '-';
-    }
-
-    if(saveToState) setSavedValue(val);
-  }
-  function clearField(){
-    var input = getInput();
-    if(input){
-      input.value = '';
-      input.__kzTouched = false;
-    }
-    var hidden = byId('payFormLinkTarget');
-    if(hidden) hidden.value = '';
-    var row = byId('payRowLinkTarget');
-    if(row) row.style.display = 'none';
-    try{
-      if(window.payState){
-        delete window.payState.targetOverride;
-        delete window.payState.linkTarget;
-      }
-    }catch(e){}
-  }
-  function validateBeforeSend(){
-    syncState(true);
-    if(!isSosmedContext()) return true;
-    var input = getInput();
-    if(!input) return true;
-    var val = norm(input.value);
-    if(!val){
-      try{ if(typeof setPayStatus === 'function') setPayStatus('⚠️ Isi Link target terlebih dulu.'); }catch(e){}
-      try{ input.focus(); }catch(e){}
-      return false;
-    }
-    if(!isValidLink(val)){
-      try{ if(typeof setPayStatus === 'function') setPayStatus('⚠️ Format Link target harus diawali https:// atau http://'); }catch(e){}
-      try{ input.focus(); }catch(e){}
-      return false;
-    }
-    return true;
-  }
-  function patchEmailJs(){
-    try{
-      if(!window.emailjs || window.emailjs.__kzLinkTargetPatched) return;
-      var oldSendForm = window.emailjs.sendForm;
-      if(typeof oldSendForm !== 'function') return;
-      window.emailjs.sendForm = function(){
-        try{
-          syncState(true);
-          var link = norm(getInput() && getInput().value);
-          if(link){
-            var line = 'Link Target: ' + link;
-            ['payFormDetail','payFormMessage'].forEach(function(id){
-              var el = byId(id);
-              if(!el) return;
-              var txt = String(el.value || '');
-              if(txt.indexOf(line) === -1){
-                el.value = txt ? txt + '\n' + line : line;
-              }
-            });
-          }
-        }catch(e){}
-        return oldSendForm.apply(this, arguments);
-      };
-      window.emailjs.__kzLinkTargetPatched = true;
-    }catch(e){}
-  }
-  function scheduleSync(){
-    setTimeout(function(){ syncState(false); patchEmailJs(); }, 0);
-    setTimeout(function(){ syncState(false); patchEmailJs(); }, 120);
-    setTimeout(function(){ syncState(false); patchEmailJs(); }, 500);
-  }
-
-  var oldOpenPaymentFlow = window.openPaymentFlow;
-  if(typeof oldOpenPaymentFlow === 'function' && !oldOpenPaymentFlow.__kzSosmedLinkWrapped){
-    var wrappedOpenPaymentFlow = function(){
-      var res = oldOpenPaymentFlow.apply(this, arguments);
-      scheduleSync();
-      return res;
-    };
-    wrappedOpenPaymentFlow.__kzSosmedLinkWrapped = true;
-    window.openPaymentFlow = wrappedOpenPaymentFlow;
-  }
-
-  var oldResetPaymentFlowState = window.resetPaymentFlowState;
-  if(typeof oldResetPaymentFlowState === 'function' && !oldResetPaymentFlowState.__kzSosmedLinkWrapped){
-    var wrappedResetPaymentFlowState = function(){
-      var res = oldResetPaymentFlowState.apply(this, arguments);
-      clearField();
-      scheduleSync();
-      return res;
-    };
-    wrappedResetPaymentFlowState.__kzSosmedLinkWrapped = true;
-    window.resetPaymentFlowState = wrappedResetPaymentFlowState;
-  }
-
-  var oldSyncPaySummaryUI = window.syncPaySummaryUI;
-  if(typeof oldSyncPaySummaryUI === 'function' && !oldSyncPaySummaryUI.__kzSosmedLinkWrapped){
-    var wrappedSyncPaySummaryUI = function(){
-      var res = oldSyncPaySummaryUI.apply(this, arguments);
-      syncState(false);
-      return res;
-    };
-    wrappedSyncPaySummaryUI.__kzSosmedLinkWrapped = true;
-    window.syncPaySummaryUI = wrappedSyncPaySummaryUI;
-  }
-
-  var oldSendPaymentProof = window.sendPaymentProof;
-  if(typeof oldSendPaymentProof === 'function' && !oldSendPaymentProof.__kzSosmedLinkWrapped){
-    var wrappedSendPaymentProof = async function(){
-      patchEmailJs();
-      if(!validateBeforeSend()) return;
-      return await oldSendPaymentProof.apply(this, arguments);
-    };
-    wrappedSendPaymentProof.__kzSosmedLinkWrapped = true;
-    window.sendPaymentProof = wrappedSendPaymentProof;
-  }
-
-  try{
-    var payOverlay = byId('payOverlay');
-    if(payOverlay && typeof MutationObserver !== 'undefined'){
-      var mo = new MutationObserver(function(){ scheduleSync(); });
-      mo.observe(payOverlay, {childList:true, subtree:true, attributes:true, attributeFilter:['style','class']});
-    }
-  }catch(e){}
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', function(){
-      ensureWrap();
-      ensureHidden();
-      ensureSummaryRow();
-      scheduleSync();
-    }, {once:true});
-  }else{
-    ensureWrap();
-    ensureHidden();
-    ensureSummaryRow();
-    scheduleSync();
-  }
-  window.addEventListener('load', function(){ scheduleSync(); }, {once:true});
-})();
-</script>
-
