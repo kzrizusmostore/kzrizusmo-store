@@ -3431,7 +3431,7 @@ document.addEventListener('keyup',function(ev){
 
   var STORAGE_KEY = 'kz_home_music_state_v10_sidebar';
   var TRACKS = [
-    { title: 'Please, Please, Please Let Me Get What I Want', shortTitle: 'Please, Please, Please', artist: 'The Smiths', url: 'https://files.catbox.moe/bu66nn.mp3', image: 'https://files.catbox.moe/qi9mox.jpeg' },
+    { title: 'Please, Please, Please Let Me Get What I Want', shortTitle: 'Please, Please, Please', artist: 'The Smiths', url: 'https://www.image2url.com/r2/default/audio/1777084186844-91cc6d2d-603e-44bc-99bd-b21445726874.mp3', image: 'https://files.catbox.moe/qi9mox.jpeg' },
     { title: 'Stand by Me', shortTitle: 'Stand by Me', artist: 'Oasis', url: 'https://files.catbox.moe/bu66nn.mp3', image: 'https://i.postimg.cc/nrbPzzWw/56c7f7415b9302e858844147514bfc3a.jpg' },
     { title: "Don't Look Back in Anger", shortTitle: "Don't Look Back in Anger", artist: 'Oasis', url: 'https://files.catbox.moe/fb5r81.mp3', image: 'https://i.postimg.cc/6qfYphRD/3c71593338a79a8db4545fbe61bc52b5.jpg' },
     { title: 'Wonderwall', shortTitle: 'Wonderwall', artist: 'Oasis', url: 'https://files.catbox.moe/d4dbeq.mp3', image: 'https://i.postimg.cc/CLM44kbh/8f1dfd70edc32f8ea0e69cc4c9eb19ce.jpg' },
